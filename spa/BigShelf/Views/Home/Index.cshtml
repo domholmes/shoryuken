@@ -1,0 +1,33 @@
+@using BigShelf.Models
+@using System.Web.Script.Serialization
+@{
+    ViewBag.Title = "Big Shelf - Read books, share books.";
+    var profile = (Profile)ViewBag.UserProfile;
+    var friendsJson = new JavaScriptSerializer().Serialize(profile.Friends.Select(f => new { f.FriendId, f.FriendProfile.Name }));
+}
+
+@Html.Partial("_SortAndFilter")
+<ul class="books clearfix" data-bind="foreach: books">
+    @Html.Partial("_Book")
+</ul>
+<div data-bind="with: paging">
+    @Html.Partial("_Paging")
+    </div>
+
+@section Script {
+    <script src="~/Scripts/App/Entities/Book.js"></script>
+    <script src="~/Scripts/App/GroupedPagingModel.js"></script>
+    <script src="~/Scripts/App/FlaggedBooksModel.js"></script>
+    <script src="~/Scripts/App/CatalogViewModel.js"></script>
+    <script>
+        $(function () {
+            upshot.metadata(@(Html.Metadata<BigShelf.Controllers.BigShelfController>()));
+
+            ko.applyBindings(new BigShelf.CatalogViewModel({
+                profileId: @profile.Id,
+                friends: @Html.Raw(friendsJson),
+                serviceUrl: "api/BigShelf"
+            }));
+        });
+    </script>
+}

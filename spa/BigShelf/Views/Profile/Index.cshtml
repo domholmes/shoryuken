@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div class="profile-form" data-bind="with: profile">
+    <h2>Hey <span data-bind="text: FirstName() || 'friend'"></span>, update your profile below</h2>
+
+    <div class="fieldgroup">
+        <label>Name</label>
+        <input class="revertible" data-bind="value: Name, css: { modified: Name.Modified }" />
+        <div class="reverter" title="Revert" data-bind="visible: Name.Modified, click: Name.Revert"></div>
+    </div>
+
+    <div class="fieldgroup">
+        <label>Email Address</label>
+        <input class="revertible" data-bind="value: EmailAddress, css: { modified: EmailAddress.Modified }" />
+        <div class="reverter" title="Revert" data-bind="visible: EmailAddress.Modified, click: EmailAddress.Revert"></div>
+        <p class="error" data-bind="text: EmailAddress.ValidationError"></p>
+    </div>
+
+    <img src="~/Content/Images/horizontal-separator.png" />    
+
+    <div class="friends fieldgroup">
+        <label>Friends</label>
+        <div class="friends-controls">
+            <ul class="friends-list" data-bind="foreach: Friends">
+                <li data-bind="css: { deleted: IsDeleted, added: IsAdded }">
+                    <span data-bind="text: FriendProfile() && FriendProfile().Name"></span>
+                    <div class="icon" data-bind="click: $root.toggleFriend"></div>
+                </li>
+            </ul>
+            <input placeholder="Add friend..." data-bind="autocomplete: { source: $parent.findFriends, select: $parent.addFriend }" />
+        </div>
+    </div>
+</div>
+<p>
+    <button class="form-action" data-bind="click: save, enable: allowSave">Update Profile</button>
+    <button class="form-action" data-bind="click: revert, enable: allowSave">Cancel</button>
+</p>
+
+@section Script {
+    <script src="~/Scripts/App/Entities/Friend.js"></script>
+    <script src="~/Scripts/App/Entities/Profile.js"></script>
+    <script src="~/Scripts/App/ProfileEditorViewModel.js"></script>
+    <script>
+        $(function () {
+            upshot.metadata(@(Html.Metadata<BigShelf.Controllers.BigShelfController>()));
+
+            ko.applyBindings(new BigShelf.ProfileEditorViewModel({
+                serviceUrl: "api/BigShelf"
+            }));
+        });
+    </script>
+}

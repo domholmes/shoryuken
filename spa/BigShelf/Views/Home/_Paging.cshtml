@@ -1,0 +1,11 @@
+﻿Results:
+
+<ul class="paging" data-bind="foreach: pageGroups">
+    <li>
+        <a href="#" data-bind="text: groupText, 
+                               click: $parent.selectPageGroup,
+                               css: { selected: $parent.pageIndex() == index }"></a>
+    </li>
+</ul>
+
+<strong data-bind="visible: totalItems() == 0">None</strong>

@@ -1,0 +1,12 @@
+﻿<li data-bind="css: { updating: IsUpdating }">
+    <div class="coverCol">
+        <img data-bind="attr: { src: CoverImageUrl, alt: Title }" />
+        <button class="flagToRead" data-bind="text: StatusText, enable: CanFlagToRead, click: flagToRead"></button>
+    </div>
+
+    <div class="details">
+        <h3 class="title" data-bind="text: Title"></h3>
+        <div class="author">by <span data-bind="text: Author"></span></div>
+        <div data-bind="starRating: Rating"></div>
+    </div>
+</li>
