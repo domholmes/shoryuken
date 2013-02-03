@@ -1,4 +1,4 @@
-namespace BreezeTest.Models
+namespace KnockoutTest.Models
 {
     public class BreezeSampleTodoItem
     {

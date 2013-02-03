@@ -1,8 +1,8 @@
 using System.Web.Http;
 
 [assembly: WebActivator.PreApplicationStartMethod(
-    typeof(BreezeTest.App_Start.BreezeWebApiConfig), "RegisterBreezePreStart")]
-namespace BreezeTest.App_Start {
+    typeof(KnockoutTest.App_Start.BreezeWebApiConfig), "RegisterBreezePreStart")]
+namespace KnockoutTest.App_Start {
   ///<summary>
   /// Inserts the Breeze Web API controller route at the front of all Web API routes
   ///</summary>

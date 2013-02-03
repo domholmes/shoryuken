@@ -4,8 +4,8 @@ using Newtonsoft.Json.Linq;
 
 using Breeze.WebApi;
 
-using BreezeTest.Models;
-namespace BreezeTest.Controllers {
+using KnockoutTest.Models;
+namespace KnockoutTest.Controllers {
   
     [BreezeController]
     public class BreezeSampleController : ApiController {

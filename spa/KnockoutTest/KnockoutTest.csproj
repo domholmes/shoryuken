@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6E8B8534-FFA9-4BC9-8B93-F418DCA4592E}</ProjectGuid>
+    <ProjectGuid>{95699C74-66C7-4A20-ADDB-32610043DF8A}</ProjectGuid>
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BreezeTest</RootNamespace>
-    <AssemblyName>BreezeTest</AssemblyName>
+    <RootNamespace>KnockoutTest</RootNamespace>
+    <AssemblyName>KnockoutTest</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
@@ -121,15 +121,12 @@
     <Compile Include="App_Start\BreezeWebApiConfig.cs" />
     <Compile Include="Controllers\BreezeSampleController.cs" />
     <Compile Include="Controllers\BreezeSampleShellController.cs" />
-    <Compile Include="Controllers\EpisodeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BreezeSampleContext.cs" />
     <Compile Include="Models\BreezeSampleDatabaseInitializer.cs" />
     <Compile Include="Models\BreezeSampleTodoItem.cs" />
-    <Compile Include="Models\Episode.cs" />
-    <Compile Include="Models\Subscription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -138,7 +135,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Content\breezesample.css" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\app\episodeViewModel.js" />
     <Content Include="Scripts\app\logger.js" />
     <Content Include="Scripts\app\sampleViewModel.js" />
     <Content Include="Scripts\breeze.debug.js" />
@@ -182,7 +178,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>55818</DevelopmentServerPort>
+          <DevelopmentServerPort>50024</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

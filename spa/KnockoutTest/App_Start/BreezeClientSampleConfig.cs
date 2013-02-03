@@ -2,9 +2,9 @@ using System.Web.Mvc;
 
 [assembly: WebActivator.PreApplicationStartMethod(
     // Order = 2 because must run AFTER BreezeSampleConfig
-    typeof(BreezeTest.App_Start.BreezeClientSampleConfig), "RegisterBreezePreStart", Order = 2)]
+    typeof(KnockoutTest.App_Start.BreezeClientSampleConfig), "RegisterBreezePreStart", Order = 2)]
 
-namespace BreezeTest.App_Start {
+namespace KnockoutTest.App_Start {
   ///<summary>
   /// Inserts the Breeze MVC sample view controller to the front of all MVC routes
   /// so that the Breeze sample becomes the default page.

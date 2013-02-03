@@ -1,6 +1,6 @@
 using System.Data.Entity;
 
-namespace BreezeTest.Models {
+namespace KnockoutTest.Models {
     
     public class BreezeSampleContext : DbContext 
     {
@@ -8,11 +8,8 @@ namespace BreezeTest.Models {
         static BreezeSampleContext()
         {
             Database.SetInitializer(new BreezeSampleDatabaseInitializer());
-        }
-    
+        }    
         public DbSet<BreezeSampleTodoItem> Todos { get; set; }
-
-        public DbSet<Subscription> Subscriptions { get; set; }
     }
     
 }

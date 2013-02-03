@@ -1,6 +1,6 @@
 using System.Web.Mvc;
 
-namespace BreezeTest.Controllers
+namespace KnockoutTest.Controllers
 {
     public class BreezeSampleShellController : Controller
     {

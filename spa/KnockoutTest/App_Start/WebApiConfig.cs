@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace BreezeTest
+namespace KnockoutTest
 {
     public static class WebApiConfig
     {
