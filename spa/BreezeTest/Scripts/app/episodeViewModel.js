@@ -22,7 +22,7 @@
     getEpisodes();
 
     // bind view to the viewmodel
-    ko.applyBindings(vm);
+    ko.applyBindings(vm, $("#episodeList")[0]);
 
     //#region private functions
 
