@@ -60,9 +60,11 @@
         var query = breeze.EntityQuery.from("Episodes");
 
 
-        if (vm.includeDone()) {
+        if (!vm.includeDone()) {
 
-            logger.info("querying Episodes from cache");
+            logger.info("restoring cache from storage and querying Episodes");
+            var importData = window.localStorage.getItem("cache");
+            episodeManager.importEntities(importData);
 
             var cachedEpisodes = episodeManager
                 .executeQueryLocally(query);
@@ -83,7 +85,9 @@
 
         // reload vm.todos with the results 
         function querySucceeded(data) {
-            logger.success("queried Episodes");
+            logger.success("queried Episodes, writing to storage");
+            var exportData = episodeManager.exportEntities();
+            window.localStorage.setItem("cache", exportData);
             vm.episodes(data.results);
             vm.show(true); // show the view
         }
