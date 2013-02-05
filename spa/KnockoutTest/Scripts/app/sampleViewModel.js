@@ -2,8 +2,8 @@
 
 (function (root) {
     var ko = root.ko,
-            breeze = root.breeze,
-            logger = root.app.logger;
+        breeze = root.breeze,
+        logger = root.app.logger;
 
     // define the viewmodel
     var vm = {
@@ -22,7 +22,7 @@
     vm.includeDone.subscribe(getTodos);
 
     // bind view to the viewmodel
-    ko.applyBindings(vm, $("#todoList")[0]);
+    ko.applyBindings(vm);
 
     //#region private functions
 
