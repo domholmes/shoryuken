@@ -1,11 +1,10 @@
 using System.Linq;
 using System.Web.Http;
 using Newtonsoft.Json.Linq;
-
 using Breeze.WebApi;
+using KnockoutTest.Models;
 
-using BreezeTest.Models;
-namespace BreezeTest.Controllers {
+namespace KnockoutTest.Controllers {
   
     [BreezeController]
     public class EpisodeController : ApiController {

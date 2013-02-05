@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BreezeTest.Models
+namespace KnockoutTest.Models
 {
     public class Episode
     {

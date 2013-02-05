@@ -9,7 +9,10 @@ namespace KnockoutTest.Models {
         {
             Database.SetInitializer(new BreezeSampleDatabaseInitializer());
         }    
+
         public DbSet<BreezeSampleTodoItem> Todos { get; set; }
+
+        public DbSet<Subscription> Subscriptions { get; set; }
     }
     
 }
