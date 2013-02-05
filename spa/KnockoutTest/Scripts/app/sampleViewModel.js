@@ -10,8 +10,11 @@
         todos: ko.observableArray(),
         episodes: ko.observableArray(),
         includeDone: ko.observable(false),
+        online: ko.observable(false),
         save: saveChanges,
-        show: ko.observable(false)
+        show: ko.observable(false),
+        getEpisodes: getEpisodes,
+        clearLocalStorage: clearLocalStorage
     };
 
     var todoManager = new breeze.EntityManager('api/BreezeSample');
@@ -60,11 +63,16 @@
         var query = breeze.EntityQuery.from("Episodes");
 
 
-        if (!vm.includeDone()) {
+        if (!vm.online()) {
 
             logger.info("restoring cache from storage and querying Episodes");
             var importData = window.localStorage.getItem("cache");
-            episodeManager.importEntities(importData);
+            if (importData !== null) {
+                episodeManager.importEntities(importData);
+            } else {
+                logger.info("failed to import previous data");
+                return;
+            }
 
             query = query.orderBy("Title");
 
@@ -107,6 +115,10 @@
 
     function saveFailed(error) {
         logger.error("Save failed: " + error.message);
+    }
+
+    function clearLocalStorage() {
+        window.localStorage.clear();
     }
     //#endregion
 
