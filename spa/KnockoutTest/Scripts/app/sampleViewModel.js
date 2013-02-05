@@ -14,12 +14,16 @@
         show: ko.observable(false)
     };
 
+    var todoManager = new breeze.EntityManager('api/BreezeSample');
+    var episodeManager = new breeze.EntityManager('api/Episode');
+
+
     // start fetching Todos
     getTodos();
     getEpisodes();
 
     // re-query when "includeDone" checkbox changes
-    vm.includeDone.subscribe(getTodos);
+    vm.includeDone.subscribe(getEpisodes);
 
     // bind view to the viewmodel
     ko.applyBindings(vm);
@@ -38,10 +42,7 @@
             query = query.where("IsDone", "==", false);
         }
 
-        // manager is the service gateway and cache holder
-        var manager = new breeze.EntityManager('api/BreezeSample');
-
-        return manager
+        return todoManager
             .executeQuery(query)
             .then(querySucceeded)
             .fail(queryFailed);
@@ -56,17 +57,29 @@
 
     function getEpisodes() {
 
-        logger.info("querying Episodes");
-
         var query = breeze.EntityQuery.from("Episodes");
 
-        // manager is the service gateway and cache holder
-        var manager = new breeze.EntityManager('api/Episode');
 
-        return manager
-            .executeQuery(query)
-            .then(querySucceeded)
-            .fail(queryFailed);
+        if (vm.includeDone()) {
+
+            logger.info("querying Episodes from cache");
+
+            var cachedEpisodes = episodeManager
+                .executeQueryLocally(query);
+
+            logger.success("queried Episodes");
+
+            vm.episodes(cachedEpisodes);
+        }
+        else {
+
+            logger.info("querying Episodes remotely");
+
+            episodeManager
+                .executeQuery(query)
+                .then(querySucceeded)
+                .fail(queryFailed);
+        }
 
         // reload vm.todos with the results 
         function querySucceeded(data) {
