@@ -66,6 +66,8 @@
             var importData = window.localStorage.getItem("cache");
             episodeManager.importEntities(importData);
 
+            query = query.orderBy("Title");
+
             var cachedEpisodes = episodeManager
                 .executeQueryLocally(query);
 
