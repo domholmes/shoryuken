@@ -26,7 +26,7 @@
     vm.includeDone.subscribe(getTodos);
 
     // bind view to the viewmodel
-    ko.applyBindings(vm);
+    ko.applyBindings(vm, $("#todoList")[0]);
 
     //#region private functions
 

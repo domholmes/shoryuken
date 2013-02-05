@@ -20,7 +20,7 @@
     <div id="body">
         <section id="content" class="content-wrapper main-content">
 
-            <div data-bind="visible: show" style="display: none">
+            <div id="todoList" data-bind="visible: show" style="display: none">
                 <a href="#" data-bind="click: save">Save</a>&nbsp;
                     <input type="checkbox" data-bind="checked: includeDone" />
                 include done 
@@ -30,6 +30,17 @@
                             <form>
                                 <input type="checkbox" data-bind="checked: IsDone" />
                                 <input type="text" data-bind="value: Description, css: { done: IsDone }" />
+                            </form>
+                        </li>
+                    </ul>
+            </div>
+
+            <div id="episodeList" data-bind="visible: show" style="display: none">
+
+                    <ul data-bind="foreach: episodes">
+                        <li>
+                            <form>
+                                <input type="text" data-bind="value: Title" />
                             </form>
                         </li>
                     </ul>
