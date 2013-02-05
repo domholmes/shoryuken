@@ -33,6 +33,13 @@
                             </form>
                         </li>
                     </ul>
+                    <ul data-bind="foreach: episodes">
+                        <li>
+                            <form>
+                                <input type="text" data-bind="value: Title" />
+                            </form>
+                        </li>
+                    </ul>
             </div>
 
             <div id="logmessages"></div>
