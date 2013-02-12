@@ -119,6 +119,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BreezeClientSampleConfig.cs" />
     <Compile Include="App_Start\BreezeWebApiConfig.cs" />
+    <None Include="offline.appcache" />
     <Compile Include="Controllers\BreezeSampleController.cs" />
     <Compile Include="Controllers\BreezeSampleShellController.cs" />
     <Compile Include="Controllers\EpisodeController.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Content\breezesample.css" />
     <Content Include="Global.asax" />
+    <Content Include="offline.html" />
     <Content Include="Scripts\app\logger.js" />
     <Content Include="Scripts\app\sampleViewModel.js" />
     <Content Include="Scripts\breeze.debug.js" />
