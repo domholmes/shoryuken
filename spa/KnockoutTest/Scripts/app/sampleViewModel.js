@@ -60,7 +60,7 @@
         var query = breeze.EntityQuery.from("Episodes");
 
 
-        if (!vm.includeDone()) {
+        if (vm.includeDone()) {
 
             logger.info("restoring cache from storage and querying Episodes");
             var importData = window.localStorage.getItem("cache");
