@@ -1,7 +1,7 @@
 ﻿@{Layout = null;}
 <!DOCTYPE html>
 <html>
-<head>
+<head>  
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Breeze Sample</title>
@@ -22,9 +22,7 @@
 
             <div id="todoList" data-bind="visible: show" style="display: none">
                 <a href="#" data-bind="click: save">Save</a>&nbsp;
-                    <input type="checkbox" data-bind="checked: includeDone" />
-                Query from cache
-  
+                    <input type="checkbox" data-bind="checked: includeDone" />  
                     <ul data-bind="foreach: todos">
                         <li>
                             <form>
@@ -33,6 +31,8 @@
                             </form>
                         </li>
                     </ul>
+
+                    <label>Online: <input type="checkbox" data-bind="checked: online" /></label> <button data-bind="click: getEpisodes">Get Episodes</button>
                     <ul data-bind="foreach: episodes">
                         <li>
                             <form>
@@ -41,6 +41,8 @@
                         </li>
                     </ul>
             </div>
+
+            <button data-bind="click: clearLocalStorage">Clear Local Storage</button>
 
             <div id="logmessages"></div>
         </section>

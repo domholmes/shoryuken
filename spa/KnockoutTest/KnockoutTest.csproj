@@ -122,6 +122,7 @@
     <Compile Include="Controllers\BreezeSampleController.cs" />
     <Compile Include="Controllers\BreezeSampleShellController.cs" />
     <Compile Include="Controllers\EpisodeController.cs" />
+    <Compile Include="Controllers\PodcastController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -138,6 +139,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Content\breezesample.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\app\episodesViewModel.js" />
     <Content Include="Scripts\app\logger.js" />
     <Content Include="Scripts\app\sampleViewModel.js" />
     <Content Include="Scripts\breeze.debug.js" />
@@ -164,6 +166,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\BreezeSampleShell\index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Podcast\index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
