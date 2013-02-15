@@ -10,6 +10,7 @@
     var vm = {
         episodes: ko.observableArray(),
         saveChanges: saveChanges,
+        refresh: getEpisodes
         };
 
     var episodeManager = new breeze.EntityManager('api/Episode');
