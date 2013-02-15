@@ -54,9 +54,11 @@
                     <li>
                         <form>
                             <input type="text" data-bind="value: Title" />
+                            <input type="checkbox" data-bind="checked: ListenedTo">
                         </form>
                     </li>
                 </ul>
+                <button data-bind="click: saveChanges">Save</button>
         </div>
 
         <button>Refresh</button>

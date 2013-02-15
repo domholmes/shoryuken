@@ -9,6 +9,7 @@
     // define the viewmodel
     var vm = {
         episodes: ko.observableArray(),
+        saveChanges: saveChanges,
         };
 
     var episodeManager = new breeze.EntityManager('api/Episode');
@@ -47,7 +48,7 @@
     }
 
     function saveChanges() {
-        return manager.saveChanges()
+        return episodeManager.saveChanges()
             .then(function () { logger.success("changes saved"); })
             .fail(saveFailed);
     }
