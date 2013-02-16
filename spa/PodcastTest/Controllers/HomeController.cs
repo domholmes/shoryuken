@@ -12,5 +12,14 @@ namespace PodcastTest.Controllers
         {
             return View();
         }
+
+        public ActionResult Manifest()
+        {
+            Response.ContentType = "text/cache-manifest";
+            Response.ContentEncoding = System.Text.Encoding.UTF8;
+            Response.Cache.SetCacheability(System.Web.HttpCacheability.NoCache);
+
+            return View();
+        }
     }
 }
