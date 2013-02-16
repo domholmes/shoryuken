@@ -24,8 +24,8 @@
 
         function queryFailed(error) {
             app.logger.error("Query failed, will attempt to retrieve from cache: " + error.message);
-            var data = episodeManager.executeQueryLocally(query);
-            viewModel.episodes(data.results);
+            var results = episodeManager.executeQueryLocally(query);
+            viewModel.episodes(results);
         }
     };
 
