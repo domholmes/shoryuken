@@ -1,10 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigShelf", "BigShelf\BigShelf.csproj", "{59937397-7617-4F71-BC92-2A25D4043B87}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnockoutTest", "KnockoutTest\KnockoutTest.csproj", "{95699C74-66C7-4A20-ADDB-32610043DF8A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastTest", "PodcastTest\PodcastTest.csproj", "{4FF437D4-BBC5-408D-BBC7-FDA2AB92C459}"
 EndProject
 Global
@@ -13,14 +9,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{59937397-7617-4F71-BC92-2A25D4043B87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59937397-7617-4F71-BC92-2A25D4043B87}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59937397-7617-4F71-BC92-2A25D4043B87}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59937397-7617-4F71-BC92-2A25D4043B87}.Release|Any CPU.Build.0 = Release|Any CPU
-		{95699C74-66C7-4A20-ADDB-32610043DF8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{95699C74-66C7-4A20-ADDB-32610043DF8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{95699C74-66C7-4A20-ADDB-32610043DF8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{95699C74-66C7-4A20-ADDB-32610043DF8A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4FF437D4-BBC5-408D-BBC7-FDA2AB92C459}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4FF437D4-BBC5-408D-BBC7-FDA2AB92C459}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FF437D4-BBC5-408D-BBC7-FDA2AB92C459}.Release|Any CPU.ActiveCfg = Release|Any CPU
