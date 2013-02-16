@@ -1,22 +1,13 @@
 // define the viewmodel
-var vm = {
-    episodes: ko.observableArray(),
-<<<<<<< HEAD
-    saveChanges: repository.saveChanges,
-    refresh: function (episodes) {
-        return repository.populateEpisodes(episodes);
+function episodesViewModel() {
+    this.episodes = ko.observableArray();
+    this.saveChanges = repository.saveChanges;
+    this.refresh = function () {
+        repository.populateEpisodes(this);
     }
+    this.refresh();
 }
 
-// bind view to the viewmodel
-ko.applyBindings(vm);
-=======
-    saveChanges: saveChanges,
-    refresh: function () {
-        return populateEpisodes(this.episodes);
-    }
-};
+// create a viewmodel and bind it to the view
+ko.applyBindings(new episodesViewModel());
 
-// bind view to the viewmodel
-ko.applyBindings(vm);
->>>>>>> 9892bc4cc2b86092488bf6d1143bfb5a142dc86d
