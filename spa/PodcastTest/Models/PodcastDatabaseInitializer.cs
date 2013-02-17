@@ -12,7 +12,7 @@ namespace PodcastTest.Controllers
         // When creating the database the first time or 
         // if you prefer to recreate with every new server session
         // inherit from DropCreateDatabaseAlways 
-        DropCreateDatabaseAlways<PodcastContext>
+        DropCreateDatabaseIfModelChanges<PodcastContext>
     {
         protected override void Seed(PodcastContext context)
         {

@@ -1,16 +1,24 @@
 ﻿@{
 Layout = null;
 }CACHE MANIFEST
-/Scripts/viewmodels/episodesViewModel.js
+
+#Images
 /Images/heroAccent.png
 /Images/orderedList1.png
 /Images/orderedList2.png
 /Images/orderedList3.png
-@Styles.Url("~/Content/css")
-@Scripts.Url("~/bundles/mvvm")
-@Scripts.Url("~/bundles/app")
-@Scripts.Url("~/bundles/modernizr")
-@Scripts.Url("~/bundles/jquery")
+
+#Custom scripts
+/Scripts/viewmodels/episodesViewModel.js
+/Scripts/app/logger.js
+/Scripts/app/episodeRepository.js
+
+#Bundles
+@Styles.Render("~/Content/css").ToString().Split('\"')[1]
+@Scripts.Render("~/bundles/modernizr").ToString().Split('\"')[1]
+@Scripts.Render("~/bundles/jquery").ToString().Split('\"')[1]
+@Scripts.Render("~/bundles/mvvm").ToString().Split('\"')[1]
+@Scripts.Render("~/bundles/mvvm").ToString().Split('\"')[1]
 
 NETWORK:
 /api/Episode/Metadata
