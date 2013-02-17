@@ -24,7 +24,9 @@
 
         function queryFailed(error) {
             app.logger.error("Query failed, will attempt to retrieve from cache: " + error.message);
-            var results = episodeManager.executeQueryLocally(query);
+            
+            var offlineEpisodeManager = EntityManager.importEntities(window.localStorage.getItem("cache"));
+            var results = offlineEpisodeManager.executeQueryLocally(query);
             viewModel.episodes(results);
         }
     };
