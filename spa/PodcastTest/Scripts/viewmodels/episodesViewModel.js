@@ -1,13 +1,22 @@
 // define the viewmodel
 function episodesViewModel() {
+    
     this.episodes = ko.observableArray();
-    this.saveChanges = repository.saveChanges;
-    this.refresh = function () {
-        repository.populateEpisodes(this);
+
+    this.sync = function () {
+        repository.saveChanges();
+        repository.populateEpisodes(window.viewModel);
     }
-    this.refresh();
+
+    window.setInterval(this.sync, 5000);
 }
 
-// create a viewmodel and bind it to the view
-ko.applyBindings(new episodesViewModel());
+// create a viewmocel
+window.viewModel = new episodesViewModel();
+
+// bind it to the view
+ko.applyBindings(viewModel);
+
+// perform an initial local sync
+window.viewModel.sync();
 

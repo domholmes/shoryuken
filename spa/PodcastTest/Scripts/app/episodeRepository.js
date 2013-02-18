@@ -6,28 +6,23 @@
 
         var query = breeze.EntityQuery.from("Episodes");
 
-        app.logger.info("querying Episodes remotely");
-
         episodeManager
-        .executeQuery(query)
-        .then(querySucceeded)
-        .fail(queryFailed);
+            .executeQuery(query)
+            .then(querySucceeded)
+            .fail(queryFailed);
 
         function querySucceeded(data) {
-            app.logger.success("queried Episodes");
             var exportData = episodeManager.exportEntities();
             window.localStorage.setItem("cache", exportData);
-            app.logger.success("written to storage");
             viewModel.episodes(data.results);
-            app.logger.success("viewmodel updated");
+            app.logger.success("updated from remote and written to storage");
         }
 
         function queryFailed(error) {
-            app.logger.error("Query failed, will attempt to retrieve from cache: " + error.message);
-            
             var offlineEpisodeManager = breeze.EntityManager.importEntities(window.localStorage.getItem("cache"));
             var results = offlineEpisodeManager.executeQueryLocally(query);
             viewModel.episodes(results);
+            app.logger.success("updated from local cache");
         }
     };
 
