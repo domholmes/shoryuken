@@ -11,7 +11,7 @@ function episodesViewModel() {
     window.setInterval(this.sync, 5000);
 }
 
-// create a viewmocel
+// create an instance of the viewmodel
 window.viewModel = new episodesViewModel();
 
 // bind it to the view
