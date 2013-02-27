@@ -2,6 +2,9 @@ using System.Linq;
 using System.Web.Http;
 using Newtonsoft.Json.Linq;
 using Breeze.WebApi;
+using Microsoft.AspNet.SignalR.Hubs;
+using System;
+using Microsoft.AspNet.SignalR;
 
 namespace PodcastTest.Controllers
 {
@@ -10,6 +13,8 @@ namespace PodcastTest.Controllers
     {
         readonly EFContextProvider<PodcastContext> _contextProvider =
             new EFContextProvider<PodcastContext>();
+
+        Lazy<IHubConnectionContext> _clientsInstance = new Lazy<IHubConnectionContext>(() => GlobalHost.ConnectionManager.GetHubContext<NotificationHub>().Clients);
 
         [HttpGet]
         public string Metadata() 
@@ -20,6 +25,9 @@ namespace PodcastTest.Controllers
         [HttpPost]
         public SaveResult SaveChanges(JObject saveBundle) 
         {
+
+            this._clientsInstance.Value.All.broadcastEpisodesChangedNotification();
+
             return _contextProvider.SaveChanges(saveBundle);
         }
         

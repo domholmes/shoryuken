@@ -11,7 +11,7 @@ function episodesViewModel() {
     this.sync();
 
     // add a timer to the window to sync ever 5 seconds
-    //window.setInterval(window.viewModel.sync, 5000);
+    window.setInterval(this.sync, 5000);
 }
 
 
