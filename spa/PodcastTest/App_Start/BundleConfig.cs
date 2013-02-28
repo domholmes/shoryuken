@@ -1,4 +1,4 @@
-﻿using System.Web;
+using System.Web;
 using System.Web.Optimization;
 
 namespace PodcastTest
@@ -9,16 +9,22 @@ namespace PodcastTest
         public static void RegisterBundles(BundleCollection bundles)
         {
             BundleTable.EnableOptimizations = true;
+            
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                        "~/Scripts/jquery-{version}.js"));
 
-            var coreScripts = new ScriptBundle("~/bundles/core")
-                .Include("~/Scripts/jquery-{version}.js")
-                .Include("~/Scripts/jquery-ui-{version}.js")
-                .Include("~/Scripts/jquery.unobtrusive*")
-                .Include("~/Scripts/jquery.validate*")
-                .Include("~/Scripts/q.js")
-                .Include("~/Scripts/knockout-{version}.js") 
-                .Include("~/Scripts/breeze.min.js");
-            bundles.Add(coreScripts);
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+                        "~/Scripts/jquery-ui-{version}.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+                        "~/Scripts/jquery.unobtrusive*",
+                        "~/Scripts/jquery.validate*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/mvvm").Include(
+                        "~/Scripts/q.js", 
+                        "~/Scripts/knockout-{version}.js", 
+                        "~/Scripts/breeze.min.js",
+                        "~/Scripts/jquery.signalR-1.0.0.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
