@@ -19,21 +19,17 @@
         }
 
         function queryFailed(error) {
-            var offlineEpisodeManager = breeze.EntityManager.importEntities(window.localStorage.getItem("cache"));
-            var results = offlineEpisodeManager.executeQueryLocally(query);
-            viewModel.episodes(results);
-            app.logger.success("updated from local cache");
+            //var offlineEpisodeManager = breeze.EntityManager.importEntities(window.localStorage.getItem("cache"));
+            //var results = offlineEpisodeManager.executeQueryLocally(query);
+            //viewModel.episodes(results);
+            app.logger.success("query failed");
         }
     };
 
     function saveChanges() {
+        app.logger.success("saveChanges with changes:" + episodeManager.hasChanges());
         return episodeManager.saveChanges()
-        .then(function () { app.logger.success("saveChanges called"); })
-        .fail(saveFailed);
-    }
-
-    function saveFailed(error) {
-        app.logger.error("Save failed: " + error.message);
+        .fail(function () { app.logger.error("Save failed: " + error.message); });
     }
 
     // expose a repository interface to the window object

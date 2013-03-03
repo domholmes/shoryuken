@@ -12,17 +12,14 @@ function episodesViewModel() {
 
     this.episodes.subscribe(function (episodes) {
         ko.utils.arrayForEach(episodes, function (episode) {
-            episode.ListenedTo.subscribe(function (episodeListenedTo) {
-                app.logger.success("episode listened is " + episodeListenedTo);
+            episode.ListenedTo.subscribe(function () {
                 window.repository.saveChanges();
             });
         });
     });
 
     // perform an initial sync
-    this.sync();
-
-    
+    this.sync();   
 }
 
 
