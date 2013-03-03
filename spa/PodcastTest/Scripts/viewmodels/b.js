@@ -8,5 +8,6 @@ ko.applyBindings(viewModel);
 $.connection.hub.start();
 
 $.connection.notificationHub.client.broadcastEpisodesChangedNotification = function () {
-    alert("Episodes Updated");
+    app.logger.success("notified of new episodes");
+    //window.viewModel.sync();
 };

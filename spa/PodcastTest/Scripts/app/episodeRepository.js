@@ -28,7 +28,7 @@
 
     function saveChanges() {
         return episodeManager.saveChanges()
-        .then(function () { app.logger.success("changes saved"); })
+        .then(function () { app.logger.success("saveChanges called"); })
         .fail(saveFailed);
     }
 
