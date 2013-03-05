@@ -8,16 +8,17 @@ namespace PodcastTest
         // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725
         public static void RegisterBundles(BundleCollection bundles)
         {
-            BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = false;
 
             var coreScripts = new ScriptBundle("~/bundles/core")
                 .Include("~/Scripts/jquery-{version}.js")
                 .Include("~/Scripts/jquery-ui-{version}.js")
+                .Include("~/Scripts/jquery.hammer*")
                 .Include("~/Scripts/jquery.unobtrusive*")
-                .Include("~/Scripts/jquery.validate*")
+                .Include("~/Scripts/jquery.validate*")                
                 .Include("~/Scripts/q.js")
                 .Include("~/Scripts/knockout-{version}.js")
-                .Include("~/Scripts/breeze.min.js")
+                .Include("~/Scripts/breeze*")
                 .Include("~/Scripts/jquery.signalR-1.0.0.js");
             bundles.Add(coreScripts);
 

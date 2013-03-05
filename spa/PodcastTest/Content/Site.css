@@ -104,6 +104,8 @@ h5, h6 {
     padding-bottom: 35px;
 }
 
+
+
     .main-content {
         background: url("../Images/accent.png") no-repeat;
         padding-left: 10px;
@@ -125,6 +127,14 @@ footer {
     height: 100px;
 }
 
+html, body, #body, #subscriptions, #subscriptions > ul, #subscriptions > ul > li {
+            min-height: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+
 
 /* site title
 ----------------------------------------------------------*/
@@ -140,6 +150,79 @@ footer {
     color: #c8c8c8;
     outline: none;
     text-decoration: none;
+}
+
+
+/* subscriptions
+----------------------------------------------------------*/
+
+#subscriptions {
+    background: silver;
+    overflow: hidden;
+    width:100%;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translate3d(0,0,0) scale3d(1,1,1);
+    -webkit-transform-style: preserve-3d;
+}
+
+#subscriptions > ul.animate {
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+#subscriptions > ul {
+    transform: translate3d(0%,0,0) scale3d(1,1,1);
+    -o-transform: translate3d(0%,0,0) scale3d(1,1,1);
+    -ms-transform: translate3d(0%,0,0) scale3d(1,1,1);
+    -moz-transform: translate3d(0%,0,0) scale3d(1,1,1);
+    -webkit-transform: translate3d(0%,0,0) scale3d(1,1,1);
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+}
+
+#subscriptions > ul {
+    -webkit-box-shadow: 0 0 20px rgba(0,0,0,.2);
+    box-shadow: 0 0 20px rgba(0,0,0,.2);
+    position: relative;
+}
+
+#subscriptions > ul > li {
+    float: left;
+    overflow: hidden;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform: translate3d(0,0,0);
+}
+
+#subscriptions > ul > li h2 {
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    position: absolute;
+    top: 40%;
+    left: 0;
+    width: 100%;
+    text-shadow: -1px -1px 0 rgba(0,0,0,.2);
+}
+
+#subscriptions li.pane1 { background: #42d692; }
+#subscriptions li.pane2 { background: #4986e7; }
+#subscriptions li.pane3 { background: #d06b64; }
+#subscriptions li.pane4 { background: #cd74e6; }
+#subscriptions li.pane5 { background: #9fe1e7; }
+
+
+/* login
+----------------------------------------------------------*/
+
+.episode-list {
+    color: #fff;
+    font-weight: bold;
+    padding: 0;
+    list-style-type: none;
+    margin: 20px 0;
 }
 
 
