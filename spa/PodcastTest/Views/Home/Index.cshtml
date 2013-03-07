@@ -6,24 +6,36 @@
     </div>
 </header>
 <div id="body">
-    <section class="content-wrapper main-content clear-fix">
-        <div id="episodeList">
-            <ul data-bind="foreach: episodes">
-                <li>
-                    <form>
-                    <span data-bind="text: Title"></span>
-                    <input type="checkbox" data-bind="checked: ListenedTo">
-                    </form>
-                </li>
-            </ul>
-            <button data-bind="click: save">Save</button>
-        </div>
-        <div id="logmessages">
-        </div>
-    </section>
+    <div id="subscriptions">
+        <ul>
+            <li class="pane1">
+                <h2>&larr; Drag me baby</h2>            
+                <section class="content-wrapper main-content clear-fix">
+                    <div id="episodeList">
+                        <ul class="episode-list" data-bind="foreach: episodes">
+                            <li>
+                                <form>
+                                <span data-bind="text: Title"></span>
+                                <input type="checkbox" data-bind="checked: ListenedTo">
+                                </form>
+                            </li>
+                        </ul>
+                        <button data-bind="click: save">Save</button>
+                    </div>
+                    <div id="logmessages">
+                    </div>
+                </section>
+            </li>
+            <li class="pane2"><h2>&larr; ...or swipe me... &rarr;</h2> </li>
+            <li class="pane3"><h2>&larr; ...or arrow keys... &rarr;</h2> </li>
+            <li class="pane4"><h2>&larr; ...or whatevs... &rarr;</h2> </li>
+            <li class="pane5"><h2>End of the line &rarr;</h2> </li>
+        </ul>
+    </div>
 </div>
 <script src="/Scripts/app/logger.js"></script>
 <script src="/Scripts/app/episodeRepository.js"></script>
+<script src="/Scripts/app/ui.js"></script>
 <script src="/signalr/hubs"></script>
 <script src="/Scripts/viewmodels/episodesViewModel.js"></script>
 <script src="/Scripts/viewmodels/b.js"></script>
