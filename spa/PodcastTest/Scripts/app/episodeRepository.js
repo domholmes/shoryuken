@@ -14,7 +14,20 @@
         function querySucceeded(data) {
             var exportData = episodeManager.exportEntities();
             window.localStorage.setItem("cache", exportData);
-            viewModel.episodes(data.results);
+            var episodes = data.results;
+
+
+            $.each(episodes, function (index, episode) {
+                episode.entityAspect.propertyChanged.subscribe(function (changeArgs) {
+                    app.logger.success(changeArgs.propertyName);
+                    app.logger.success(changeArgs.oldValue);
+                    app.logger.success(changeArgs.newValue);
+                    window.repository.saveChanges();
+                });
+            });
+
+            viewModel.episodes(episodes);
+
             app.logger.success("updated from remote and written to storage");
         }
 
@@ -28,8 +41,7 @@
 
     function saveChanges() {
         app.logger.success("saveChanges with changes:" + episodeManager.hasChanges());
-        return episodeManager.saveChanges()
-        .fail(function () { app.logger.error("Save failed: " + error.message); });
+        setTimeout(episodeManager.saveChanges(), 5000);
     }
 
     // expose a repository interface to the window object

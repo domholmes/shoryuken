@@ -10,14 +10,6 @@ function episodesViewModel() {
         repository.saveChanges();
     }
 
-    this.episodes.subscribe(function (episodes) {
-        ko.utils.arrayForEach(episodes, function (episode) {
-            episode.ListenedTo.subscribe(function () {
-                window.repository.saveChanges();
-            });
-        });
-    });
-
     // perform an initial sync
     this.sync();   
 }
