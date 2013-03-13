@@ -6,10 +6,9 @@ namespace PodcastTest.Controllers
 {
     public class NotificationHub : Hub
     {
-        public void BroadcastEpisodesChangedNotification()
+        public void NotifyOthersToUpdate()
         {
-            // Call the broadcastMessage method to update clients.
-            Clients.All.episodesChanged();
+            this.Clients.Others.broadcastEpisodesChangedNotification();
         }
     }
 }

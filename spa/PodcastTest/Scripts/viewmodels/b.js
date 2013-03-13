@@ -8,6 +8,6 @@ ko.applyBindings(viewModel);
 $.connection.hub.start();
 
 $.connection.notificationHub.client.broadcastEpisodesChangedNotification = function () {
-    app.logger.success("server save performed");
-    //window.viewModel.sync();
+    app.logger.success("requested to update");
+    window.viewModel.sync();
 };

@@ -15,8 +15,6 @@ namespace PodcastTest.Controllers
 
         public string AudioUri { get; set; }
 
-        public DateTime Date { get; set; }
-
         public bool ListenedTo { get; set; }
     }
 }

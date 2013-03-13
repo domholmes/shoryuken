@@ -25,9 +25,9 @@ namespace PodcastTest.Controllers
         [HttpPost]
         public SaveResult SaveChanges(JObject saveBundle) 
         {
-            this._clientsInstance.Value.All.broadcastEpisodesChangedNotification();
-
-            return _contextProvider.SaveChanges(saveBundle);
+            //this._clientsInstance.Value.All.broadcastEpisodesChangedNotification();
+            var r = _contextProvider.SaveChanges(saveBundle);
+            return r;
         }
         
         [HttpGet]

@@ -28,14 +28,12 @@ namespace PodcastTest.Controllers
                         {
                             Title = "Ep 2: Tokyo America Club",
                             Description = "Cheapy visits the club, again",
-                            Date = new DateTime(2013, 1, 25),
                             AudioUri = "http://cagcast.com/episodes/ep2.mp3"
                         },
                         new Episode
                         {
                             Title = "Ep 1: Lots of Games",
                             Description = "Shipwreck plays some games",
-                            Date = new DateTime(2013, 1, 13),
                             AudioUri = "http://cagcast.com/episodes/ep1.mp3"
                         }
                     }
