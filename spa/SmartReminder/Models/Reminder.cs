@@ -35,8 +35,6 @@ namespace SmartReminder.Models
         { 
             get; 
             set; 
-        }
-
-        
+        }        
     }
 }
