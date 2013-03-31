@@ -15,10 +15,10 @@ public class ReminderRepository
 		
 		Moment work = new Moment();
 		work.days = Arrays.asList(Calendar.MONDAY, Calendar.TUESDAY, Calendar.WEDNESDAY, Calendar.THURSDAY, Calendar.FRIDAY, Calendar.SATURDAY, Calendar.SUNDAY);
-		work.eventTypeId = EventIds.WifiDisconnected;
-		work.ssid = "test";
+		work.eventTypeId = EventIds.WifiConnected;
+		work.ssid = "BTHub3-THFW";
 		work.startTime = "17:00";
-		work.endTime = "18:56";
+		work.endTime = "23:56";
 
 		reminder.moment = work;
 		reminder.notificationText = "Remember DVD";

@@ -27,13 +27,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name=".WifiActioner" android:enabled="true">
+        <intent-filter>
+            <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            <action android:name="android.net.wifi.STATE_CHANGE"/>
+        </intent-filter>
+        </receiver>
         <receiver android:name=".EventActioner" android:enabled="true">
         <intent-filter>
-            <action android:name="android.net.ConnectivityManager.CONNECTIVITY_ACTION" />
-            <action android:name="android.net.wifi.STATE_CHANGE" />
-            <action android:name="android.net.wifi.supplicant.CONNECTION_CHANGE" />
+            <action android:name="SmartReminder_Event_WifiConnected"/>
+            <action android:name="SmartReminder_Event_WifiDisconnected"/>
         </intent-filter>
-    </receiver>
+        </receiver>
     </application>
-
 </manifest>

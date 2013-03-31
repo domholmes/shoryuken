@@ -21,11 +21,13 @@ public class EventActioner extends BroadcastReceiver
 {
 	private EventChecker eventChecker;
 	private TimeChecker timeChecker;
+	private Notifier notifier;
 	
 	public EventActioner()
 	{
 		this.eventChecker = new EventChecker();
 		this.timeChecker = new TimeChecker();
+		this.notifier = new Notifier();
 	}
 	
 	@Override
@@ -33,7 +35,7 @@ public class EventActioner extends BroadcastReceiver
 	{
 		Reminder[] reminders = ReminderRepository.GetActiveReminders();
 
-		for(Reminder reminder : reminders)
+		for(Reminder reminder : reminders) 
 		{
 			if(this.eventChecker.eventMatches(context, intent, reminder.moment))
 			{		
@@ -41,7 +43,7 @@ public class EventActioner extends BroadcastReceiver
 				{
 					if(this.timeChecker.timeMatches(reminder.moment))
 					{
-						showNotification(context, reminder.notificationText);
+						this.notifier.Notify(context, reminder);
 					}
 				} 
 				catch (ParseException e)
@@ -50,24 +52,5 @@ public class EventActioner extends BroadcastReceiver
 				}
 			}
 		}
-	}
-	
-	private void showNotification(Context context, String message)
-	{
-		NotificationCompat.Builder mBuilder = 
-				new NotificationCompat.Builder(context)
-					.setSmallIcon(R.drawable.ic_launcher)
-					.setContentText(message)
-					.setContentTitle("My notification");
-
-		PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
-				new Intent(),
-				PendingIntent.FLAG_UPDATE_CURRENT);
-		
-		mBuilder.setContentIntent(contentIntent);
-
-		NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-		
-		mNotificationManager.notify(1, mBuilder.build());
 	}
 }
