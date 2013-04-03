@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import com.example.smartreminder.Event;
-import com.example.smartreminder.EventIds;
 
 public class Moment
 {
