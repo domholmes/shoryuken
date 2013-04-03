@@ -3,13 +3,14 @@ package com.example.smartreminder.models;
 import java.util.Date;
 import java.util.List;
 
+import com.example.smartreminder.Event;
 import com.example.smartreminder.EventIds;
 
 public class Moment
 {
 	public String name;
  
-	public EventIds eventTypeId;
+	public Event event;
 	
 	public String ssid;
 	

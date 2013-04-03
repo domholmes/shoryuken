@@ -16,7 +16,7 @@ public class EventChecker
 	{
 		String action = intent.getAction();
 		
-		if(action == WifiActioner.WIFI_CONNECTED_ACTION && moment.eventTypeId == EventIds.WifiConnected)
+		if(action == Event.SmartReminder_Event_WifiConnected.name() && moment.event == Event.SmartReminder_Event_WifiConnected)
 		{
 			String ssid = intent.getStringExtra("SmartReminder_Events_SSID");
 			
@@ -26,7 +26,7 @@ public class EventChecker
 			}
 		}
 		
-		if(action == WifiActioner.WIFI_DISCONNECTED_ACTION && moment.eventTypeId == EventIds.WifiDisconnected)
+		if(action == Event.SmartReminder_Event_WifiDisconnected.name() && moment.event == Event.SmartReminder_Event_WifiDisconnected)
 		{
 			return true;
 		}
