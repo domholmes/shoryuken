@@ -15,8 +15,8 @@ public class ReminderRepository
 		
 		Moment work = new Moment();
 		work.days = Arrays.asList(Calendar.MONDAY, Calendar.TUESDAY, Calendar.WEDNESDAY, Calendar.THURSDAY, Calendar.FRIDAY, Calendar.SATURDAY, Calendar.SUNDAY);
-		work.event = Event.SmartReminder_Event_WifiConnected;
-		work.ssid = "BTHub3-THFW";
+		work.action = Action.SmartReminder_Event_WifiConnected;
+		work.extra = "BTHub3-THFW";
 		work.startTime = "17:00";
 		work.endTime = "23:56";
 

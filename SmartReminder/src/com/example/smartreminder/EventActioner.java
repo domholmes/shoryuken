@@ -19,13 +19,11 @@ import android.util.Log;
 
 public class EventActioner extends BroadcastReceiver
 {
-	private EventChecker eventChecker;
 	private TimeChecker timeChecker;
 	private Notifier notifier;
 	
 	public EventActioner()
 	{
-		this.eventChecker = new EventChecker();
 		this.timeChecker = new TimeChecker();
 		this.notifier = new Notifier();
 	}
@@ -37,18 +35,23 @@ public class EventActioner extends BroadcastReceiver
 
 		for(Reminder reminder : reminders) 
 		{
-			if(this.eventChecker.eventMatches(context, intent, reminder.moment))
+			Action event = reminder.moment.action;
+			
+			if(reminder.moment.action.name() == intent.getAction())
 			{		
-				try
+				if(reminder.moment.extra == intent.getStringExtra(EventMapper.extra))
 				{
-					if(this.timeChecker.timeMatches(reminder.moment))
+					try
 					{
-						this.notifier.Notify(context, reminder);
-					}
-				} 
-				catch (ParseException e)
-				{
+						if(this.timeChecker.timeMatches(reminder.moment))
+						{
+							this.notifier.Notify(context, reminder);
+						}
+					} 
+					catch (ParseException e)
+					{
 					
+					}
 				}
 			}
 		}
