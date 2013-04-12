@@ -5,9 +5,11 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using SmartReminder.Models;
+using SmartReminder.Account;
 
 namespace SmartReminder.Controllers
 {
+    [BasicHttpAuthorizeAttribute]    
     public class ValuesController : ApiController
     {
         // GET api/values
