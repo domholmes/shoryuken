@@ -11,6 +11,8 @@ namespace SmartReminder.Models
         }    
 
         public DbSet<Reminder> Reminders{ get; set; }
+
+        public DbSet<User> Users { get; set; }
     }
     
 }

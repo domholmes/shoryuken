@@ -2,6 +2,7 @@ using System;
 using System.Data.Entity;
 using System.Collections.Generic;
 using SmartReminder.Models;
+using SmartReminder.Account;
 
 namespace SmartReminder.Models
 {
@@ -16,7 +17,7 @@ namespace SmartReminder.Models
         DropCreateDatabaseIfModelChanges<ReminderContext>
     {
         protected override void Seed(ReminderContext context)
-        {
+        {   
             var leavingForWork = new Moment
             {
                 Name = "Leaving for work",
@@ -53,7 +54,7 @@ namespace SmartReminder.Models
                 }
             };
             
-            var reminders = new[]
+            var reminders = new List<Reminder>
                 {
                     new Reminder
                     {
@@ -70,8 +71,15 @@ namespace SmartReminder.Models
                         NotificationText = "Ring BT"
                     }
                 };
-            
-            Array.ForEach(reminders, r => context.Reminders.Add(r));
+
+            var dom = new User
+            {
+                Email = "thecapsaicinkid@gmail.com",
+                PasswordHash = UserMembershipProvider.HashBytes("hadoken"),
+                Reminders = reminders
+            };
+
+            context.Users.Add(dom);
 
             context.SaveChanges(); // Save 'em
         }

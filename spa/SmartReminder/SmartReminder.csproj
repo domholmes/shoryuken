@@ -119,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account\BasicHttpAuthorizeAttribute.cs" />
+    <Compile Include="Account\UserMembershipProvider.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Models\ReminderContext.cs" />
     <Compile Include="Models\ReminderDatabaseInitializer.cs" />
     <Compile Include="Models\Reminder.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\Wifi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
