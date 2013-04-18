@@ -39,7 +39,7 @@ public class EventActioner extends BroadcastReceiver
 			
 			if(reminder.moment.action.name() == intent.getAction())
 			{		
-				if(reminder.moment.extra == intent.getStringExtra(EventMapper.extra))
+				if(reminder.moment.extra == intent.getStringExtra(EventMapper.extraName))
 				{
 					try
 					{
