@@ -1,4 +1,5 @@
-﻿<header>
+﻿@model Squirrel.Models.Reminder
+<header>
     <div class="content-wrapper">
         <div class="float-left">
             <p class="site-title">
@@ -48,6 +49,19 @@
                 and price for your applications.
                 <a href="http://go.microsoft.com/fwlink/?LinkId=245164">Learn more…</a>
             </li>
-        </ol>
+        </ol> 
+            <form id="addReminder" data-bind="submit: createReminder"> 
+                @Html.ValidationSummary(true) 
+ 
+                <fieldset> 
+                    <legend>Contact</legend> 
+ 
+                    @Html.EditorForModel() 
+ 
+                    <p> 
+                        <input type="submit" value="Save" /> 
+                    </p> 
+                </fieldset> 
+            </form>
     </section>
 </div>
