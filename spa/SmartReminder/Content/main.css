@@ -1,0 +1,30 @@
+﻿body {
+}
+input[type="text"],
+textarea 
+{
+    border: 0px solid #808080;
+    border-bottom-width: 1px;
+    border-radius: 0px;
+    box-shadow: none;
+    padding-left: 0px;
+    font-weight: normal;
+}
+::-webkit-input-placeholder {
+   font-style: italic;
+}
+:-moz-placeholder { /* Firefox 18- */
+   font-style: italic;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+   font-style: italic;
+}
+:-ms-input-placeholder {  
+   font-style: italic;
+}
+select 
+{
+    border: 1px solid #fff;
+    border-bottom-color: #808080;
+    padding-left: 0px;
+}

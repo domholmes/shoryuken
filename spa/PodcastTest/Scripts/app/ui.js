@@ -9,6 +9,9 @@ app.keycode = {
     DELETE: 46
 };
 
+app.MAX_COLUMN_WIDTH = 400;
+app.subscriptionsCount = 6;
+
 /**
 * requestAnimationFrame and cancel polyfill
 */
@@ -47,10 +50,12 @@ function Carousel(element) {
     element = $(element);
 
     var container = $(">ul", element);
-    var panes = $(">ul>li", element);
+    var panes = [];
 
     var pane_width = 0;
-    var pane_count = panes.length;
+    var pane_count = 0;
+    var columnWidth = 0;
+    var columnsPerPane = 0;
 
     var current_pane = 0;
 
@@ -61,14 +66,25 @@ function Carousel(element) {
     this.init = function () {
         var self = this;
 
-        setPaneDimensions();
+        pane_width = $('body').width();
+        setPaneCount();
+        createPanes();
+        setColumnsPerPane();
+        addColumns();
 
-        $(window).on("load resize orientationchange", function () {
-            setPaneDimensions();
-            //updateOffset();
+        $(window).on("resize orientationchange", function () {
+
+            self.showPane(0);
+            container.empty();
+            pane_width = $('body').width();
+            setPaneCount();
+            createPanes();
+            setColumnsPerPane();
+            addColumns();
+
         });
 
-        $(window).on("keyup", function () {
+        $(window).on("keyup", function (event) {
             switch (event.which) {
                 case app.keycode.LEFT_ARROW:
                     self.prev();
@@ -82,17 +98,50 @@ function Carousel(element) {
     };
 
 
+    function setPaneCount() {
+        pane_count = Math.ceil((app.subscriptionsCount * app.MAX_COLUMN_WIDTH) / pane_width ); 
+    };
+
     /**
     * set the pane dimensions and scale the container
     */
-    function setPaneDimensions() {
-        pane_width = element.width();
-        panes.each(function () {
-            $(this).width(pane_width);
+    function createPanes() {
+        var i = 1;
+        panes = [];
+        container.empty();
+        for (; i <= pane_count; i++) {
+            panes.push($('<li class="pane' + i + '"></li>'));
+        }
+        $.each(panes, function () {
+            this.width(pane_width).appendTo(container);
         });
         container.width(pane_width * pane_count);
+    };    
+
+    /**
+    * set the amount of columns per pane and their width
+    */
+    function setColumnsPerPane() {
+        columnsPerPane = Math.ceil(app.subscriptionsCount / pane_count);
     };
 
+    function addColumns() {
+        var panes = $('>li', container);
+        var width = 100 / columnsPerPane;
+        var template = $('#columnTemplate');
+        var column;
+        var paneIndex;
+        for (var i = 0; i < app.subscriptionsCount; i++) {
+            paneIndex = Math.ceil(((i + 1) / columnsPerPane));
+
+            column = template.clone();
+            column.removeAttr('id')
+            .css({ 'width': width + '%', 'float': 'left' })
+            .find('.column-content').prepend('<h2>Subscription ' + (i + 1) + '</h2>');
+
+            panes.eq(paneIndex - 1).append(column);
+        }
+    };
 
     /**
     * show pane by index
@@ -163,8 +212,8 @@ function Carousel(element) {
                 break;
 
             case 'release':
-                // more then 50% moved, navigate
-                if (Math.abs(ev.gesture.deltaX) > pane_width / 2) {
+                // more then 25% moved, navigate
+                if (Math.abs(ev.gesture.deltaX) > pane_width / 4) {
                     if (ev.gesture.direction == 'right') {
                         self.prev();
                     } else {

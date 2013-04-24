@@ -128,11 +128,11 @@ footer {
 }
 
 html, body, #body, #subscriptions, #subscriptions > ul, #subscriptions > ul > li {
-            min-height: 100%;
-            height: 100%;
             padding: 0;
             margin: 0;
             position: relative;
+            width: 100%;
+            /* height: 100%; */
         }
 
 
@@ -191,27 +191,27 @@ html, body, #body, #subscriptions, #subscriptions > ul, #subscriptions > ul > li
 
 #subscriptions > ul > li {
     float: left;
+    list-style-type: none;
     overflow: hidden;
     -webkit-transform-style: preserve-3d;
     -webkit-transform: translate3d(0,0,0);
 }
 
-#subscriptions > ul > li h2 {
-    color: #fff;
-    font-size: 30px;
-    text-align: center;
-    position: absolute;
-    top: 40%;
-    left: 0;
-    width: 100%;
-    text-shadow: -1px -1px 0 rgba(0,0,0,.2);
+#subscriptions > ul > li .column-content {
+    padding: 20px;
 }
 
+/*
 #subscriptions li.pane1 { background: #42d692; }
 #subscriptions li.pane2 { background: #4986e7; }
 #subscriptions li.pane3 { background: #d06b64; }
 #subscriptions li.pane4 { background: #cd74e6; }
 #subscriptions li.pane5 { background: #9fe1e7; }
+#subscriptions li.pane6 { background: #cd338a; }
+#subscriptions li.pane7 { background: #de45bc; }
+*/
+
+#subscriptions li { background: #fff; }
 
 
 /* login
