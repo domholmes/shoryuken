@@ -24,8 +24,8 @@ namespace Squirrel.Models
             get;
             set;
         }
-        
-        public DayOfWeek[] Days
+
+        public int[] DaysIds
         {
             get;
             set;

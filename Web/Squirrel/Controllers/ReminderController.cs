@@ -9,9 +9,9 @@ using System.Data;
 
 namespace Squirrel.Controllers
 {
-    public class RemindersController : ApiController
+    public class ReminderController : ApiController
     {
-        public IEnumerable<Reminder> GetAll()
+        public IEnumerable<Reminder> Get()
         {
             var context = new ReminderContext();
 

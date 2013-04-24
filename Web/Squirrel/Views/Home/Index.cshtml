@@ -50,7 +50,7 @@
                 <a href="http://go.microsoft.com/fwlink/?LinkId=245164">Learn more…</a>
             </li>
         </ol> 
-            <form id="addReminder" data-bind="submit: createReminder"> 
+            <form> 
                 @Html.ValidationSummary(true) 
  
                 <fieldset> 
@@ -65,3 +65,5 @@
             </form>
     </section>
 </div>
+<script src="/Scripts/knockout-2.1.0.debug.js"></script>
+<script src="/Scripts/viewmodels/remindersViewModel.js"></script>
