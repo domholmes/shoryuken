@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
-</head>
-<body>
-    @RenderBody()
+
     @Scripts.Render("~/bundles/libs")
     @RenderSection("scripts", required: false)
+</head>
+<body>
+    @RenderBody()    
 </body>
 </html>

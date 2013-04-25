@@ -1,4 +1,7 @@
-﻿body {
+﻿body 
+{
+    padding: 20px;
+    background: #eee;
 }
 input[type="text"],
 textarea 
@@ -27,4 +30,11 @@ select
     border: 1px solid #fff;
     border-bottom-color: #808080;
     padding-left: 0px;
+}
+.card 
+{
+    background: #fff;
+    padding: 20px;
+    float: left;
+    margin: 20px;
 }

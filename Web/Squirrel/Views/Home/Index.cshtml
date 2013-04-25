@@ -9,57 +9,32 @@
         </div>
     </div>
 </header>
-<div id="body">
-    <article class="card">
-        <p>
-            ASP.NET Web API allows you to expose your applications, data and services to the
-            web directly over HTTP.
-        </p>
-        <footer>
-            <span>active</span><span>delete</span><span>details</span>
-        </footer>           
-    </article>
-    
-    <section>
-        <form>
-            <div style="margin-top:10px;">
-                <input type="text" placeholder="Name" />
-            </div>
-            <div style="margin-top:10px;">
-                <textarea placeholder="Message"></textarea>
-            </div>
-            <div style="margin-top:10px;">
-                <select>
-                    <option>Hardware event</option>
-                    <option>Event one</option>
-                    <option>Event two</option>
-                </select>
-            </div>
-            <div style="margin-top:10px;">
-                <a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript:;"><span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="javascript:;" data-value="Test Option 1">Test Option 1</a></li>
-                    <li><a href="javascript:;" data-value="Test Option 2">Test Option 2</a></li>
-                    <li><a href="javascript:;" data-value="With Value">Test Option 3</a></li>
-                </ul>
-            </div>
-        </form>
-        <form> 
-                @Html.ValidationSummary(true) 
- 
-                <fieldset> 
-                    <legend>Contact</legend> 
- 
-                    @Html.EditorForModel() 
- 
-                    <p> 
-                        <input type="submit" value="Save" /> 
-                    </p> 
-                </fieldset> 
-            </form>
 
+<div id="body">
+    
+    <button type="button" data-bind="click: createReminder, visible: !editing()">Add Reminder</button>
+
+    <section data-bind="foreach: reminders">
+        <article class="card">
+            <div data-bind="visible: !editing()">
+                <p data-bind="text: message"></p>
+                <footer data-bind="visible: !$root.editing()">
+                    <button type="button" data-bind="click: $root.editReminder">Edit</button>
+                    <button type="button" data-bind="click: $root.deleteReminder">Delete</button>
+                </footer>   
+            </div>   
+            <div data-bind="visible: editing"> 
+                <input type="text" placeholder="Message" data-bind="value: message" />   
+                <div>         
+                    <button type="button" data-bind="click: $root.endEdit">Save</button>
+                    <button type="button" data-bind="click: $root.cancelEdit">Cancel</button>
+                </div>
+            </div>  
+        </article>
     </section>
+
 </div>
+
 @section scripts
 {
 <script src="@Url.Content("~/Scripts/models/reminder.js")"></script>
