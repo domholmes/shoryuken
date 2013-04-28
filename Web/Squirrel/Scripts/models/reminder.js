@@ -13,9 +13,8 @@ sr.Reminder = function (options) {
         details: '',
         startTime: new Date(today.setHours(8, 0, 0, 0)),
         endTime: new Date(today.setHours(20, 0, 0, 0)),
-        date: today,
-        days: [],
-        repeat: false,
+        dayIds: [],
+        eventId: null,
         active: true
     };
 

@@ -32,6 +32,8 @@ sr.AppViewModel = function () {
     };
 
     vm.endEdit = function (reminder) {
+        vm.saveReminder(reminder);
+
         reminder.editing(false);
         reminder.isNew(false);
     };
@@ -45,10 +47,37 @@ sr.AppViewModel = function () {
         }
     };
 
-    // Perform initial load
-    $.getJSON("api/reminder/get", function (allData) {
+    vm.saveReminder = function (reminder) {
+        var unwrappedReminder = ko.toJS(reminder),
+            type, url;
 
-        var mappedReminders = $.map(allData, function (item) { return new sr.Reminder(item) });
-        vm.reminders(mappedReminders);
-    });
+        if (unwrappedReminder.isNew === true) {
+            type = "POST";
+            url = "api/reminder/post";
+        } else {            
+            type = "PUT";
+            url = "api/reminder/put";
+        }
+
+        $.ajax({
+            url: url,
+            type: type,
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify(unwrappedReminder),
+            success: function (response) {
+
+            }
+        });
+    };
+
+    vm.init = function () {
+        // Perform initial load
+        $.getJSON("api/reminder/get", function (allData) {
+            var mappedReminders = $.map(allData, function (item) { return new sr.Reminder(item) });
+            vm.reminders(mappedReminders);
+        });
+    };
+
+    vm.init();
 }
