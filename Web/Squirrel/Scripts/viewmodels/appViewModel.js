@@ -5,6 +5,7 @@ sr.AppViewModel = function () {
 
     // Data
     vm.reminders = ko.observableArray([]);
+
     vm.editing = ko.computed(function () {
         var reminder = ko.utils.arrayFirst(vm.reminders(), function (reminder) {
             return reminder.editing() === true;
@@ -12,6 +13,15 @@ sr.AppViewModel = function () {
 
         return reminder !== null;
     });
+
+    vm.availableEvents = [{
+        value: 0,
+        text: "Charger Connected"
+    },
+    {
+        value: 1,
+        text: "Charger Disconnected"
+    }];
 
     // Operations
     vm.createReminder = function () {
@@ -44,6 +54,11 @@ sr.AppViewModel = function () {
             vm.deleteReminder(reminder);
         } else {
             reminder.message(vm.cachedReminder.message);
+            reminder.name(vm.cachedReminder.name);
+            reminder.eventId(vm.cachedReminder.eventId);
+            reminder.startTime(vm.cachedReminder.startTime);
+            reminder.endTime(vm.cachedReminder.endTime);
+            reminder.daysIds(vm.cachedReminder.daysIds);
         }
     };
 
@@ -54,7 +69,7 @@ sr.AppViewModel = function () {
         if (unwrappedReminder.isNew === true) {
             type = "POST";
             url = "api/reminder/post";
-        } else {            
+        } else {
             type = "PUT";
             url = "api/reminder/put";
         }

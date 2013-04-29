@@ -1,5 +1,6 @@
 ﻿var sr = sr || {};
 
 $(function () {
-    ko.applyBindings(new sr.AppViewModel());
+    sr.vm = new sr.AppViewModel() // for testing
+    ko.applyBindings(sr.vm);
 });

@@ -24,7 +24,11 @@
                 </footer>   
             </div>   
             <div data-bind="visible: editing"> 
-                <input type="text" placeholder="Message" data-bind="value: message" />   
+                <input type="text" placeholder="Name" data-bind="value: name" /><br />
+                <textarea type="text" placeholder="Message" data-bind="value: message" rows="3"></textarea> <br />
+                <select data-bind="options: $root.availableEvents, optionsText: 'text', optionsValue: 'value', value: eventId, optionsCaption: 'Select an event'"></select><br />
+                <input type="text" placeholder="Start time" data-bind="value: startTime" /><br />
+                <input type="text" placeholder="End time" data-bind="value: endTime" /> 
                 <div>         
                     <button type="button" data-bind="click: $root.endEdit">Save</button>
                     <button type="button" data-bind="click: $root.cancelEdit">Cancel</button>
