@@ -1,7 +1,7 @@
 ﻿var sr = sr || {};
 
 sr.Reminder = function (options) {
-    var r = this,
+    var rem = this,
         today = new Date(),
         defaults;
 
@@ -13,22 +13,24 @@ sr.Reminder = function (options) {
         details: '',
         startTime: new Date(today.setHours(8, 0, 0, 0)),
         endTime: new Date(today.setHours(20, 0, 0, 0)),
-        date: today,
-        days: [],
-        repeat: false,
+        daysIds: [],
+        eventId: null,
         active: true
     };
 
-    $.extend(r, defaults, options);
+    $.extend(rem, defaults, options);
 
     // convert properties to observables
-    for (var prop in r) {
-        if (r.hasOwnProperty(prop)) {
-            if (r[prop] instanceof Array) {
-                r[prop] = ko.observableArray(r[prop]);
+    for (var prop in rem) {
+        if (rem.hasOwnProperty(prop)) {
+            if (rem[prop] instanceof Array) {
+                rem[prop] = ko.observableArray(rem[prop]);
             } else {
-                r[prop] = ko.observable(r[prop]);
+                rem[prop] = ko.observable(rem[prop]);
             }
         }
     }
+
+    rem.isNew = ko.observable(false);
+    rem.editing = ko.observable(false);
 }

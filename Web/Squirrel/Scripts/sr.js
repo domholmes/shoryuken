@@ -1,7 +1,6 @@
 ﻿var sr = sr || {};
 
-ko.applyBindings(new sr.AppViewModel());
-
-// temp test
-var test = new sr.Reminder()
-console.log(test);
+$(function () {
+    sr.vm = new sr.AppViewModel() // for testing
+    ko.applyBindings(sr.vm);
+});
