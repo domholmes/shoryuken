@@ -124,9 +124,11 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReminderController.cs" />
+    <Compile Include="Controllers\ReminderMobileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DemoDatabaseInitializer.cs" />
     <Compile Include="Models\Reminder.cs" />
     <Compile Include="Models\ReminderContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

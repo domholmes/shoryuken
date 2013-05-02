@@ -4,8 +4,8 @@
     android:versionCode="1"
     android:versionName="1.0" >
 	
-    <uses-permission 
-        android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     
     <uses-sdk
         android:minSdkVersion="14"
@@ -27,6 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name=".ReminderService" />
         <receiver android:name=".EventMapper" android:enabled="true">
         <intent-filter>
             <action android:name="android.net.wifi.supplicant.STATE_CHANGE"/>

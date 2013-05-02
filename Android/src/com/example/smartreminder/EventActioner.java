@@ -19,41 +19,11 @@ import android.util.Log;
 
 public class EventActioner extends BroadcastReceiver
 {
-	private TimeChecker timeChecker;
-	private Notifier notifier;
-	
-	public EventActioner()
-	{
-		this.timeChecker = new TimeChecker();
-		this.notifier = new Notifier();
-	}
-	
 	@Override
 	public void onReceive(Context context, Intent intent)
 	{
-		Reminder[] reminders = ReminderRepository.GetActiveReminders();
-
-		for(Reminder reminder : reminders) 
-		{
-			Action event = reminder.moment.action;
-			
-			if(reminder.moment.action.name() == intent.getAction())
-			{		
-				if(reminder.moment.extra == intent.getStringExtra(EventMapper.extraName))
-				{
-					try
-					{
-						if(this.timeChecker.timeMatches(reminder.moment))
-						{
-							this.notifier.Notify(context, reminder);
-						}
-					} 
-					catch (ParseException e)
-					{
-					
-					}
-				}
-			}
-		}
+		new DownloadFilesTask().execute(intent);
+		
+		//context.startService(new Intent(context, ReminderService.class));
 	}
 }

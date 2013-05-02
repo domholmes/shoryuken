@@ -1,44 +1,33 @@
 package com.example.smartreminder;
 
+import java.io.BufferedReader;
+import java.io.Console;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONObject;
 
 import com.example.smartreminder.models.Moment;
 import com.example.smartreminder.models.Reminder;
 
 public class ReminderRepository
 {
+	private static final String url = "http://192.168.1.7:50625/api/remindermobile/get";
+	
 	public static Reminder[] GetActiveReminders()
 	{
-		HttpClient httpclient = new DefaultHttpClient();
+		JSONObject json = new ReminderJsonFetcher().GetJson(url);
 
-	    HttpGet httpget = new HttpGet("http://localhost/api/values");
-		
-		try
-		{
-			HttpResponse response = httpclient.execute(httpget);
-		} catch (ClientProtocolException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-
-		
-		
-		
 		Reminder reminder = new Reminder();
 		
 		Moment work = new Moment();

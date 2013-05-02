@@ -25,7 +25,7 @@ namespace Squirrel.Models
             set;
         }
 
-        public int[] DaysIds
+        public string Days
         {
             get;
             set;

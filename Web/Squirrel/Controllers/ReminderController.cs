@@ -17,7 +17,7 @@ namespace Squirrel.Controllers
 
             return context.Reminders;
         }
-        
+
         public HttpResponseMessage Post(Reminder reminder)
         {
             var context = new ReminderContext();
