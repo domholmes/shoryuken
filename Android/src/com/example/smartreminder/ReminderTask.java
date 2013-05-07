@@ -2,37 +2,36 @@ package com.example.smartreminder;
 
 import java.net.URL;
 import java.text.ParseException;
+import java.util.List;
 
 import com.example.smartreminder.models.Reminder;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 
 class DownloadFilesTask extends AsyncTask<Intent, Integer, Long> 
 {
-    protected Long doInBackground(Intent... intents) 
+    private Context context;
+	
+	public DownloadFilesTask(Context context)
     {
-    	Reminder[] reminders = ReminderRepository.GetActiveReminders();
+    	this.context = context;
+    }
+	
+	protected Long doInBackground(Intent... intents) 
+    {
+    	List<Reminder> reminders = ReminderRepository.GetActiveReminders();
 
 		for(Reminder reminder : reminders) 
 		{
-			Action event = reminder.moment.action;
+			Action event = reminder.action;
 			
-			if(reminder.moment.action.name() == intents[0].getAction())
+			if(reminder.action.name() == intents[0].getAction())
 			{		
-				if(reminder.moment.extra == intents[0].getStringExtra(EventMapper.extraName))
+				if(new TimeChecker().timeMatches(reminder))
 				{
-					try
-					{
-						if(new TimeChecker().timeMatches(reminder.moment))
-						{
-							//new Notifier().Notify(getApplicationContext(), reminder);
-						}
-					} 
-					catch (ParseException e)
-					{
-					
-					}
+					new Notifier().Notify(this.context, reminder);
 				}
 			}
 		}

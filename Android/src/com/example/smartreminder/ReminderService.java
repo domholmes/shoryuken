@@ -1,6 +1,7 @@
 package com.example.smartreminder;
 
 import java.text.ParseException;
+import java.util.List;
 
 import com.example.smartreminder.models.Reminder;
 
@@ -30,26 +31,19 @@ public class ReminderService extends Service
 	@Override
     public int onStartCommand(Intent intent, int flags, int startid)
 	{
-		Reminder[] reminders = ReminderRepository.GetActiveReminders();
+		List<Reminder> reminders = ReminderRepository.GetActiveReminders();
 
 		for(Reminder reminder : reminders) 
 		{
-			Action event = reminder.moment.action;
+			Action event = reminder.action;
 			
-			if(reminder.moment.action.name() == intent.getAction())
+			if(reminder.action.name() == intent.getAction())
 			{		
-				if(reminder.moment.extra == intent.getStringExtra(EventMapper.extraName))
+				if(reminder.extra == intent.getStringExtra(EventMapper.extraName))
 				{
-					try
+					if(this.timeChecker.timeMatches(reminder))
 					{
-						if(this.timeChecker.timeMatches(reminder.moment))
-						{
-							this.notifier.Notify(getApplicationContext(), reminder);
-						}
-					} 
-					catch (ParseException e)
-					{
-					
+						this.notifier.Notify(getApplicationContext(), reminder);
 					}
 				}
 			}

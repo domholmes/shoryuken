@@ -9,16 +9,18 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class ReminderJsonFetcher
 {
-	public JSONObject GetJson(String url)
+	public JSONArray GetJson(String url)
 	{
 		HttpClient httpclient = new DefaultHttpClient();
 
 	    HttpGet httpget = new HttpGet(url);
-		
+	    httpget.setHeader("Content-type", "application/json");
+	    
 	    InputStream inputStream = null;
 		String result = null;
 
@@ -41,12 +43,14 @@ public class ReminderJsonFetcher
 			
 			result = sb.toString();
 			
-			return new JSONObject(result);
+			return new JSONArray(result);
 		} 
 		catch (Exception e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return new JSONArray();
 	}
 }

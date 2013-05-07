@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.example.smartreminder.models.Moment;
 import com.example.smartreminder.models.Reminder;
 
 import android.app.NotificationManager;
@@ -22,7 +21,7 @@ public class EventActioner extends BroadcastReceiver
 	@Override
 	public void onReceive(Context context, Intent intent)
 	{
-		new DownloadFilesTask().execute(intent);
+		new DownloadFilesTask(context).execute(intent);
 		
 		//context.startService(new Intent(context, ReminderService.class));
 	}
