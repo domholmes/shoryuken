@@ -16,7 +16,7 @@ namespace Squirrel.Models
                 {
                     Id = 1,
                     Name = "Leaving for work",
-                    Event = Event.ChargerDisconnected,
+                    Action = Action.ChargerDisconnected,
                     Message = "Remember DVD for Duncan",
                     Days = "12345",
                     StartTime = DateTime.Parse("07:30"),
@@ -26,7 +26,7 @@ namespace Squirrel.Models
                 {
                     Id = 2,
                     Name = "Getting home from work",
-                    Event = Event.ChagerConnected,
+                    Action = Action.ChagerConnected,
                     Message = "Ring mum",
                     Days = "12345",
                     StartTime = DateTime.Parse("16:30"),

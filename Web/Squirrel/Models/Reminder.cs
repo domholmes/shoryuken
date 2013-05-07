@@ -31,28 +31,30 @@ namespace Squirrel.Models
             set;
         }
 
-        public int EventId
+        public int ActionId
         {
             get;
             set;
         }
 
-        public Event Event
+        public Action Action
         {
             get
             {
-                return (Event)this.EventId;
+                return (Action)this.ActionId;
             }
             set
             {
-                this.EventId = (int)value;
+                this.ActionId = (int)value;
             }
         }
     }
 
-    public enum Event
+    public enum Action
     {
-        ChagerConnected,
-        ChargerDisconnected
+        WifiConnected = 0,
+        WifiDisconnected = 1,
+        ChagerConnected = 2,
+        ChargerDisconnected = 3
     }
 }
