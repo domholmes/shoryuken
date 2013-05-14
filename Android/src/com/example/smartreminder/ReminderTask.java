@@ -1,8 +1,9 @@
 package com.example.smartreminder;
 
-import java.net.URL;
 import java.text.ParseException;
 import java.util.List;
+
+import org.json.JSONException;
 
 import com.example.smartreminder.models.Reminder;
 
@@ -10,35 +11,60 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 
-class DownloadFilesTask extends AsyncTask<Intent, Integer, Long> 
+class ReminderTask extends AsyncTask<Intent, Integer, Long> 
 {
     private Context context;
+    private TimeChecker timeChecker;
+	private Notifier notifier;
+	private ReminderRepository reminderRepository;
 	
-	public DownloadFilesTask(Context context)
+	public ReminderTask(Context context)
     {
     	this.context = context;
+    	this.timeChecker = new TimeChecker();
+		this.notifier = new Notifier();
+		this.reminderRepository = new ReminderRepository();
     }
 	
 	protected Long doInBackground(Intent... intents) 
     {
-    	List<Reminder> reminders = ReminderRepository.GetActiveReminders();
-
-		for(Reminder reminder : reminders) 
+		List<Reminder> reminders = null;
+		try
 		{
-			Action event = reminder.action;
+			reminders = reminderRepository.GetActiveReminders();
 			
-			if(reminder.action.name() == intents[0].getAction())
-			{		
-				if(new TimeChecker().timeMatches(reminder))
+			for(Reminder reminder : reminders) 
+			{
+				if(reminderIsNow(reminder, intents[0]))
 				{
-					new Notifier().Notify(this.context, reminder);
+					this.notifier.Notify(context, reminder.notificationText);
+				}
+			}
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+
+    	return (long) 0;
+    }
+	
+	private Boolean reminderIsNow(Reminder reminder, Intent intent) throws ParseException
+	{
+		if(reminder.action.name() == intent.getAction())
+		{		
+			if(reminder.extra == intent.getStringExtra(EventMapper.extraName))
+			{
+				if(this.timeChecker.timeMatches(reminder))
+				{
+					return true;
 				}
 			}
 		}
-    	
-    	return (long) 0;
-    }
-
+		
+		return false;
+	}
+	
     protected void onProgressUpdate(Integer... progress) {
     }
 

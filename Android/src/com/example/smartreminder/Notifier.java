@@ -1,5 +1,6 @@
 package com.example.smartreminder;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -12,7 +13,16 @@ import com.example.smartreminder.models.Reminder;
 
 public class Notifier
 {
-	public void Notify(Context context, Reminder reminder)
+	public void Notify(Context context, String message)
+	{
+		Notification notification = createNotification(context, message);
+
+		NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+		
+		mNotificationManager.notify(1, notification);
+	}
+	
+	private Notification createNotification(Context context, String message)
 	{
 		Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 		
@@ -20,7 +30,7 @@ public class Notifier
 				new NotificationCompat.Builder(context)
 					.setSound(sound)
 					.setSmallIcon(R.drawable.ic_launcher)
-					.setContentText(reminder.notificationText)
+					.setContentText(message)
 					.setContentTitle("SmartReminder");
 
 		PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
@@ -28,9 +38,7 @@ public class Notifier
 				PendingIntent.FLAG_UPDATE_CURRENT);
 		
 		mBuilder.setContentIntent(contentIntent);
-
-		NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 		
-		mNotificationManager.notify(1, mBuilder.build());
+		return mBuilder.build();
 	}
 }
