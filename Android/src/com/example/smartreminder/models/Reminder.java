@@ -1,6 +1,5 @@
 package com.example.smartreminder.models;
 
-import java.util.Date;
 import java.util.List;
 
 import com.example.smartreminder.Action;
