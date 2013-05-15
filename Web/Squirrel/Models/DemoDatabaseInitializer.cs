@@ -20,7 +20,7 @@ namespace Squirrel.Models
                     Message = "Remember DVD for Duncan",
                     Days = "12345",
                     StartTime = DateTime.Parse("07:30"),
-                    EndTime = DateTime.Parse("08:30"),
+                    EndTime = DateTime.Parse("08:30")
                 },
                 new Reminder
                 {
@@ -30,7 +30,7 @@ namespace Squirrel.Models
                     Message = "Ring mum",
                     Days = "12345",
                     StartTime = DateTime.Parse("16:30"),
-                    EndTime = DateTime.Parse("19:00"),
+                    EndTime = DateTime.Parse("19:00")
                 }
             };
             

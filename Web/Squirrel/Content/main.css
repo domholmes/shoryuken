@@ -3,6 +3,10 @@
     padding: 20px;
     background: #eee;
 }
+
+/* Forms
+------------------------------------------------*/
+
 input[type="text"],
 textarea 
 {
@@ -31,10 +35,31 @@ select
     border-bottom-color: #808080;
     padding-left: 0px;
 }
+
+/* Utilities
+------------------------------------------------*/
+
+.link-emulate 
+{
+    cursor: pointer;
+}
+
+/* Misc
+------------------------------------------------*/
+
 .card 
 {
     background: #fff;
     padding: 20px;
     float: left;
     margin: 20px;
+}
+.days 
+{
+    font-weight: bold;
+    color: #999;
+}
+.days .selected 
+{
+    color: #000;
 }

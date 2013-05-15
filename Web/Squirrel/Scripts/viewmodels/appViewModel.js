@@ -14,15 +14,6 @@ sr.AppViewModel = function () {
         return reminder !== null;
     });
 
-    vm.availableEvents = [{
-        value: 0,
-        text: "Charger Connected"
-    },
-    {
-        value: 1,
-        text: "Charger Disconnected"
-    }];
-
     // Operations
     vm.createReminder = function () {
         var reminder = new sr.Reminder();
@@ -55,16 +46,18 @@ sr.AppViewModel = function () {
         } else {
             reminder.message(vm.cachedReminder.message);
             reminder.name(vm.cachedReminder.name);
-            reminder.eventId(vm.cachedReminder.eventId);
+            reminder.actionId(vm.cachedReminder.actionId);
             reminder.startTime(vm.cachedReminder.startTime);
             reminder.endTime(vm.cachedReminder.endTime);
-            reminder.daysIds(vm.cachedReminder.daysIds);
+            reminder.days(vm.cachedReminder.days);
         }
     };
 
     vm.saveReminder = function (reminder) {
         var unwrappedReminder = ko.toJS(reminder),
             type, url;
+
+        unwrappedReminder.days = unwrappedReminder.days.join(',');
 
         if (unwrappedReminder.isNew === true) {
             type = "POST";
