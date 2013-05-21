@@ -27,8 +27,8 @@ sr.Reminder = function (options) {
     rem.name = ko.observable(options.name);
     rem.message = ko.observable(options.message);
     rem.details = ko.observable(options.details);
-    rem.startTime = ko.observable(options.startTime);
-    rem.endTime = ko.observable(options.endTime);
+    rem.startTime = ko.observable(new Date(options.startTime));
+    rem.endTime = ko.observable(new Date(options.endTime));
     rem.actionId = ko.observable(options.actionId);
     rem.active = ko.observable(options.active);
     rem.days = ko.observableArray(options.days);
@@ -96,5 +96,33 @@ sr.Reminder = function (options) {
         } else {
             rem.days.push(day.id);
         }
+    };    
+
+    rem.formatTime = function (date) {
+        var hh = date.getHours(),
+            mm = date.getMinutes(),
+            ss = date.getSeconds(),
+            suffix;
+
+        if (hh > 12) {
+            suffix = "PM";
+            hh = hh - 12;
+        } else {
+            suffix = "AM";
+        }
+
+        if (hh < 10) { hh = "0" + hh; }
+        if (mm < 10) { mm = "0" + mm; }
+        if (ss < 10) { ss = "0" + ss; }
+
+        return hh + ":" + mm + ":" + ss + " " + suffix;
     };
+
+    rem.startTimeDisplay = ko.computed(function (data) {
+        return rem.formatTime(rem.startTime());
+    });
+
+    rem.endTimeDisplay = ko.computed(function (data) {
+        return rem.formatTime(rem.endTime());
+    });
 }
