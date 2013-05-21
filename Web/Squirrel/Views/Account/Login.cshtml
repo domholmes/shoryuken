@@ -28,46 +28,49 @@
   </div>
 </body>
 <script type="text/javascript">
-var helper = (function() {
-  var authResult = undefined;
+    var helper = (function () {
+        var authResult = undefined;
 
-  return {
+        return {
 
-    onSignInCallback: function(authResult) {
-      $('#authResult').html('Auth Result:<br/>');
-      for (var field in authResult) {
-        $('#authResult').append(' ' + field + ': ' + authResult[field] + '<br/>');
-      }
-      if (authResult['access_token']) {
-        // The user is signed in
-        this.authResult = authResult;
-        // After we load the Google+ API, render the profile data from Google+.
-        gapi.client.load('plus','v1',this.renderProfile);
-      } 
-    },
+            onSignInCallback: function (authResult) {
+                $('#authResult').html('Auth Result:<br/>');
+                for (var field in authResult) {
+                    $('#authResult').append(' ' + field + ': ' + authResult[field] + '<br/>');
+                }
+                if (authResult['access_token']) {
+                    // The user is signed in
+                    this.authResult = authResult;
+                    // After we load the Google+ API, render the profile data from Google+.
+                    gapi.client.load('plus', 'v1', this.renderProfile);
+                }
+            },
 
-    renderProfile: function () {
-        var request = gapi.client.plus.people.get({ 'userId': 'me' });
-        request.execute(function (profile) {
-            $('#profile').empty();
-            if (profile.error) {
-                $('#profile').append(profile.error);
-                return;
+            renderProfile: function () {
+                var request = gapi.client.plus.people.get({ 'userId': 'me' });
+                request.execute(function (profile) {
+                    $('#profile').empty();
+                    if (profile.error) {
+                        $('#profile').append(profile.error);
+                        return;
+                    }
+                    helper.connectServer(profile.id);
+                });
+                $('#gConnect').hide();
+            },
+
+            connectServer: function (gplusId) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/Account/Callback',
+                    data: { gplusId: gplusId, code: this.authResult.code },
+                    success: function () {
+                            window.location.href = '@ViewBag.ReturnUrl';
+                    }
+                });
             }
-            helper.connectServer(profile.id);
-        });
-        $('#gConnect').hide();
-    },
-
-    connectServer: function(gplusId) {
-      $.ajax({
-        type: 'POST',
-        url: '/Account/Callback',
-        data: { gplusId: gplusId, code: this.authResult.code, returnUrl: '@ViewBag.ReturnUrl' }
-      });
-    }
-  };
-})();
+        };
+    })();
 
 function onSignInCallback(authResult) {
   helper.onSignInCallback(authResult);

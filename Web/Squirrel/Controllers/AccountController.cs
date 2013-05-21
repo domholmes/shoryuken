@@ -7,6 +7,7 @@ using GPlus_ServerSideFlow;
 using Microsoft.Web.WebPages.OAuth;
 using Squirrel.Models;
 using System.Web.Security;
+using System.Net;
 
 namespace Squirrel.Controllers
 {
@@ -23,7 +24,7 @@ namespace Squirrel.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult Callback(string gplusId, string code, string returnUrl)
+        public HttpStatusCodeResult Callback(string gplusId, string code)
         {
             OAuthResponseObject response = GoogleSignInService.ExchangeCode(code);
 
@@ -40,7 +41,7 @@ namespace Squirrel.Controllers
                 }
             }
 
-            return Redirect(returnUrl);
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
     }
 }
