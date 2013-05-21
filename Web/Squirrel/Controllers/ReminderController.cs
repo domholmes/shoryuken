@@ -9,13 +9,14 @@ using System.Data;
 
 namespace Squirrel.Controllers
 {
+    [Authorize]
     public class ReminderController : ApiController
     {
         public IEnumerable<Reminder> Get()
         {
             var context = new ReminderContext();
 
-            return context.Reminders;
+            return context.Reminders.Where(r => r.User.Username == this.User.Identity.Name);
         }
 
         public HttpResponseMessage Post(Reminder reminder)

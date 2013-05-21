@@ -10,11 +10,18 @@ namespace Squirrel.Models
     {
         protected override void Seed(ReminderContext context)
         {
+            var dom = new User
+            {
+                Username = "109709090660570239292",
+                Email = "thecapsaicinkid@gmail.com"
+            };
+            
             var reminders = new List<Reminder>
             {
                 new Reminder
                 {
                     Id = 1,
+                    User = dom,
                     Name = "Leaving for work",
                     Action = Action.ChargerDisconnected,
                     Message = "Remember DVD for Duncan",
@@ -25,6 +32,7 @@ namespace Squirrel.Models
                 new Reminder
                 {
                     Id = 2,
+                    User = dom,
                     Name = "Getting home from work",
                     Action = Action.ChagerConnected,
                     Message = "Ring mum",
