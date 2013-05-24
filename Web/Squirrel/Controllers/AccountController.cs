@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using GPlus_ServerSideFlow;
-using Microsoft.Web.WebPages.OAuth;
 using Squirrel.Models;
 using System.Web.Security;
 using System.Net;
@@ -26,9 +25,19 @@ namespace Squirrel.Controllers
         [AllowAnonymous]
         public HttpStatusCodeResult Callback(string gplusId, string code)
         {
-            OAuthResponseObject response = GoogleSignInService.ExchangeCode(code);
+            OAuthResponseObject response = GoogleSignInService.ExchangeSingleUseCode(code);
+
+            if (!response.IsValid)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
             string plusId = response.ExtractPlusId();
+
+            if (gplusId != plusId)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
             FormsAuthentication.SetAuthCookie(plusId, true);
 

@@ -21,33 +21,57 @@ namespace Squirrel.Controllers
 
         public HttpResponseMessage Post(Reminder reminder)
         {
-            var context = new ReminderContext();
+            using (var context = new ReminderContext())
+            {
+                User user = context.Users.Where(u => u.Username == User.Identity.Name).SingleOrDefault();
+
+                if (user == null)
+                {
+                    return Request.CreateResponse<Reminder>(HttpStatusCode.BadRequest, reminder);    
+                }
+
+                reminder.User = user;
             
-            context.Reminders.Add(reminder);
-            context.SaveChanges();
-
-            var response = Request.CreateResponse<Reminder>(HttpStatusCode.Created, reminder);
-
-            return response;
+                context.Reminders.Add(reminder);
+                context.SaveChanges();
+            }
+            
+            return Request.CreateResponse<Reminder>(HttpStatusCode.Created, reminder);
         }
 
         public HttpResponseMessage Put(Reminder reminder)
         {
-            var context = new ReminderContext();
-
-            if (!context.Reminders.Where(r => r.Id == reminder.Id).Any())
+            using (var context = new ReminderContext())
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                if (!context.Reminders.Where(r => r.Id == reminder.Id).Any())
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
+
+                context.Reminders.Attach(reminder);
+                context.Entry(reminder).State = EntityState.Modified;
+
+                context.SaveChanges();
             }
 
-            context.Reminders.Attach(reminder);
-            context.Entry(reminder).State = EntityState.Modified;
+            return Request.CreateResponse<Reminder>(HttpStatusCode.OK, reminder);
+        }
 
-            context.SaveChanges();
+        public HttpResponseMessage Delete(int id)
+        {
+            var reminder = new Reminder()
+            {
+                Id = id
+            };
             
-            var response = Request.CreateResponse<Reminder>(HttpStatusCode.OK, reminder);
+            using (var context = new ReminderContext())
+            {
+                context.Reminders.Attach(reminder);
+                context.Reminders.Remove(reminder);
+                context.SaveChanges();
+            }
 
-            return response;
+            return Request.CreateResponse<Reminder>(HttpStatusCode.OK, reminder);
         }
     }
 }

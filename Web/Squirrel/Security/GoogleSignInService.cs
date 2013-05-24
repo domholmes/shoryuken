@@ -40,8 +40,8 @@ namespace GPlus_ServerSideFlow
     /// @author class@google.com (Gus Class)
     public class GoogleSignInService
     {
-        public const string clientId = "311602831768.apps.googleusercontent.com";
-        public const string secret = "R-7rTkO8UUgJPRPBRI6OpseD";
+        public const string clientId = "714250926431.apps.googleusercontent.com";
+        public const string secret = "";
         
         /// <summary>
         /// Exchanges an OAuth2 authorization code for OAuth2 credentials.
@@ -49,7 +49,7 @@ namespace GPlus_ServerSideFlow
         /// <param name="code">The OAuth2 authorization code from the
         /// sign-in button.</param>
         /// <returns></returns>
-        static public OAuthResponseObject ExchangeCode(string code)
+        static public OAuthResponseObject ExchangeSingleUseCode(string code)
         {
             // The request will be made to the authentication server.
             WebRequest request = WebRequest.Create(
@@ -69,10 +69,18 @@ namespace GPlus_ServerSideFlow
             Stream dataStream = request.GetRequestStream();
             dataStream.Write(byteArray, 0, byteArray.Length);
             dataStream.Close();
+            
+            WebResponse response;
 
-            // Perform the POST and retrieve the server response with
-            // the access token and/or the refresh token.
-            WebResponse response = request.GetResponse();
+            try
+            {
+                response = request.GetResponse();
+            }
+            catch (WebException e)
+            {
+                return new OAuthResponseObject();
+            }
+            
             dataStream = response.GetResponseStream();
             StreamReader reader = new StreamReader(dataStream);
             string responseFromServer = reader.ReadToEnd();
@@ -120,6 +128,11 @@ namespace GPlus_ServerSideFlow
 
         public string ExtractPlusId()
         {
+            if (!IsValid)
+            {
+                throw new InvalidOperationException("Cannot extract a PlusId from an invalid response.");
+            }
+            
             string[] segments = id_token.Split('.');
 
             string base64EncoodedJsonBody = segments[1];
@@ -137,6 +150,14 @@ namespace GPlus_ServerSideFlow
             string gplus_id = bodyObject.sub;
 
             return gplus_id;
+        }
+
+        public bool IsValid
+        {
+            get 
+            { 
+                return !string.IsNullOrEmpty(id_token); 
+            }
         }
     }
 
