@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using GPlus_ServerSideFlow;
 using Squirrel.Models;
 using System.Web.Security;
 using System.Net;
+using Squirrel.Security;
 
 namespace Squirrel.Controllers
 {
@@ -17,7 +17,7 @@ namespace Squirrel.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            ViewBag.ClientId = GoogleSignInService.clientId;
+            ViewBag.ClientId = GoogleAuthService.clientId;
             
             return View();
         }
@@ -25,29 +25,13 @@ namespace Squirrel.Controllers
         [AllowAnonymous]
         public HttpStatusCodeResult Callback(string gplusId, string code)
         {
-            OAuthResponseObject response = GoogleSignInService.ExchangeSingleUseCode(code);
+            var callbackHandler = new GoogleSignInCallbackHandler();
 
-            if (!response.IsValid)
+            bool callbackOk = callbackHandler.LoginUser(gplusId, code);
+
+            if (!callbackOk)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            string plusId = response.ExtractPlusId();
-
-            if (gplusId != plusId)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            FormsAuthentication.SetAuthCookie(plusId, true);
-
-            using (var context = new ReminderContext())
-            {
-                if (!context.Users.Where(u => u.Username == plusId).Any())
-                {
-                    context.Users.Add(new User { Username = plusId, Email = "bob@bob.com" });
-                    context.SaveChanges();    
-                }
             }
 
             return new HttpStatusCodeResult(HttpStatusCode.OK);

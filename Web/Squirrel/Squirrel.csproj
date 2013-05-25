@@ -37,11 +37,18 @@
   <ItemGroup>
     <Reference Include="DotNetOpenAuth, Version=4.0.0.11165, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Services\DotNetOpenAuth.dll</HintPath>
+      <HintPath>Services\oauth2\Lib\DotNetOpenAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis, Version=1.3.0.15233, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Services\oauth2\Lib\Google.Apis.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis.Authentication.OAuth2, Version=1.3.0.15231, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Services\Google.Apis.Authentication.OAuth2.dll</HintPath>
+      <HintPath>Services\oauth2\Lib\Google.Apis.Authentication.OAuth2.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Oauth2.v2">
+      <HintPath>Services\oauth2\Google.Apis.Oauth2.v2.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -142,7 +149,10 @@
     <Compile Include="Models\ReminderContext.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Security\GoogleSignInService.cs" />
+    <Compile Include="Security\GoogleApiService.cs" />
+    <Compile Include="Security\GoogleSignInCallbackHandler.cs" />
+    <Compile Include="Security\GoogleAuthService.cs" />
+    <Compile Include="Security\GoogleUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-responsive.css" />
