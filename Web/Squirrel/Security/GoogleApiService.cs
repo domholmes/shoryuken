@@ -8,11 +8,11 @@ using Newtonsoft.Json;
 
 namespace Squirrel.Security
 {
-    internal class GoogleApiService
+    public class GoogleApiService
     {
         private const string userInfoEndPoint = "https://www.googleapis.com/oauth2/v1/userinfo";
         
-        internal string RetrieveUsersEmail(string accessCode)
+        public string RetrieveUsersEmail(string accessCode)
         {
             string url = string.Format("{0}?access_token={1}", userInfoEndPoint, accessCode);
 

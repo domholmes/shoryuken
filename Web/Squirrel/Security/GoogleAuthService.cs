@@ -5,7 +5,6 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Web;
-using Google.Apis.Authentication.OAuth2;
 using Newtonsoft.Json;
 using Squirrel.Security;
 
@@ -15,19 +14,27 @@ namespace Squirrel.Security
     {
         public const string clientId = "714250926431.apps.googleusercontent.com";
         private const string secret = "";
+        private const string tokenEndPoint = "https://accounts.google.com/o/oauth2/token";
+        private readonly GoogleIdTokenParser tokenParser;
 
-        internal GoogleUser GetAuthenticatedUser(string authCode)
+        public GoogleAuthService()
+        {
+            tokenParser = new GoogleIdTokenParser();
+        }
+
+        public virtual GoogleUser GetAuthenticatedUser(string authCode)
         {
             OAuthResponse response = ExchangeAuthCodeForAccessCode(authCode);
 
-            if (response.IsInvalid)
-            {
-                return null;
-            }
+            if (response.IsInvalid) return GoogleUser.InvalidUser;
+
+            string userId = tokenParser.ExtractUserIdFromToken(response.id_token);
+
+            if (string.IsNullOrEmpty(userId)) return GoogleUser.InvalidUser;
 
             var user = new GoogleUser
             {
-                Id = ExtractUserId(response.id_token),
+                Id = userId,
                 AccessCode = response.access_token
             };
 
@@ -36,19 +43,13 @@ namespace Squirrel.Security
 
         private OAuthResponse ExchangeAuthCodeForAccessCode(string code)
         {
-            // The request will be made to the authentication server.
-            WebRequest request = WebRequest.Create(
-                GoogleAuthenticationServer.Description.TokenEndpoint
-            );
+            WebRequest request = WebRequest.Create(tokenEndPoint);
 
-            // You must use POST for the code exchange.
             request.Method = "POST";
 
-            // Create POST data.
             string postData = BuildFormPostData(code);
             byte[] byteArray = Encoding.UTF8.GetBytes(postData);
 
-            // Set up the POST request for the code exchange.
             request.ContentType = "application/x-www-form-urlencoded";
             request.ContentLength = byteArray.Length;
             Stream dataStream = request.GetRequestStream();
@@ -74,24 +75,6 @@ namespace Squirrel.Security
             response.Close();
 
             return JsonConvert.DeserializeObject<OAuthResponse>(responseFromServer);
-        }
-
-        private string ExtractUserId(string idToken)
-        {
-            string[] segments = idToken.Split('.');
-
-            string base64EncoodedJsonBody = segments[1];
-            int mod4 = base64EncoodedJsonBody.Length % 4;
-            
-            if (mod4 > 0)
-            {
-                base64EncoodedJsonBody += new string('=', 4 - mod4);
-            }
-            
-            byte[] encodedBodyAsBytes = System.Convert.FromBase64String(base64EncoodedJsonBody);
-            string json = System.Text.Encoding.UTF8.GetString(encodedBodyAsBytes);
-
-            return JsonConvert.DeserializeAnonymousType(json, new { sub = "" }).sub;
         }
 
         private string BuildFormPostData(string code)

@@ -17,24 +17,41 @@ namespace Squirrel.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            ViewBag.ClientId = GoogleAuthService.clientId;
+            ViewBag.ClientId = GoogleSignInCallbackHandler.ClientId;
+            ViewBag.RequiredScopes = GoogleSignInCallbackHandler.RequiredScopes;
             
             return View();
         }
 
         [AllowAnonymous]
-        public HttpStatusCodeResult Callback(string gplusId, string code)
+        public HttpStatusCodeResult Callback(string code)
         {
             var callbackHandler = new GoogleSignInCallbackHandler();
 
-            bool callbackOk = callbackHandler.LoginUser(gplusId, code);
+            bool loginOk = callbackHandler.LoginUser(code);
 
-            if (!callbackOk)
+            if (!loginOk)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+        [AllowAnonymous]
+        public virtual ActionResult LogOff()
+        {
+            FormsAuthentication.SignOut();
+
+            foreach (var cookie in Request.Cookies.AllKeys)
+            {
+                Request.Cookies.Remove(cookie);
+            }
+            foreach (var cookie in Response.Cookies.AllKeys)
+            {
+                Response.Cookies.Remove(cookie);
+            }
+            return RedirectToAction("Login");
         }
     }
 }

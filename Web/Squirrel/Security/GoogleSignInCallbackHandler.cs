@@ -10,15 +10,26 @@ namespace Squirrel.Security
     public class GoogleSignInCallbackHandler
     {
         private GoogleAuthService authService;
-        private GoogleApiService apiService;
+        private UserCreator userCreator;
+        private FormsAuthenticator formsAuth;
+        public const string ClientId = GoogleAuthService.clientId;
+        public const string RequiredScopes = "https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email"; 
 
-        internal GoogleSignInCallbackHandler()
+        public GoogleSignInCallbackHandler()
         {
-            authService = new GoogleAuthService();
-            apiService = new GoogleApiService();
+            this.authService = new GoogleAuthService();
+            this.userCreator = new UserCreator();
+            this.formsAuth = new FormsAuthenticator();
+        }
+
+        public GoogleSignInCallbackHandler(GoogleAuthService authService, UserCreator userCreator, FormsAuthenticator formsAuth)
+        {
+            this.authService = authService;
+            this.userCreator = userCreator;
+            this.formsAuth = formsAuth;
         }
         
-        internal bool LoginUser(string userId, string authCode)
+        public bool LoginUser(string authCode)
         {
             GoogleUser userDetails = authService.GetAuthenticatedUser(authCode);
 
@@ -27,30 +38,13 @@ namespace Squirrel.Security
                 return false;
             }
 
-            if (userId != userDetails.Id)
-            {
-                return false;
-            }
+            userCreator.CreateUserIfDoesntExist(userDetails);
 
-            CreateUserIfDoesntExist(userDetails);
-
-            FormsAuthentication.SetAuthCookie(userDetails.Id, true);
+            formsAuth.SetAuthCookie(userDetails.Id);
 
             return true;
         }
 
-        private void CreateUserIfDoesntExist(GoogleUser userDetails)
-        {
-            using (var context = new ReminderContext())
-            {
-                if (!context.Users.Where(u => u.Username == userDetails.Id).Any())
-                {
-                    string email = apiService.RetrieveUsersEmail(userDetails.AccessCode);
-
-                    context.Users.Add(new User { Username = userDetails.Id, Email = email });
-                    context.SaveChanges();
-                }
-            }
-        }
+        
     }
 }

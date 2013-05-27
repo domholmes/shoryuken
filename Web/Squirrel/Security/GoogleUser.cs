@@ -11,12 +11,17 @@ namespace Squirrel.Security
 
         public string AccessCode { get; set; }
 
-        public bool IsValid
+        public virtual bool IsValid
         {
             get
             {
                 return !string.IsNullOrEmpty(Id);
             }
+        }
+
+        public static GoogleUser InvalidUser
+        {
+            get { return new GoogleUser(); }
         }
     }
 }
