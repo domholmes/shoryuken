@@ -1,0 +1,16 @@
+﻿<div id="signinButton">
+    <span class="g-signin"
+    data-scope="@ViewBag.RequiredScopes"
+    data-clientid="@ViewBag.ClientId"
+    data-redirecturi="postmessage"
+    data-accesstype="offline"
+    data-cookiepolicy="single_host_origin"
+    data-callback="signInCallback">
+    </span>
+</div>
+<div id="result"></div>
+
+@section scripts
+{
+<script src="@Url.Content("~/Scripts/security/googlePlusSignIn.js")"></script>
+}
