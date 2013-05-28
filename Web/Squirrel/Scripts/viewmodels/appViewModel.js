@@ -25,11 +25,27 @@ sr.AppViewModel = function () {
 
     vm.editReminder = function (reminder) {
         vm.cachedReminder = ko.toJS(reminder);
+        $('.timepicker').timepicker();
         reminder.editing(true);
     };
 
     vm.deleteReminder = function (reminder) {
+        var unwrappedReminder;
+
         vm.reminders.remove(reminder);
+
+        unwrappedReminder = ko.toJS(reminder);
+
+        $.ajax({
+            type: "DELETE",
+            url: "api/reminder/delete",
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify(unwrappedReminder),
+            success: function (response) {
+            
+            }
+        });
     };
 
     vm.endEdit = function (reminder) {
@@ -57,7 +73,7 @@ sr.AppViewModel = function () {
         var unwrappedReminder = ko.toJS(reminder),
             type, url;
 
-        unwrappedReminder.days = unwrappedReminder.days.join(',');
+        unwrappedReminder.days = unwrappedReminder.days.join('');
 
         if (unwrappedReminder.isNew === true) {
             type = "POST";

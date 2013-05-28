@@ -15,9 +15,20 @@ textarea
     border-radius: 0px;
     box-shadow: none;
     padding-left: 0px;
+    padding-right: 0px;
     font-weight: normal;
     outline: none;
     width: 100%;
+}
+.input-append .add-on ,
+.input-append .add-on:last-child
+{
+    border: 0px solid #808080;
+    border-bottom-width: 1px;
+    border-radius: 0px;
+    background: none;
+    position: relative;
+    margin-left: -26px;
 }
 select 
 {
@@ -35,6 +46,16 @@ select
 }
 :-ms-input-placeholder {  
    font-style: italic;
+}
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {
+    border-color: #808080;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.input-append input:focus, .input-prepend input:focus, .input-append select:focus, .input-prepend select:focus, .input-append .uneditable-input:focus, .input-prepend .uneditable-input:focus {
+    z-index: 0;
 }
 select 
 {
@@ -74,4 +95,12 @@ select
 .days .selected 
 {
     color: #000;
+}
+.bootstrap-timepicker 
+{
+    width: 100%;
+}
+.actions .btn 
+{
+    margin-top: 10px;
 }
