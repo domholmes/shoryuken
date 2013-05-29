@@ -12,11 +12,11 @@ namespace Squirrel.Security
     public class GoogleTokenAuthorizeAttribute : AuthorizeAttribute
     {
         private const string tokenHeaderName = "tokenId";
-        private readonly GoogleIdTokenParser tokenParser;
+        private readonly GoogleIdToken tokenParser;
 
         public GoogleTokenAuthorizeAttribute()
         {
-            tokenParser = new GoogleIdTokenParser();
+            tokenParser = new GoogleIdToken();
         }
         
         public override void OnAuthorization(HttpActionContext actionContext)
@@ -29,11 +29,11 @@ namespace Squirrel.Security
 
         private bool Authenticate(HttpActionContext actionContext)
         {
-            string idToken = actionContext.Request.Headers.GetValues(tokenHeaderName).FirstOrDefault();
+            GoogleIdToken idToken = actionContext.Request.Headers.GetValues(tokenHeaderName).FirstOrDefault();
 
             if (string.IsNullOrEmpty(idToken)) return false;
 
-            string userId = tokenParser.ExtractUserIdFromToken(idToken);
+            string userId = idToken.ExtractUserId();
 
             if (string.IsNullOrEmpty(userId)) return false;
 

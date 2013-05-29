@@ -136,7 +136,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\FormsAuthenticator.cs" />
     <Compile Include="Security\GoogleApiService.cs" />
-    <Compile Include="Security\GoogleIdTokenParser.cs" />
+    <Compile Include="Security\GoogleIdToken.cs" />
     <Compile Include="Security\GoogleSignInCallbackHandler.cs" />
     <Compile Include="Security\GoogleAuthService.cs" />
     <Compile Include="Security\GoogleUser.cs" />

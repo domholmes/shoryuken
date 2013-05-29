@@ -33,7 +33,7 @@ namespace Squirrel.Security
         {
             GoogleUser userDetails = authService.GetAuthenticatedUser(authCode);
 
-            if (!userDetails.IsValid)
+            if (userDetails == null || !userDetails.IsValid)
             {
                 return false;
             }
