@@ -1,7 +1,4 @@
-﻿@model Squirrel.Models.Reminder
-<!-- View is not wired up to view model yet  -->
-
-<header>
+﻿<header>
     <div class="content-wrapper">
         <div class="float-left">
             <p class="site-title">
@@ -30,12 +27,16 @@
                 <input type="text" placeholder="Name" data-bind="value: name" /><br />
                 <textarea type="text" placeholder="Message" data-bind="value: message" rows="3"></textarea> <br />
                 <select data-bind="options: availableEvents, optionsText: 'text', optionsValue: 'value', value: actionId, optionsCaption: 'Select an action'"></select><br />
-                <input type="text" placeholder="Start time" data-bind="value: startTimeDisplay" /><br />
-                <input type="text" placeholder="End time" data-bind="value: endTimeDisplay" /> 
+                <div class="input-append bootstrap-timepicker">
+                    <input type="text" class="input-small timepicker" placeholder="Start time" data-bind="value: startTimeDisplay" /><span class="add-on"><i class="icon-time"></i></span><br />
+                </div>
+                <div class="input-append bootstrap-timepicker">
+                    <input type="text" class="input-small timepicker" placeholder="End time" data-bind="value: endTimeDisplay" /><span class="add-on"><i class="icon-time"></i></span> 
+                </div>
                 <div class="days" data-bind="foreach: availableDays">
                     <span data-bind="text: name, click: $parent.dayClick, css: { selected: $parent.isSelectedDay($data), 'link-emulate': true }"></span>
                 </div>
-                <div>         
+                <div class="actions">         
                     <button type="button" class="btn btn-primary" data-bind="click: $root.endEdit">Save</button>
                     <button type="button" class="btn" data-bind="click: $root.cancelEdit">Cancel</button>
                 </div>

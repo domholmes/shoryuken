@@ -20,7 +20,7 @@ sr.Reminder = function (options) {
 
     options = $.extend(defaults, options);
 
-    options.days = options.days === null ? [] : options.days.split(',');
+    options.days = options.days === null ? [] : options.days.split('');
 
     // convert properties to observables
     rem.id = options.id;
