@@ -62,28 +62,5 @@ namespace SquirrelUnitTests.Security
             mockUserCreator.AssertWasNotCalled(u => u.CreateUserIfDoesntExist(Arg<GoogleUser>.Is.Anything));
             mockFormsAuth.AssertWasNotCalled(a => a.SetAuthCookie(Arg<string>.Is.Anything));
         }
-
-        [TestMethod]
-        public void LoginUser_NullUser_ReturnsFalseDoesNotCallCreateUserOrSetCookie()
-        {
-            // Input            
-            string authCode = "authCode";
-
-            // Mock
-            var stubAuthService = MockRepository.GenerateStub<GoogleAuthService>();
-            var mockUserCreator = MockRepository.GenerateMock<UserCreator>();
-            var mockFormsAuth = MockRepository.GenerateMock<FormsAuthenticator>();
-            stubAuthService.Stub(a => a.GetAuthenticatedUser(authCode)).Return(null);
-
-            // Execute
-            bool result = new GoogleSignInCallbackHandler(stubAuthService, mockUserCreator, mockFormsAuth)
-                .LoginUser(authCode);
-
-            // Assert
-            Assert.IsFalse(result);
-
-            mockUserCreator.AssertWasNotCalled(u => u.CreateUserIfDoesntExist(Arg<GoogleUser>.Is.Anything));
-            mockFormsAuth.AssertWasNotCalled(a => a.SetAuthCookie(Arg<string>.Is.Anything));
-        }
     }
 }

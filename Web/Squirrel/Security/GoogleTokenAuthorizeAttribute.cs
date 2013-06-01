@@ -12,11 +12,11 @@ namespace Squirrel.Security
     public class GoogleTokenAuthorizeAttribute : AuthorizeAttribute
     {
         private const string tokenHeaderName = "tokenId";
-        private readonly GoogleIdToken tokenParser;
+        private readonly GoogleIdTokenVerifier tokenVerifier;
 
         public GoogleTokenAuthorizeAttribute()
         {
-            tokenParser = new GoogleIdToken();
+            tokenVerifier = new GoogleIdTokenVerifier();
         }
         
         public override void OnAuthorization(HttpActionContext actionContext)
@@ -31,7 +31,7 @@ namespace Squirrel.Security
         {
             GoogleIdToken idToken = actionContext.Request.Headers.GetValues(tokenHeaderName).FirstOrDefault();
 
-            if (string.IsNullOrEmpty(idToken)) return false;
+            if (!tokenIsOk(idToken)) return false;
 
             string userId = idToken.ExtractUserId();
 
@@ -42,9 +42,15 @@ namespace Squirrel.Security
             return true;
         }
 
-        private string ExtractUserIdFromRequest(HttpRequestMessage httpRequestMessage)
+        private bool tokenIsOk(GoogleIdToken idToken)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(idToken)) return false;
+
+            bool tokenIsValid = tokenVerifier.Verify(idToken);
+
+            if (!tokenIsValid) return false;
+
+            return true;
         }
     }
 }

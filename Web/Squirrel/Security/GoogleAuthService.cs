@@ -87,7 +87,7 @@ namespace Squirrel.Security
         }
     }
 
-    public class OAuthResponse
+    public struct OAuthResponse
     {
         public string access_token { get; set; }
 
