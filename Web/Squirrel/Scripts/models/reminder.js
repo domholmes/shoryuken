@@ -96,7 +96,7 @@ sr.Reminder = function (options) {
         } else {
             rem.days.push(day.id);
         }
-    };    
+    };
 
     rem.formatTime = function (date) {
         var hh = date.getHours(),
@@ -104,9 +104,11 @@ sr.Reminder = function (options) {
             ss = date.getSeconds(),
             suffix;
 
-        if (hh > 12) {
+        if (hh >= 12) {
             suffix = "PM";
-            hh = hh - 12;
+            if (hh > 12) {
+                hh = hh - 12;
+            }
         } else {
             suffix = "AM";
         }
@@ -115,14 +117,49 @@ sr.Reminder = function (options) {
         if (mm < 10) { mm = "0" + mm; }
         if (ss < 10) { ss = "0" + ss; }
 
-        return hh + ":" + mm + ":" + ss + " " + suffix;
+        return hh + ":" + mm + " " + suffix;
     };
 
-    rem.startTimeDisplay = ko.computed(function (data) {
-        return rem.formatTime(rem.startTime());
+    rem.startTimeDisplay = ko.computed({
+        read: function () {
+            return rem.formatTime(rem.startTime());
+        },
+        write: function (value) {
+            rem.startTime(rem.dateStringToDate(value));
+        },
+        owner: this
     });
 
-    rem.endTimeDisplay = ko.computed(function (data) {
-        return rem.formatTime(rem.endTime());
+    rem.endTimeDisplay = ko.computed({
+        read: function () {
+            return rem.formatTime(rem.endTime());
+        },
+        write: function (value) {
+            rem.endTime(rem.dateStringToDate(value));
+        },
+        owner: this
     });
+
+    rem.dateStringToDate = function (str) {
+        var date = new Date(),
+            hours = parseInt(str.substring(0, 2), 10),
+            minutes = parseInt(str.substring(3, 5), 10),
+            meridian = str.match(/AM|PM/gi);
+
+        if (meridian !== null) {
+            meridian = meridian[0].toUpperCase();
+        }
+
+        if (meridian === "PM") {
+            if (hours < 12) {
+                hours += 12;
+            }
+        } else if (meridian === "AM") {
+            if (hours === 12) {
+                hours = 0;
+            }
+        }
+
+        return new Date(date.setHours(hours, minutes));
+    };
 }

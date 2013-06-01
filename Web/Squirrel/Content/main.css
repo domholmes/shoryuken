@@ -1,7 +1,41 @@
-﻿body 
+﻿/* Fonts
+------------------------------------------------*/
+
+@font-face {
+    font-family: 'SansationLight';
+    src: url('fonts/Sansation_Light-webfont.eot');
+    src: url('fonts/Sansation_Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Sansation_Light-webfont.woff') format('woff'),
+         url('fonts/Sansation_Light-webfont.ttf') format('truetype'),
+         url('fonts/Sansation_Light-webfont.svg#SansationLight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'SansationBold';
+    src: url('fonts/Sansation_Bold-webfont.eot');
+    src: url('fonts/Sansation_Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Sansation_Bold-webfont.woff') format('woff'),
+         url('fonts/Sansation_Bold-webfont.ttf') format('truetype'),
+         url('fonts/Sansation_Bold-webfont.svg#SansationBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/* Layout
+------------------------------------------------*/
+
+body 
 {
     padding: 20px;
     background: #eee;
+}
+#body 
+{
+    clear: both;
 }
 
 /* Forms
@@ -63,6 +97,12 @@ select
     border-bottom-color: #808080;
     padding-left: 0px;
 }
+button.btn 
+{
+    background: #fff;
+    border-radius: 0px;
+    border: 1px solid #999;
+}
 
 /* Utilities
 ------------------------------------------------*/
@@ -75,17 +115,39 @@ select
 {
     margin-bottom: 20px;
 }
+.float-left
+{
+    float: left;
+}
+.float-right
+{
+    float:right;
+}
 
 /* Misc
 ------------------------------------------------*/
 
+.site-title a
+{
+    font-family: 'SansationLight';
+    font-size: 32px;
+    color: #666;
+}
+.site-title a span
+{
+    font-family: 'SansationBold';
+}
+.site-title a:hover
+{
+    text-decoration: none;
+}
 .card 
 {
     background: #fff;
     padding: 20px;
     box-sizing: border-box;
-    -webkit-box-shadow:  0px 0px 3px 1px rgba(100, 100, 100, 0.1);        
-    box-shadow:  0px 0px 3px 1px rgba(100, 100, 100, 0.1);
+    border-bottom: 1px solid #ccc;
+    border-radius: 2px;
 }
 .days 
 {
@@ -103,4 +165,14 @@ select
 .actions .btn 
 {
     margin-top: 10px;
+}
+
+@media (max-width: 767px) 
+{
+    .site-title a
+{
+    font-family: 'SansationLight';
+    font-size: 24px;
+    color: #666;
+}
 }
