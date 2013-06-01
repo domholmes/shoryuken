@@ -20,7 +20,8 @@ sr.AppViewModel = function () {
 
         reminder.isNew(true);
         reminder.editing(true);
-        vm.reminders.push(reminder);
+        vm.reminders.unshift(reminder);
+        $('.timepicker').timepicker();
     };
 
     vm.editReminder = function (reminder) {
@@ -30,22 +31,18 @@ sr.AppViewModel = function () {
     };
 
     vm.deleteReminder = function (reminder) {
-        var unwrappedReminder;
 
         vm.reminders.remove(reminder);
 
-        unwrappedReminder = ko.toJS(reminder);
+        if (reminder.id !== null) {
+            $.ajax({
+                type: "DELETE",
+                url: "api/reminder/delete/?id=" + reminder.id,
+                success: function (response) {
 
-        $.ajax({
-            type: "DELETE",
-            url: "api/reminder/delete",
-            dataType: "json",
-            contentType: "application/json",
-            data: JSON.stringify(unwrappedReminder),
-            success: function (response) {
-            
-            }
-        });
+                }
+            });
+        }
     };
 
     vm.endEdit = function (reminder) {
@@ -82,6 +79,13 @@ sr.AppViewModel = function () {
             type = "PUT";
             url = "api/reminder/put";
         }
+
+        delete unwrappedReminder.availableDays;
+        delete unwrappedReminder.availableEvents;
+        delete unwrappedReminder.editing;
+        delete unwrappedReminder.startTimeDisplay;
+        delete unwrappedReminder.endTimeDisplay;
+        delete unwrappedReminder.isNew;
 
         $.ajax({
             url: url,

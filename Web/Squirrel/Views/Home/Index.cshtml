@@ -2,8 +2,9 @@
     <div class="content-wrapper">
         <div class="float-left">
             <p class="site-title">
-                <a href="~/"><span>Smart</span>Reminder</a> - @Html.ActionLink("Logout", "LogOff", "Account", null, null)</p>
+                <a href="~/"><span>Smart</span>Reminder</a></p>
         </div>
+        <div class="float-right">@Html.ActionLink("Logout", "LogOff", "Account", null, null)</div>
     </div>
 </header>
 
@@ -37,8 +38,8 @@
                     <span data-bind="text: name, click: $parent.dayClick, css: { selected: $parent.isSelectedDay($data), 'link-emulate': true }"></span>
                 </div>
                 <div class="actions">         
-                    <button type="button" class="btn btn-primary" data-bind="click: $root.endEdit">Save</button>
-                    <button type="button" class="btn" data-bind="click: $root.cancelEdit">Cancel</button>
+                    <button type="button" class="btn btn-small" data-bind="click: $root.endEdit">Save</button>
+                    <button type="button" class="btn btn-small" data-bind="click: $root.cancelEdit">Cancel</button>
                 </div>
             </div>  
         </article>
