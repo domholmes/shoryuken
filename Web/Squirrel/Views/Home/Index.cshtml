@@ -11,20 +11,22 @@
 <div id="body">
     <div class="row">
         <div class="span12 margin-bottom">
-            <button type="button" class="btn" data-bind="click: createReminder, visible: !editing()">Add Reminder</button>
+            <button type="button" class="btn" data-bind="click: createReminder, visible: !editing()"><span class="icon-pencil"></span> Add Reminder</button>
         </div>
     </div>
 
     <section class="row" data-bind="foreach: reminders">
         <article class="span3 card margin-bottom">
             <div data-bind="visible: !editing()">
-                <p data-bind="text: message"></p>
+                <div class="body">
+                    <p data-bind="text: message"></p>
+                </div>
                 <footer data-bind="visible: !$root.editing()">
-                    <button type="button" class="btn btn-small" data-bind="click: $root.editReminder">Edit</button>
-                    <button type="button" class="btn btn-small" data-bind="click: $root.deleteReminder">Delete</button>
+                    <span class="icon-menu-2 link-emulate" data-bind="click: $root.editReminder"></span>
+                    <span class="icon-remove link-emulate" data-bind="click: $root.deleteReminder"></span>
                 </footer>   
             </div>   
-            <div data-bind="visible: editing"> 
+            <div class="body" data-bind="visible: editing"> 
                 <input type="text" placeholder="Name" data-bind="value: name" /><br />
                 <textarea type="text" placeholder="Message" data-bind="value: message" rows="3"></textarea> <br />
                 <select data-bind="options: availableEvents, optionsText: 'text', optionsValue: 'value', value: actionId, optionsCaption: 'Select an action'"></select><br />
@@ -38,8 +40,8 @@
                     <span data-bind="text: name, click: $parent.dayClick, css: { selected: $parent.isSelectedDay($data), 'link-emulate': true }"></span>
                 </div>
                 <div class="actions">         
-                    <button type="button" class="btn btn-small" data-bind="click: $root.endEdit">Save</button>
-                    <button type="button" class="btn btn-small" data-bind="click: $root.cancelEdit">Cancel</button>
+                    <button type="button" class="btn btn-small" data-bind="click: $root.endEdit"><span class="icon-disk"></span> Save</button>
+                    <button type="button" class="btn btn-small btn-cancel" href="#" data-bind="click: $root.cancelEdit">Cancel</button>
                 </div>
             </div>  
         </article>

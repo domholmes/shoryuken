@@ -103,6 +103,14 @@ button.btn
     border-radius: 0px;
     border: 1px solid #999;
 }
+button.btn.btn-cancel 
+{
+    background: none;
+    border: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
 
 /* Utilities
 ------------------------------------------------*/
@@ -122,6 +130,14 @@ button.btn
 .float-right
 {
     float:right;
+}
+.icon-large
+{
+    font-size: 32px;
+}
+.image-replace
+{
+    text-indent: -9999px;
 }
 
 /* Misc
@@ -144,15 +160,33 @@ button.btn
 .card 
 {
     background: #fff;
-    padding: 20px;
     box-sizing: border-box;
     border-bottom: 1px solid #ccc;
     border-radius: 2px;
 }
+.card .body 
+{    
+    padding: 20px;
+}
+.card footer 
+{
+    font-size: 16px;
+    border-top: 1px solid #f1f1f1;
+    padding: 5px 20px
+}
+.card footer span
+{
+    color: #62b6d1;
+    margin-right: 8px;
+}
+.card footer span:hover
+{
+    color: #4a97b4;
+}
 .days 
 {
     font-weight: bold;
-    color: #999;
+    color: #62b6d1;
 }
 .days .selected 
 {
@@ -165,6 +199,10 @@ button.btn
 .actions .btn 
 {
     margin-top: 10px;
+}
+.icon-remove 
+{
+    background: none;
 }
 
 @media (max-width: 767px) 

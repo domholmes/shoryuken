@@ -19,6 +19,7 @@ namespace Squirrel
                 .Include("~/Content/bootstrap.css")
                 .Include("~/Content/bootstrap-responsive.css")
                 .Include("~/Content/bootstrap-timepicker.css")
+                .Include("~/Content/icons.css")
                 .Include("~/Content/main.css"));
         }
     }
