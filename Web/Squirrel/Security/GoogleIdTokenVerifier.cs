@@ -9,7 +9,7 @@ namespace Squirrel.Security
     {
         internal bool Verify(GoogleIdToken idToken)
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }

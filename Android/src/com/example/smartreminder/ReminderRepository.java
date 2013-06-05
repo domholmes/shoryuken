@@ -1,5 +1,7 @@
 package com.example.smartreminder;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,9 +20,9 @@ public class ReminderRepository
 		jsonMapper = new ReminderJsonMapper();
 	}
 	
-	public ArrayList<Reminder> GetActiveReminders() throws JSONException
+	public ArrayList<Reminder> GetActiveReminders(Context context) throws JSONException
 	{
-		JSONArray jArray = jsonFetcher.getJson();
+		JSONArray jArray = jsonFetcher.getJson(context);
 		
 		ArrayList<Reminder> reminders = new ArrayList<Reminder>();
 		

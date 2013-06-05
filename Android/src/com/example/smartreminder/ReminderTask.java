@@ -31,7 +31,7 @@ class ReminderTask extends AsyncTask<Intent, Integer, Long>
 		List<Reminder> reminders = null;
 		try
 		{
-			reminders = reminderRepository.GetActiveReminders();
+			reminders = reminderRepository.GetActiveReminders(context);
 			
 			for(Reminder reminder : reminders) 
 			{
@@ -53,12 +53,9 @@ class ReminderTask extends AsyncTask<Intent, Integer, Long>
 	{
 		if(reminder.action.name() == intent.getAction())
 		{		
-			if(reminder.extra == intent.getStringExtra(EventMapper.extraName))
+			if(this.timeChecker.timeMatches(reminder))
 			{
-				if(this.timeChecker.timeMatches(reminder))
-				{
-					return true;
-				}
+				return true;
 			}
 		}
 		

@@ -6,12 +6,13 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Security.Principal;
 using System.Net.Http;
+using System.Threading;
 
 namespace Squirrel.Security
 {
     public class GoogleTokenAuthorizeAttribute : AuthorizeAttribute
     {
-        private const string tokenHeaderName = "tokenId";
+        private const string tokenHeaderName = "idToken";
         private readonly GoogleIdTokenVerifier tokenVerifier;
 
         public GoogleTokenAuthorizeAttribute()
@@ -38,13 +39,14 @@ namespace Squirrel.Security
             if (string.IsNullOrEmpty(userId)) return false;
 
             HttpContext.Current.User = new GenericPrincipal(new GenericIdentity(userId), null);
+            Thread.CurrentPrincipal = HttpContext.Current.User; ;
 
             return true;
         }
 
         private bool tokenIsOk(GoogleIdToken idToken)
         {
-            if (string.IsNullOrEmpty(idToken)) return false;
+            if (!idToken.HasValue) return false;
 
             bool tokenIsValid = tokenVerifier.Verify(idToken);
 

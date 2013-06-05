@@ -20,11 +20,6 @@ namespace Squirrel.Security
             return new GoogleIdToken(content);
         }
 
-        public static implicit operator string(GoogleIdToken token)
-        {
-            return token;
-        }
-
         public string ExtractUserId()
         {
             string[] segments = content.Split('.');
@@ -41,6 +36,14 @@ namespace Squirrel.Security
             string json = System.Text.Encoding.UTF8.GetString(encodedBodyAsBytes);
 
             return JsonConvert.DeserializeAnonymousType(json, new { sub = "" }).sub;
+        }
+
+        public bool HasValue
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(content);
+            }
         }
     }
 }

@@ -9,15 +9,15 @@ using Squirrel.Security;
 
 namespace Squirrel.Controllers
 {
-    [GoogleTokenAuthorizeAttribute]
+    
     public class ReminderMobileController : ApiController
     {
+        [GoogleTokenAuthorizeAttribute]
         public IEnumerable<Reminder> Get()
         {
-            using (var context = new ReminderContext())
-            {
-                return context.Reminders.Where(r => r.User.Username == User.Identity.Name);
-            }
+            var context = new ReminderContext(); 
+            var g = context.Reminders.Where(r => r.User.Username == User.Identity.Name).ToList();
+            return g;
         }
     }
 }
