@@ -46,7 +46,7 @@ public class ReminderJsonFetcher
 	    HttpGet httpget = new HttpGet(url);
 	    httpget.setHeader("Content-type", "application/json");
 	    
-	    String idToken = new IdTokenRetriever().GetToken(context);
+	    String idToken = "";
 	    httpget.setHeader("idToken", idToken);
 	    
 		HttpResponse response = httpclient.execute(httpget);           
