@@ -166,7 +166,23 @@ button.btn.btn-cancel
 }
 .card .body 
 {    
-    padding: 20px;
+    padding: 20px 20px 0px;
+}
+.card h2
+{
+    font-family: 'Segoe UI Light','wf_SegoeUILight','Segoe UI','wf_SegoeUI',Tahoma,Verdana,Arial,Helvetica,sans-serif;
+    font-weight: normal;
+    font-size: 1.4em;
+    line-height: 1.4em;
+    margin-top: 0;
+}
+.card .message
+{
+    font-style: italic;
+}
+.card textarea
+{
+    overflow: hidden;
 }
 .card footer 
 {
@@ -195,6 +211,10 @@ button.btn.btn-cancel
 .bootstrap-timepicker 
 {
     width: 100%;
+}
+.actions
+{
+    padding-bottom: 20px;
 }
 .actions .btn 
 {

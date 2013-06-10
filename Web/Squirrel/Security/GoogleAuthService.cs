@@ -13,7 +13,7 @@ namespace Squirrel.Security
     public class GoogleAuthService
     {
         public const string clientId = "714250926431.apps.googleusercontent.com";
-        private const string secret = "";
+        private const string secret = "GpUFhGqTnIjkjiYh3MZoMCb4";
         private const string tokenEndPoint = "https://accounts.google.com/o/oauth2/token";
         private readonly GoogleIdTokenParser tokenParser;
 
