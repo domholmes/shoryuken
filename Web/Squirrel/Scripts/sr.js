@@ -1,4 +1,4 @@
-﻿var sr = sr || {};
+﻿var sr = window.sr || {};
 
 $(function () {
     sr.vm = new sr.AppViewModel(); // for testing

@@ -150,8 +150,11 @@
     <Content Include="Content\bootstrap-timepicker.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fonts\icomoon.dev.svg" />
+    <Content Include="Content\fonts\icomoon.svg" />
     <Content Include="Content\fonts\Sansation_Bold-webfont.svg" />
     <Content Include="Content\fonts\Sansation_Light-webfont.svg" />
+    <Content Include="Content\icons.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\main.css" />
@@ -205,6 +208,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\fonts\icomoon.eot" />
+    <None Include="Content\fonts\icomoon.ttf" />
+    <None Include="Content\fonts\icomoon.woff" />
     <None Include="Content\fonts\Sansation_Bold-webfont.eot" />
     <None Include="Content\fonts\Sansation_Bold-webfont.ttf" />
     <None Include="Content\fonts\Sansation_Bold-webfont.woff" />
@@ -233,6 +239,8 @@
           <DevelopmentServerPort>50625</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:4567/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:4567/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -21,13 +21,20 @@ sr.AppViewModel = function () {
         reminder.isNew(true);
         reminder.editing(true);
         vm.reminders.unshift(reminder);
-        $('.timepicker').timepicker();
+        $('.timepicker').timepicker({ showMeridian: false });
+        $("textarea").keyup(function (e) {
+            self.setTextareaSize($(this));
+        });
     };
 
     vm.editReminder = function (reminder) {
         vm.cachedReminder = ko.toJS(reminder);
-        $('.timepicker').timepicker();
+        $('.timepicker').timepicker({ showMeridian: false });
+        $("textarea").keyup(function (e) {
+            self.setTextareaSize($(this));
+        });
         reminder.editing(true);
+        self.setTextareaSize($("textarea"));
     };
 
     vm.deleteReminder = function (reminder) {
@@ -96,6 +103,15 @@ sr.AppViewModel = function () {
             success: function (response) {
 
             }
+        });
+    };
+
+    self.setTextareaSize = function (elements) {
+        elements.each(function (index, el) {
+            var element = $(el);
+            while (element.outerHeight() < element[0].scrollHeight + parseFloat(element.css("borderTopWidth")) + parseFloat(element.css("borderBottomWidth"))) {
+                element.height(element.height() + 1);
+            };
         });
     };
 

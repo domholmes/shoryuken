@@ -1,4 +1,4 @@
-﻿var sr = sr || {};
+﻿var sr = window.sr || {};
 
 sr.Reminder = function (options) {
     var rem = this,
@@ -27,8 +27,8 @@ sr.Reminder = function (options) {
     rem.name = ko.observable(options.name);
     rem.message = ko.observable(options.message);
     rem.details = ko.observable(options.details);
-    rem.startTime = ko.observable(new Date(options.startTime));
-    rem.endTime = ko.observable(new Date(options.endTime));
+    rem.startTime = ko.observable("10:45");
+    rem.endTime = ko.observable("16:22");
     rem.actionId = ko.observable(options.actionId);
     rem.active = ko.observable(options.active);
     rem.days = ko.observableArray(options.days);
@@ -96,70 +96,5 @@ sr.Reminder = function (options) {
         } else {
             rem.days.push(day.id);
         }
-    };
-
-    rem.formatTime = function (date) {
-        var hh = date.getHours(),
-            mm = date.getMinutes(),
-            ss = date.getSeconds(),
-            suffix;
-
-        if (hh >= 12) {
-            suffix = "PM";
-            if (hh > 12) {
-                hh = hh - 12;
-            }
-        } else {
-            suffix = "AM";
-        }
-
-        if (hh < 10) { hh = "0" + hh; }
-        if (mm < 10) { mm = "0" + mm; }
-        if (ss < 10) { ss = "0" + ss; }
-
-        return hh + ":" + mm + " " + suffix;
-    };
-
-    rem.startTimeDisplay = ko.computed({
-        read: function () {
-            return rem.formatTime(rem.startTime());
-        },
-        write: function (value) {
-            rem.startTime(rem.dateStringToDate(value));
-        },
-        owner: this
-    });
-
-    rem.endTimeDisplay = ko.computed({
-        read: function () {
-            return rem.formatTime(rem.endTime());
-        },
-        write: function (value) {
-            rem.endTime(rem.dateStringToDate(value));
-        },
-        owner: this
-    });
-
-    rem.dateStringToDate = function (str) {
-        var date = new Date(),
-            hours = parseInt(str.substring(0, 2), 10),
-            minutes = parseInt(str.substring(3, 5), 10),
-            meridian = str.match(/AM|PM/gi);
-
-        if (meridian !== null) {
-            meridian = meridian[0].toUpperCase();
-        }
-
-        if (meridian === "PM") {
-            if (hours < 12) {
-                hours += 12;
-            }
-        } else if (meridian === "AM") {
-            if (hours === 12) {
-                hours = 0;
-            }
-        }
-
-        return new Date(date.setHours(hours, minutes));
-    };
+    };    
 }

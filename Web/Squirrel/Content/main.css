@@ -31,7 +31,7 @@
 body 
 {
     padding: 20px;
-    background: #eee;
+    background: #E3EBEE;
 }
 #body 
 {
@@ -100,8 +100,29 @@ select
 button.btn 
 {
     background: #fff;
-    border-radius: 0px;
-    border: 1px solid #999;
+    color: #62b6d1;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 2px;
+    box-shadow: none;
+}
+button.btn:hover 
+{
+    background: #fff;
+}
+button.btn.btn-cancel 
+{
+    background: none;
+    border: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.btn-large [class^="icon-"], .btn-large [class*=" icon-"] {
+    margin-top: 2px;
+}
+button span.icon {
+    margin-right: 5px;
 }
 
 /* Utilities
@@ -109,7 +130,12 @@ button.btn
 
 .link-emulate 
 {
+    color: #62b6d1;
+}
+.link-emulate:hover 
+{
     cursor: pointer;
+    color: #333333;
 }
 .margin-bottom 
 {
@@ -122,6 +148,14 @@ button.btn
 .float-right
 {
     float:right;
+}
+.icon-large
+{
+    font-size: 32px;    
+}
+.image-replace
+{
+    text-indent: -9999px;
 }
 
 /* Misc
@@ -141,38 +175,79 @@ button.btn
 {
     text-decoration: none;
 }
+
+/* card */
 .card 
 {
     background: #fff;
-    padding: 20px;
     box-sizing: border-box;
     border-bottom: 1px solid #ccc;
     border-radius: 2px;
 }
-.days 
-{
-    font-weight: bold;
-    color: #999;
+.card .body 
+{    
+    padding: 20px;
 }
-.days .selected 
+.card h2
 {
-    color: #000;
+    font-family: 'Segoe UI Light','wf_SegoeUILight','Segoe UI','wf_SegoeUI',Tahoma,Verdana,Arial,Helvetica,sans-serif;
+    font-weight: normal;
+    font-size: 1.4em;
+    line-height: 1.4em;
+    margin-top: 0;
 }
-.bootstrap-timepicker 
+.card .message
+{
+    font-style: italic;
+    margin: 0;
+}
+.card textarea
+{
+    height: 20px;
+    overflow: hidden;
+}
+.card textarea.name
+{
+    font-family: 'Segoe UI Light','wf_SegoeUILight','Segoe UI','wf_SegoeUI',Tahoma,Verdana,Arial,Helvetica,sans-serif;
+    font-size: 1.4em;
+    line-height: 1.4em;
+}
+.card .bootstrap-timepicker 
 {
     width: 100%;
 }
-.actions .btn 
+.card .days 
 {
-    margin-top: 10px;
+    font-weight: bold;
+    color: #62b6d1;
+}
+.card .days .selected 
+{
+    color: #000;
+}
+.card footer 
+{
+    border-top: 1px solid #f1f1f1;
+    padding: 10px 20px
+}
+.card .display footer span
+{
+    font-size: 16px;
+    margin-right: 12px;
+}
+.card .edit footer span 
+{    
+    font-size: 14px;
+    margin-right: 24px;
+    font-weight: bold;
 }
 
 @media (max-width: 767px) 
 {
     .site-title a
-{
-    font-family: 'SansationLight';
-    font-size: 24px;
-    color: #666;
-}
+    {
+        font-family: 'SansationLight';
+        font-size: 24px;
+        color: #666;
+    }
 }
