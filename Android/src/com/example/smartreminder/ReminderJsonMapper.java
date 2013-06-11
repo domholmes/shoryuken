@@ -13,8 +13,8 @@ public class ReminderJsonMapper
 	public Reminder CreateReminderFromJson(JSONObject reminderJson) throws JSONException
 	{
 		String message = reminderJson.getString("message");
-		String startTime = reminderJson.getString("startTime").substring(11);
-		String endTime = reminderJson.getString("endTime").substring(11);
+		String startTime = reminderJson.getString("startTime");
+		String endTime = reminderJson.getString("endTime");
 		int eventId = reminderJson.getInt("actionId");
 		String days = reminderJson.getString("days");		
 		

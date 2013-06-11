@@ -2,22 +2,16 @@ package com.example.smartreminder;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.GoogleAuthException;
-import com.google.android.gms.auth.GoogleAuthUtil;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.plus.PlusClient;
-
-import java.io.IOException;
 
 public class Credentials extends Activity implements View.OnClickListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener {
     private static final String TAG = "ExampleActivity";
@@ -26,7 +20,7 @@ public class Credentials extends Activity implements View.OnClickListener, Googl
     private ProgressDialog mConnectionProgressDialog;
     private PlusClient mPlusClient;
     private ConnectionResult mConnectionResult;
-    private SharedPreferences persistentSettings;
+    private IdTokenStore tokenStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +28,7 @@ public class Credentials extends Activity implements View.OnClickListener, Googl
         setContentView(R.layout.activity_credentials);
         findViewById(R.id.sign_in_button).setOnClickListener(this);
 
-        this.persistentSettings = getPreferences(Context.MODE_PRIVATE);
+        this.tokenStore = new IdTokenStore(getApplicationContext());
 
         mPlusClient = new PlusClient.Builder(this, this, this)
                 .setVisibleActivities("http://schemas.google.com/AddActivity", "http://schemas.google.com/BuyActivity")
@@ -79,9 +73,10 @@ public class Credentials extends Activity implements View.OnClickListener, Googl
 
     @Override
     public void onConnected(Bundle bundle) {
+
         String accountName = mPlusClient.getAccountName();
 
-        new IdTokenRetrieverTask(this, this.persistentSettings, accountName).execute(null);
+        new IdTokenRetrieverTask(this, accountName, this.tokenStore).execute(null);
 
         Toast.makeText(this, accountName + " is connected", Toast.LENGTH_LONG).show();
     }
@@ -93,7 +88,8 @@ public class Credentials extends Activity implements View.OnClickListener, Googl
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.sign_in_button && !mPlusClient.isConnected()) {
+
+        if (!mPlusClient.isConnected()) {
             if (mConnectionResult == null) {
                 mConnectionProgressDialog.show();
             } else {
@@ -105,6 +101,16 @@ public class Credentials extends Activity implements View.OnClickListener, Googl
                     mPlusClient.connect();
                 }
             }
+        }
+        else {
+
+            findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
+            mPlusClient.clearDefaultAccount();
+            mPlusClient.disconnect();
+
+            this.tokenStore.removeToken();
+
+            mPlusClient.connect();
         }
     }
 }

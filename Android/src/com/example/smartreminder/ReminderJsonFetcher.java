@@ -22,13 +22,13 @@ public class ReminderJsonFetcher
 {
 	private static final String url = "http://192.168.1.7:4567/api/remindermobile/get";
 	
-	public JSONArray getJson(Context context)
+	public JSONArray getJson(Context context, String idToken)
 	{
 		JSONArray array = null;
 		
 		try
 		{
-			HttpEntity entity = getEntity(context);
+			HttpEntity entity = getEntity(context, idToken);
 			array = getJsonArray(entity);
 		} 
 		catch (Exception e)
@@ -40,13 +40,11 @@ public class ReminderJsonFetcher
 		return array;
 	}
 	
-	private HttpEntity getEntity(Context context) throws ClientProtocolException, IOException, GoogleAuthException {
+	private HttpEntity getEntity(Context context, String idToken) throws ClientProtocolException, IOException, GoogleAuthException {
 		HttpClient httpclient = new DefaultHttpClient();
 
 	    HttpGet httpget = new HttpGet(url);
 	    httpget.setHeader("Content-type", "application/json");
-	    
-	    String idToken = "";
 	    httpget.setHeader("idToken", idToken);
 	    
 		HttpResponse response = httpclient.execute(httpget);           

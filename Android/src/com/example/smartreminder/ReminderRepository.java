@@ -1,6 +1,7 @@
 package com.example.smartreminder;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import java.util.ArrayList;
 import org.json.JSONArray;
@@ -13,16 +14,27 @@ public class ReminderRepository
 {	
 	private ReminderJsonFetcher jsonFetcher;
 	private ReminderJsonMapper jsonMapper;
+    private IdTokenStore tokenStore;
+    private Context context;
 	
-	public ReminderRepository()
+	public ReminderRepository(Context context)
 	{
-		jsonFetcher = new ReminderJsonFetcher();
-		jsonMapper = new ReminderJsonMapper();
+		this.jsonFetcher = new ReminderJsonFetcher();
+		this.jsonMapper = new ReminderJsonMapper();
+        this.tokenStore = new IdTokenStore(context);
+        this.context = context;
 	}
 	
-	public ArrayList<Reminder> GetActiveReminders(Context context) throws JSONException
+	public ArrayList<Reminder> GetActiveReminders() throws JSONException
 	{
-		JSONArray jArray = jsonFetcher.getJson(context);
+		String idToken = this.tokenStore.getToken();
+
+        if(idToken == null)
+        {
+            return new ArrayList<Reminder>();
+        }
+
+        JSONArray jArray = jsonFetcher.getJson(this.context, idToken);
 		
 		ArrayList<Reminder> reminders = new ArrayList<Reminder>();
 		
@@ -38,5 +50,4 @@ public class ReminderRepository
 		
 		return reminders;
 	}
-
 }

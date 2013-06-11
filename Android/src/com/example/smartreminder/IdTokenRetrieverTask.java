@@ -18,14 +18,14 @@ import android.os.AsyncTask;
 class IdTokenRetrieverTask extends AsyncTask<Void, Void, Void>
 {
     private Context context;
-    private SharedPreferences persistentStore;
     private String accountName;
+    private IdTokenStore tokenStore;
 
-    public IdTokenRetrieverTask(Context context, SharedPreferences persistentStore, String accountName)
+    public IdTokenRetrieverTask(Context context, String accountName, IdTokenStore tokenStore)
     {
-        this.context = context;
-        this.persistentStore = persistentStore;
+        this.context = context;;
         this.accountName = accountName;
+        this.tokenStore = tokenStore;
     }
 
     @Override
@@ -36,10 +36,7 @@ class IdTokenRetrieverTask extends AsyncTask<Void, Void, Void>
         try {
             idToken = GoogleAuthUtil.getToken(this.context, this.accountName, "audience:server:client_id:714250926431.apps.googleusercontent.com");
 
-            SharedPreferences.Editor editor = persistentStore.edit();
-            editor.putString("idToken", idToken);
-
-            editor.commit();
+            this.tokenStore.putToken(idToken);
 
         } catch (IOException e) {
             e.printStackTrace();
