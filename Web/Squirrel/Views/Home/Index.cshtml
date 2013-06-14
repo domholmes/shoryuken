@@ -10,7 +10,7 @@
 <div id="body">
     <div class="row">
         <div class="span12 margin-bottom">
-            <button type="button" class="btn btn-large" data-bind="click: createReminder, visible: !editing()">
+            <button type="button" class="btn btn-large" data-bind="click: createReminder, css: { disabled: editing }">
                 <span class="icon icon-pencil"></span>Add Reminder</button>
         </div>
     </div>
@@ -23,15 +23,15 @@
                     <p data-bind="text: message" class="message">
                     </p>
                 </div>
-                <footer data-bind="visible: !$root.editing()">
+                <footer data-bind="invisible: $root.editing()">
                     <span class="icon-menu-2 link-emulate" data-bind="click: $root.editReminder"></span>
                     <span class="icon-remove link-emulate" data-bind="click: $root.deleteReminder"></span>
                 </footer>
             </div>
             <div class="edit" data-bind="visible: editing">
                 <div class="body" data-bind="visible: editing">
-                    <textarea placeholder="Name" data-bind="value: name" class="name" ></textarea><br />
-                    <textarea placeholder="Message" data-bind="value: message" rows="3"></textarea>
+                    <textarea placeholder="Name" data-bind="value: name" class="name" rows="1" cols="1" ></textarea><br />
+                    <textarea placeholder="Message" data-bind="value: message" rows="1" cols="1"></textarea>
                     <br />
                     <select data-bind="options: availableEvents, optionsText: 'text', optionsValue: 'value', value: actionId, optionsCaption: 'Select an action'">
                     </select><br />

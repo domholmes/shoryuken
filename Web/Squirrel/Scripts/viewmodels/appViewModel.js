@@ -16,25 +16,46 @@ sr.AppViewModel = function () {
 
     // Operations
     vm.createReminder = function () {
-        var reminder = new sr.Reminder();
+        if (vm.editing() === false) {
+            var reminder = new sr.Reminder();
 
-        reminder.isNew(true);
-        reminder.editing(true);
-        vm.reminders.unshift(reminder);
-        $('.timepicker').timepicker({ showMeridian: false });
-        $("textarea").keyup(function (e) {
-            self.setTextareaSize($(this));
-        });
+            reminder.isNew(true);
+            reminder.editing(true);
+            vm.reminders.unshift(reminder);
+            $('.timepicker').timepicker({ showMeridian: false });
+            $("textarea").keyup(function (e) {
+                self.setTextareaSize($(this));
+            });
+        }
     };
 
-    vm.editReminder = function (reminder) {
+    vm.editReminder = function (reminder, event) {
+        var card = $(event.target).closest('.card'),
+            edit = card.find('.edit'),
+            display = card.find('.display'),
+            eventualSize;
+
+        card.height(card.height());
+        display.animate({ opacity: 0 }, 300);
+
         vm.cachedReminder = ko.toJS(reminder);
         $('.timepicker').timepicker({ showMeridian: false });
+
         $("textarea").keyup(function (e) {
             self.setTextareaSize($(this));
         });
+
         reminder.editing(true);
+
         self.setTextareaSize($("textarea"));
+
+        eventualSize = card.find('.edit').height();
+        card.addClass('editing');
+        card.animate({ height: eventualSize + 'px' }, 300, function () {
+            card.css('height', 'auto');
+        });
+
+        edit.animate({ opacity: 1 }, 300);
     };
 
     vm.deleteReminder = function (reminder) {
@@ -52,14 +73,39 @@ sr.AppViewModel = function () {
         }
     };
 
-    vm.endEdit = function (reminder) {
+    vm.endEdit = function (reminder, event) {
+        var card = $(event.target).closest('.card'),
+            edit = card.find('.edit'),
+            display = card.find('.display'),
+            eventualSize;
+
         vm.saveReminder(reminder);
 
+        card.height(card.height());
+        edit.animate({ opacity: 0 }, 300);
+
         reminder.editing(false);
+
+        eventualSize = card.find('.display').height();
+        card.removeClass('editing');
+        card.animate({ height: eventualSize + 'px' }, 300, function () {
+            card.css('height', 'auto');
+        });
+
+        display.animate({ opacity: 1 }, 300);
+
         reminder.isNew(false);
     };
 
-    vm.cancelEdit = function (reminder) {
+    vm.cancelEdit = function (reminder, event) {
+        var card = $(event.target).closest('.card'),
+            edit = card.find('.edit'),
+            display = card.find('.display'),
+            eventualSize;
+
+        card.height(card.height());
+        edit.animate({ opacity: 0 }, 300);
+
         reminder.editing(false);
         if (reminder.isNew() === true) {
             vm.deleteReminder(reminder);
@@ -71,6 +117,14 @@ sr.AppViewModel = function () {
             reminder.endTime(vm.cachedReminder.endTime);
             reminder.days(vm.cachedReminder.days);
         }
+
+        eventualSize = card.find('.display').height();
+        card.removeClass('editing');
+        card.animate({ height: eventualSize + 'px' }, 300, function () {
+            card.css('height', 'auto');
+        });
+
+        display.animate({ opacity: 1 }, 300);
     };
 
     vm.saveReminder = function (reminder) {
