@@ -26,8 +26,8 @@ namespace Squirrel.Models
                     Action = Action.ChargerDisconnected,
                     Message = "Remember DVD for Duncan",
                     Days = "12345",
-                    StartTime = DateTime.Parse("07:30"),
-                    EndTime = DateTime.Parse("08:30")
+                    StartTime = TimeSpan.Parse("07:30"),
+                    EndTime = TimeSpan.Parse("08:30")
                 },
                 new Reminder
                 {
@@ -37,8 +37,8 @@ namespace Squirrel.Models
                     Action = Action.ChagerConnected,
                     Message = "Ring mum",
                     Days = "12345",
-                    StartTime = DateTime.Parse("16:30"),
-                    EndTime = DateTime.Parse("19:00")
+                    StartTime = TimeSpan.Parse("16:30"),
+                    EndTime = TimeSpan.Parse("19:00")
                 }
             };
             

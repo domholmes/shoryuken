@@ -15,12 +15,6 @@ namespace Squirrel.Security
         public const string clientId = "714250926431.apps.googleusercontent.com";
         private const string secret = "";
         private const string tokenEndPoint = "https://accounts.google.com/o/oauth2/token";
-        private readonly GoogleIdTokenParser tokenParser;
-
-        public GoogleAuthService()
-        {
-            tokenParser = new GoogleIdTokenParser();
-        }
 
         public virtual GoogleUser GetAuthenticatedUser(string authCode)
         {
@@ -28,7 +22,7 @@ namespace Squirrel.Security
 
             if (response.IsInvalid) return GoogleUser.InvalidUser;
 
-            string userId = tokenParser.ExtractUserIdFromToken(response.id_token);
+            string userId = response.id_token.ExtractUserId();
 
             if (string.IsNullOrEmpty(userId)) return GoogleUser.InvalidUser;
 
@@ -93,11 +87,11 @@ namespace Squirrel.Security
         }
     }
 
-    public class OAuthResponse
+    public struct OAuthResponse
     {
         public string access_token { get; set; }
 
-        public string id_token { get; set; }
+        public GoogleIdToken id_token { get; set; }
 
         public bool IsInvalid { get; set; }
     }

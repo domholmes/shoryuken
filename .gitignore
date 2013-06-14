@@ -3,3 +3,4 @@ obj/
 *.suo
 *.user
 Web/Squirrel/Security/GoogleAuthService.cs
+TestResults/

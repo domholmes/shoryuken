@@ -1,5 +1,9 @@
 package com.example.smartreminder;
 
+import android.content.Context;
+
+import com.google.android.gms.auth.GoogleAuthException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,15 +20,15 @@ import org.json.JSONException;
 
 public class ReminderJsonFetcher
 {
-	private static final String url = "http://192.168.1.7:50625/api/remindermobile/get";
+	private static final String url = "http://192.168.1.7:4567/api/remindermobile/get";
 	
-	public JSONArray getJson()
+	public JSONArray getJson(Context context, String idToken)
 	{
 		JSONArray array = null;
 		
 		try
 		{
-			HttpEntity entity = getEntity();
+			HttpEntity entity = getEntity(context, idToken);
 			array = getJsonArray(entity);
 		} 
 		catch (Exception e)
@@ -36,13 +40,13 @@ public class ReminderJsonFetcher
 		return array;
 	}
 	
-	private HttpEntity getEntity() throws ClientProtocolException, IOException
-	{
+	private HttpEntity getEntity(Context context, String idToken) throws ClientProtocolException, IOException, GoogleAuthException {
 		HttpClient httpclient = new DefaultHttpClient();
 
 	    HttpGet httpget = new HttpGet(url);
 	    httpget.setHeader("Content-type", "application/json");
-
+	    httpget.setHeader("idToken", idToken);
+	    
 		HttpResponse response = httpclient.execute(httpget);           
 		HttpEntity entity = response.getEntity();
 		

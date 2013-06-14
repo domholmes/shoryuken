@@ -15,13 +15,13 @@ namespace Squirrel.Models
         
         public string Message { get; set; }
 
-        public DateTime StartTime
+        public TimeSpan StartTime
         {
             get;
             set;
         }
 
-        public DateTime EndTime
+        public TimeSpan EndTime
         {
             get;
             set;

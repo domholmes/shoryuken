@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\GoogleIdTokenTests.cs" />
     <Compile Include="Security\GoogleSignInCallbackHandlerTests.cs" />
     <Compile Include="Security\GoogleUserTests.cs" />
     <Compile Include="Security\UserCreatorTests.cs" />

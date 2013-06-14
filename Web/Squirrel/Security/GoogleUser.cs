@@ -5,13 +5,13 @@ using System.Web;
 
 namespace Squirrel.Security
 {
-    public class GoogleUser
+    public struct GoogleUser
     {
         public string Id { get; set; }
 
         public string AccessCode { get; set; }
 
-        public virtual bool IsValid
+        public bool IsValid
         {
             get
             {

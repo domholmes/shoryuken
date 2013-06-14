@@ -26,9 +26,13 @@ namespace Squirrel.Controllers
         [AllowAnonymous]
         public HttpStatusCodeResult Callback(string code)
         {
-            var callbackHandler = new GoogleSignInCallbackHandler();
+            bool loginOk = false;
 
-            bool loginOk = callbackHandler.LoginUser(code);
+            try
+            {
+                loginOk = new GoogleSignInCallbackHandler().LoginUser(code);
+            }
+            catch { }
 
             if (!loginOk)
             {
@@ -51,6 +55,7 @@ namespace Squirrel.Controllers
             {
                 Response.Cookies.Remove(cookie);
             }
+
             return RedirectToAction("Login");
         }
     }

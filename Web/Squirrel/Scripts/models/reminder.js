@@ -54,31 +54,31 @@ sr.Reminder = function (options) {
 
     rem.availableDays = [
         {
-            id: "0",
+            id: "2",
             name: "Mon"
         },
         {
-            id: "1",
+            id: "3",
             name: "Tue"
         },
         {
-            id: "2",
+            id: "4",
             name: "Wed"
         },
         {
-            id: "3",
+            id: "5",
             name: "Thu"
         },
         {
-            id: "4",
+            id: "6",
             name: "Fri"
         },
         {
-            id: "5",
+            id: "7",
             name: "Sat"
         },
         {
-            id: "6",
+            id: "1",
             name: "Sun"
         }
     ];

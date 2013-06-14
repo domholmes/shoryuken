@@ -6,17 +6,18 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Security.Principal;
 using System.Net.Http;
+using System.Threading;
 
 namespace Squirrel.Security
 {
     public class GoogleTokenAuthorizeAttribute : AuthorizeAttribute
     {
-        private const string tokenHeaderName = "tokenId";
-        private readonly GoogleIdTokenParser tokenParser;
+        private const string tokenHeaderName = "idToken";
+        private readonly GoogleIdTokenVerifier tokenVerifier;
 
         public GoogleTokenAuthorizeAttribute()
         {
-            tokenParser = new GoogleIdTokenParser();
+            tokenVerifier = new GoogleIdTokenVerifier();
         }
         
         public override void OnAuthorization(HttpActionContext actionContext)
@@ -29,22 +30,29 @@ namespace Squirrel.Security
 
         private bool Authenticate(HttpActionContext actionContext)
         {
-            string idToken = actionContext.Request.Headers.GetValues(tokenHeaderName).FirstOrDefault();
+            GoogleIdToken idToken = actionContext.Request.Headers.GetValues(tokenHeaderName).FirstOrDefault();
 
-            if (string.IsNullOrEmpty(idToken)) return false;
+            if (!tokenIsOk(idToken)) return false;
 
-            string userId = tokenParser.ExtractUserIdFromToken(idToken);
+            string userId = idToken.ExtractUserId();
 
             if (string.IsNullOrEmpty(userId)) return false;
 
             HttpContext.Current.User = new GenericPrincipal(new GenericIdentity(userId), null);
+            Thread.CurrentPrincipal = HttpContext.Current.User; ;
 
             return true;
         }
 
-        private string ExtractUserIdFromRequest(HttpRequestMessage httpRequestMessage)
+        private bool tokenIsOk(GoogleIdToken idToken)
         {
-            throw new NotImplementedException();
+            if (!idToken.HasValue) return false;
+
+            bool tokenIsValid = tokenVerifier.Verify(idToken);
+
+            if (!tokenIsValid) return false;
+
+            return true;
         }
     }
 }

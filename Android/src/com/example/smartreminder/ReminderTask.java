@@ -23,7 +23,7 @@ class ReminderTask extends AsyncTask<Intent, Integer, Long>
     	this.context = context;
     	this.timeChecker = new TimeChecker();
 		this.notifier = new Notifier();
-		this.reminderRepository = new ReminderRepository();
+		this.reminderRepository = new ReminderRepository(context);
     }
 	
 	protected Long doInBackground(Intent... intents) 
@@ -53,12 +53,9 @@ class ReminderTask extends AsyncTask<Intent, Integer, Long>
 	{
 		if(reminder.action.name() == intent.getAction())
 		{		
-			if(reminder.extra == intent.getStringExtra(EventMapper.extraName))
+			if(this.timeChecker.timeMatches(reminder))
 			{
-				if(this.timeChecker.timeMatches(reminder))
-				{
-					return true;
-				}
+				return true;
 			}
 		}
 		
