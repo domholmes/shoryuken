@@ -20,7 +20,7 @@ import org.json.JSONException;
 
 public class ReminderJsonFetcher
 {
-	private static final String url = "http://192.168.1.7:4567/api/remindermobile/get";
+	private static final String url = "http://10.108.54.113/api/remindermobile/get";
 	
 	public JSONArray getJson(Context context, String idToken)
 	{
