@@ -12,7 +12,8 @@ namespace Squirrel
                 .Include("~/Scripts/jquery-{version}.js")
                 .Include("~/Scripts/bootstrap.js")
                 .Include("~/Scripts/bootstrap-timepicker.js")
-                .Include("~/Scripts/knockout-2.2.1.js"));
+                .Include("~/Scripts/knockout-2.2.1.js")
+                .Include("~/Scripts/knockoutCustomBindings.js"));
 
             bundles.Add(new StyleBundle("~/Content/css")
                 .Include("~/Content/base.css")

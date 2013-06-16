@@ -170,6 +170,7 @@
     <Content Include="Scripts\jquery-2.0.0.min.js" />
     <Content Include="Scripts\knockout-2.2.1.debug.js" />
     <Content Include="Scripts\knockout-2.2.1.js" />
+    <Content Include="Scripts\knockoutCustomBindings.js" />
     <Content Include="Scripts\security\googlePlusSignIn.js" />
     <Content Include="Scripts\sr.js" />
     <Content Include="Scripts\viewmodels\appViewModel.js" />

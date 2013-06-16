@@ -11,8 +11,8 @@ sr.Reminder = function (options) {
         name: '',
         message: '',
         details: '',
-        startTime: new Date(today.setHours(8, 0, 0, 0)),
-        endTime: new Date(today.setHours(20, 0, 0, 0)),
+        startTime: "08:00",
+        endTime: "20:00",
         days: null,
         actionId: null,
         active: true
@@ -27,8 +27,8 @@ sr.Reminder = function (options) {
     rem.name = ko.observable(options.name);
     rem.message = ko.observable(options.message);
     rem.details = ko.observable(options.details);
-    rem.startTime = ko.observable("10:45");
-    rem.endTime = ko.observable("16:22");
+    rem.startTime = ko.observable(options.startTime);
+    rem.endTime = ko.observable(options.endTime);
     rem.actionId = ko.observable(options.actionId);
     rem.active = ko.observable(options.active);
     rem.days = ko.observableArray(options.days);

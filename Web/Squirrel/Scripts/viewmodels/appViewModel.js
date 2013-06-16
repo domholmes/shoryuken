@@ -26,6 +26,8 @@ sr.AppViewModel = function () {
             $("textarea").keyup(function (e) {
                 self.setTextareaSize($(this));
             });
+
+            $('.card:first').find('.edit').animate({ opacity: 1 }, 300);
         }
     };
 
