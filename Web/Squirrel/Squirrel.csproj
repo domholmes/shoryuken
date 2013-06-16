@@ -25,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PublishDatabases>false</PublishDatabases>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -179,6 +180,7 @@
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Images\accent.png" />
@@ -218,6 +220,7 @@
     <None Include="Content\fonts\Sansation_Light-webfont.eot" />
     <None Include="Content\fonts\Sansation_Light-webfont.ttf" />
     <None Include="Content\fonts\Sansation_Light-webfont.woff" />
+    <None Include="Properties\PublishProfiles\jlbceramicart.com - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.0.0.min.map" />
     <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
