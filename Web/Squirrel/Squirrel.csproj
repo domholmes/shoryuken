@@ -221,7 +221,9 @@
     <None Include="Content\fonts\Sansation_Light-webfont.eot" />
     <None Include="Content\fonts\Sansation_Light-webfont.ttf" />
     <None Include="Content\fonts\Sansation_Light-webfont.woff" />
-    <None Include="Properties\PublishProfiles\jlbceramicart.com - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\jlbceramicart.com - Web Deploy.pubxml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-2.0.0.min.map" />
     <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
