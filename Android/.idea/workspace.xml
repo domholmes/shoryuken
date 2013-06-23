@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidConfiguredLogFilters">
+    <filters>
+      <filter>
+        <option name="logLevel" value="verbose" />
+        <option name="logMessagePattern" value="" />
+        <option name="logTagPattern" value="" />
+        <option name="name" value="Unnamed-0" />
+        <option name="packageNamePattern" value="com.example.smartreminder" />
+        <option name="pid" value="" />
+      </filter>
+    </filters>
+  </component>
   <component name="AndroidLayoutPreviewToolWindow">
     <option name="state">
       <GlobalState />
@@ -32,22 +44,7 @@
   </component>
   <component name="DebuggerManager">
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderRepository.java" line="50" class="com.example.smartreminder.ReminderRepository" package="com.example.smartreminder">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderJsonMapper.java" line="14" class="com.example.smartreminder.ReminderJsonMapper" package="com.example.smartreminder">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderTask.java" line="29" class="com.example.smartreminder.ReminderTask" package="com.example.smartreminder">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -63,6 +60,8 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </line_breakpoints>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <method_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -99,8 +98,6 @@
         <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <method_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -110,10 +107,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Credentials.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/Credentials.java">
+      <file leaf-file-name="JsonArrayBuilder.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/JsonArrayBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="60" selection-start="1211" selection-end="1211" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="2057">
+            <state line="31" column="0" selection-start="836" selection-end="836" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="680">
               <folding />
             </state>
           </provider>
@@ -122,16 +119,43 @@
       <file leaf-file-name="ReminderTask.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderTask.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="0" selection-start="1262" selection-end="1262" vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="1292">
+            <state line="31" column="0" selection-start="774" selection-end="774" vertical-scroll-proportion="0.0" vertical-offset="11" max-vertical-offset="1139">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TimeChecker.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/TimeChecker.java">
+      <file leaf-file-name="Action.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/Action.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="0" selection-start="643" selection-end="643" vertical-scroll-proportion="0.0" vertical-offset="122" max-vertical-offset="1020">
+            <state line="9" column="0" selection-start="210" selection-end="210" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Notifier.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/Notifier.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="10" selection-start="498" selection-end="617" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventMapper.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/EventMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="13" selection-start="233" selection-end="233" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="1173">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReminderDisableTask.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderDisableTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="0" selection-start="665" selection-end="665" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="782">
               <folding />
             </state>
           </provider>
@@ -140,61 +164,25 @@
       <file leaf-file-name="AsyncTask.class" pinned="false" current="false" current-in-tab="false">
         <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/os/AsyncTask.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="969">
+            <state line="34" column="62" selection-start="1458" selection-end="1458" vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="969">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IdTokenRetrieverTask.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/IdTokenRetrieverTask.java">
+      <file leaf-file-name="ReminderApiService.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderApiService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="13" selection-start="841" selection-end="841" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="1054">
+            <state line="18" column="67" selection-start="576" selection-end="576" vertical-scroll-proportion="0.028636884" vertical-offset="77" max-vertical-offset="1207">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReminderJsonFetcher.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderJsonFetcher.java">
+      <file leaf-file-name="ReminderDisableService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderDisableService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="59" selection-start="668" selection-end="668" vertical-scroll-proportion="0.19844358" vertical-offset="0" max-vertical-offset="1071">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReminderRepository.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="13" selection-start="290" selection-end="290" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReminderJsonMapper.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/classes/com/example/smartreminder/ReminderJsonMapper.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReminderJsonMapper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderJsonMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="0" selection-start="300" selection-end="300" vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="731">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Reminder.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/models/Reminder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="13" selection-start="122" selection-end="122" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="442">
+            <state line="14" column="0" selection-start="297" selection-end="297" vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="510">
               <folding />
             </state>
           </provider>
@@ -210,19 +198,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/EventActioner.java" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/PlusClientService.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/IdTokenRetriever.java" />
-        <option value="$PROJECT_DIR$/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/res/layout/activity_credentials.xml" />
         <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderTask.java" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderRepository.java" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/IdTokenStore.java" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/IdTokenRetrieverTask.java" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/Credentials.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/models/Reminder.java" />
         <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderJsonMapper.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/HttpRequestMaker.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/WebApiService.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/NotificationActionService.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/JsonArrayBuilder.java" />
         <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderJsonFetcher.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderRepository.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/MobileApiService.java" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderDisableService.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/Notifier.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderDisableTask.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/util/SystemUiHider.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderApiService.java" />
       </list>
     </option>
   </component>
@@ -264,265 +255,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="smartreminder" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="smartreminder" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable-xxhdpi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable-xhdpi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable-mdpi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable-hdpi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="classes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="example" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="smartreminder" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -569,6 +301,77 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Squirrel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Squirrel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Squirrel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smartreminder" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Squirrel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Squirrel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -582,10 +385,16 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.smartreminder" />
+    </key>
   </component>
   <component name="RunManager" selected="Android Application.Android">
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
@@ -785,18 +594,18 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39933258" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39933258" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852387" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32814237" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32703003" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24919957" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24493062" sideWeight="0.6006674" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24493062" sideWeight="0.67074525" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959402" sideWeight="0.67074525" order="3" side_tool="false" content_ui="tabs" />
@@ -872,115 +681,103 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/EventMapper.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/org/apache/http/message/AbstractHttpMessage.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="13" selection-start="233" selection-end="233" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="1173">
+        <state line="30" column="16" selection-start="1243" selection-end="1243" vertical-scroll-proportion="0.0" vertical-offset="322" max-vertical-offset="850" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="0" selection-start="689" selection-end="689" vertical-scroll-proportion="0.0" vertical-offset="152" max-vertical-offset="697">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="49" selection-start="152" selection-end="152" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="204">
+        <state line="29" column="79" selection-start="1257" selection-end="1257" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="884">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/activity_credentials.xml">
+    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/content/ContextWrapper.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="44" selection-start="705" selection-end="705" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="799">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/EventActioner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="19" selection-start="285" selection-end="285" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="323">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/classes/com/example/smartreminder/ReminderJsonFetcher.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/IdTokenStore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="0" selection-start="876" selection-end="876" vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="731">
-          <folding />
-        </state>
+        <state line="23" column="35" selection-start="903" selection-end="903" vertical-scroll-proportion="0.0" vertical-offset="207" max-vertical-offset="3179" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/IdTokenRetrieverTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="13" selection-start="841" selection-end="841" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="1054">
+        <state line="29" column="0" selection-start="827" selection-end="827" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="833">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/Credentials.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/EventActioner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="60" selection-start="1211" selection-end="1211" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="2057">
+        <state line="11" column="69" selection-start="274" selection-end="340" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/os/AsyncTask.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="969">
+        <state line="34" column="62" selection-start="1458" selection-end="1458" vertical-scroll-proportion="0.0" vertical-offset="394" max-vertical-offset="952">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/classes/com/example/smartreminder/ReminderJsonMapper.class">
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/EventMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
+        <state line="8" column="13" selection-start="233" selection-end="233" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1105">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/models/Reminder.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/JsonArrayBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="122" selection-end="122" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="442">
+        <state line="31" column="0" selection-start="836" selection-end="836" vertical-scroll-proportion="0.0" vertical-offset="166" max-vertical-offset="680">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderJsonMapper.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderDisableService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="300" selection-end="300" vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="731">
+        <state line="14" column="0" selection-start="297" selection-end="297" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/Notifier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="10" selection-start="498" selection-end="617" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderDisableTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="0" selection-start="665" selection-end="665" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="782">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="0" selection-start="1262" selection-end="1262" vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="1292">
+        <state line="31" column="0" selection-start="774" selection-end="774" vertical-scroll-proportion="0.0" vertical-offset="11" max-vertical-offset="1139">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/TimeChecker.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/Action.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="643" selection-end="643" vertical-scroll-proportion="0.0" vertical-offset="122" max-vertical-offset="1020">
+        <state line="9" column="0" selection-start="210" selection-end="210" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderRepository.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderApiService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="13" selection-start="290" selection-end="290" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderJsonFetcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="59" selection-start="668" selection-end="668" vertical-scroll-proportion="0.19844358" vertical-offset="0" max-vertical-offset="1071">
+        <state line="18" column="67" selection-start="576" selection-end="576" vertical-scroll-proportion="0.028636884" vertical-offset="77" max-vertical-offset="1207">
           <folding />
         </state>
       </provider>

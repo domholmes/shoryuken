@@ -1,18 +1,11 @@
 package com.example.smartreminder;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.util.List;
 
-import org.json.JSONException;
-
-import com.example.smartreminder.models.Reminder;
 import com.google.android.gms.auth.GoogleAuthException;
 import com.google.android.gms.auth.GoogleAuthUtil;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
 class IdTokenRetrieverTask extends AsyncTask<Void, Void, Void>

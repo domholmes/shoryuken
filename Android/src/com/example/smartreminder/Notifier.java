@@ -9,36 +9,41 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 
-import com.example.smartreminder.models.Reminder;
-
 public class Notifier
 {
-	public void Notify(Context context, String message)
+	public void Notify(Context context, String message, int reminderId)
 	{
-		Notification notification = createNotification(context, message);
+		Notification notification = createNotification(context, message, reminderId);
 
-		NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+		NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 		
-		mNotificationManager.notify(1, notification);
+		notificationManager.notify(reminderId, notification);
 	}
 	
-	private Notification createNotification(Context context, String message)
+	private Notification createNotification(Context context, String message, int reminderId)
 	{
 		Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-		
-		NotificationCompat.Builder mBuilder = 
-				new NotificationCompat.Builder(context)
-					.setSound(sound)
-					.setSmallIcon(R.drawable.ic_launcher)
-					.setContentText(message)
-					.setContentTitle("SmartReminder");
 
-		PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
-				new Intent(),
-				PendingIntent.FLAG_UPDATE_CURRENT);
-		
-		mBuilder.setContentIntent(contentIntent);
-		
-		return mBuilder.build();
+        Intent disableIntent = new Intent(context, ReminderDisableService.class)
+                .setAction("DISABLE")
+                .setData(Uri.parse("id://" + reminderId));
+
+        PendingIntent disablePendingIntent = PendingIntent.getService(context, 0, disableIntent, 0);
+
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(context)
+                        .setAutoCancel(true)
+                        .setSmallIcon(R.drawable.ic_launcher)
+                        .setContentTitle(message)
+                        .setContentText("SmartReminder")
+                        .setDefaults(Notification.PRIORITY_HIGH)// requires VIBRATE permission
+                         .setSound(sound)
+                        .setStyle(
+                                new NotificationCompat
+                                        .BigTextStyle()
+                                        .bigText(message))
+                        .addAction(R.drawable.ic_launcher, "Disable", disablePendingIntent);
+
+		return builder.build();
 	}
 }

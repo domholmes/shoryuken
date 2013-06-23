@@ -3,10 +3,6 @@ package com.example.smartreminder;
 import java.text.ParseException;
 import java.util.List;
 
-import org.json.JSONException;
-
-import com.example.smartreminder.models.Reminder;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -37,7 +33,7 @@ class ReminderTask extends AsyncTask<Intent, Integer, Long>
 			{
 				if(reminderIsNow(reminder, intents[0]))
 				{
-					this.notifier.Notify(context, reminder.notificationText);
+					this.notifier.Notify(context, reminder.notificationText, reminder.id);
 				}
 			}
 		} 
