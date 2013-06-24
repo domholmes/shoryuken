@@ -130,7 +130,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DemoDatabaseInitializer.cs" />
+    <Compile Include="Migrations\201306242050500_InitialCreate.cs" />
+    <Compile Include="Migrations\201306242050500_InitialCreate.Designer.cs">
+      <DependentUpon>201306242050500_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Reminder.cs" />
     <Compile Include="Models\ReminderContext.cs" />
     <Compile Include="Models\User.cs" />
@@ -226,6 +230,11 @@
     </None>
     <None Include="Scripts\jquery-2.0.0.min.map" />
     <Content Include="Views\Account\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201306242050500_InitialCreate.resx">
+      <DependentUpon>201306242050500_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
