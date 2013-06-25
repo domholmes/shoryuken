@@ -139,6 +139,11 @@
     <Compile Include="Models\ReminderContext.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Security\FormsAuthenticator.cs" />
     <Compile Include="Security\GoogleApiService.cs" />
     <Compile Include="Security\GoogleClientDetails.cs" />
@@ -227,6 +232,10 @@
     <None Include="Content\fonts\Sansation_Light-webfont.woff" />
     <None Include="Properties\PublishProfiles\jlbceramicart.com - Web Deploy.pubxml">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-2.0.0.min.map" />
     <Content Include="Views\Account\Login.cshtml" />

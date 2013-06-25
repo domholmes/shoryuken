@@ -44,7 +44,7 @@
                             class="add-on"><i class="icon-time"></i></span>
                     </div>
                     <div class="days" data-bind="foreach: availableDays">
-                        <span data-bind="text: name, click: $parent.dayClick, css: { selected: $parent.isSelectedDay($data), 'link-emulate': true }">
+                        <span data-bind="text: name, click: $parent.dayClick, css: { selected: $parent.isSelectedDay($data) }">
                         </span>
                     </div>
                 </div>
