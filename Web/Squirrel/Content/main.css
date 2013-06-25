@@ -249,12 +249,13 @@ button span.icon {
 }
 .card .days 
 {
+    cursor: pointer;
     font-weight: bold;
-    color: #62b6d1;
+    color: #808080;
 }
 .card .days .selected 
 {
-    color: #000;
+    color: #62b6d1;
 }
 .card footer 
 {
