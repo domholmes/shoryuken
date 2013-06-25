@@ -9,7 +9,7 @@ namespace Squirrel.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Squirrel.Models.ReminderContext context)
