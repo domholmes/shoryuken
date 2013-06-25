@@ -5,8 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.example.smartreminder.models.Reminder;
-
 public class TimeChecker
 {
 	private SimpleDateFormat parser = new SimpleDateFormat("H:m");

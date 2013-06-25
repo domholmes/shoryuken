@@ -11,6 +11,8 @@ namespace Squirrel.Models
 
         public User User { get; set; }
 
+        public bool Enabled { get; set; }
+
         public string Name { get; set; }
         
         public string Message { get; set; }

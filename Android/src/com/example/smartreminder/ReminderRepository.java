@@ -1,40 +1,29 @@
 package com.example.smartreminder;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.smartreminder.models.Reminder;
-
 public class ReminderRepository
-{	
-	private ReminderJsonFetcher jsonFetcher;
-	private ReminderJsonMapper jsonMapper;
-    private IdTokenStore tokenStore;
+{
     private Context context;
+    private ReminderApiService apiService;
+	private ReminderJsonMapper jsonMapper;
 	
 	public ReminderRepository(Context context)
 	{
-		this.jsonFetcher = new ReminderJsonFetcher();
-		this.jsonMapper = new ReminderJsonMapper();
-        this.tokenStore = new IdTokenStore(context);
         this.context = context;
+        this.apiService = new ReminderApiService(context);
+		this.jsonMapper = new ReminderJsonMapper();
 	}
 	
-	public ArrayList<Reminder> GetActiveReminders() throws JSONException
-	{
-		String idToken = this.tokenStore.getToken();
-
-        if(idToken == null)
-        {
-            return new ArrayList<Reminder>();
-        }
-
-        JSONArray jArray = jsonFetcher.getJson(this.context, idToken);
+	public ArrayList<Reminder> GetActiveReminders() throws JSONException, IOException
+    {
+		JSONArray jArray = this.apiService.getRemindersJson();
 		
 		ArrayList<Reminder> reminders = new ArrayList<Reminder>();
 		
@@ -42,10 +31,9 @@ public class ReminderRepository
 		{			
 			JSONObject reminderJson = jArray.getJSONObject(i);
 				
-			Reminder reminder = jsonMapper.CreateReminderFromJson(reminderJson);
+			Reminder reminder = this.jsonMapper.CreateReminderFromJson(reminderJson);
 				
 			reminders.add(reminder);
-
 		}
 		
 		return reminders;

@@ -3,6 +3,7 @@ bin/
 obj/
 gen/
 out/
+.metadata/
 *.suo
 *.user
 TestResults/
