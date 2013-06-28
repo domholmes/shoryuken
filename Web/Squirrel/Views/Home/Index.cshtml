@@ -1,21 +1,40 @@
-﻿<header>
-    <div class="content-wrapper">
-        <div class="float-left">
-            <p class="site-title">
-                <a href="~/"><span>Smart</span>Reminder</a></p>
+﻿<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#"><span>Smart</span>Reminder</a>
+            <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              @Html.ActionLink("Logout", "LogOff", "Account", null, null)
+            </p>
+            <ul class="nav">
+                <li class="">
+                    <a href="#">Some</a>
+                </li>
+                <li class="">
+                    <a href="#">Nav</a>
+                </li>
+                <li class="">
+                    <a href="#">Items</a>
+                </li>
+            </ul>
+            </div>
         </div>
-        <div class="float-right">@Html.ActionLink("Logout", "LogOff", "Account", null, null)</div>
     </div>
-</header>
+</div>
 <div id="body">
-    <div class="row">
+    <div class="row-fluid">
         <div class="span12 margin-bottom">
-            <button type="button" class="btn btn-large" data-bind="click: createReminder, css: { disabled: editing }">
+            <button type="button" class="btn btn-large add-reminder" data-bind="click: createReminder, css: { disabled: editing }">
                 <span class="icon icon-pencil"></span>Add Reminder</button>
         </div>
     </div>
-    <section class="row" data-bind="foreach: reminders">
-        <article class="span3 card margin-bottom">
+    <section class="row-fluid" data-bind="foreach: reminders">
+        <article class="card margin-bottom" data-bind="css: { span6: $root.belowThreshold, span3: !$root.belowThreshold() }">
             <div class="display" data-bind="visible: !editing()">
                 <div class="body">
                     <h2 data-bind="visible: name() != '', text: name">

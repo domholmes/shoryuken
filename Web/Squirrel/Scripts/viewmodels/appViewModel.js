@@ -14,6 +14,8 @@ sr.AppViewModel = function () {
         return reminder !== null;
     });
 
+    vm.belowThreshold = ko.observable();
+
     // Operations
     vm.createReminder = function () {
         if (vm.editing() === false) {
@@ -24,10 +26,12 @@ sr.AppViewModel = function () {
             vm.reminders.unshift(reminder);
             $('.timepicker').timepicker({ showMeridian: false });
             $("textarea").keyup(function (e) {
-                self.setTextareaSize($(this));
+                vm.setTextareaSize($(this));
             });
 
             $('.card:first').find('.edit').animate({ opacity: 1 }, 300);
+
+            vm.setCardWrap();
         }
     };
 
@@ -44,12 +48,12 @@ sr.AppViewModel = function () {
         $('.timepicker').timepicker({ showMeridian: false });
 
         $("textarea").keyup(function (e) {
-            self.setTextareaSize($(this));
+            vm.setTextareaSize($(this));
         });
 
         reminder.editing(true);
 
-        self.setTextareaSize($("textarea"));
+        vm.setTextareaSize($("textarea"));
 
         eventualSize = card.find('.edit').height();
         card.addClass('editing');
@@ -73,6 +77,8 @@ sr.AppViewModel = function () {
                 }
             });
         }
+
+        //vm.setCardWrap();
     };
 
     vm.endEdit = function (reminder, event) {
@@ -111,6 +117,7 @@ sr.AppViewModel = function () {
         reminder.editing(false);
         if (reminder.isNew() === true) {
             vm.deleteReminder(reminder);
+            vm.setCardWrap();
         } else {
             reminder.message(vm.cachedReminder.message);
             reminder.name(vm.cachedReminder.name);
@@ -162,7 +169,7 @@ sr.AppViewModel = function () {
         });
     };
 
-    self.setTextareaSize = function (elements) {
+    vm.setTextareaSize = function (elements) {
         elements.each(function (index, el) {
             var element = $(el);
             while (element.outerHeight() < element[0].scrollHeight + parseFloat(element.css("borderTopWidth")) + parseFloat(element.css("borderBottomWidth"))) {
@@ -171,11 +178,40 @@ sr.AppViewModel = function () {
         });
     };
 
+    vm.setCardWrap = function () {
+        var cards = $(".card");
+
+        if (cards.parent().is(".card-wrap")) {
+            cards.unwrap();
+        }
+
+        vm.belowThreshold($(window).width() < 800);
+
+        if (vm.belowThreshold()) {
+            for (var i = 0; i < cards.length; i += 2) {
+                cards.slice(i, i + 2).wrapAll("<div class='card-wrap' style='clear:both;'></div>");
+            }
+        }
+        else {
+            for (var i = 0; i < cards.length; i += 4) {
+                cards.slice(i, i + 4).wrapAll("<div class='card-wrap' style='clear:both;'></div>");
+            }
+        }
+    };
+
     vm.init = function () {
+        
+        vm.setCardWrap();
+
+        $(window).resize(function () {
+            vm.setCardWrap();
+        });
+
         // Perform initial load
         $.getJSON("api/reminder/get", function (allData) {
             var mappedReminders = $.map(allData, function (item) { return new sr.Reminder(item) });
             vm.reminders(mappedReminders);
+            vm.setCardWrap();
         });
     };
 
