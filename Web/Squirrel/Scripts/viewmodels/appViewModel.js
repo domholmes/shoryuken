@@ -1,10 +1,12 @@
 var sr = sr || {};
 
 sr.AppViewModel = function () {
-    var vm = this;
+    var vm = this,
+        reminders;
 
     // Data
     vm.reminders = ko.observableArray([]);
+    vm.reminderGroups = ko.observableArray([]);
 
     vm.editing = ko.computed(function () {
         var reminder = ko.utils.arrayFirst(vm.reminders(), function (reminder) {
@@ -24,14 +26,22 @@ sr.AppViewModel = function () {
             reminder.isNew(true);
             reminder.editing(true);
             vm.reminders.unshift(reminder);
+
+            vm.groupReminders();
+
             $('.timepicker').timepicker({ showMeridian: false });
             $("textarea").keyup(function (e) {
                 vm.setTextareaSize($(this));
-            });
+            });            
 
-            $('.card:first').find('.edit').animate({ opacity: 1 }, 300);
-
-            vm.setCardWrap();
+            $('.card:first').find('.edit')
+                .css({
+                    opacity: 0,
+                    overflow: 'hidden'
+                })
+                .animate({ opacity: 1 }, 300, function () {
+                    $(this).css({ overflow: 'visible' });
+                });
         }
     };
 
@@ -78,7 +88,7 @@ sr.AppViewModel = function () {
             });
         }
 
-        //vm.setCardWrap();
+        vm.groupReminders();
     };
 
     vm.endEdit = function (reminder, event) {
@@ -117,7 +127,6 @@ sr.AppViewModel = function () {
         reminder.editing(false);
         if (reminder.isNew() === true) {
             vm.deleteReminder(reminder);
-            vm.setCardWrap();
         } else {
             reminder.message(vm.cachedReminder.message);
             reminder.name(vm.cachedReminder.name);
@@ -178,40 +187,36 @@ sr.AppViewModel = function () {
         });
     };
 
-    vm.setCardWrap = function () {
-        var cards = $(".card");
-
-        if (cards.parent().is(".card-wrap")) {
-            cards.unwrap();
-        }
+    vm.groupReminders = function () {
+        var groups = [],
+            reminders = vm.reminders();
 
         vm.belowThreshold($(window).width() < 800);
 
         if (vm.belowThreshold()) {
-            for (var i = 0; i < cards.length; i += 2) {
-                cards.slice(i, i + 2).wrapAll("<div class='card-wrap' style='clear:both;'></div>");
+            for (var i = 0; i < reminders.length; i += 2) {
+                groups.push(reminders.slice(i, i + 2));
             }
         }
         else {
-            for (var i = 0; i < cards.length; i += 4) {
-                cards.slice(i, i + 4).wrapAll("<div class='card-wrap' style='clear:both;'></div>");
+            for (var i = 0; i < reminders.length; i += 4) {
+                groups.push(reminders.slice(i, i + 4));
             }
         }
+        vm.reminderGroups(groups);
     };
 
     vm.init = function () {
-        
-        vm.setCardWrap();
 
         $(window).resize(function () {
-            vm.setCardWrap();
+            vm.groupReminders();
         });
 
         // Perform initial load
         $.getJSON("api/reminder/get", function (allData) {
             var mappedReminders = $.map(allData, function (item) { return new sr.Reminder(item) });
             vm.reminders(mappedReminders);
-            vm.setCardWrap();
+            vm.groupReminders();
         });
     };
 

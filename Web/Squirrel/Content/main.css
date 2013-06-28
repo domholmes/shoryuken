@@ -216,8 +216,7 @@ button span.icon {
     background: #fff;
     box-sizing: border-box;
     border-bottom: 1px solid #ccc;
-    border-radius: 2px;
-    overflow: hidden;    
+    border-radius: 2px; 
     -webkit-transition: box-shadow 250ms ease-in-out;
     -moz-transition: box-shadow 250ms ease-in-out;
     -o-transition: box-shadow 250ms ease-in-out;
@@ -281,13 +280,17 @@ button span.icon {
 }
 .card .edit
 {
-    opacity: 0;
+    /*opacity: 0;*/
 }
 .card .edit footer span 
 {    
     font-size: 14px;
     margin-right: 24px;
     font-weight: bold;
+}
+.card-wrap
+{
+    clear: both;
 }
 
 @media (max-width: 480px) 
