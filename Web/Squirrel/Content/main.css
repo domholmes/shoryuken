@@ -134,6 +134,16 @@ button span.icon {
     margin-right: 5px;
 }
 
+.checkbox, .radio {
+	width: 100px;
+	height: 29px;
+	padding: 0 5px 0 0;
+	background: url('images/checkbox.png') no-repeat;
+	display: block;
+	clear: left;
+	float: left;
+}
+
 /* Utilities
 ------------------------------------------------*/
 

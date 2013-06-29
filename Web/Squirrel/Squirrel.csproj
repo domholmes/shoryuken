@@ -166,6 +166,7 @@
     <Content Include="Content\fonts\Sansation_Bold-webfont.svg" />
     <Content Include="Content\fonts\Sansation_Light-webfont.svg" />
     <Content Include="Content\icons.css" />
+    <Content Include="Content\images\checkbox.png" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\main.css" />
@@ -174,6 +175,7 @@
     <Content Include="Scripts\bootstrap-timepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\custom-form-elements.js" />
     <Content Include="Scripts\jquery-2.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-2.0.0.js" />
     <Content Include="Scripts\jquery-2.0.0.min.js" />
