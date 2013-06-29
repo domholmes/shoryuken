@@ -1,10 +1,12 @@
 var sr = sr || {};
 
 sr.AppViewModel = function () {
-    var vm = this;
+    var vm = this,
+        reminders;
 
     // Data
     vm.reminders = ko.observableArray([]);
+    vm.reminderGroups = ko.observableArray([]);
 
     vm.editing = ko.computed(function () {
         var reminder = ko.utils.arrayFirst(vm.reminders(), function (reminder) {
@@ -14,6 +16,8 @@ sr.AppViewModel = function () {
         return reminder !== null;
     });
 
+    vm.belowThreshold = ko.observable();
+
     // Operations
     vm.createReminder = function () {
         if (vm.editing() === false) {
@@ -22,12 +26,22 @@ sr.AppViewModel = function () {
             reminder.isNew(true);
             reminder.editing(true);
             vm.reminders.unshift(reminder);
+
+            vm.groupReminders();
+
             $('.timepicker').timepicker({ showMeridian: false });
             $("textarea").keyup(function (e) {
-                self.setTextareaSize($(this));
-            });
+                vm.setTextareaSize($(this));
+            });            
 
-            $('.card:first').find('.edit').animate({ opacity: 1 }, 300);
+            $('.card:first').find('.edit')
+                .css({
+                    opacity: 0,
+                    overflow: 'hidden'
+                })
+                .animate({ opacity: 1 }, 300, function () {
+                    $(this).css({ overflow: 'visible' });
+                });
         }
     };
 
@@ -44,12 +58,12 @@ sr.AppViewModel = function () {
         $('.timepicker').timepicker({ showMeridian: false });
 
         $("textarea").keyup(function (e) {
-            self.setTextareaSize($(this));
+            vm.setTextareaSize($(this));
         });
 
         reminder.editing(true);
 
-        self.setTextareaSize($("textarea"));
+        vm.setTextareaSize($("textarea"));
 
         eventualSize = card.find('.edit').height();
         card.addClass('editing');
@@ -73,6 +87,8 @@ sr.AppViewModel = function () {
                 }
             });
         }
+
+        vm.groupReminders();
     };
 
     vm.endEdit = function (reminder, event) {
@@ -162,7 +178,7 @@ sr.AppViewModel = function () {
         });
     };
 
-    self.setTextareaSize = function (elements) {
+    vm.setTextareaSize = function (elements) {
         elements.each(function (index, el) {
             var element = $(el);
             while (element.outerHeight() < element[0].scrollHeight + parseFloat(element.css("borderTopWidth")) + parseFloat(element.css("borderBottomWidth"))) {
@@ -171,11 +187,36 @@ sr.AppViewModel = function () {
         });
     };
 
+    vm.groupReminders = function () {
+        var groups = [],
+            reminders = vm.reminders();
+
+        vm.belowThreshold($(window).width() < 800);
+
+        if (vm.belowThreshold()) {
+            for (var i = 0; i < reminders.length; i += 2) {
+                groups.push(reminders.slice(i, i + 2));
+            }
+        }
+        else {
+            for (var i = 0; i < reminders.length; i += 4) {
+                groups.push(reminders.slice(i, i + 4));
+            }
+        }
+        vm.reminderGroups(groups);
+    };
+
     vm.init = function () {
+
+        $(window).resize(function () {
+            vm.groupReminders();
+        });
+
         // Perform initial load
         $.getJSON("api/reminder/get", function (allData) {
             var mappedReminders = $.map(allData, function (item) { return new sr.Reminder(item) });
             vm.reminders(mappedReminders);
+            vm.groupReminders();
         });
     };
 
