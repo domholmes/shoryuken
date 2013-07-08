@@ -134,6 +134,7 @@ sr.AppViewModel = function () {
             reminder.startTime(vm.cachedReminder.startTime);
             reminder.endTime(vm.cachedReminder.endTime);
             reminder.days(vm.cachedReminder.days);
+            reminder.enabled(vm.cachedReminder.enabled);
         }
 
         eventualSize = card.find('.display').height();

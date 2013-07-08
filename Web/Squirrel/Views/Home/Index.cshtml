@@ -35,7 +35,7 @@
     </div>
     <section class="row-fluid" data-bind="foreach: reminderGroups">
         <div class="card-wrap" data-bind="foreach: $data">
-            <article class="card margin-bottom" data-bind="css: { span6: $root.belowThreshold, span3: !$root.belowThreshold() }">
+            <article class="card margin-bottom" data-bind="css: { span6: $root.belowThreshold, span3: !$root.belowThreshold(), disabled: (!enabled() && !editing()) }" >
                 <div class="display" data-bind="visible: !editing()">
                     <div class="body">
                         <h2 data-bind="visible: name() != '', text: name">
