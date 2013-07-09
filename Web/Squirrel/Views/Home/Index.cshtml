@@ -33,23 +33,22 @@
                 <span class="icon icon-pencil"></span>Add Reminder</button>
         </div>
     </div>
-    <section class="row-fluid" data-bind="foreach: reminderGroups">
-        <div class="card-wrap" data-bind="foreach: $data">
-            <article class="card margin-bottom" data-bind="css: { span6: $root.belowThreshold, span3: !$root.belowThreshold(), disabled: (!enabled() && !editing()) }" >
-                <div class="display" data-bind="visible: !editing()">
+    <section class="row-fluid" data-bind="foreach: reminders">
+            <article class="card margin-bottom" data-bind="disabled: (!enabled && !editing())" >
+                <div class="display" data-bind="visible: !editing()" >
                     <div class="body">
                         <h2 data-bind="visible: name() != '', text: name">
                         </h2>
                         <p data-bind="text: message" class="message">
                         </p>
                     </div>
-                    <footer data-bind="invisible: $root.editing()">
-                        <span class="icon-menu-2 link-emulate" data-bind="click: $root.editReminder"></span>
-                        <span class="icon-remove link-emulate" data-bind="click: $root.deleteReminder"></span>
+                    <footer data-bind="invisible: editing">
+                        <span class="icon-menu-2 link-emulate" data-bind="click: $parent.editReminder"></span>
+                        <span class="icon-remove link-emulate" data-bind="click: $parent.deleteReminder"></span>
                     </footer>
                 </div>
-                <div class="edit" data-bind="visible: editing">
-                    <div class="body" data-bind="visible: editing">
+                <div class="edit" data-bind="slideVisible: editing()">
+                    <div class="body">
                         <div class="float-right">
                             <input type="checkbox" data-bind="checked: enabled" />
                         </div>
@@ -72,19 +71,19 @@
                         </div>
                     </div>
                     <footer>
-                        <span class="link-emulate" data-bind="click: $root.endEdit">
+                        <span class="link-emulate" data-bind="click: $root.saveReminder">
                             Save</span>
                         <span class="link-emulate" data-bind="click: $root.cancelEdit">
                             Cancel</span>
                     </footer>
                 </div>
             </article>
-        </div>
     </section>
 </div>
 @section scripts
 {
     <script src="@Url.Content("~/Scripts/models/reminder.js")"></script>
     <script src="@Url.Content("~/Scripts/viewmodels/appViewModel.js")"></script>
+    <script src="@Url.Content("~/Scripts/viewmodels/appViewModelCustomBindings.js")"></script>
     <script src="@Url.Content("~/Scripts/sr.js")"></script>
 }
