@@ -14,3 +14,18 @@
             $(element).hide();   // Make the element invisible
     }
 };
+
+this.grouped = ko.computed(function () {
+
+    var reminders = this.sr.reminders();
+    var rows = [], current = [];
+    rows.push(current);
+    for (var i = 0; i < reminders.length; i += 1) {
+        current.push(reminders[i]);
+        if (((i + 1) % 4) === 0) {
+            current = [];
+            rows.push(current);
+        }
+    }
+    return rows;
+}, this);

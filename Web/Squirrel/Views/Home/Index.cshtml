@@ -33,7 +33,15 @@
                 <span class="icon icon-pencil"></span>Add Reminder</button>
         </div>
     </div>
-    <section class="row-fluid" data-bind="foreach: reminders">
+    
+    <div data-bind="foreach: grouped" >
+        <div data-bind="foreach: $data" class="row">
+            <div class="column" data-bind="text: text"></div>
+        </div>
+    </div>
+    
+    <section class="row-fluid" data-bind="foreach: grouped">
+        <div class="card-wrap" data-bind="foreach: $data">
             <article class="card margin-bottom" data-bind="disabled: (!enabled && !editing())" >
                 <div class="display" data-bind="visible: !editing()" >
                     <div class="body">
@@ -78,12 +86,13 @@
                     </footer>
                 </div>
             </article>
+        </div>
     </section>
 </div>
 @section scripts
 {
     <script src="@Url.Content("~/Scripts/models/reminder.js")"></script>
-    <script src="@Url.Content("~/Scripts/viewmodels/appViewModel.js")"></script>
-    <script src="@Url.Content("~/Scripts/viewmodels/appViewModelCustomBindings.js")"></script>
+    <script src="@Url.Content("~/Scripts/viewmodels/index.js")"></script>
+    <script src="@Url.Content("~/Scripts/view/index.js")"></script>
     <script src="@Url.Content("~/Scripts/sr.js")"></script>
 }
