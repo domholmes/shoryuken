@@ -32,17 +32,11 @@
             <button type="button" class="btn btn-large add-reminder" data-bind="click: createReminder, css: { disabled: editing }">
                 <span class="icon icon-pencil"></span>Add Reminder</button>
         </div>
-    </div>
+    </div>    
     
-    <div data-bind="foreach: grouped" >
-        <div data-bind="foreach: $data" class="row">
-            <div class="column" data-bind="text: text"></div>
-        </div>
-    </div>
-    
-    <section class="row-fluid" data-bind="foreach: grouped">
+    <section class="row-fluid" data-bind="foreachGroups: reminders">
         <div class="card-wrap" data-bind="foreach: $data">
-            <article class="card margin-bottom" data-bind="disabled: (!enabled && !editing())" >
+            <article data-bind="disabled: (!enabled && !editing()), attr: { 'class': 'card margin-bottom ' + $parent.spanClass }" >
                 <div class="display" data-bind="visible: !editing()" >
                     <div class="body">
                         <h2 data-bind="visible: name() != '', text: name">
