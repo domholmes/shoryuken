@@ -36,26 +36,23 @@
     
     <section class="row-fluid" data-bind="foreachGroups: reminders">
         <div class="card-wrap" data-bind="foreach: $data">
-            <article data-bind="disabled: (!enabled && !editing()), attr: { 'class': 'card margin-bottom ' + $parent.spanClass }" >
-                <div class="display" data-bind="visible: !editing()" >
+            <article data-bind="animateToState: editing() ? 'edit' : 'display', initialState: 'display', disabled: (!enabled && !editing()), attr: { 'class': 'card margin-bottom ' + $parent.spanClass }" >
+                <div class="display">
                     <div class="body">
                         <h2 data-bind="visible: name() != '', text: name">
                         </h2>
                         <p data-bind="text: message" class="message">
                         </p>
                     </div>
-                    <footer data-bind="invisible: editing">
-                        <span class="icon-menu-2 link-emulate" data-bind="click: $parent.editReminder"></span>
-                        <span class="icon-remove link-emulate" data-bind="click: $parent.deleteReminder"></span>
+                    <footer data-bind="invisible: $root.editing()">
+                        <span class="icon-menu-2 link-emulate" data-bind="click: $root.editReminder"></span>
+                        <span class="icon-remove link-emulate" data-bind="click: $root.deleteReminder"></span>
                     </footer>
                 </div>
-                <div class="edit" data-bind="slideVisible: editing()">
-                    <div class="body">
-                        <div class="float-right">
-                            <input type="checkbox" data-bind="checked: enabled" />
-                        </div>
-                        <textarea placeholder="Name" data-bind="value: name" class="name" rows="1" cols="1" ></textarea><br />
-                        <textarea placeholder="Message" data-bind="value: message" rows="1" cols="1"></textarea>
+                <div class="edit">
+                    <div class="body">                        
+                        <textarea placeholder="Name" data-bind="value: name, expandingTextbox: true" class="name" rows="1" cols="1" ></textarea><br />
+                        <textarea placeholder="Message" data-bind="value: message, expandingTextbox: true" rows="1" cols="1"></textarea>
                         <br />
                         <select data-bind="options: availableEvents, optionsText: 'text', optionsValue: 'value', value: actionId, optionsCaption: 'Select an action'">
                         </select><br />
@@ -70,6 +67,9 @@
                         <div class="days" data-bind="foreach: availableDays">
                             <span data-bind="text: name, click: $parent.dayClick, css: { selected: $parent.isSelectedDay($data) }">
                             </span>
+                        </div>
+                        <div>
+                            <input type="checkbox" data-bind="checked: enabled" />
                         </div>
                     </div>
                     <footer>

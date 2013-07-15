@@ -1,4 +1,84 @@
-﻿ko.bindingHandlers.slideVisible = {
+﻿ko.bindingHandlers.expandingTextbox = {
+
+    // not finished
+
+    setTextareaSize: function (elements) {
+        elements.each(function (index, el) {
+            var element = $(el);
+            while (element.outerHeight() < element[0].scrollHeight + parseFloat(element.css("borderTopWidth")) + parseFloat(element.css("borderBottomWidth"))) {
+                element.height(element.height() + 1);
+            };
+        });
+    },
+
+    init: function (element) {
+        var element = $(element),
+            self = ko.bindingHandlers.expandingTextbox;
+
+        self.setTextareaSize(element);
+
+        element.keyup(function (e) {
+            self.setTextareaSize($(this));
+        });
+    }
+};
+
+ko.bindingHandlers.animateToState = {
+
+    init: function (element, valueAccessor, allBindingsAccessor) {
+        var value = valueAccessor(),
+            allBindings = allBindingsAccessor(),
+            element = $(element);
+
+        element.children().hide();
+        element.children('.' + allBindings.initialState).show();
+    },
+
+    update: function (element, valueAccessor, allBindingsAccessor) {
+        var value = valueAccessor(),
+            valueUnwrapped = ko.unwrap(value),
+            element = $(element),
+            eventualSize,
+            allBindings = allBindingsAccessor(),
+            currentStateElement = element.children(':visible'),
+            nextStateElement = element.find('.' + valueUnwrapped),
+            DURATION = 200;
+
+        if (!currentStateElement.is('.' + valueUnwrapped)) {
+
+            element.height(element.height());
+
+            currentStateElement.animate({ opacity: 0 }, DURATION, function () {
+                currentStateElement.hide();
+                nextStateElement
+                .show()
+                .css({
+                    opacity: 0,
+                    overflow: 'hidden'
+                })
+                .animate({ opacity: 1 }, DURATION, function () {
+                    $(this).css({ overflow: 'visible' });
+                });
+            });
+
+            eventualSize = (function () {
+                var size;
+
+                nextStateElement.show();
+                size = nextStateElement.height();
+                nextStateElement.hide();
+
+                return size;
+            })();
+
+            element.animate({ height: eventualSize + 'px' }, DURATION, function () {
+                element.css('height', 'auto');
+            });
+        }
+    }
+};
+
+ko.bindingHandlers.slideVisible = {
     update: function (element, valueAccessor, allBindingsAccessor) {
 
         // Next, whether or not the supplied model property is observable, get its current value
@@ -64,18 +144,3 @@ ko.bindingHandlers.foreachGroups = {
         return { controlsDescendantBindings: true };
     }
 };
-
-//this.grouped = ko.computed(function () {
-
-//    var reminders = this.sr.reminders();
-//    var rows = [], current = [];
-//    rows.push(current);
-//    for (var i = 0; i < reminders.length; i += 1) {
-//        current.push(reminders[i]);
-//        if (((i + 1) % 4) === 0) {
-//            current = [];
-//            rows.push(current);
-//        }
-//    }
-//    return rows;
-//}, this);
