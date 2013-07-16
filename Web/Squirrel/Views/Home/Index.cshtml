@@ -36,18 +36,23 @@
     
     <section class="row-fluid" data-bind="foreachGroups: reminders">
         <div class="card-wrap" data-bind="foreach: $data">
-            <article data-bind="animateToState: editing() ? 'edit' : 'display', initialState: 'display', disabled: (!enabled && !editing()), attr: { 'class': 'card margin-bottom ' + $parent.spanClass }" >
-                <div class="display">
+            <article data-bind="
+                animateToState: editing() ? 'edit' : 'display', 
+                initialState: 'display', 
+                attr: { 
+                    'class': 'card margin-bottom ' + $parent.spanClass 
+                }, 
+                css: { 
+                    disabled: (!enabled() && !editing()) 
+                }" >
+                <div class="display">                                           
                     <div class="body">
                         <h2 data-bind="visible: name() != '', text: name">
                         </h2>
+                        <button class="icon-menu-2 link-emulate" data-bind="click: $root.editReminder, invisible: $root.editing()"></button> 
                         <p data-bind="text: message" class="message">
                         </p>
-                    </div>
-                    <footer data-bind="invisible: $root.editing()">
-                        <span class="icon-menu-2 link-emulate" data-bind="click: $root.editReminder"></span>
-                        <span class="icon-remove link-emulate" data-bind="click: $root.deleteReminder"></span>
-                    </footer>
+                    </div>                    
                 </div>
                 <div class="edit">
                     <div class="body">                        
@@ -69,7 +74,10 @@
                             </span>
                         </div>
                         <div>
-                            <input type="checkbox" data-bind="checked: enabled" />
+                            <button data-bind="css: { on: enabled, 'on-off': true }, click: $root.enableReminder"></button>
+                        </div>
+                        <div>
+                            <span class="icon-remove link-emulate" data-bind="click: $root.deleteReminder"></span>
                         </div>
                     </div>
                     <footer>

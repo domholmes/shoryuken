@@ -87,6 +87,10 @@ sr.AppViewModel = function () {
         reminder.editing(false);
 
         reminder.isNew(false);
+    }; 
+    
+    vm.enableReminder = function (reminder) {
+        reminder.enabled(!reminder.enabled());
     };
 
     vm.cancelEdit = function (reminder, event) {
