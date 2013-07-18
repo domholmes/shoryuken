@@ -15,7 +15,8 @@ sr.Reminder = function (options) {
         endTime: "20:00",
         days: null,
         actionId: null,
-        enabled: true
+        enabled: true,
+        ssid: ""
     };
 
     options = $.extend(defaults, options);
@@ -31,6 +32,7 @@ sr.Reminder = function (options) {
     rem.endTime = ko.observable(options.endTime);
     rem.actionId = ko.observable(options.actionId);
     rem.enabled = ko.observable(options.enabled);
+    rem.ssid = ko.observable(options.ssid);
     rem.days = ko.observableArray(options.days);
 
     rem.availableEvents = [

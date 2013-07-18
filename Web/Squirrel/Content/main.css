@@ -208,6 +208,12 @@ button.on-off.on
 {
     background-position: -4px 32px;
 }
+button.link-emulate
+{
+    padding: 0;
+    background: none;
+    border: none;
+}
 
 /* Misc
 ------------------------------------------------*/
@@ -256,6 +262,10 @@ button.on-off.on
 .card .body 
 {    
     padding: 20px;
+}
+.enable-actions
+{
+    margin-top: 10px;
 }
 .card h2
 {
