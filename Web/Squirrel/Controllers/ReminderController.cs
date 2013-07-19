@@ -1,77 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
+using Breeze.WebApi;
 using Squirrel.Models;
-using System.Data;
+using System.Linq;
+using Newtonsoft.Json.Linq;
 
 namespace Squirrel.Controllers
 {
-    [Authorize]
+    [BreezeController]
     public class ReminderController : ApiController
     {
-        public IEnumerable<Reminder> Get()
-        {
-            var context = new ReminderContext();
 
-            return context.Reminders.Where(r => r.User.Username == this.User.Identity.Name);
+        readonly EFContextProvider<ReminderContext> _contextProvider =
+            new EFContextProvider<ReminderContext>();
+
+        // ~/breeze/todos/Metadata
+        [HttpGet]
+        public string Metadata()
+        {
+            return _contextProvider.Metadata();
         }
 
-        public HttpResponseMessage Post(Reminder reminder)
+        // ~/breeze/todos/Todos
+        // ~/breeze/todos/Todos?$filter=IsArchived eq false&$orderby=CreatedAt
+        [HttpGet]
+        public IQueryable<Reminder> Reminders()
         {
-            using (var context = new ReminderContext())
-            {
-                User user = context.Users.Where(u => u.Username == User.Identity.Name).SingleOrDefault();
-
-                if (user == null)
-                {
-                    return Request.CreateResponse<Reminder>(HttpStatusCode.BadRequest, reminder);    
-                }
-
-                reminder.User = user;
-            
-                context.Reminders.Add(reminder);
-                context.SaveChanges();
-            }
-            
-            return Request.CreateResponse<Reminder>(HttpStatusCode.Created, reminder);
+            return _contextProvider.Context.Reminders;
         }
 
-        public HttpResponseMessage Put(Reminder reminder)
+        // ~/breeze/todos/SaveChanges
+        [HttpPost]
+        public SaveResult SaveChanges(JObject saveBundle)
         {
-            using (var context = new ReminderContext())
-            {
-                if (!context.Reminders.Where(r => r.Id == reminder.Id).Any())
-                {
-                    throw new HttpResponseException(HttpStatusCode.NotFound);
-                }
-
-                context.Reminders.Attach(reminder);
-                context.Entry(reminder).State = EntityState.Modified;
-
-                context.SaveChanges();
-            }
-
-            return Request.CreateResponse<Reminder>(HttpStatusCode.OK, reminder);
+            return _contextProvider.SaveChanges(saveBundle);
         }
 
-        public HttpResponseMessage Delete(int id)
-        {
-            var reminder = new Reminder()
-            {
-                Id = id
-            };
-            
-            using (var context = new ReminderContext())
-            {
-                context.Reminders.Attach(reminder);
-                context.Reminders.Remove(reminder);
-                context.SaveChanges();
-            }
-
-            return Request.CreateResponse<Reminder>(HttpStatusCode.OK, reminder);
-        }
+        // other miscellaneous actions of no interest to us here
     }
 }

@@ -1,16 +1,19 @@
 var sr = sr || {};
 
 sr.AppViewModel = function () {
-    
-    var vm = this,
-        reminders;
+
+    var vm = this;
 
     vm.reminders = ko.observableArray([]);
 
+    vm.availableEvents = window.reminder.availableEvents;
+
+    vm.availableDays = window.reminder.availableDays;
+
     vm.editing = ko.computed(function () {
-        
+
         var reminder = ko.utils.arrayFirst(vm.reminders(), function (reminder) {
-            
+
             return reminder.editing() === true;
         });
 
@@ -19,103 +22,77 @@ sr.AppViewModel = function () {
 
     vm.createReminder = function () {
 
-        if (vm.editing() === false) {
+        var reminderDefaults = {
 
-            var reminder = new sr.Reminder();
+            name: 'Some default'
+        };
 
-            reminder.isNew(true);
-            reminder.editing(true);
-            vm.reminders.unshift(reminder);
-        }
+        var newReminder = window.repository.createReminder(reminderDefaults);
+        newReminder.editing(true);
+
+        vm.reminders.unshift(newReminder);
     };
 
-    vm.editReminder = function (reminder, event) {
-
-        vm.cachedReminder = ko.toJS(reminder);
+    vm.beginReminderEdit = function (reminder, event) {
 
         reminder.editing(true);
+    };
+
+    vm.cancelReminderEdit = function (reminder, event) {
+
+        reminder.editing(false);
+
+        if (reminder.isNew() === true) {
+
+            vm.reminders.remove(reminder);
+        }
+        else {
+
+            window.repository.revertReminder(reminder)
+        }
     };
 
     vm.deleteReminder = function (reminder) {
 
         vm.reminders.remove(reminder);
+        window.repository.deleteReminder(reminder);
+        window.repository.saveChanges();
+    };
 
-        if (reminder.id !== null) {
-            $.ajax({
-                type: "DELETE",
-                url: "api/reminder/delete/?id=" + reminder.id,
-                success: function (response) {
+    vm.saveReminders = function () {
 
+        // attach any new?
+        window.repository.saveChanges();
+
+        reminder.editing(false);
+    };
+
+    vm.loadReminders = function () {
+
+        window.repository.addAdditionalProperties(function () {
+
+            this.editing = ko.observable(false);
+
+            this.isSelectedDay = function (day) {
+                return this.days().indexOf(day.id) > -1;
+            };
+
+            this.dayClick = function (day) {
+                if (this.days().indexOf(day.id) > -1) {
+                    this.days.remove(day.id);
+                } else {
+                    this.days.push(day.id);
                 }
-            });
-        }
-    };
-
-    vm.saveReminder = function (reminder, event) {
-
-        var unwrappedReminder = ko.toJS(reminder),
-            type, url;
-
-        unwrappedReminder.days = unwrappedReminder.days.join('');
-
-        if (unwrappedReminder.isNew === true) {
-            type = "POST";
-            url = "api/reminder/post";
-        } else {
-            type = "PUT";
-            url = "api/reminder/put";
-        }
-
-        delete unwrappedReminder.availableDays;
-        delete unwrappedReminder.availableEvents;
-        delete unwrappedReminder.editing;
-        delete unwrappedReminder.startTimeDisplay;
-        delete unwrappedReminder.endTimeDisplay;
-        delete unwrappedReminder.isNew;
-
-        $.ajax({
-            url: url,
-            type: type,
-            dataType: "json",
-            contentType: "application/json",
-            data: JSON.stringify(unwrappedReminder),
-            success: function (response) {
-
-            }
+            };
         });
 
-        reminder.editing(false);
+        window.repository.fetchReminders(callback);
 
-        reminder.isNew(false);
-    };
+        function callback(data) {
 
-    vm.cancelEdit = function (reminder, event) {
-        
-        reminder.editing(false);
-        
-        if (reminder.isNew() === true) {
-            
-            vm.deleteReminder(reminder);
-        } else {
-            
-            reminder.message(vm.cachedReminder.message);
-            reminder.name(vm.cachedReminder.name);
-            reminder.actionId(vm.cachedReminder.actionId);
-            reminder.startTime(vm.cachedReminder.startTime);
-            reminder.endTime(vm.cachedReminder.endTime);
-            reminder.days(vm.cachedReminder.days);
-            reminder.enabled(vm.cachedReminder.enabled);
+            vm.reminders(data);
         }
-    };
+    }
 
-    vm.init = function () {
-
-        // Perform initial load
-        $.getJSON("api/reminder/get", function (allData) {
-            var mappedReminders = $.map(allData, function (item) { return new sr.Reminder(item) });
-            vm.reminders(mappedReminders);
-        });
-    };
-
-    vm.init();
+    vm.loadReminders();
 }
