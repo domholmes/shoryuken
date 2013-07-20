@@ -1,7 +1,17 @@
 ﻿
-window.reminder = {
+var reminderDefaults = {
 
-    availableEvents : [
+    enabled: true,
+    startTime: 'PT8H',
+    endTime: 'PT9H',
+    days: '23456'
+}
+
+var reminder = function () {
+
+    this.editing = ko.observable(false);
+
+    this.availableEvents = [
         {
             value: 0,
             text: "Wifi Connected"
@@ -18,9 +28,9 @@ window.reminder = {
             value: 3,
             text: "Charger Disconnected"
         }
-    ],
+    ];
 
-    availableDays : [
+    this.availableDays = [
         {
             id: "2",
             name: "Mon"
@@ -49,5 +59,17 @@ window.reminder = {
             id: "1",
             name: "Sun"
         }
-    ]
+    ];
+
+    this.isDaySelected = function (day) {
+        return this.days().indexOf(day.id) > -1;
+    };
+
+    this.changeDay = function (day) {
+        if (this.days().indexOf(day.id) > -1) {
+            this.days.remove(day.id);
+        } else {
+            this.days.push(day.id);
+        }
+    };
 }

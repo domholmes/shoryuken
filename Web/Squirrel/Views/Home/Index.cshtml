@@ -54,7 +54,7 @@
                         <textarea placeholder="Name" data-bind="value: name, expandingTextbox: true" class="name" rows="1" cols="1" ></textarea><br />
                         <textarea placeholder="Message" data-bind="value: message, expandingTextbox: true" rows="1" cols="1"></textarea>
                         <br />
-                        <select data-bind="options: $root.availableEvents, optionsText: 'text', optionsValue: 'value', value: actionId, optionsCaption: 'Select an action'">
+                        <select data-bind="options: availableEvents, optionsText: 'text', optionsValue: 'value', value: actionId, optionsCaption: 'Select an action'">
                         </select><br />
                         <div class="input-append bootstrap-timepicker">
                             <input type="text" class="input-small timepicker" placeholder="Start time" data-bind="value: startTime" /><span
@@ -64,8 +64,8 @@
                             <input type="text" class="input-small timepicker" placeholder="End time" data-bind="value: endTime" /><span
                                 class="add-on"><i class="icon-time"></i></span>
                         </div>
-                        <div class="days" data-bind="foreach: $root.availableDays">
-                            <span data-bind="text: name, click: $parent.dayClick, css: { selected: $parent.isSelectedDay($data) }">
+                        <div class="days" data-bind="foreach: availableDays">
+                            <span data-bind="text: name, click: $parent.changeDay, css: { selected: $parent.isDaySelected($data) }">
                             </span>
                         </div>
                         <div>
@@ -85,8 +85,8 @@
 </div>
 @section scripts
 {
-    <script src="@Url.Content("~/Scripts/dataaccess/reminderRepository.js")"></script>
     <script src="@Url.Content("~/Scripts/models/reminder.js")"></script>
+    <script src="@Url.Content("~/Scripts/dataaccess/reminderRepository.js")"></script>
     <script src="@Url.Content("~/Scripts/viewmodels/index.js")"></script>
     <script src="@Url.Content("~/Scripts/view/index.js")"></script>
     <script src="@Url.Content("~/Scripts/sr.js")"></script>

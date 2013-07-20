@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace Squirrel.Models
 {
@@ -15,6 +16,7 @@ namespace Squirrel.Models
 
         public string Name { get; set; }
         
+        [Required]
         public string Message { get; set; }
 
         public TimeSpan StartTime

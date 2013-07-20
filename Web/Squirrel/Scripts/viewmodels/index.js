@@ -6,10 +6,6 @@ sr.AppViewModel = function () {
 
     vm.reminders = ko.observableArray([]);
 
-    vm.availableEvents = window.reminder.availableEvents;
-
-    vm.availableDays = window.reminder.availableDays;
-
     vm.editing = ko.computed(function () {
 
         var reminder = ko.utils.arrayFirst(vm.reminders(), function (reminder) {
@@ -22,12 +18,7 @@ sr.AppViewModel = function () {
 
     vm.createReminder = function () {
 
-        var reminderDefaults = {
-
-            name: 'Some default'
-        };
-
-        var newReminder = window.repository.createReminder(reminderDefaults);
+        var newReminder = window.repository.createReminder();
         newReminder.editing(true);
 
         vm.reminders.unshift(newReminder);
@@ -42,13 +33,13 @@ sr.AppViewModel = function () {
 
         reminder.editing(false);
 
-        if (reminder.isNew() === true) {
+        var isNew = window.repository.isNew(reminder);
 
+        if (isNew) {
             vm.reminders.remove(reminder);
         }
         else {
-
-            window.repository.revertReminder(reminder)
+            window.repository.revertReminder(reminder);
         }
     };
 
@@ -59,32 +50,18 @@ sr.AppViewModel = function () {
         window.repository.saveChanges();
     };
 
-    vm.saveReminders = function () {
+    vm.saveReminders = function (reminder) {
 
-        // attach any new?
-        window.repository.saveChanges();
+        var hasValidationErrors = window.repository.hasErrors(reminder);
 
-        reminder.editing(false);
+        if (!hasValidationErrors) {
+            
+            window.repository.saveChanges();
+            reminder.editing(false);
+        }
     };
 
     vm.loadReminders = function () {
-
-        window.repository.addAdditionalProperties(function () {
-
-            this.editing = ko.observable(false);
-
-            this.isSelectedDay = function (day) {
-                return this.days().indexOf(day.id) > -1;
-            };
-
-            this.dayClick = function (day) {
-                if (this.days().indexOf(day.id) > -1) {
-                    this.days.remove(day.id);
-                } else {
-                    this.days.push(day.id);
-                }
-            };
-        });
 
         window.repository.fetchReminders(callback);
 

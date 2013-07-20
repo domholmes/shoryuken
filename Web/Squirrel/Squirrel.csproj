@@ -156,6 +156,10 @@
     <Compile Include="Migrations\201306242050500_InitialCreate.Designer.cs">
       <DependentUpon>201306242050500_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201307201617448_AddRequiredReminderFields.cs" />
+    <Compile Include="Migrations\201307201617448_AddRequiredReminderFields.Designer.cs">
+      <DependentUpon>201307201617448_AddRequiredReminderFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Reminder.cs" />
     <Compile Include="Models\ReminderContext.cs" />
@@ -274,6 +278,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201306242050500_InitialCreate.resx">
       <DependentUpon>201306242050500_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307201617448_AddRequiredReminderFields.resx">
+      <DependentUpon>201307201617448_AddRequiredReminderFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
