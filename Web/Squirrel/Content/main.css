@@ -196,6 +196,24 @@ button span.icon {
     visibility: visible;
     opacity: 0;
 }
+button.on-off
+{
+    background-image: url(images/checkbox.png);
+    background-position: -6px -6px;
+    width: 97px;
+    height: 22px;
+    border: none;
+}
+button.on-off.on
+{
+    background-position: -4px 32px;
+}
+button.link-emulate
+{
+    padding: 0;
+    background: none;
+    border: none;
+}
 
 /* Misc
 ------------------------------------------------*/
@@ -223,22 +241,31 @@ button span.icon {
 /* card */
 .card 
 {
+    position: relative;
     background: #fff;
     box-sizing: border-box;
     border-bottom: 1px solid #ccc;
     border-radius: 2px; 
-    -webkit-transition: box-shadow 250ms ease-in-out;
-    -moz-transition: box-shadow 250ms ease-in-out;
-    -o-transition: box-shadow 250ms ease-in-out;
-    transition: box-shadow 250ms ease-in-out;
+    -webkit-transition: box-shadow 250ms ease-in-out, opacity 250ms ease-in-out;
+    -moz-transition: box-shadow 250ms ease-in-out, opacity 250ms ease-in-out;
+    -o-transition: box-shadow 250ms ease-in-out, opacity 250ms ease-in-out;
+    transition: box-shadow 250ms ease-in-out, opacity 250ms ease-in-out;
 }
 .card.editing
 {
     box-shadow: 0px 4px 8px rgba(100,100,100,0.2);
 }
+.card.disabled
+{
+    opacity: 50%;
+}
 .card .body 
 {    
     padding: 20px;
+}
+.enable-actions
+{
+    margin-top: 10px;
 }
 .card h2
 {
@@ -283,10 +310,15 @@ button span.icon {
     border-top: 1px solid #d1eaf1;
     padding: 10px 20px
 }
-.card .display footer span
+.card .display .body button
 {
+    width: 24px;
+    border: none;
+    height: 24px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
     font-size: 16px;
-    margin-right: 12px;
 }
 .card .edit
 {
