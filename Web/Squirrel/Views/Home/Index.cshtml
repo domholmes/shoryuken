@@ -52,7 +52,7 @@
                 <div class="edit">
                     <div class="body">                        
                         <textarea placeholder="Name" data-bind="value: name, expandingTextbox: true" class="name" rows="1" cols="1" ></textarea><br />
-                        <textarea placeholder="Message" data-bind="value: message, expandingTextbox: true" rows="1" cols="1"></textarea>
+                        <textarea placeholder="Message" data-bind="value: message, expandingTextbox: true, css: { validation: fieldsWithErrors.indexOf('message') > -1 }" rows="1" cols="1"></textarea>
                         <br />
                         <select data-bind="options: availableEvents, optionsText: 'text', optionsValue: 'value', value: actionId, optionsCaption: 'Select an action'">
                         </select><br />
