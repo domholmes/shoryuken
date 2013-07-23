@@ -70,10 +70,12 @@ sr.Reminder = function () {
     };
 
     this.changeDay = function (day) {
-        if (rem.days().indexOf(day.id) > -1) {
-            rem.days.remove(day.id);
+        var days = rem.days();
+
+        if (days.indexOf(day.id) > -1) {
+            rem.days(days.replace(day.id, ""));
         } else {
-            rem.days.push(day.id);
+            rem.days(days + day.id);
         }
     };
 };
