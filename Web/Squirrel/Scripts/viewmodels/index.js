@@ -1,5 +1,3 @@
-var sr = sr || {};
-
 sr.AppViewModel = function () {
 
     var vm = this;
@@ -18,7 +16,7 @@ sr.AppViewModel = function () {
 
     vm.createReminder = function () {
 
-        var newReminder = window.repository.createReminder();
+        var newReminder = sr.repository.createReminder();
         newReminder.editing(true);
 
         vm.reminders.unshift(newReminder);
@@ -33,37 +31,45 @@ sr.AppViewModel = function () {
 
         reminder.editing(false);
 
-        var isNew = window.repository.isNew(reminder);
+        var isNew = sr.repository.isNew(reminder);
 
         if (isNew) {
             vm.reminders.remove(reminder);
         }
         else {
-            window.repository.revertReminder(reminder);
+            sr.repository.revertReminder(reminder);
         }
     };
+
+    vm.editReminder = function (reminder, event) {
+
+        vm.cachedReminder = ko.toJS(reminder);
+
+        reminder.editing(true);
+    };
+
 
     vm.deleteReminder = function (reminder) {
 
         vm.reminders.remove(reminder);
-        window.repository.deleteReminder(reminder);
-        window.repository.saveChanges();
+        sr.repository.deleteReminder(reminder);
+        sr.repository.saveChanges();
     };
 
     vm.saveReminders = function (reminder) {
 
-        var hasValidationErrors = window.repository.hasErrors(reminder);
+        var hasValidationErrors = sr.repository.hasErrors(reminder);
 
         if (!hasValidationErrors) {
             
-            window.repository.saveChanges();
+            sr.repository.saveChanges();
             reminder.editing(false);
         }
     };
 
     vm.loadReminders = function () {
 
-        window.repository.fetchReminders(callback);
+        sr.repository.fetchReminders(callback);
 
         function callback(data) {
 

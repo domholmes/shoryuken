@@ -1,12 +1,12 @@
-(function (window) {
+(function (sr) {
 
     breeze.NamingConvention.camelCase.setAsDefault();
     var episodeManager = new breeze.EntityManager('breeze/reminder');
-    episodeManager.metadataStore.registerEntityTypeCtor("Reminder", window.reminder)
+    episodeManager.metadataStore.registerEntityTypeCtor("Reminder", sr.Reminder)
 
     function createReminder() {
 
-        var newReminder = episodeManager.createEntity('Reminder', window.reminderDefaults);
+        var newReminder = episodeManager.createEntity('Reminder', sr.reminderDefaults);
 
         return newReminder;
     };
@@ -66,7 +66,7 @@
         }
     }
 
-    window.repository = {
+    sr.repository = {
         createReminder: createReminder,
         fetchReminders: fetchReminders,
         deleteReminder: deleteReminder,
@@ -76,4 +76,4 @@
         saveChanges: saveChanges
     }
 
-} (window))
+} (window.sr))

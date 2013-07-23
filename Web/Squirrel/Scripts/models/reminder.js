@@ -1,14 +1,18 @@
-﻿
-var reminderDefaults = {
+﻿var sr = window.sr || {};
 
-    enabled: true,
-    startTime: 'PT8H',
-    endTime: 'PT9H',
-    days: '23456'
-}
+sr.Reminder = function () {
 
-var reminder = function () {
+    var rem = this,
 
+        reminderDefaults = {
+
+            enabled: true,
+            startTime: 'PT8H',
+            endTime: 'PT9H',
+            days: '23456'
+        };
+
+    // this.days = ko.observableArray(this.days.split);
     this.editing = ko.observable(false);
 
     this.availableEvents = [
@@ -66,10 +70,10 @@ var reminder = function () {
     };
 
     this.changeDay = function (day) {
-        if (this.days().indexOf(day.id) > -1) {
-            this.days.remove(day.id);
+        if (rem.days().indexOf(day.id) > -1) {
+            rem.days.remove(day.id);
         } else {
-            this.days.push(day.id);
+            rem.days.push(day.id);
         }
     };
-}
+};

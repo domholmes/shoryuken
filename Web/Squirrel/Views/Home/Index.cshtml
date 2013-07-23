@@ -36,18 +36,23 @@
     
     <section class="row-fluid" data-bind="foreachGroups: reminders">
         <div class="card-wrap" data-bind="foreach: $data">
-            <article data-bind="animateToState: editing() ? 'edit' : 'display', initialState: 'display', disabled: (!enabled && !editing()), attr: { 'class': 'card margin-bottom ' + $parent.spanClass }" >
-                <div class="display">
+            <article data-bind="
+                animateToState: editing() ? 'edit' : 'display', 
+                initialState: 'display', 
+                attr: { 
+                    'class': 'card margin-bottom ' + $parent.spanClass 
+                }, 
+                css: { 
+                    disabled: (!enabled() && !editing()) 
+                }" >
+                <div class="display">                                           
                     <div class="body">
                         <h2 data-bind="visible: name() != '', text: name">
                         </h2>
+                        <button class="icon-menu-2 link-emulate" data-bind="click: $root.editReminder, invisible: $root.editing()"></button> 
                         <p data-bind="text: message" class="message">
                         </p>
-                    </div>
-                    <footer data-bind="invisible: $root.editing()">
-                        <span class="icon-menu-2 link-emulate" data-bind="click: $root.beginReminderEdit"></span>
-                        <span class="icon-remove link-emulate" data-bind="click: $root.deleteReminder"></span>
-                    </footer>
+                    </div>                    
                 </div>
                 <div class="edit">
                     <div class="body">                        
@@ -68,8 +73,15 @@
                             <span data-bind="text: name, click: $parent.changeDay, css: { selected: $parent.isDaySelected($data) }">
                             </span>
                         </div>
+                        <!--
                         <div>
-                            <input type="checkbox" data-bind="checked: enabled" />
+                            <button data-bind="css: { on: enabled, 'on-off': true }, click: $root.enableReminder"></button>
+                            <span class="icon-remove link-emulate float-right" data-bind="click: $root.deleteReminder"></span>
+                        </div>
+                        -->
+                        <div class="enable-actions">
+                            <button class="link-emulate" data-bind="click: $root.enableReminder"><i class="icon-checkbox-checked" data-bind="visible: enabled"></i><i data-bind="visible: !enabled()" class="icon-checkbox-unchecked"></i> Enabled</button>
+                            <button class="link-emulate float-right" data-bind="click: $root.deleteReminder"><i class="icon-remove"></i> Delete</button>
                         </div>
                     </div>
                     <footer>
@@ -85,9 +97,9 @@
 </div>
 @section scripts
 {
+    <script src="@Url.Content("~/Scripts/sr.js")"></script>
     <script src="@Url.Content("~/Scripts/models/reminder.js")"></script>
     <script src="@Url.Content("~/Scripts/dataaccess/reminderRepository.js")"></script>
     <script src="@Url.Content("~/Scripts/viewmodels/index.js")"></script>
-    <script src="@Url.Content("~/Scripts/view/index.js")"></script>
-    <script src="@Url.Content("~/Scripts/sr.js")"></script>
+    <script src="@Url.Content("~/Scripts/view/index.js")"></script>    
 }
