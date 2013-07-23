@@ -264,9 +264,13 @@ button.link-emulate
 {
     opacity: 50%;
 }
-.card .body 
+.card .display .body 
 {    
     padding: 20px;
+}
+.card .edit .body 
+{    
+    padding: 20px 20px 10px;
 }
 .enable-actions
 {
