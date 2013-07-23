@@ -12,10 +12,9 @@ sr.Reminder = function () {
             days: '23456'
         };
 
-    // this.days = ko.observableArray(this.days.split);
-    this.editing = ko.observable(false);
+    rem.editing = ko.observable(false);
 
-    this.availableEvents = [
+    rem.availableEvents = [
         {
             value: 0,
             text: "Wifi Connected"
@@ -34,7 +33,7 @@ sr.Reminder = function () {
         }
     ];
 
-    this.availableDays = [
+    rem.availableDays = [
         {
             id: "2",
             name: "Mon"
@@ -65,11 +64,11 @@ sr.Reminder = function () {
         }
     ];
 
-    this.isDaySelected = function (day) {
-        return this.days().indexOf(day.id) > -1;
+    rem.isDaySelected = function (day) {
+        return rem.days().indexOf(day.id) > -1;
     };
 
-    this.changeDay = function (day) {
+    rem.changeDay = function (day) {
         var days = rem.days();
 
         if (days.indexOf(day.id) > -1) {
@@ -77,5 +76,9 @@ sr.Reminder = function () {
         } else {
             rem.days(days + day.id);
         }
+    };
+
+    rem.enable = function () {
+        rem.enabled(!rem.enabled());
     };
 };

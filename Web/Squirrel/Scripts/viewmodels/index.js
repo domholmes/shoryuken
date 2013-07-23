@@ -48,7 +48,6 @@ sr.AppViewModel = function () {
         reminder.editing(true);
     };
 
-
     vm.deleteReminder = function (reminder) {
 
         vm.reminders.remove(reminder);
