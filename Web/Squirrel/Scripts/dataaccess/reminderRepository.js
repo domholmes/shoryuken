@@ -2,7 +2,6 @@
 
     breeze.NamingConvention.camelCase.setAsDefault();
     var episodeManager = new breeze.EntityManager('breeze/reminder');
-    
 
     function createReminder() {
 
@@ -66,7 +65,7 @@
         }
     }
 
-    episodeManager.metadataStore.registerEntityTypeCtor("Reminder", window.reminder, function (entity) {
+    episodeManager.metadataStore.registerEntityTypeCtor("Reminder", sr.Reminder, function (entity) {
 
         entity.fieldsWithErrors = ko.observableArray([]);
 
