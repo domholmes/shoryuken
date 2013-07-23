@@ -2,7 +2,7 @@
 
     breeze.NamingConvention.camelCase.setAsDefault();
     var episodeManager = new breeze.EntityManager('breeze/reminder');
-    episodeManager.metadataStore.registerEntityTypeCtor("Reminder", sr.Reminder)
+    
 
     function createReminder() {
 
@@ -65,6 +65,23 @@
             //app.logger.success("nothing to save");
         }
     }
+
+    episodeManager.metadataStore.registerEntityTypeCtor("Reminder", window.reminder, function (entity) {
+
+        entity.fieldsWithErrors = ko.observableArray([]);
+
+        entity.entityAspect.validationErrorsChanged.subscribe(function () {
+
+            entity.fieldsWithErrors.removeAll();
+
+            var errors = entity.entityAspect.getValidationErrors();
+
+            $.each(errors, function () {
+
+                entity.fieldsWithErrors.push(this.propertyName);
+            });
+        });
+    });
 
     sr.repository = {
         createReminder: createReminder,

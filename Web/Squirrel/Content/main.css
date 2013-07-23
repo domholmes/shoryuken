@@ -47,6 +47,11 @@ body
 /* Forms
 ------------------------------------------------*/
 
+textarea.validation
+{
+    border: 1px solid #e80c4d; 
+}
+
 input[type="text"],
 textarea 
 {
