@@ -14,6 +14,9 @@ sr.Reminder = function () {
 
     rem.editing = ko.observable(false);
 
+    // temporary
+    rem.notifyOnce = ko.observable(false);
+
     rem.availableEvents = [
         {
             value: 0,
