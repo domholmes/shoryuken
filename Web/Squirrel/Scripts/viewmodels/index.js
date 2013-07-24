@@ -43,9 +43,9 @@ sr.AppViewModel = function () {
 
     vm.editReminder = function (reminder, event) {
 
-        vm.cachedReminder = ko.toJS(reminder);
-
-        reminder.editing(true);
+        if (vm.editing() === false) {
+            reminder.editing(true);
+        }
     };
 
     vm.deleteReminder = function (reminder) {
@@ -60,7 +60,7 @@ sr.AppViewModel = function () {
         var hasValidationErrors = sr.repository.hasErrors(reminder);
 
         if (!hasValidationErrors) {
-            
+
             sr.repository.saveChanges();
             reminder.editing(false);
         }

@@ -70,6 +70,10 @@
                         </div>
                         
                         <div class="control-group">
+                            <div class="meridian pull-right">
+                                <button class="link-emulate" data-bind="setMeridian: 'AM'">AM</button> | 
+                                <button class="link-emulate" data-bind="setMeridian: 'PM'">PM</button>
+                            </div>
                             <div class="input-append bootstrap-timepicker">
                                 <input type="text" class="input-small timepicker" placeholder="Start time" data-bind="value: startTime" /><span
                                     class="add-on"><i class="icon-time"></i></span><br />
@@ -78,11 +82,18 @@
                                 <input type="text" class="input-small timepicker" placeholder="End time" data-bind="value: endTime" /><span
                                     class="add-on"><i class="icon-time"></i></span>
                             </div>
+                        </div>
+
+                        <div class="control-group">
                             <div class="days" data-bind="foreach: availableDays">
                                 <span data-bind="text: name, click: $parent.changeDay, css: { selected: $parent.isDaySelected($data) }">
                                 </span>
                             </div> 
-                        </div>   
+                        </div>  
+                        
+                        <div class="control-group">
+                            <button class="link-emulate" data-bind="click: function() { notifyOnce(!notifyOnce()); }"><i class="icon-checkbox-checked" data-bind="visible: notifyOnce"></i><i data-bind="visible: !notifyOnce()" class="icon-checkbox-unchecked"></i> Notify Once</button>
+                        </div> 
                         
                         <div class="control-group">                    
                             <!--

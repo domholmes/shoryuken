@@ -1,6 +1,21 @@
-﻿ko.bindingHandlers.expandingTextbox = {
+﻿ko.bindingHandlers.setMeridian = {
+    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        var value = valueAccessor(),
+            reminder = bindingContext.$data;
 
-    // not finished
+        $(element).on('click', function () {
+            if (value === "AM") {
+                reminder.startTime("PT0H"); // TODO: not sure how we're going to bind these properties so will probably need these values changing
+                reminder.endTime("PT12H");
+            } else if (value === "PM") {
+                reminder.startTime("PT12H");
+                reminder.endTime("PT0H");
+            }
+        });
+    }
+};
+
+ko.bindingHandlers.expandingTextbox = {
 
     setTextareaSize: function (elements) {
         elements.each(function (index, el) {
@@ -18,7 +33,13 @@
         self.setTextareaSize(element);
 
         element.keyup(function (e) {
-            self.setTextareaSize($(this));
+            self.setTextareaSize(element);
+        });
+
+        $(document).on('newState', function (event, state) {
+            if (state === 'edit') {
+                self.setTextareaSize(element);
+            }
         });
     }
 };
@@ -73,6 +94,7 @@ ko.bindingHandlers.animateToState = {
 
             element.animate({ height: eventualSize + 'px' }, DURATION, function () {
                 element.css('height', 'auto');
+                $(document).trigger('newState', valueUnwrapped);
             });
         }
     }
@@ -88,10 +110,11 @@ ko.bindingHandlers.slideVisible = {
         var duration = allBindingsAccessor().slideDuration || 400; // 400ms is default duration unless otherwise specified
 
         // Now manipulate the DOM element
-        if (valueAccessor() == true)
+        if (valueAccessor() == true) {
             $(element).slideDown(duration); // Make the element visible
-        else
+        } else {
             $(element).hide();   // Make the element invisible
+        }
     }
 };
 
@@ -142,5 +165,19 @@ ko.bindingHandlers.foreachGroups = {
 
         //make sure that the children of this element are not bound
         return { controlsDescendantBindings: true };
+    }
+};
+
+ko.bindingHandlers.invisible = {
+    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        $(element).addClass('invisible-transition');
+    },
+    update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        var value = valueAccessor()
+        if (value === true) {
+            $(element).addClass('invisible');
+        } else {
+            $(element).removeClass('invisible');
+        }
     }
 };

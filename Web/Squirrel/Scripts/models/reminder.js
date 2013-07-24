@@ -14,7 +14,7 @@ sr.Reminder = function () {
 
     rem.editing = ko.observable(false);
 
-    // temporary
+    // TODO: temporary mocked property
     rem.notifyOnce = ko.observable(false);
 
     rem.availableEvents = [

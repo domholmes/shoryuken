@@ -272,6 +272,10 @@ button.link-emulate
 {    
     padding: 20px 20px 10px;
 }
+.card .meridian button
+{
+    font-weight: bold;
+}
 .enable-actions
 {
     margin-top: 10px;
