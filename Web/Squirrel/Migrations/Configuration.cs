@@ -7,11 +7,6 @@ namespace Squirrel.Migrations
 
     internal sealed class Configuration : DbMigrationsConfiguration<Squirrel.Models.ReminderContext>
     {
-        public Configuration()
-        {
-            AutomaticMigrationsEnabled = true;
-        }
-
         protected override void Seed(Squirrel.Models.ReminderContext context)
         {
             //  This method will be called after migrating to the latest version.
