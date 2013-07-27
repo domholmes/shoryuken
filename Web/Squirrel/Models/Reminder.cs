@@ -1,6 +1,4 @@
-﻿using FluentValidation.Attributes;
-using FluentValidation;
-using System;
+﻿using System;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 
