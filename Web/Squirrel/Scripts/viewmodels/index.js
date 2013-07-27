@@ -55,15 +55,12 @@ sr.AppViewModel = function () {
         sr.repository.saveChanges();
     };
 
-    vm.saveReminders = function (reminder) {
+    vm.saveReminder = function (reminder) {
 
-        var hasValidationErrors = sr.repository.hasErrors(reminder);
+        sr.repository.saveReminder(reminder, function () {
 
-        if (!hasValidationErrors) {
-
-            sr.repository.saveChanges();
             reminder.editing(false);
-        }
+        });
     };
 
     vm.loadReminders = function () {

@@ -1,16 +1,17 @@
 ﻿var sr = window.sr || {};
 
+sr.reminderDefaults = {
+
+    enabled: true,
+    startTime: '08:00',
+    endTime: '09:00',
+    days: '23456',
+    actionId: 3
+};
+
 sr.Reminder = function () {
 
-    var rem = this,
-
-        reminderDefaults = {
-
-            enabled: true,
-            startTime: 'PT8H',
-            endTime: 'PT9H',
-            days: '23456'
-        };
+    var rem = this;
 
     rem.editing = ko.observable(false);
 

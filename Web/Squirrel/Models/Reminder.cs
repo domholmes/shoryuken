@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using FluentValidation.Attributes;
+using FluentValidation;
+using System;
 using System.Linq;
-using System.Web;
 using System.ComponentModel.DataAnnotations;
 
 namespace Squirrel.Models
 {
+    [StartTimeBeforeEndValidation]
     public class Reminder
     {
         public int Id { get; set; }
@@ -14,49 +15,27 @@ namespace Squirrel.Models
 
         public bool Enabled { get; set; }
 
+        [StringLength(50)]
         public string Name { get; set; }
         
         [Required]
+        [StringLength(50)]
         public string Message { get; set; }
 
-        public TimeSpan StartTime
-        {
-            get;
-            set;
-        }
+        [Time]
+        public string StartTime { get; set; }
 
-        public TimeSpan EndTime
-        {
-            get;
-            set;
-        }
+        [Time]
+        public string EndTime { get; set; }
 
-        public string Days
-        {
-            get;
-            set;
-        }
+        [DaysOfTheWeek]
+        public string Days { get; set; }
 
-        public int ActionId
-        {
-            get;
-            set;
-        }
-
-        public Action Action
-        {
-            get
-            {
-                return (Action)this.ActionId;
-            }
-            set
-            {
-                this.ActionId = (int)value;
-            }
-        }
+        [DeviceActionId]
+        public int ActionId { get; set; }
     }
 
-    public enum Action
+    public enum DeviceAction
     {
         WifiConnected = 0,
         WifiDisconnected = 1,

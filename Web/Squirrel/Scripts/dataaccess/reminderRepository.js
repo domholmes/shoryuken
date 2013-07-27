@@ -21,8 +21,7 @@
                 callback(data.results);
             })
             .fail(function (saveResult) {
-
-                //app.logger.success("query failed");
+                //kept empty to insert debug breakpoint
             });
     };
 
@@ -46,23 +45,14 @@
         return reminder.entityAspect.getValidationErrors().length > 0;
     }
 
-    function saveChanges() {
+    function saveReminder(reminder, successCallback) {
 
-        if (episodeManager.hasChanges()) {
-
-            episodeManager
-                .saveChanges()
-                .then(function (saveResult) {
-                    //app.logger.success("save ok");
-                })
-                .fail(function (saveResult) {
-                    //app.logger.success("save failed");
-                });
-        }
-        else {
-
-            //app.logger.success("nothing to save");
-        }
+        episodeManager
+            .saveChanges([reminder])
+            .then(successCallback)
+            .fail(function (saveResult) {
+                //kept empty to insert debug breakpoint
+            });
     }
 
     episodeManager.metadataStore.registerEntityTypeCtor("Reminder", sr.Reminder, function (entity) {
@@ -87,9 +77,9 @@
         fetchReminders: fetchReminders,
         deleteReminder: deleteReminder,
         revertReminder: revertReminder,
+        saveReminder: saveReminder,
         isNew: isNew,
-        hasErrors: hasErrors,
-        saveChanges: saveChanges
+        hasErrors: hasErrors
     }
 
 } (window.sr))
