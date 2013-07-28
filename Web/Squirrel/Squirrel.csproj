@@ -149,6 +149,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ReminderContextProvider.cs" />
     <Compile Include="Controllers\ReminderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReminderMobileController.cs" />
@@ -166,6 +167,10 @@
     <Compile Include="Migrations\201307272046488_Validation.cs" />
     <Compile Include="Migrations\201307272046488_Validation.Designer.cs">
       <DependentUpon>201307272046488_Validation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307281447339_ReminderRequiredConstraints.cs" />
+    <Compile Include="Migrations\201307281447339_ReminderRequiredConstraints.Designer.cs">
+      <DependentUpon>201307281447339_ReminderRequiredConstraints.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Reminder.cs" />
@@ -292,6 +297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201307272046488_Validation.resx">
       <DependentUpon>201307272046488_Validation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307281447339_ReminderRequiredConstraints.resx">
+      <DependentUpon>201307281447339_ReminderRequiredConstraints.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

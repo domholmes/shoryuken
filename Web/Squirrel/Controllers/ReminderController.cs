@@ -10,31 +10,29 @@ namespace Squirrel.Controllers
     public class ReminderController : ApiController
     {
 
-        readonly EFContextProvider<ReminderContext> _contextProvider =
-            new EFContextProvider<ReminderContext>();
+        readonly ReminderContextProvider context;
 
-        // ~/breeze/todos/Metadata
+        public ReminderController()
+        {
+            context = new ReminderContextProvider(this);
+        }
+
         [HttpGet]
         public string Metadata()
         {
-            return _contextProvider.Metadata();
+            return context.Metadata();
         }
 
-        // ~/breeze/todos/Todos
-        // ~/breeze/todos/Todos?$filter=IsArchived eq false&$orderby=CreatedAt
         [HttpGet]
         public IQueryable<Reminder> Reminders()
         {
-            return _contextProvider.Context.Reminders;
+            return context.Context.Reminders.Where(r => r.User.Username == this.User.Identity.Name);
         }
 
-        // ~/breeze/todos/SaveChanges
         [HttpPost]
         public SaveResult SaveChanges(JObject saveBundle)
         {
-            return _contextProvider.SaveChanges(saveBundle);
+            return context.SaveChanges(saveBundle);
         }
-
-        // other miscellaneous actions of no interest to us here
     }
 }

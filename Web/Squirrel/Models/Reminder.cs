@@ -9,8 +9,10 @@ namespace Squirrel.Models
     {
         public int Id { get; set; }
 
+        [Required]
         public User User { get; set; }
 
+        [Required]
         public bool Enabled { get; set; }
 
         [StringLength(50)]
