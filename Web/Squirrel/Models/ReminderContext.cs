@@ -9,11 +9,6 @@ namespace Squirrel.Models
 {
     public class ReminderContext : DbContext
     {
-        static ReminderContext()
-        {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ReminderContext, Configuration>());
-        }
-        
         public DbSet<Reminder> Reminders { get; set; }
 
         public DbSet<User> Users { get; set; }
