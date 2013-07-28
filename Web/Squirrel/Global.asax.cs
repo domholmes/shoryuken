@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Newtonsoft.Json.Serialization;
+using System.Data.Entity;
+using Squirrel.Models;
 
 namespace Squirrel
 {
@@ -26,6 +28,8 @@ namespace Squirrel
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Database.SetInitializer(new CreateDatabaseIfNotExists<ReminderContext>());
         }
     }
 }

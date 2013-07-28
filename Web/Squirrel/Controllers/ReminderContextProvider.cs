@@ -19,17 +19,32 @@ namespace Squirrel.Controllers
 
         protected override bool BeforeSaveEntity(EntityInfo entityInfo)
         {
+            if (controller.User == null)
+            {
+                return false;
+            }
+            
             var reminder = entityInfo.Entity as Reminder;
-            string username = controller.User.Identity.Name;
-
-            User user = this.Context.Users.Where(u => u.Username == username).SingleOrDefault();
+            string currentUser = controller.User.Identity.Name;
+            User user = this.Context.Users.Where(u => u.Username == currentUser).SingleOrDefault();
 
             if (user == null || reminder == null)
             {
                 return false;
             }
 
-            reminder.User = user;
+            if (entityInfo.EntityState == EntityState.Modified)
+            {
+                if (reminder.UserId != user.Id)
+                {
+                    return false;
+                }
+            }
+
+            if (entityInfo.EntityState == EntityState.Added)
+            {
+                reminder.UserId = user.Id.Value;
+            }
 
             return true;
         }  

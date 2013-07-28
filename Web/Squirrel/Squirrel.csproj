@@ -172,6 +172,10 @@
     <Compile Include="Migrations\201307281447339_ReminderRequiredConstraints.Designer.cs">
       <DependentUpon>201307281447339_ReminderRequiredConstraints.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201307282019475_ReminderUserId.cs" />
+    <Compile Include="Migrations\201307282019475_ReminderUserId.Designer.cs">
+      <DependentUpon>201307282019475_ReminderUserId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Reminder.cs" />
     <Compile Include="Models\ReminderContext.cs" />
@@ -300,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201307281447339_ReminderRequiredConstraints.resx">
       <DependentUpon>201307281447339_ReminderRequiredConstraints.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307282019475_ReminderUserId.resx">
+      <DependentUpon>201307282019475_ReminderUserId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -52,7 +52,10 @@ sr.AppViewModel = function () {
 
         vm.reminders.remove(reminder);
         sr.repository.deleteReminder(reminder);
-        sr.repository.saveChanges();
+        sr.repository.saveReminder(reminder, function () {
+
+            reminder.editing(false);
+        });
     };
 
     vm.saveReminder = function (reminder) {
