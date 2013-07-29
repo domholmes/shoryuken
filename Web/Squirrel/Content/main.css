@@ -168,6 +168,10 @@ button span.icon {
     cursor: pointer;
     color: #0099cc;
 }
+.link-emulate.busy 
+{
+    color: green;
+}
 .margin-bottom 
 {
     margin-bottom: 20px;

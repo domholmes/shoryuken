@@ -15,6 +15,8 @@ sr.Reminder = function () {
 
     rem.editing = ko.observable(false);
 
+    rem.saving = ko.observable(false);
+
     // TODO: temporary mocked property
     rem.notifyOnce = ko.observable(false);
 

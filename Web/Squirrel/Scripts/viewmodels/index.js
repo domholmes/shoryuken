@@ -29,22 +29,18 @@ sr.AppViewModel = function () {
 
     vm.cancelReminderEdit = function (reminder, event) {
 
-        reminder.editing(false);
+        if (!reminder.saving()) {
 
-        var isNew = sr.repository.isNew(reminder);
+            reminder.editing(false);
 
-        if (isNew) {
-            vm.reminders.remove(reminder);
-        }
-        else {
-            sr.repository.revertReminder(reminder);
-        }
-    };
+            var isNew = sr.repository.isNew(reminder);
 
-    vm.editReminder = function (reminder, event) {
-
-        if (vm.editing() === false) {
-            reminder.editing(true);
+            if (isNew) {
+                vm.reminders.remove(reminder);
+            }
+            else {
+                sr.repository.revertReminder(reminder);
+            }
         }
     };
 
@@ -60,10 +56,19 @@ sr.AppViewModel = function () {
 
     vm.saveReminder = function (reminder) {
 
-        sr.repository.saveReminder(reminder, function () {
+        reminder.saving(true);
 
+        sr.repository.saveReminder(
+            reminder,
+            function () {// success
+            
+            reminder.saving(false);
             reminder.editing(false);
-        });
+            }, 
+            function () {// fail
+
+            reminder.saving(false);
+            });
     };
 
     vm.loadReminders = function () {

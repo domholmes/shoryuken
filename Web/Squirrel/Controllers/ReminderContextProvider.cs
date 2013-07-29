@@ -33,7 +33,7 @@ namespace Squirrel.Controllers
                 return false;
             }
 
-            if (entityInfo.EntityState == EntityState.Modified)
+            if (entityInfo.EntityState == EntityState.Modified || entityInfo.EntityState == EntityState.Deleted)
             {
                 if (reminder.UserId != user.Id)
                 {

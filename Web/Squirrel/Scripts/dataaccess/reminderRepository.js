@@ -45,14 +45,12 @@
         return reminder.entityAspect.getValidationErrors().length > 0;
     }
 
-    function saveReminder(reminder, successCallback) {
+    function saveReminder(reminder, successCallback, failCallback) {
 
         episodeManager
             .saveChanges([reminder])
             .then(successCallback)
-            .fail(function (saveResult) {
-                //kept empty to insert debug breakpoint
-            });
+            .fail(failCallback);
     }
 
     episodeManager.metadataStore.registerEntityTypeCtor("Reminder", sr.Reminder, function (entity) {
