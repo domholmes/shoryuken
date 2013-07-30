@@ -29,7 +29,7 @@
 <div id="body">
     <div class="row-fluid">
         <div class="span12 margin-bottom">
-            <button type="button" class="btn btn-large add-reminder" data-bind="click: createReminder, css: { disabled: editing }">
+            <button type="button" class="btn btn-large add-reminder" data-bind="click: createReminder, css: { disabled: !canAddNew() }">
                 <span class="icon icon-pencil"></span>Add Reminder</button>
         </div>
     </div>    

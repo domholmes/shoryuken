@@ -2,7 +2,7 @@ sr.AppViewModel = function () {
 
     var vm = this;
 
-    vm.reminders = ko.observableArray([]);
+    vm.reminders = ko.observableArray([]);    
 
     vm.editing = ko.computed(function () {
 
@@ -14,8 +14,12 @@ sr.AppViewModel = function () {
         return reminder !== null;
     });
 
+    vm.canAddNew = ko.computed(function () {
+        return !vm.editing();
+    });
+
     vm.createReminder = function () {
-        if (!vm.editing()) {
+        if (vm.canAddNew()) {
 
             var newReminder = sr.repository.createReminder();
             newReminder.editing(true);
