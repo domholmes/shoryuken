@@ -15,11 +15,13 @@ sr.AppViewModel = function () {
     });
 
     vm.createReminder = function () {
+        if (!vm.editing()) {
 
-        var newReminder = sr.repository.createReminder();
-        newReminder.editing(true);
+            var newReminder = sr.repository.createReminder();
+            newReminder.editing(true);
 
-        vm.reminders.unshift(newReminder);
+            vm.reminders.unshift(newReminder);
+        }
     };
 
     vm.beginReminderEdit = function (reminder, event) {
@@ -31,8 +33,6 @@ sr.AppViewModel = function () {
 
         if (!reminder.saving()) {
 
-            reminder.editing(false);
-
             var isNew = sr.repository.isNew(reminder);
 
             if (isNew) {
@@ -40,6 +40,8 @@ sr.AppViewModel = function () {
             }
             else {
                 sr.repository.revertReminder(reminder);
+                reminder.saving(false);
+                reminder.editing(false);
             }
         }
     };
@@ -59,16 +61,16 @@ sr.AppViewModel = function () {
         reminder.saving(true);
 
         sr.repository.saveReminder(
-            reminder,
-            function () {// success
-            
-            reminder.saving(false);
-            reminder.editing(false);
-            }, 
-            function () {// fail
+        reminder,
+        function () {// success
 
             reminder.saving(false);
-            });
+            reminder.editing(false);
+        },
+        function () {// fail
+
+            reminder.saving(false);
+        });
     };
 
     vm.loadReminders = function () {
