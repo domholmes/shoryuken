@@ -47,9 +47,16 @@ body
 /* Forms
 ------------------------------------------------*/
 
-textarea.validation
+textarea.validation-highlight
 {
     border: 1px solid #e80c4d; 
+}
+
+span.validation-error
+{
+    color: #e80c4d;
+    font-style: italic;
+    font-weight: normal;
 }
 
 input[type="text"],

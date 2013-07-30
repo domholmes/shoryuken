@@ -1,8 +1,12 @@
 (function (sr) {
 
+    // EntityManager configuration
     breeze.NamingConvention.camelCase.setAsDefault();
     var episodeManager = new breeze.EntityManager('breeze/reminder');
 
+    var valOpts = episodeManager.validationOptions.using({ validateOnAttach: false });
+    episodeManager.setProperties({ validationOptions: valOpts });
+    
     function createReminder() {
 
         var newReminder = episodeManager.createEntity('Reminder', sr.reminderDefaults);
@@ -32,6 +36,9 @@
 
     function revertReminder(reminder) {
 
+        reminder.propertiesWithErrors.removeAll();
+        reminder.errors.removeAll();
+
         reminder.entityAspect.rejectChanges();
     }
 
@@ -47,6 +54,9 @@
 
     function saveReminder(reminder, successCallback, failCallback) {
 
+        reminder.propertiesWithErrors.removeAll();
+        reminder.errors.removeAll();
+
         episodeManager
             .saveChanges([reminder])
             .then(successCallback)
@@ -55,17 +65,24 @@
 
     episodeManager.metadataStore.registerEntityTypeCtor("Reminder", sr.Reminder, function (entity) {
 
-        entity.fieldsWithErrors = ko.observableArray([]);
+        entity.propertiesWithErrors = ko.observableArray([]);
+        entity.errors = ko.observableArray([]);
 
         entity.entityAspect.validationErrorsChanged.subscribe(function () {
 
-            entity.fieldsWithErrors.removeAll();
+            entity.propertiesWithErrors.removeAll();
+            entity.errors.removeAll();
 
             var errors = entity.entityAspect.getValidationErrors();
 
             $.each(errors, function () {
 
-                entity.fieldsWithErrors.push(this.propertyName);
+                entity.errors.push(this.errorMessage);     
+
+                if (typeof this.propertyName != 'undefined') {
+
+                    entity.propertiesWithErrors.push(this.propertyName);
+                }
             });
         });
     });

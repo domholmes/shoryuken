@@ -61,13 +61,13 @@ sr.AppViewModel = function () {
         sr.repository.saveReminder(
             reminder,
             function () {// success
-            
-            reminder.saving(false);
-            reminder.editing(false);
-            }, 
+
+                reminder.saving(false);
+                reminder.editing(false);
+            },
             function () {// fail
 
-            reminder.saving(false);
+                reminder.saving(false);
             });
     };
 
