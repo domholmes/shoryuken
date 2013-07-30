@@ -4,8 +4,19 @@
             reminder = bindingContext.$data;
 
         $(element).timepicker({
-            showMeridian: false
+            showMeridian: false,
+            defaultTime: value()
+        })
+        .on('changeTime.timepicker', function (e) {
+            value(e.time.value);
         });
+
+    },
+    update: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        var value = valueAccessor(),
+            reminder = bindingContext.$data;
+
+        $(element).timepicker('setTime', value());
     }
 };
 
