@@ -87,4 +87,14 @@ sr.Reminder = function () {
     rem.enable = function () {
         rem.enabled(!rem.enabled());
     };
+
+    rem.setToAm = function () {
+        rem.startTime("00:00");
+        rem.endTime("12:00");
+    }
+
+    rem.setToPm = function () {
+        rem.startTime("12:00");
+        rem.endTime("00:00");
+    }
 };

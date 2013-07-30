@@ -1,15 +1,24 @@
-﻿ko.bindingHandlers.setMeridian = {
+﻿ko.bindingHandlers.timePicker = {
+    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        var value = valueAccessor(),
+            reminder = bindingContext.$data;
+
+        $(element).timepicker({
+            showMeridian: false
+        });
+    }
+};
+
+ko.bindingHandlers.setMeridian = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var value = valueAccessor(),
             reminder = bindingContext.$data;
 
         $(element).on('click', function () {
             if (value === "AM") {
-                reminder.startTime("PT0H"); // TODO: not sure how we're going to bind these properties so will probably need these values changing
-                reminder.endTime("PT12H");
+                reminder.setToAm();
             } else if (value === "PM") {
-                reminder.startTime("PT12H");
-                reminder.endTime("PT0H");
+                reminder.setToPm();
             }
         });
     }
