@@ -15,6 +15,7 @@ sr.AppViewModel = function () {
     });
 
     vm.canAddNew = ko.computed(function () {
+
         return !vm.editing();
     });
 
@@ -65,16 +66,17 @@ sr.AppViewModel = function () {
         reminder.saving(true);
 
         sr.repository.saveReminder(
-        reminder,
-        function () {// success
 
-            reminder.saving(false);
-            reminder.editing(false);
-        },
-        function () {// fail
+            reminder,
+            function () {// success
 
-            reminder.saving(false);
-        });
+                reminder.saving(false);
+                reminder.editing(false);
+            },
+            function () {// fail
+
+                reminder.saving(false);
+            });
     };
 
     vm.loadReminders = function () {

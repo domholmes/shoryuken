@@ -59,7 +59,7 @@
                       
                         <div class="control-group">                     
                             <textarea placeholder="Name" data-bind="value: name, expandingTextbox: true" class="name" rows="1" cols="1" ></textarea><br />
-                            <textarea placeholder="Message" data-bind="value: message, expandingTextbox: true, css: { validation: fieldsWithErrors.indexOf('message') > -1 }" rows="1" cols="1"></textarea>
+                            <textarea placeholder="Message" data-bind="value: message, expandingTextbox: true, css: { 'validation-highlight': propertiesWithErrors.indexOf('message') > -1 }" rows="1" cols="1"></textarea>
                         </div> 
 
                         <div class="control-group">
@@ -92,19 +92,12 @@
                         </div>  
                         
                         <div class="control-group">
-                            <button class="link-emulate" data-bind="click: function() { notifyOnce(!notifyOnce()); }"><i class="icon-checkbox-checked" data-bind="visible: notifyOnce"></i><i data-bind="visible: !notifyOnce()" class="icon-checkbox-unchecked"></i> Notify Once</button>
+                            <!--<button class="link-emulate" data-bind="click: function() { notifyOnce(!notifyOnce()); }"><i class="icon-checkbox-checked" data-bind="visible: notifyOnce"></i><i data-bind="visible: !notifyOnce()" class="icon-checkbox-unchecked"></i> Notify Once</button>-->
                         </div> 
                         
                         <div class="control-group">                    
-                            <!--
-                            <div>
-                                <button data-bind="css: { on: enabled, 'on-off': true }, click: enable"></button>
-                                <span class="icon-remove link-emulate float-right" data-bind="click: $root.deleteReminder"></span>
-                            </div>
-                            -->
                             <div class="enable-actions">
                                 <button class="link-emulate" data-bind="click: enable"><i class="icon-checkbox-checked" data-bind="visible: enabled"></i><i data-bind="visible: !enabled()" class="icon-checkbox-unchecked"></i> Enabled</button>
-                                <button class="link-emulate float-right" data-bind="click: $root.deleteReminder"><i class="icon-remove"></i> Delete</button>
                             </div>
                         </div>
 
@@ -114,6 +107,10 @@
                             Save</span>
                         <span class="link-emulate" data-bind="click: $root.cancelReminderEdit">
                             Cancel</span>
+                        <button class="link-emulate float-right" data-bind="click: $root.deleteReminder"><i class="icon-remove"></i> Delete</button>
+                        <div data-bind="foreach: errors">
+                            <span  class="validation-error" data-bind="text: $data"></span>
+                        </div>
                     </footer>
                 </div>
             </article>

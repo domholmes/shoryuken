@@ -10,11 +10,11 @@ namespace Squirrel.Models
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class StartTimeBeforeEndValidation : ValidationAttribute
-    {
+    {   
         public override Boolean IsValid(Object value)
         {
             var reminder = (Reminder)value;
-
+            
             bool startIsBeforeEnd = Time.ConvertTime(reminder.StartTime) < Time.ConvertTime(reminder.EndTime);
 
             if (!startIsBeforeEnd)
