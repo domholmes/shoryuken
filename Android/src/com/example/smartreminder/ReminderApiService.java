@@ -16,6 +16,7 @@ import java.net.HttpURLConnection;
 
 public class ReminderApiService
 {
+    //private static final String baseUri = "http://192.168.1.6:4567/api/remindermobile/";
     private static final String baseUri = "http://jlbceramicart.com/api/remindermobile/";
     private JsonArrayBuilder arrayBuilder;
     private IdTokenStore tokenStore;

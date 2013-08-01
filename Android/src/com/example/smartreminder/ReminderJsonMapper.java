@@ -15,6 +15,7 @@ public class ReminderJsonMapper
 		String startTime = reminderJson.getString("startTime");
 		String endTime = reminderJson.getString("endTime");
 		int eventId = reminderJson.getInt("actionId");
+        String actionExtra = reminderJson.getString("actionExtra");
 		String days = reminderJson.getString("days");		
 		
 		Reminder reminder = new Reminder();
@@ -24,6 +25,7 @@ public class ReminderJsonMapper
 		reminder.startTime = startTime;
 		reminder.endTime = endTime;
 		reminder.action = Action.values()[eventId];
+        reminder.actionExtra = actionExtra;
 		reminder.days = new ArrayList<Integer>();
 		
 		for(char day: days.toCharArray())

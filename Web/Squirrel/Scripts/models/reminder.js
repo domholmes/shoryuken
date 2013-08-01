@@ -23,21 +23,49 @@ sr.Reminder = function () {
     rem.availableEvents = [
         {
             value: 0,
-            text: "Wifi Connected"
+            text: "Wifi Connected",
+            hasExtra: true
         },
         {
             value: 1,
-            text: "Wifi Disconnected"
+            text: "Wifi Disconnected",
+            hasExtra: true
         },
         {
             value: 2,
-            text: "Charger Connected"
+            text: "Charger Connected",
+            hasExtra: false
         },
         {
             value: 3,
-            text: "Charger Disconnected"
+            text: "Charger Disconnected",
+            hasExtra: false
         }
     ];
+
+    rem.actionHasExtra = ko.computed(
+    {
+        read: function () {
+
+            var id = rem.actionId();
+            var matchingEvent;
+
+            $.each(rem.availableEvents(), function (index, event) {
+
+                if (event.value == id) {
+
+                    matchingEvent = event;
+                    return;
+                }
+            });
+
+            return matchingEvent.hasExtra;
+        },
+
+        // required because actionId not yet defined
+        deferEvaluation: true
+
+    });
 
     rem.availableDays = [
         {

@@ -9,6 +9,8 @@ public class Reminder
     public int id;
 
     public Action action;
+
+    public String actionExtra;
 	
     public String extra;
     

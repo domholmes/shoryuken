@@ -36,6 +36,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="Commander">
+    <leftPanel />
+    <rightPanel />
+    <splitter proportion="0.5" />
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -45,6 +50,68 @@
   <component name="DebuggerManager">
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <method_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderTask.java" line="53" class="com.example.smartreminder.ReminderTask" package="com.example.smartreminder">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderApiService.java" line="44" class="com.example.smartreminder.ReminderApiService" package="com.example.smartreminder">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderApiService.java" line="33" class="com.example.smartreminder.ReminderApiService" package="com.example.smartreminder">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/example/smartreminder/EventMapper.java" line="18" class="com.example.smartreminder.EventMapper" package="com.example.smartreminder">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -81,23 +148,6 @@
         <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
       </breakpoint>
     </breakpoint_any>
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderTask.java" line="29" class="com.example.smartreminder.ReminderTask" package="com.example.smartreminder">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </line_breakpoints>
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -107,19 +157,66 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="JsonArrayBuilder.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/JsonArrayBuilder.java">
+      <file leaf-file-name="ReminderTask.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderTask.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="0" selection-start="836" selection-end="836" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="680">
+            <state line="53" column="0" selection-start="1307" selection-end="1307" vertical-scroll-proportion="0.33268481" vertical-offset="628" max-vertical-offset="1241">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReminderTask.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderTask.java">
+      <file leaf-file-name="TimeChecker.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/TimeChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="0" selection-start="774" selection-end="774" vertical-scroll-proportion="0.33268481" vertical-offset="271" max-vertical-offset="1139">
+            <state line="27" column="0" selection-start="681" selection-end="681" vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="1071">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReminderRepository.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="38" column="0" selection-start="985" selection-end="985" vertical-scroll-proportion="0.0" vertical-offset="183" max-vertical-offset="697">
+              <folding>
+                <element signature="e#745#755#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Reminder.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/Reminder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="12" selection-start="185" selection-end="185" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="510">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReminderJsonMapper.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderJsonMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="43" selection-start="888" selection-end="888" vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="765">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventMapper.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/EventMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="0" selection-start="501" selection-end="501" vertical-scroll-proportion="0.0" vertical-offset="67" max-vertical-offset="1105">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventActioner.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/EventActioner.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="69" selection-start="274" selection-end="340" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="323">
               <folding />
             </state>
           </provider>
@@ -134,24 +231,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Notifier.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/Notifier.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="10" selection-start="498" selection-end="617" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="935">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EventMapper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/EventMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="13" selection-start="233" selection-end="233" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="1173">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ReminderDisableTask.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderDisableTask.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -161,28 +240,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AsyncTask.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/os/AsyncTask.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="62" selection-start="1458" selection-end="1458" vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="969">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ReminderApiService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderApiService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="67" selection-start="576" selection-end="576" vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="1207">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReminderDisableService.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderDisableService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="0" selection-start="297" selection-end="297" vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="510">
+            <state line="47" column="0" selection-start="1462" selection-end="1462" vertical-scroll-proportion="0.0" vertical-offset="424" max-vertical-offset="1224">
               <folding />
             </state>
           </provider>
@@ -198,10 +259,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderTask.java" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/models/Reminder.java" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderJsonMapper.java" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/HttpRequestMaker.java" />
         <option value="$PROJECT_DIR$/src/com/example/smartreminder/WebApiService.java" />
         <option value="$PROJECT_DIR$/src/com/example/smartreminder/NotificationActionService.java" />
         <option value="$PROJECT_DIR$/src/com/example/smartreminder/JsonArrayBuilder.java" />
@@ -213,6 +270,10 @@
         <option value="$PROJECT_DIR$/src/com/example/smartreminder/Notifier.java" />
         <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderDisableTask.java" />
         <option value="$PROJECT_DIR$/src/com/example/smartreminder/util/SystemUiHider.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/Reminder.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderJsonMapper.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/EventMapper.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderTask.java" />
         <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderApiService.java" />
       </list>
     </option>
@@ -301,7 +362,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -372,6 +432,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -387,8 +448,8 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="MemberChooser.showClasses" value="true" />
     <property name="FullScreen" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
   </component>
   <component name="RecentsManager">
@@ -588,17 +649,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39933258" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39933258" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24493062" sideWeight="0.28698555" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32814237" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32703003" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -681,32 +742,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderDisableService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="297" selection-end="297" vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="510">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/org/apache/http/message/AbstractHttpMessage.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="16" selection-start="1243" selection-end="1243" vertical-scroll-proportion="0.0" vertical-offset="322" max-vertical-offset="850" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="689" selection-end="689" vertical-scroll-proportion="0.0" vertical-offset="152" max-vertical-offset="697">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="79" selection-start="1257" selection-end="1257" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="884">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/content/ContextWrapper.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="23" column="35" selection-start="903" selection-end="903" vertical-scroll-proportion="0.0" vertical-offset="207" max-vertical-offset="3179" />
@@ -719,25 +754,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/EventActioner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="69" selection-start="274" selection-end="340" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/os/AsyncTask.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="62" selection-start="1458" selection-end="1458" vertical-scroll-proportion="0.0" vertical-offset="394" max-vertical-offset="952">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/EventMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="13" selection-start="233" selection-end="233" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1105">
-          <folding />
-        </state>
+        <state line="34" column="62" selection-start="1458" selection-end="1458" vertical-scroll-proportion="0.0" vertical-offset="394" max-vertical-offset="952" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/JsonArrayBuilder.java">
@@ -761,13 +780,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderDisableTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="665" selection-end="665" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="782">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/Action.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="0" selection-start="210" selection-end="210" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
@@ -775,16 +787,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/Reminder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="12" selection-start="185" selection-end="185" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderJsonMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="43" selection-start="888" selection-end="888" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/EventActioner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="69" selection-start="274" selection-end="340" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderDisableTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="0" selection-start="665" selection-end="665" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="782">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/TimeChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="0" selection-start="681" selection-end="681" vertical-scroll-proportion="0.0" vertical-offset="237" max-vertical-offset="1020">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/EventMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="0" selection-start="501" selection-end="501" vertical-scroll-proportion="0.0" vertical-offset="67" max-vertical-offset="1105">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderApiService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="67" selection-start="576" selection-end="576" vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="1207">
+        <state line="47" column="0" selection-start="1462" selection-end="1462" vertical-scroll-proportion="0.0" vertical-offset="424" max-vertical-offset="1224">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="0" selection-start="985" selection-end="985" vertical-scroll-proportion="0.0" vertical-offset="183" max-vertical-offset="697">
+          <folding>
+            <element signature="e#745#755#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="774" selection-end="774" vertical-scroll-proportion="0.33268481" vertical-offset="271" max-vertical-offset="1139">
+        <state line="53" column="0" selection-start="1307" selection-end="1307" vertical-scroll-proportion="0.33268481" vertical-offset="628" max-vertical-offset="1241">
           <folding />
         </state>
       </provider>

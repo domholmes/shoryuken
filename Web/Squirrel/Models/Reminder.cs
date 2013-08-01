@@ -35,6 +35,9 @@ namespace Squirrel.Models
 
         [DeviceActionId]
         public int ActionId { get; set; }
+
+        [StringLength(20)]
+        public string ActionExtra { get; set; }
     }
 
     public enum DeviceAction
