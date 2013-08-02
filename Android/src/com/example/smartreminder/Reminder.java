@@ -1,10 +1,11 @@
 package com.example.smartreminder;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.example.smartreminder.Action;
 
-public class Reminder
+public class Reminder implements Serializable
 {
     public int id;
 

@@ -13,14 +13,14 @@ class ReminderTask extends AsyncTask<Intent, Integer, Long>
     private Context context;
     private TimeChecker timeChecker;
 	private Notifier notifier;
-	private ReminderRepository reminderRepository;
+	private ReminderStore reminderStore;
 	
 	public ReminderTask(Context context)
     {
     	this.context = context;
     	this.timeChecker = new TimeChecker();
 		this.notifier = new Notifier();
-		this.reminderRepository = new ReminderRepository(context);
+		this.reminderStore = new ReminderStore(context);
     }
 	
 	protected Long doInBackground(Intent... intents) 
@@ -28,7 +28,7 @@ class ReminderTask extends AsyncTask<Intent, Integer, Long>
 		List<Reminder> reminders = null;
 		try
 		{
-			reminders = reminderRepository.GetActiveReminders();
+			reminders = this.reminderStore.getReminders();
 			
 			for(Reminder reminder : reminders) 
 			{

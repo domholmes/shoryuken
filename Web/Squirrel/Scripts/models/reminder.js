@@ -64,7 +64,6 @@ sr.Reminder = function () {
 
         // required because actionId not yet defined
         deferEvaluation: true
-
     });
 
     rem.availableDays = [

@@ -13,7 +13,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.plus.PlusClient;
 
-public class Credentials extends Activity implements View.OnClickListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener {
+public class CredentialsActivity extends Activity implements View.OnClickListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener {
     private static final String TAG = "ExampleActivity";
     private static final int REQUEST_CODE_RESOLVE_ERR = 9000;
 
@@ -79,6 +79,8 @@ public class Credentials extends Activity implements View.OnClickListener, Googl
         new IdTokenRetrieverTask(this, accountName, this.tokenStore).execute(null);
 
         Toast.makeText(this, accountName + " is connected", Toast.LENGTH_LONG).show();
+
+        new ReminderRetrieverTask(this).execute();
     }
 
     @Override

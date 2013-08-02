@@ -66,6 +66,11 @@ sr.AppViewModel = function () {
 
         reminder.saving(true);
 
+        if (!reminder.actionHasExtra()) {
+
+            reminder.actionExtra(null);
+        }
+
         sr.repository.saveReminder(
 
             reminder,
