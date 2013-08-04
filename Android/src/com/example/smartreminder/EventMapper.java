@@ -6,9 +6,10 @@ import android.content.Intent;
 import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiManager;
 
+import java.util.Date;
+
 public class EventMapper extends BroadcastReceiver
 {
-	private static String lastConnectedSsid = "";
 	public final static String extraName = "SmartReminder_Event_Extra";
 	
 	@Override
@@ -18,24 +19,29 @@ public class EventMapper extends BroadcastReceiver
 		
 		if (action.equals(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION))
 		{
-			SupplicantState state = intent.getParcelableExtra(WifiManager.EXTRA_NEW_STATE);
+            WifiManager manager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
+            SupplicantState state = intent.getParcelableExtra(WifiManager.EXTRA_NEW_STATE);
 			
 			if(state == SupplicantState.COMPLETED)
 			{
-				WifiManager manager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
+                WifiHistory.lastKnownSsid = manager.getConnectionInfo().getSSID().replace("\"", "");
 
-				lastConnectedSsid = manager.getConnectionInfo().getSSID().replace("\"", "");
-					
-		        broadcastIntent(Action.SmartReminder_Event_WifiConnected.name(), lastConnectedSsid, context);
+                if(notBroadcastInLast2Mins())
+                {
+                    WifiHistory.lastBroadcast = new Date();
+                    broadcastIntent(Action.SmartReminder_Event_WifiConnected.name(), WifiHistory.lastKnownSsid, context);
+                }
 			}
 			
 			if(state == SupplicantState.DISCONNECTED)
 			{
-				boolean wifiEnabled = ((WifiManager)context.getSystemService(Context.WIFI_SERVICE)).isWifiEnabled();
-				
-				if(wifiEnabled)
-				{	        
-					broadcastIntent(Action.SmartReminder_Event_WifiDisconnected.name(), lastConnectedSsid, context);
+				if(manager.isWifiEnabled())
+				{
+                    if(notBroadcastInLast2Mins())
+                    {
+                        WifiHistory.lastBroadcast = new Date();
+                        broadcastIntent(Action.SmartReminder_Event_WifiDisconnected.name(), WifiHistory.lastKnownSsid, context);
+                    }
 				}
 			}
 		}
@@ -50,8 +56,23 @@ public class EventMapper extends BroadcastReceiver
 			broadcastIntent(Action.SmartReminder_Event_PowerDisconnected.name(), "", context);
 		}
 	}
-	
-	private void broadcastIntent(String action, String extra, Context context)
+
+    private boolean notBroadcastInLast2Mins()
+    {
+        if(WifiHistory.lastBroadcast != null)
+        {
+            long timeSince = (new Date()).getTime() - WifiHistory.lastBroadcast.getTime();
+
+            if(timeSince < 120000)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private void broadcastIntent(String action, String extra, Context context)
 	{
 		Intent newIntent = new Intent();
 		

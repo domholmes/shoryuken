@@ -34,4 +34,9 @@ public class IdTokenStore {
 
         editor.commit();
     }
+
+    public Boolean hasToken()
+    {
+        return (getToken() != null);
+    }
 }

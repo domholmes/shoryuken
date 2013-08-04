@@ -9,13 +9,13 @@ import android.os.AsyncTask;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-class ReminderRetrieverTask extends AsyncTask<Void, Void, Void>
+class ReminderSyncerTask extends AsyncTask<Void, Void, Void>
 {
     private ReminderApiService apiService;
     private ReminderJsonMapper jsonMapper;
     private ReminderStore reminderStore;
 
-    public ReminderRetrieverTask(Context context)
+    public ReminderSyncerTask(Context context)
     {
         this.apiService = new ReminderApiService(context);
         this.jsonMapper = new ReminderJsonMapper();

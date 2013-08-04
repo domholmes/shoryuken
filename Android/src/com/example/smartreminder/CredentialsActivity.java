@@ -13,106 +13,123 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.plus.PlusClient;
 
-public class CredentialsActivity extends Activity implements View.OnClickListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener {
+public class CredentialsActivity extends Activity implements View.OnClickListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener
+{
     private static final String TAG = "ExampleActivity";
     private static final int REQUEST_CODE_RESOLVE_ERR = 9000;
 
-    private ProgressDialog mConnectionProgressDialog;
-    private PlusClient mPlusClient;
-    private ConnectionResult mConnectionResult;
+    private ProgressDialog progressDialog;
+    private PlusClient plusClient;
+    private ConnectionResult connectionResult;
     private IdTokenStore tokenStore;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credentials);
         findViewById(R.id.sign_in_button).setOnClickListener(this);
 
         this.tokenStore = new IdTokenStore(getApplicationContext());
 
-        mPlusClient = new PlusClient.Builder(this, this, this)
+        plusClient = new PlusClient.Builder(this, this, this)
                 .setVisibleActivities("http://schemas.google.com/AddActivity", "http://schemas.google.com/BuyActivity")
                 .build();
-        // Progress bar to be displayed if the connection failure is not resolved.
-        mConnectionProgressDialog = new ProgressDialog(this);
-        mConnectionProgressDialog.setMessage("Signing in...");
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Signing in...");
     }
 
     @Override
-    protected void onStart() {
+    protected void onStart()
+    {
         super.onStart();
-        mPlusClient.connect();
+        plusClient.connect();
     }
 
     @Override
-    protected void onStop() {
+    protected void onStop()
+    {
         super.onStop();
-        mPlusClient.disconnect();
+        plusClient.disconnect();
     }
 
     @Override
-    public void onConnectionFailed(ConnectionResult result) {
-        if (result.hasResolution()) {
-            try {
+    public void onConnectionFailed(ConnectionResult result)
+    {
+        if (result.hasResolution())
+        {
+            try
+            {
                 result.startResolutionForResult(this, REQUEST_CODE_RESOLVE_ERR);
-            } catch (IntentSender.SendIntentException e) {
-                mPlusClient.connect();
+            } catch (IntentSender.SendIntentException e)
+            {
+                plusClient.connect();
             }
         }
-        // Save the result and resolve the connection failure upon a user click.
-        mConnectionResult = result;
+
+        connectionResult = result;
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int responseCode, Intent intent) {
-        if (requestCode == REQUEST_CODE_RESOLVE_ERR && responseCode == RESULT_OK) {
-            mConnectionResult = null;
-            mPlusClient.connect();
+    protected void onActivityResult(int requestCode, int responseCode, Intent intent)
+    {
+        if (requestCode == REQUEST_CODE_RESOLVE_ERR && responseCode == RESULT_OK)
+        {
+            connectionResult = null;
+            plusClient.connect();
         }
     }
 
     @Override
-    public void onConnected(Bundle bundle) {
-
-        String accountName = mPlusClient.getAccountName();
+    public void onConnected(Bundle bundle)
+    {
+        String accountName = plusClient.getAccountName();
 
         new IdTokenRetrieverTask(this, accountName, this.tokenStore).execute(null);
 
         Toast.makeText(this, accountName + " is connected", Toast.LENGTH_LONG).show();
 
-        new ReminderRetrieverTask(this).execute();
+        BootReceiver.scheduleReminderSyncing(this);
     }
 
     @Override
-    public void onDisconnected() {
+    public void onDisconnected()
+    {
         Log.d(TAG, "disconnected");
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(View view)
+    {
 
-        if (!mPlusClient.isConnected()) {
-            if (mConnectionResult == null) {
-                mConnectionProgressDialog.show();
-            } else {
-                try {
-                    mConnectionResult.startResolutionForResult(this, REQUEST_CODE_RESOLVE_ERR);
-                } catch (IntentSender.SendIntentException e) {
+        if (!plusClient.isConnected())
+        {
+            if (connectionResult == null)
+            {
+                progressDialog.show();
+            } else
+            {
+                try
+                {
+                    connectionResult.startResolutionForResult(this, REQUEST_CODE_RESOLVE_ERR);
+                } catch (IntentSender.SendIntentException e)
+                {
                     // Try connecting again.
-                    mConnectionResult = null;
-                    mPlusClient.connect();
+                    connectionResult = null;
+                    plusClient.connect();
                 }
             }
         }
-        else {
-
+        else
+        {
             findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
-            mPlusClient.clearDefaultAccount();
-            mPlusClient.disconnect();
+            plusClient.clearDefaultAccount();
+            plusClient.disconnect();
 
             this.tokenStore.removeToken();
 
-            mPlusClient.connect();
+            plusClient.connect();
         }
     }
 }
