@@ -90,7 +90,8 @@ public class CredentialsActivity extends Activity implements View.OnClickListene
 
         Toast.makeText(this, accountName + " is connected", Toast.LENGTH_LONG).show();
 
-        BootReceiver.scheduleReminderSyncing(this);
+        WifiStateHistory.updateState(this);
+        ReminderSyncingScheduler.scheduleReminderSyncing(this);
     }
 
     @Override

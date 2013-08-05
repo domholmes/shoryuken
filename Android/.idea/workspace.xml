@@ -87,6 +87,21 @@
     </breakpoint_any>
     <method_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/example/smartreminder/IntentRemapperReceiver.java" line="41" class="com.example.smartreminder.IntentRemapperReceiver" package="com.example.smartreminder">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
       <breakpoint url="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderTask.java" line="32" class="com.example.smartreminder.ReminderTask" package="com.example.smartreminder">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
@@ -102,7 +117,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/example/smartreminder/EventMapper.java" line="21" class="com.example.smartreminder.EventMapper" package="com.example.smartreminder">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderJsonMapper.java" line="20" class="com.example.smartreminder.ReminderJsonMapper" package="com.example.smartreminder">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -127,19 +142,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ReminderTask.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ReminderTask.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderTask.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="0" selection-start="1281" selection-end="1281" vertical-scroll-proportion="0.49369988" vertical-offset="368" max-vertical-offset="1241">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AsyncTask.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/os/AsyncTask.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="952">
+            <state line="32" column="0" selection-start="778" selection-end="778" vertical-scroll-proportion="0.0" vertical-offset="271" max-vertical-offset="1241">
               <folding />
             </state>
           </provider>
@@ -148,7 +154,7 @@
       <file leaf-file-name="BootReceiver.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/BootReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="81" selection-start="652" selection-end="652" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+            <state line="8" column="13" selection-start="222" selection-end="222" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="459">
               <folding />
             </state>
           </provider>
@@ -157,52 +163,61 @@
       <file leaf-file-name="ReminderSyncerReceiver.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderSyncerReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="0" selection-start="343" selection-end="343" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
+            <state line="6" column="13" selection-start="155" selection-end="155" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="340">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CredentialsActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/CredentialsActivity.java">
+      <file leaf-file-name="ReminderSyncingScheduler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderSyncingScheduler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="123" column="8" selection-start="3538" selection-end="3538" vertical-scroll-proportion="0.0" vertical-offset="1233" max-vertical-offset="2193">
+            <state line="7" column="13" selection-start="180" selection-end="180" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="425">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IdTokenStore.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/IdTokenStore.java">
+      <file leaf-file-name="IntentRemapperReceiver.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/IntentRemapperReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="0" selection-start="956" selection-end="956" vertical-scroll-proportion="0.0" vertical-offset="697" max-vertical-offset="816">
+            <state line="54" column="8" selection-start="1927" selection-end="1927" vertical-scroll-proportion="0.7594502" vertical-offset="187" max-vertical-offset="1190">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <file leaf-file-name="ReminderJsonMapper.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderJsonMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="31" selection-start="1273" selection-end="1273" vertical-scroll-proportion="0.0" vertical-offset="28" max-vertical-offset="1003">
+            <state line="20" column="0" selection-start="670" selection-end="670" vertical-scroll-proportion="0.0" vertical-offset="118" max-vertical-offset="714">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EventMapper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/EventMapper.java">
+      <file leaf-file-name="ActionReceiver.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ActionReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="0" selection-start="548" selection-end="548" vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="1428">
+            <state line="13" column="1" selection-start="346" selection-end="346" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="323">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WifiHistory.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/WifiHistory.java">
+      <file leaf-file-name="WifiStateHistory.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/WifiStateHistory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="43" selection-start="177" selection-end="177" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+            <state line="31" column="78" selection-start="1090" selection-end="1090" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="901">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReminderDisableService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderDisableService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="1" selection-start="462" selection-end="462" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
               <folding />
             </state>
           </provider>
@@ -211,7 +226,7 @@
       <file leaf-file-name="ReminderSyncerTask.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderSyncerTask.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="13" selection-start="920" selection-end="920" vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="1071">
+            <state line="34" column="13" selection-start="920" selection-end="920" vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1190">
               <folding />
             </state>
           </provider>
@@ -227,22 +242,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderApiService.java" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderRepository.java" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderStore.java" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderRetrieverTask.java" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderTask.java" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/Reminder.java" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/AlarmReciever.java" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/AlarmReceiver.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/IdTokenStore.java" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/WifiStatus.java" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/CredentialsActivity.java" />
         <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderSyncerTask.java" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/BootReceiver.java" />
         <option value="$PROJECT_DIR$/src/com/example/smartreminder/SsidStore.java" />
         <option value="$PROJECT_DIR$/src/com/example/smartreminder/EventMapper.java" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/WifiHistory.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderSyncingScheduler.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/BootReceiver.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/CredentialsActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/WifiStateHistory.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/IntentRemapper.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/EventActioner.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/ActionReceiver.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderDisableService.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderTask.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderJsonMapper.java" />
+        <option value="$PROJECT_DIR$/src/com/example/smartreminder/IntentRemapperReceiver.java" />
       </list>
     </option>
   </component>
@@ -284,6 +299,52 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Squirrel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Squirrel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Squirrel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Squirrel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.example.smartreminder" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Squirrel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Squirrel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.example.smartreminder" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -350,52 +411,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="values" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.example.smartreminder" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.example.smartreminder" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -714,53 +729,9 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderSyncerTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="32" selection-start="1221" selection-end="1221" vertical-scroll-proportion="0.0" vertical-offset="731" max-vertical-offset="1190">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/IdTokenRetrieverTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="48" selection-start="679" selection-end="679" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="935">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/EventActioner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="1" selection-start="345" selection-end="345" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/Reminder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="130" selection-end="130" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderApiService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="0" selection-start="1462" selection-end="1462" vertical-scroll-proportion="0.0" vertical-offset="304" max-vertical-offset="1224">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderStore.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="36" column="0" selection-start="1120" selection-end="1120" vertical-scroll-proportion="0.0" vertical-offset="251" max-vertical-offset="765">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="31" selection-start="1273" selection-end="1273" vertical-scroll-proportion="0.0" vertical-offset="28" max-vertical-offset="1003">
           <folding />
         </state>
       </provider>
@@ -772,37 +743,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/CredentialsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="123" column="8" selection-start="3538" selection-end="3538" vertical-scroll-proportion="0.0" vertical-offset="1233" max-vertical-offset="2193">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/os/AsyncTask.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="952">
-          <folding />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="952" />
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/google-play-services.jar!/com/google/android/gms/internal/p.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="25" selection-start="3486" selection-end="3486" vertical-scroll-proportion="-6.68" vertical-offset="989" max-vertical-offset="2193" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="78" selection-start="363" selection-end="363" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1020">
+          <folding>
+            <element signature="e#798#816#0" expanded="true" />
+            <element signature="e#1025#1043#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/BootReceiver.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/CredentialsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="81" selection-start="652" selection-end="652" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/WifiHistory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="43" selection-start="177" selection-end="177" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderSyncerReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="343" selection-end="343" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
+        <state line="102" column="13" selection-start="2980" selection-end="2980" vertical-scroll-proportion="0.0" vertical-offset="1082" max-vertical-offset="2210">
           <folding />
         </state>
       </provider>
@@ -814,16 +777,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/EventMapper.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/BootReceiver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="548" selection-end="548" vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="1428">
+        <state line="8" column="13" selection-start="222" selection-end="222" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ActionReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="1" selection-start="346" selection-end="346" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderSyncerReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="13" selection-start="155" selection-end="155" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderSyncingScheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="13" selection-start="180" selection-end="180" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/WifiStateHistory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="78" selection-start="1090" selection-end="1090" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="901">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderDisableService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="1" selection-start="462" selection-end="462" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderJsonMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="670" selection-end="670" vertical-scroll-proportion="0.0" vertical-offset="118" max-vertical-offset="714">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="0" selection-start="1281" selection-end="1281" vertical-scroll-proportion="0.49369988" vertical-offset="368" max-vertical-offset="1241">
+        <state line="32" column="0" selection-start="778" selection-end="778" vertical-scroll-proportion="0.0" vertical-offset="271" max-vertical-offset="1241">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/IntentRemapperReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="8" selection-start="1927" selection-end="1927" vertical-scroll-proportion="0.7594502" vertical-offset="187" max-vertical-offset="1190">
           <folding />
         </state>
       </provider>

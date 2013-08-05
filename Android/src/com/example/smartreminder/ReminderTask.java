@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 
-class ReminderTask extends AsyncTask<Intent, Integer, Long> 
+class ReminderTask extends AsyncTask<Intent, Integer, Long>
 {
     private Context context;
     private TimeChecker timeChecker;
@@ -49,7 +49,7 @@ class ReminderTask extends AsyncTask<Intent, Integer, Long>
 	private Boolean reminderIsNow(Reminder reminder, Intent intent) throws ParseException
 	{
 		String intentAction = intent.getAction();
-        String intentActionExtra = intent.getStringExtra(EventMapper.extraName);
+        String intentActionExtra = intent.getStringExtra(IntentRemapperReceiver.extraName);
 
         if(reminder.action.name() == intentAction)
 		{		
