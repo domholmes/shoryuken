@@ -117,21 +117,6 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderJsonMapper.java" line="20" class="com.example.smartreminder.ReminderJsonMapper" package="com.example.smartreminder">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
     </line_breakpoints>
     <breakpoint_rules />
     <ui_properties />
@@ -142,10 +127,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ReminderTask.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ReminderTask.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderTask.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="0" selection-start="778" selection-end="778" vertical-scroll-proportion="0.0" vertical-offset="271" max-vertical-offset="1241">
+            <state line="44" column="0" selection-start="1033" selection-end="1033" vertical-scroll-proportion="0.42955327" vertical-offset="271" max-vertical-offset="1241">
               <folding />
             </state>
           </provider>
@@ -178,10 +163,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IntentRemapperReceiver.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="IntentRemapperReceiver.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/IntentRemapperReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="8" selection-start="1927" selection-end="1927" vertical-scroll-proportion="0.7594502" vertical-offset="187" max-vertical-offset="1190">
+            <state line="26" column="0" selection-start="940" selection-end="940" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="1190">
               <folding />
             </state>
           </provider>
@@ -190,7 +175,7 @@
       <file leaf-file-name="ReminderJsonMapper.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderJsonMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="0" selection-start="670" selection-end="670" vertical-scroll-proportion="0.0" vertical-offset="118" max-vertical-offset="714">
+            <state line="20" column="0" selection-start="670" selection-end="670" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
               <folding />
             </state>
           </provider>
@@ -636,7 +621,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -653,7 +638,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24919957" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24493062" sideWeight="0.6006674" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24493062" sideWeight="0.6006674" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959402" sideWeight="0.67074525" order="3" side_tool="false" content_ui="tabs" />
@@ -819,6 +804,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/IntentRemapperReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="0" selection-start="940" selection-end="940" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="1190">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderJsonMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="0" selection-start="670" selection-end="670" vertical-scroll-proportion="0.0" vertical-offset="118" max-vertical-offset="714">
@@ -828,14 +820,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/ReminderTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="778" selection-end="778" vertical-scroll-proportion="0.0" vertical-offset="271" max-vertical-offset="1241">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/smartreminder/IntentRemapperReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="8" selection-start="1927" selection-end="1927" vertical-scroll-proportion="0.7594502" vertical-offset="187" max-vertical-offset="1190">
+        <state line="44" column="0" selection-start="1033" selection-end="1033" vertical-scroll-proportion="0.42955327" vertical-offset="271" max-vertical-offset="1241">
           <folding />
         </state>
       </provider>
