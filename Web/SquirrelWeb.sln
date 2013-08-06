@@ -4,11 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Squirrel", "Squirrel\Squirrel.csproj", "{EF418473-9C14-47DE-A29C-3D8E659336B8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C3B07AF5-5C15-4F3E-BDA6-7838857797AE}"
-	ProjectSection(SolutionItems) = preProject
-		Local.testsettings = Local.testsettings
-		SquirrelWeb.vsmdi = SquirrelWeb.vsmdi
-		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
