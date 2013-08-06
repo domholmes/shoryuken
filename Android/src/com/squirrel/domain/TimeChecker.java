@@ -1,4 +1,4 @@
-package com.example.smartreminder;
+package com.squirrel.domain;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

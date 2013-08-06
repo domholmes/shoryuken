@@ -1,10 +1,10 @@
-package com.example.smartreminder;
+package com.squirrel.sync;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+
+import com.squirrel.auth.IdTokenStore;
 
 public class BootReceiver extends BroadcastReceiver
 {

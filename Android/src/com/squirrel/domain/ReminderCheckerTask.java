@@ -1,4 +1,4 @@
-package com.example.smartreminder;
+package com.squirrel.domain;
 
 import java.text.ParseException;
 import java.util.List;
@@ -8,14 +8,18 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 
-class ReminderTask extends AsyncTask<Intent, Integer, Long>
+import com.squirrel.action.IntentRemapperReceiver;
+import com.squirrel.notify.Notifier;
+import com.squirrel.sync.ReminderStore;
+
+public class ReminderCheckerTask extends AsyncTask<Intent, Integer, Long>
 {
     private Context context;
     private TimeChecker timeChecker;
 	private Notifier notifier;
 	private ReminderStore reminderStore;
 	
-	public ReminderTask(Context context)
+	public ReminderCheckerTask(Context context)
     {
     	this.context = context;
     	this.timeChecker = new TimeChecker();

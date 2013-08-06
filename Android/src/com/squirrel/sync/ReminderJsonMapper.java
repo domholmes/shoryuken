@@ -1,4 +1,7 @@
-package com.example.smartreminder;
+package com.squirrel.sync;
+
+import com.squirrel.action.Action;
+import com.squirrel.domain.Reminder;
 
 import java.util.ArrayList;
 

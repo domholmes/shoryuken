@@ -1,4 +1,4 @@
-package com.example.smartreminder;
+package com.squirrel.notify;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -8,6 +8,9 @@ import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
+
+import com.squirrel.R;
+import com.squirrel.sync.ReminderDisableService;
 
 public class Notifier
 {

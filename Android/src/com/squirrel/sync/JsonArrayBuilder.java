@@ -1,4 +1,4 @@
-package com.example.smartreminder;
+package com.squirrel.sync;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

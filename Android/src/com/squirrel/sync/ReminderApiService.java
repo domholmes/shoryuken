@@ -1,6 +1,8 @@
-package com.example.smartreminder;
+package com.squirrel.sync;
 
 import android.content.Context;
+
+import com.squirrel.auth.IdTokenStore;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

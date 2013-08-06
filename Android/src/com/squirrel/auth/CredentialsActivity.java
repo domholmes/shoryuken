@@ -1,4 +1,4 @@
-package com.example.smartreminder;
+package com.squirrel.auth;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -12,6 +12,9 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.plus.PlusClient;
+import com.squirrel.R;
+import com.squirrel.sync.ReminderSyncingScheduler;
+import com.squirrel.action.WifiStateHistory;
 
 public class CredentialsActivity extends Activity implements View.OnClickListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener
 {

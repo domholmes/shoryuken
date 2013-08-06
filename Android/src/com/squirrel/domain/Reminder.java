@@ -1,9 +1,9 @@
-package com.example.smartreminder;
+package com.squirrel.domain;
+
+import com.squirrel.action.Action;
 
 import java.io.Serializable;
 import java.util.List;
-
-import com.example.smartreminder.Action;
 
 public class Reminder implements Serializable
 {

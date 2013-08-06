@@ -1,10 +1,12 @@
-package com.example.smartreminder;
+package com.squirrel.sync;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 import android.content.Context;
 import android.os.AsyncTask;
+
+import com.squirrel.domain.Reminder;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

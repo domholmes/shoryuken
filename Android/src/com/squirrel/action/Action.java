@@ -1,4 +1,4 @@
-package com.example.smartreminder;
+package com.squirrel.action;
 
 public enum Action
 {

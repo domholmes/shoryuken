@@ -1,10 +1,8 @@
-package com.example.smartreminder;
+package com.squirrel.sync;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-
-import java.io.IOException;
 
 
 public class ReminderDisableService extends Service

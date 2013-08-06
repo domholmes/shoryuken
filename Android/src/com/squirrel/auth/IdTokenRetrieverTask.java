@@ -1,4 +1,4 @@
-package com.example.smartreminder;
+package com.squirrel.auth;
 
 import java.io.IOException;
 

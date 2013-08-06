@@ -1,4 +1,4 @@
-package com.example.smartreminder;
+package com.squirrel.sync;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;

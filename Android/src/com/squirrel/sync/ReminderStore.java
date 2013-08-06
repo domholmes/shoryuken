@@ -1,6 +1,8 @@
-package com.example.smartreminder;
+package com.squirrel.sync;
 
 import android.content.Context;
+
+import com.squirrel.domain.Reminder;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
