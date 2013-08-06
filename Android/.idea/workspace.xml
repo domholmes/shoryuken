@@ -48,40 +48,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/com/squirrel/action/IntentRemapperReceiver.java" line="41" class="com.example.smartreminder.IntentRemapperReceiver" package="com.example.smartreminder">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/squirrel/domain/ReminderCheckerTask.java" line="36" class="com.example.smartreminder.ReminderTask" package="com.example.smartreminder">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </line_breakpoints>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <method_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -118,6 +85,8 @@
         <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
       </breakpoint>
     </breakpoint_any>
+    <method_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -127,10 +96,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ReminderCheckerTask.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ReminderCheckerTask.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/squirrel/domain/ReminderCheckerTask.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="9" selection-start="1148" selection-end="1148" vertical-scroll-proportion="0.0" vertical-offset="88" max-vertical-offset="1241">
+            <state line="34" column="58" selection-start="917" selection-end="917" vertical-scroll-proportion="0.27626458" vertical-offset="266" max-vertical-offset="1241">
               <folding />
             </state>
           </provider>
@@ -139,54 +108,64 @@
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="41" selection-start="845" selection-end="845" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="1020">
+            <state line="4" column="28" selection-start="191" selection-end="191" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1037">
               <folding>
-                <element signature="e#785#803#0" expanded="true" />
+                <element signature="e#851#869#0" expanded="true" />
+                <element signature="e#1083#1101#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BootReceiver.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/squirrel/sync/BootReceiver.java">
+      <file leaf-file-name="BuildConfig.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gen/com/squirrel/BuildConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="13" selection-start="187" selection-end="187" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="459">
+            <state line="5" column="19" selection-start="122" selection-end="122" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReminderSyncerReceiver.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/squirrel/sync/ReminderSyncerReceiver.java">
+      <file leaf-file-name="Manifest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gen/com/squirrel/Manifest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="13" selection-start="147" selection-end="147" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="340">
+            <state line="5" column="19" selection-start="170" selection-end="170" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReminderSyncingScheduler.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/squirrel/sync/ReminderSyncingScheduler.java">
+      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="13" selection-start="172" selection-end="172" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="425">
+            <state line="3" column="36" selection-start="88" selection-end="88" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IntentRemapperReceiver.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="R.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gen/com/squirrel/R.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="19" selection-start="163" selection-end="163" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Notifier.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/squirrel/notify/Notifier.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="45" column="54" selection-start="1788" selection-end="1788" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="833">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IntentRemapperReceiver.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/squirrel/action/IntentRemapperReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="53" selection-start="1296" selection-end="1296" vertical-scroll-proportion="0.70731705" vertical-offset="17" max-vertical-offset="1190">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReminderJsonMapper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/squirrel/sync/ReminderJsonMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="0" selection-start="735" selection-end="735" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="816">
+            <state line="16" column="0" selection-start="477" selection-end="477" vertical-scroll-proportion="0.0" vertical-offset="237" max-vertical-offset="1241">
               <folding />
             </state>
           </provider>
@@ -195,10 +174,8 @@
       <file leaf-file-name="ActionReceiver.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/squirrel/action/ActionReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="1" selection-start="396" selection-end="396" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="13" column="0" selection-start="310" selection-end="310" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -206,16 +183,7 @@
       <file leaf-file-name="WifiStateHistory.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/squirrel/action/WifiStateHistory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="78" selection-start="1084" selection-end="1084" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="901">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReminderDisableService.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/squirrel/sync/ReminderDisableService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="1" selection-start="425" selection-end="425" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="476">
+            <state line="30" column="26" selection-start="1053" selection-end="1053" vertical-scroll-proportion="0.0" vertical-offset="164" max-vertical-offset="1037">
               <folding />
             </state>
           </provider>
@@ -231,10 +199,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/BootReceiver.java" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/CredentialsActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/WifiStateHistory.java" />
-        <option value="$PROJECT_DIR$/src/com/example/smartreminder/IntentRemapper.java" />
         <option value="$PROJECT_DIR$/src/com/example/smartreminder/EventActioner.java" />
         <option value="$PROJECT_DIR$/src/com/example/smartreminder/ActionReceiver.java" />
         <option value="$PROJECT_DIR$/src/com/example/smartreminder/ReminderDisableService.java" />
@@ -244,17 +208,21 @@
         <option value="$PROJECT_DIR$/src/com/example/squirrel/ReminderTask.java" />
         <option value="$PROJECT_DIR$/src/com/squirrel/ReminderTask.java" />
         <option value="$PROJECT_DIR$/src/com/squirrel/domain/ReminderTask.java" />
-        <option value="$PROJECT_DIR$/src/com/squirrel/domain/ReminderCheckerTask.java" />
         <option value="$PROJECT_DIR$/src/com/squirrel/action/ActionReceiver.java" />
+        <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/com/squirrel/action/IntentRemapperReceiver.java" />
+        <option value="$PROJECT_DIR$/src/com/squirrel/action/WifiStateHistory.java" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/com/squirrel/domain/ReminderCheckerTask.java" />
+        <option value="$PROJECT_DIR$/src/com/squirrel/notify/Notifier.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1616" />
-    <option name="height" value="1176" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -345,6 +313,10 @@
               <option name="myItemId" value="squirrel" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="notify" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -425,6 +397,24 @@
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values-v14" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Squirrel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -444,8 +434,27 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Squirrel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gen" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="squirrel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -468,36 +477,17 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="com.example.smartreminder" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Squirrel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.example.smartreminder" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
+              <option name="myItemId" value="com.squirrel" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/com/squirrel" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="project.structure.proportion" value="0.15" />
@@ -716,25 +706,25 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="1176" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39933258" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39933258" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24493062" sideWeight="0.28698555" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29048085" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32908913" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32703003" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32703003" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24919957" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2953668" sideWeight="0.70951915" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24439701" sideWeight="0.6006674" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959402" sideWeight="0.67074525" order="3" side_tool="false" content_ui="tabs" />
@@ -810,114 +800,119 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/squirrel/sync/ReminderStore.java">
+    <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="0" selection-start="1120" selection-end="1120" vertical-scroll-proportion="0.0" vertical-offset="251" max-vertical-offset="765">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="697">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/squirrel/auth/IdTokenStore.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/content/ContextWrapper.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="0" selection-start="956" selection-end="956" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="799">
+        <state line="23" column="35" selection-start="903" selection-end="903" vertical-scroll-proportion="0.0" vertical-offset="258" max-vertical-offset="3179">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/os/AsyncTask.class">
+    <entry file="file://$PROJECT_DIR$/src/com/squirrel/action/Action.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="952" />
+        <state line="2" column="12" selection-start="42" selection-end="42" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/libs/google-play-services.jar!/com/google/android/gms/internal/p.class">
+    <entry file="file://$PROJECT_DIR$/src/com/squirrel/domain/TimeChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="25" selection-start="3486" selection-end="3486" vertical-scroll-proportion="-6.68" vertical-offset="989" max-vertical-offset="2193" />
+        <state line="21" column="4" selection-start="587" selection-end="587" vertical-scroll-proportion="0.0" vertical-offset="237" max-vertical-offset="1020">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/squirrel/auth/CredentialsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="102" column="13" selection-start="2980" selection-end="2980" vertical-scroll-proportion="0.0" vertical-offset="1082" max-vertical-offset="2210">
+        <state line="18" column="13" selection-start="565" selection-end="565" vertical-scroll-proportion="0.0" vertical-offset="969" max-vertical-offset="2210">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/squirrel/sync/ReminderSyncerTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="13" selection-start="950" selection-end="950" vertical-scroll-proportion="0.0" vertical-offset="595" max-vertical-offset="1224">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/squirrel/sync/BootReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="13" selection-start="187" selection-end="187" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="459">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/squirrel/sync/ReminderSyncerReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="147" selection-end="147" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="340">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/squirrel/sync/ReminderSyncingScheduler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="13" selection-start="172" selection-end="172" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="425">
-          <folding />
+        <state line="33" column="0" selection-start="819" selection-end="819" vertical-scroll-proportion="0.0" vertical-offset="117" max-vertical-offset="1071">
+          <folding>
+            <element signature="e#782#792#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/squirrel/action/WifiStateHistory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="78" selection-start="1084" selection-end="1084" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="901">
+        <state line="30" column="26" selection-start="1053" selection-end="1053" vertical-scroll-proportion="0.0" vertical-offset="164" max-vertical-offset="1037">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/squirrel/sync/ReminderDisableService.java">
+    <entry file="file://$PROJECT_DIR$/src/com/squirrel/action/IntentRemapperReceiver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="1" selection-start="425" selection-end="425" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="476">
+        <state line="16" column="0" selection-start="477" selection-end="477" vertical-scroll-proportion="0.0" vertical-offset="33" max-vertical-offset="1241">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/squirrel/sync/ReminderJsonMapper.java">
+    <entry file="file://$PROJECT_DIR$/gen/com/squirrel/BuildConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="735" selection-end="735" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="816">
+        <state line="5" column="19" selection-start="122" selection-end="122" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gen/com/squirrel/Manifest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="19" selection-start="170" selection-end="170" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gen/com/squirrel/R.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="19" selection-start="163" selection-end="163" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="36" selection-start="88" selection-end="88" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="41" selection-start="845" selection-end="845" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="1020">
+        <state line="4" column="28" selection-start="191" selection-end="191" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1037">
           <folding>
-            <element signature="e#785#803#0" expanded="true" />
+            <element signature="e#851#869#0" expanded="true" />
+            <element signature="e#1083#1101#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/squirrel/domain/ReminderCheckerTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="9" selection-start="1148" selection-end="1148" vertical-scroll-proportion="0.0" vertical-offset="88" max-vertical-offset="1241">
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/squirrel/action/ActionReceiver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="1" selection-start="396" selection-end="396" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="13" column="0" selection-start="310" selection-end="310" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/squirrel/action/IntentRemapperReceiver.java">
+    <entry file="file://$PROJECT_DIR$/src/com/squirrel/notify/Notifier.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="53" selection-start="1296" selection-end="1296" vertical-scroll-proportion="0.70731705" vertical-offset="17" max-vertical-offset="1190">
+        <state line="45" column="54" selection-start="1788" selection-end="1788" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="833">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/squirrel/domain/ReminderCheckerTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="58" selection-start="917" selection-end="917" vertical-scroll-proportion="0.27626458" vertical-offset="266" max-vertical-offset="1241">
           <folding />
         </state>
       </provider>

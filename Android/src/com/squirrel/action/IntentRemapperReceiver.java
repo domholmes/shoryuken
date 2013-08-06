@@ -9,13 +9,13 @@ import android.net.wifi.WifiManager;
 public class IntentRemapperReceiver extends BroadcastReceiver
 {
 	public final static String extraName = "SmartReminder_Event_Extra";
-    private final static long minutesBeforeRebroadcast = 2;
+    private final static int minutesBeforeRebroadcast = 2;
 	
 	@Override
 	public void onReceive(Context context, Intent intent)
 	{
 		String action = intent.getAction();
-		
+
 		if (action.equals(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION))
 		{
             WifiManager manager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
@@ -23,12 +23,13 @@ public class IntentRemapperReceiver extends BroadcastReceiver
 
 			if(state == SupplicantState.COMPLETED)
 			{
-                WifiStateHistory.lastConnectedSsid = manager.getConnectionInfo().getSSID().replace("\"", "");
+                String connectingToSsid = manager.getConnectionInfo().getSSID().replace("\"", "");
+                WifiStateHistory.recordConnectedSsid(connectingToSsid);
 
-                if(WifiStateHistory.notBroadcastInMinutes(minutesBeforeRebroadcast))
+                if(WifiStateHistory.notBroadcastInMinutes(connectingToSsid, minutesBeforeRebroadcast))
                 {
-                    WifiStateHistory.recordBroadcastNow();
-                    broadcastIntent(Action.SmartReminder_Event_WifiConnected.name(), WifiStateHistory.lastConnectedSsid, context);
+                    WifiStateHistory.recordBroadcastNow(connectingToSsid);
+                    broadcastIntent(Action.SmartReminder_Event_WifiConnected.name(), connectingToSsid, context);
                 }
 			}
 
@@ -36,21 +37,23 @@ public class IntentRemapperReceiver extends BroadcastReceiver
 			{
 				if(manager.isWifiEnabled())
 				{
-                    if(WifiStateHistory.notBroadcastInMinutes(minutesBeforeRebroadcast))
+                    String disconnectedFromSsid = WifiStateHistory.getLastConnectedSsid();
+
+                    if(WifiStateHistory.notBroadcastInMinutes(disconnectedFromSsid, minutesBeforeRebroadcast))
                     {
-                        WifiStateHistory.recordBroadcastNow();
-                        broadcastIntent(Action.SmartReminder_Event_WifiDisconnected.name(), WifiStateHistory.lastConnectedSsid, context);
+                        WifiStateHistory.recordBroadcastNow(disconnectedFromSsid);
+                        broadcastIntent(Action.SmartReminder_Event_WifiDisconnected.name(), disconnectedFromSsid, context);
                     }
 				}
 			}
 		}
 
-		if (intent.getAction().equals(Intent.ACTION_POWER_CONNECTED))
+		if (action.equals(Intent.ACTION_POWER_CONNECTED))
 		{
 			broadcastIntent(Action.SmartReminder_Event_PowerConnected.name(), null, context);
 		}
 
-		if (intent.getAction().equals(Intent.ACTION_POWER_DISCONNECTED))
+		if (action.equals(Intent.ACTION_POWER_DISCONNECTED))
 		{
 			broadcastIntent(Action.SmartReminder_Event_PowerDisconnected.name(), null, context);
 		}

@@ -10,8 +10,9 @@ import java.util.concurrent.TimeUnit;
 
 public class WifiStateHistory
 {
-    public static String lastConnectedSsid = null;
+    private static String lastConnectedSsid = null;
     private static Date lastBroadcast = null;
+    private static String lastBroadcastSsid = null;
 
     public static void updateState(Context context)
     {
@@ -25,9 +26,9 @@ public class WifiStateHistory
         }
     }
 
-    public static boolean notBroadcastInMinutes(long minutes)
+    public static boolean notBroadcastInMinutes(String ssid, int minutes)
     {
-        if(lastBroadcast != null)
+        if(ssid != null && ssid.equals(lastBroadcastSsid))
         {
             long timeSince = (new Date()).getTime() - lastBroadcast.getTime();
 
@@ -40,8 +41,21 @@ public class WifiStateHistory
         return true;
     }
 
-    public static void recordBroadcastNow()
+    public static void recordBroadcastNow(String ssid)
     {
         lastBroadcast = new Date();
+        lastBroadcastSsid = ssid;
     }
+
+    public static void recordConnectedSsid(String ssid)
+    {
+        lastConnectedSsid = ssid;
+    }
+
+    public static String getLastConnectedSsid()
+    {
+        return lastConnectedSsid;
+    }
+
+
 }

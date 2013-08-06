@@ -36,11 +36,12 @@ public class Notifier
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(context)
                         .setAutoCancel(true)
+                        .setOnlyAlertOnce(true)
                         .setSmallIcon(R.drawable.ic_launcher)
-                        .setContentTitle(message)
-                        .setContentText("SmartReminder")
-                        .setDefaults(Notification.PRIORITY_HIGH)// requires VIBRATE permission
-                         .setSound(sound)
+                        .setContentTitle("Squirrel")
+                        .setContentText(message)
+                        .setDefaults(Notification.DEFAULT_ALL)// requires VIBRATE permission
+                         //.setSound(sound)
                         .setStyle(
                                 new NotificationCompat
                                         .BigTextStyle()
