@@ -47,14 +47,14 @@ body
 /* Forms
 ------------------------------------------------*/
 
-textarea.validation-highlight
+.validation-highlight
 {
-    border: 1px solid #e80c4d; 
+    border: 1px solid #CC3B29; 
 }
 
 span.validation-error
 {
-    color: #e80c4d;
+    color: #CC3B29;
     font-style: italic;
     font-weight: normal;
 }
@@ -175,10 +175,6 @@ button span.icon {
     cursor: pointer;
     color: #0099cc;
 }
-.link-emulate.busy 
-{
-    color: green;
-}
 .margin-bottom 
 {
     margin-bottom: 20px;
@@ -229,6 +225,15 @@ button.link-emulate
     padding: 0;
     background: none;
     border: none;
+}
+.busy
+{
+    -webkit-animation-name: bluePulse;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    animation-name: bluePulse;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
 }
 
 /* Misc
@@ -332,7 +337,7 @@ button.link-emulate
 .card footer 
 {
     border-top: 1px solid #d1eaf1;
-    padding: 10px 20px
+    padding: 0px;
 }
 .card .display .body button
 {
@@ -348,11 +353,18 @@ button.link-emulate
 {
     /*opacity: 0;*/
 }
-.card .edit footer span 
+.card .edit footer button
 {    
-    font-size: 14px;
-    margin-right: 24px;
+    width: 33.3%;
+    border-left: 1px solid #d1eaf1;
     font-weight: bold;
+    height: 40px;
+    line-height: 40px;
+    box-sizing: border-box;
+}
+.card .edit footer button:first-child
+{
+    border-left: 0px;
 }
 .card-wrap
 {
@@ -393,4 +405,23 @@ button.link-emulate
         padding-left: 5px;
         padding-right: 5px;
     }
+}
+
+@-webkit-keyframes bluePulse 
+{
+    from { background-color: #fff; }
+    50% { background-color: #DAEEF5; }
+    to { background-color: #fff; }
+}
+@-moz-keyframes bluePulse 
+{
+    from { background-color: #fff; }
+    50% { background-color: #DAEEF5; }
+    to { background-color: #fff; }
+}
+@keyframes bluePulse 
+{
+    from { background-color: #fff; }
+    50% { background-color: #DAEEF5; }
+    to { background-color: #fff; }
 }

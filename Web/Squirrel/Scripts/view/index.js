@@ -143,7 +143,7 @@ ko.bindingHandlers.foreachGroups = {
         var groupedItems,
              data = valueAccessor(),
              getGroupCount = function () {
-                 if ($(window).width() < 800) {
+                 if ($(window).width() < 979) {
                      return 2;
                  } else {
                      return 4;

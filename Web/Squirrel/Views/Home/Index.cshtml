@@ -85,7 +85,7 @@
                         </div>
 
                         <div class="control-group">
-                            <div class="days" data-bind="foreach: availableDays">
+                            <div class="days" data-bind="foreach: availableDays, css: { 'validation-highlight': propertiesWithErrors.indexOf('days') > -1 }">
                                 <span data-bind="text: name, click: $parent.changeDay, css: { selected: $parent.isDaySelected($data) }">
                                 </span>
                             </div> 
@@ -101,16 +101,16 @@
                             </div>
                         </div>
 
-                    </div>
-                    <footer>
-                        <span class="link-emulate" data-bind="click: $root.saveReminder, css: { busy: saving }">
-                            Save</span>
-                        <span class="link-emulate" data-bind="click: $root.cancelReminderEdit">
-                            Cancel</span>
-                        <button class="link-emulate float-right" data-bind="click: $root.deleteReminder"><i class="icon-remove"></i> Delete</button>
                         <div data-bind="foreach: errors">
                             <span  class="validation-error" data-bind="text: $data"></span>
                         </div>
+
+                    </div>
+                    <footer>
+                        <button class="link-emulate" data-bind="click: $root.saveReminder, css: { busy: saving }">
+                            Save</button><button class="link-emulate" data-bind="click: $root.cancelReminderEdit">
+                            Cancel</button><button class="link-emulate" data-bind="click: $root.deleteReminder">
+                            Delete</button>                        
                     </footer>
                 </div>
             </article>
