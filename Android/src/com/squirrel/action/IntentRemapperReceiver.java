@@ -33,7 +33,7 @@ public class IntentRemapperReceiver extends BroadcastReceiver
                 }
 			}
 
-			if(state == SupplicantState.DISCONNECTED)
+			if(state == SupplicantState.DISCONNECTED || state == SupplicantState.SCANNING)
 			{
 				if(manager.isWifiEnabled())
 				{

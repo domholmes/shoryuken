@@ -4,7 +4,7 @@ sr.reminderDefaults = {
 
     enabled: true,
     startTime: '08:00',
-    endTime: '09:00',
+    endTime: '20:00',
     days: '23456',
     actionId: 3
 };
@@ -122,6 +122,6 @@ sr.Reminder = function () {
 
     rem.setToPm = function () {
         rem.startTime("12:00");
-        rem.endTime("00:00");
+        rem.endTime("23:59");
     }
 };
