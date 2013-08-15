@@ -8,3 +8,4 @@ out/
 *.user
 TestResults/
 GoogleClientDetails.cs
+workspace.xml
