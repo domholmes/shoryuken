@@ -3,6 +3,7 @@ bin/
 obj/
 gen/
 out/
+build/
 .metadata/
 *.suo
 *.user
