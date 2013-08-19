@@ -5,8 +5,10 @@ gen/
 out/
 build/
 .metadata/
+taskArtifacts/
 *.suo
 *.user
 TestResults/
 GoogleClientDetails.cs
 workspace.xml
+local.properties
