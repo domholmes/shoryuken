@@ -29,7 +29,9 @@ public class ReminderCheckerTask extends AsyncTask<Intent, Integer, Long>
 	
 	protected Long doInBackground(Intent... intents) 
     {
-		List<Reminder> reminders = null;
+        this.notifier.Notify(context, intents[0].toString(), 0);
+
+        List<Reminder> reminders = null;
 		try
 		{
 			reminders = this.reminderStore.getReminders();
