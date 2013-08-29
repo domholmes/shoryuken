@@ -17,6 +17,8 @@ sr.Reminder = function () {
 
     rem.saving = ko.observable(false);
 
+    rem.place = ko.observable();
+
     // TODO: temporary mocked property
     rem.notifyOnce = ko.observable(false);
 
@@ -39,6 +41,11 @@ sr.Reminder = function () {
         {
             value: 3,
             text: "Charger Disconnected",
+            hasExtra: false
+        },
+        {
+            value: 4,
+            text: "Location",
             hasExtra: false
         }
     ];
@@ -118,10 +125,25 @@ sr.Reminder = function () {
     rem.setToAm = function () {
         rem.startTime("00:00");
         rem.endTime("12:00");
-    }
+    };
 
     rem.setToPm = function () {
         rem.startTime("12:00");
         rem.endTime("23:59");
-    }
+    };
+
+    var interval = window.setInterval(function () {
+        if (rem.actionId) {
+            rem.actionId.subscribe(function (newValue) {
+                if (newValue === 4) { // location
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function (position) {
+                            $.publish("currentLocation", position)
+                        });
+                    }
+                }
+            });
+            window.clearInterval(interval);
+        }
+    }, 0);
 };

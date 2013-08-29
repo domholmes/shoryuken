@@ -201,3 +201,34 @@ ko.bindingHandlers.invisible = {
         }
     }
 };
+
+ko.bindingHandlers.addressAutocomplete = {
+    init: function (element, valueAccessor) {
+        var value = valueAccessor(),
+
+            defaultBounds = new google.maps.LatLngBounds(
+                new google.maps.LatLng(-33.8902, 151.1759),
+                new google.maps.LatLng(-33.8474, 151.2631)), // central London  
+
+            options = { bounds: defaultBounds },
+
+            autocomplete = new google.maps.places.Autocomplete(element, options),
+
+            convertToBounds = function (latLng, radius) {
+                return new google.maps.Circle({ center: latLng, radius: radius }).getBounds();
+            };
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            result = autocomplete.getPlace();
+
+            value(result.formatted_address);
+        });
+
+        $.subscribe('currentLocation', function (_e, position) {
+            autocomplete.setBounds(convertToBounds(new google.maps.LatLng(position.coords.latitude, position.coords.longitude), 10000));
+        });
+    },
+    update: function (element, valueAccessor) {
+        ko.bindingHandlers.value.update(element, valueAccessor);
+    }
+};

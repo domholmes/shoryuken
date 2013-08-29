@@ -16,7 +16,8 @@ namespace Squirrel
                 .Include("~/Scripts/knockoutCustomBindings.js")
                 .Include("~/Scripts/custom-form-elements.js")
                 .Include("~/Scripts/q.js")
-                .Include("~/Scripts/breeze*"));
+                .Include("~/Scripts/breeze*")
+                .Include("~/Scripts/jquery.ba-tinypubsub.js"));
 
             bundles.Add(new StyleBundle("~/Content/css")
                 .Include("~/Content/base.css")
