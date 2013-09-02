@@ -21,7 +21,7 @@ public class GeofenceCreator
         this.geofenceRegistrar = new GeofenceRegistrar(context);
     }
 
-    private final float GEOFENCE_RADIUS_METRES = 100;
+    private final float GEOFENCE_RADIUS_METRES = 1000;
 
     public void CreateFromReminders(ArrayList<Reminder> reminders)
     {
@@ -56,7 +56,7 @@ public class GeofenceCreator
         builder.setExpirationDuration(Geofence.NEVER_EXPIRE);
 
         int transition = reminder.action == Action.SmartReminder_Event_LocationEnter ? Geofence.GEOFENCE_TRANSITION_ENTER : Geofence.GEOFENCE_TRANSITION_EXIT;
-        builder.setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER | Geofence.GEOFENCE_TRANSITION_EXIT);
+        builder.setTransitionTypes(transition);
 
         Geofence geofence = builder.build();
 

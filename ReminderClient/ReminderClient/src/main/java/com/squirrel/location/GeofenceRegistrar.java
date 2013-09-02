@@ -26,18 +26,18 @@ public class GeofenceRegistrar implements
     private Context context;
     private LocationClient locationClient;
     private ArrayList<Geofence> geofencesToAdd;
-    private PendingIntent pendingIntent;
+    private PendingIntent remapperIntent;
 
     public GeofenceRegistrar(Context context)
     {
         this.context = context;
         this.locationClient = new LocationClient(context, this, this);
 
-        pendingIntent = PendingIntent.getBroadcast(
+        remapperIntent = PendingIntent.getBroadcast(
                 this.context,
                 0,
                 new Intent(this.context, IntentRemapperReceiver.class),
-                PendingIntent.FLAG_CANCEL_CURRENT);
+                PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     public void registerGeofences(ArrayList<Geofence> geofences)
@@ -49,7 +49,7 @@ public class GeofenceRegistrar implements
     @Override
     public void onConnected(Bundle bundle)
     {
-        locationClient.removeGeofences(pendingIntent, this);
+        locationClient.removeGeofences(remapperIntent, this);
     }
 
     @Override
@@ -82,14 +82,6 @@ public class GeofenceRegistrar implements
     @Override
     public void onRemoveGeofencesByPendingIntentResult(int i, PendingIntent pendingIntent)
     {
-        locationClient.addGeofences(this.geofencesToAdd, pendingIntent, this);
-
-        /*locationClient.setMockMode(true);
-        Location mock = new Location("mock");
-        mock.setLongitude(50.733009);
-        mock.setLatitude(-3.56229);
-        mock.setTime(System.currentTimeMillis()-500000);
-        locationClient.setMockLocation(mock);*/
-        Location l = locationClient.getLastLocation();
+        locationClient.addGeofences(this.geofencesToAdd, remapperIntent, this);
     }
 }

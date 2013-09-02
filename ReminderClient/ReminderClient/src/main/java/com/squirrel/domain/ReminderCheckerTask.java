@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 
+import com.squirrel.action.Action;
 import com.squirrel.action.IntentRemapperReceiver;
 import com.squirrel.notify.Notifier;
 import com.squirrel.sync.ReminderStore;
@@ -29,8 +30,6 @@ public class ReminderCheckerTask extends AsyncTask<Intent, Integer, Long>
 	
 	protected Long doInBackground(Intent... intents) 
     {
-        this.notifier.Notify(context, intents[0].toString(), 0);
-
         List<Reminder> reminders = null;
 		try
 		{
@@ -57,7 +56,19 @@ public class ReminderCheckerTask extends AsyncTask<Intent, Integer, Long>
 		String intentAction = intent.getAction();
         String intentActionExtra = intent.getStringExtra(IntentRemapperReceiver.extraName);
 
-        if(reminder.action.name() == intentAction)
+        if(intentAction == Action.SmartReminder_Event_ById.name())
+        {
+            int reminderId = Integer.parseInt(intentActionExtra);
+
+            if(reminder.id == reminderId)
+            {
+                if(this.timeChecker.timeMatches(reminder))
+                {
+                    return true;
+                }
+            }
+        }
+        else if(reminder.action.name() == intentAction)
 		{		
 			if(TextUtils.isEmpty(reminder.actionExtra) || reminder.actionExtra.equalsIgnoreCase(intentActionExtra))
             {

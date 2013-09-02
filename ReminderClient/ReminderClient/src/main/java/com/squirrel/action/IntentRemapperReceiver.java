@@ -7,6 +7,12 @@ import android.net.NetworkInfo;
 import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiManager;
 
+import com.google.android.gms.location.Geofence;
+import com.google.android.gms.location.LocationClient;
+import com.squirrel.notify.Notifier;
+
+import java.util.List;
+
 public class IntentRemapperReceiver extends BroadcastReceiver
 {
 	public final static String extraName = "SmartReminder_Event_Extra";
@@ -15,50 +21,61 @@ public class IntentRemapperReceiver extends BroadcastReceiver
 	@Override
 	public void onReceive(Context context, Intent intent)
 	{
-		String action = intent.getAction();
+        List<Geofence> geofences = LocationClient.getTriggeringGeofences(intent);
 
-		if (action.equals(WifiManager.NETWORK_STATE_CHANGED_ACTION))
-		{
-            WifiManager manager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
-            NetworkInfo networkInfo = intent.getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
-            NetworkInfo.State state = networkInfo.getState();
+        if(!geofences.isEmpty())
+        {
+            Geofence triggeringGeofence = geofences.get(0);
+            String reminderId = triggeringGeofence.getRequestId();
+            broadcastIntent(Action.SmartReminder_Event_ById.name(), reminderId, context);
+        }
+        else
+        {
+            String action = intent.getAction();
 
-			if(state == NetworkInfo.State.CONNECTED)
-			{
-                String connectingToSsid = manager.getConnectionInfo().getSSID().replace("\"", "");
-                WifiStateHistory.recordConnectedSsid(connectingToSsid);
-
-                if(WifiStateHistory.notBroadcastInMinutes(connectingToSsid, minutesBeforeRebroadcast))
-                {
-                    WifiStateHistory.recordBroadcastNow(connectingToSsid);
-                    broadcastIntent(Action.SmartReminder_Event_WifiConnected.name(), connectingToSsid, context);
-                }
-			}
-
-            if(state == NetworkInfo.State.DISCONNECTED)
+            if (action.equals(WifiManager.NETWORK_STATE_CHANGED_ACTION))
             {
-				if(manager.isWifiEnabled())
-				{
-                    String disconnectedFromSsid = WifiStateHistory.getLastConnectedSsid();
+                WifiManager manager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
+                NetworkInfo networkInfo = intent.getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
+                NetworkInfo.State state = networkInfo.getState();
 
-                    if(WifiStateHistory.notBroadcastInMinutes(disconnectedFromSsid, minutesBeforeRebroadcast))
+                if(state == NetworkInfo.State.CONNECTED)
+                {
+                    String connectingToSsid = manager.getConnectionInfo().getSSID().replace("\"", "");
+                    WifiStateHistory.recordConnectedSsid(connectingToSsid);
+
+                    if(WifiStateHistory.notBroadcastInMinutes(connectingToSsid, minutesBeforeRebroadcast))
                     {
-                        WifiStateHistory.recordBroadcastNow(disconnectedFromSsid);
-                        broadcastIntent(Action.SmartReminder_Event_WifiDisconnected.name(), disconnectedFromSsid, context);
+                        WifiStateHistory.recordBroadcastNow(connectingToSsid);
+                        broadcastIntent(Action.SmartReminder_Event_WifiConnected.name(), connectingToSsid, context);
                     }
-				}
-			}
-		}
+                }
 
-		if (action.equals(Intent.ACTION_POWER_CONNECTED))
-		{
-			broadcastIntent(Action.SmartReminder_Event_PowerConnected.name(), null, context);
-		}
+                if(state == NetworkInfo.State.DISCONNECTED)
+                {
+                    if(manager.isWifiEnabled())
+                    {
+                        String disconnectedFromSsid = WifiStateHistory.getLastConnectedSsid();
 
-		if (action.equals(Intent.ACTION_POWER_DISCONNECTED))
-		{
-			broadcastIntent(Action.SmartReminder_Event_PowerDisconnected.name(), null, context);
-		}
+                        if(WifiStateHistory.notBroadcastInMinutes(disconnectedFromSsid, minutesBeforeRebroadcast))
+                        {
+                            WifiStateHistory.recordBroadcastNow(disconnectedFromSsid);
+                            broadcastIntent(Action.SmartReminder_Event_WifiDisconnected.name(), disconnectedFromSsid, context);
+                        }
+                    }
+                }
+            }
+
+            if (action.equals(Intent.ACTION_POWER_CONNECTED))
+            {
+                broadcastIntent(Action.SmartReminder_Event_PowerConnected.name(), null, context);
+            }
+
+            if (action.equals(Intent.ACTION_POWER_DISCONNECTED))
+            {
+                broadcastIntent(Action.SmartReminder_Event_PowerDisconnected.name(), null, context);
+            }
+        }
 	}
 
     private void broadcastIntent(String action, String extra, Context context)

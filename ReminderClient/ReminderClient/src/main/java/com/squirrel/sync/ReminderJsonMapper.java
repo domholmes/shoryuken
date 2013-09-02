@@ -27,10 +27,8 @@ public class ReminderJsonMapper
         reminder.notificationText = message;
 		reminder.startTime = startTime;
 		reminder.endTime = endTime;
-		//reminder.action = Action.values()[eventId];
-        //reminder.actionExtra = actionExtra;
-		reminder.action = Action.SmartReminder_Event_LocationEnter;
-        reminder.actionExtra = "-3.562111,50.732874";
+		reminder.action = Action.values()[eventId];
+        reminder.actionExtra = actionExtra;
         reminder.days = new ArrayList<Integer>();
 
 		for(char day: days.toCharArray())

@@ -10,9 +10,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/>
 
     <uses-sdk
         android:minSdkVersion="9"
@@ -42,6 +40,7 @@
         </receiver>
         <receiver android:name=".action.ActionReceiver" android:enabled="true">
             <intent-filter>
+                <action android:name="SmartReminder_Event_ById"/>
                 <action android:name="SmartReminder_Event_WifiConnected"/>
                 <action android:name="SmartReminder_Event_WifiDisconnected"/>
                 <action android:name="SmartReminder_Event_PowerConnected"/>
