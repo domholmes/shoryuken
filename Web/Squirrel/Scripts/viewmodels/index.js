@@ -93,7 +93,7 @@ sr.AppViewModel = function () {
 
             vm.reminders(data);
         }
-    }
+    };
 
     vm.loadReminders();
 }
