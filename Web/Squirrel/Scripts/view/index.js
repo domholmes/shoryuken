@@ -203,7 +203,7 @@ ko.bindingHandlers.invisible = {
 };
 
 ko.bindingHandlers.addressAutocomplete = {
-    init: function (element, valueAccessor) {
+    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var value = valueAccessor(),
 
             defaultBounds = new google.maps.LatLngBounds(
@@ -219,9 +219,10 @@ ko.bindingHandlers.addressAutocomplete = {
             };
 
         google.maps.event.addListener(autocomplete, 'place_changed', function () {
-            result = autocomplete.getPlace();
+            place = autocomplete.getPlace();
 
-            value(result.formatted_address);
+            value(place.formatted_address);
+            bindingContext.$data.latLong(place.geometry.location.ob + ',' + place.geometry.location.pb);
         });
 
         $.subscribe('currentLocation', function (_e, position) {

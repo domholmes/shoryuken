@@ -11,13 +11,11 @@ sr.reminderDefaults = {
 
 sr.Reminder = function () {
 
-    var rem = this;
+    var rem = this, counter = 0;
 
     rem.editing = ko.observable(false);
 
     rem.saving = ko.observable(false);
-
-    rem.place = ko.observable();
 
     // TODO: temporary mocked property
     rem.notifyOnce = ko.observable(false);
@@ -45,7 +43,7 @@ sr.Reminder = function () {
         },
         {
             value: 4,
-            text: "Location",
+            text: "Place",
             hasExtra: false
         }
     ];
@@ -131,19 +129,4 @@ sr.Reminder = function () {
         rem.startTime("12:00");
         rem.endTime("23:59");
     };
-
-    var interval = window.setInterval(function () {
-        if (rem.actionId) {
-            rem.actionId.subscribe(function (newValue) {
-                if (newValue === 4) { // location
-                    if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition(function (position) {
-                            $.publish("currentLocation", position)
-                        });
-                    }
-                }
-            });
-            window.clearInterval(interval);
-        }
-    }, 0);
 };

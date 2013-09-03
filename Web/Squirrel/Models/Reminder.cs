@@ -38,6 +38,12 @@ namespace Squirrel.Models
 
         [StringLength(20)]
         public string ActionExtra { get; set; }
+
+        [StringLength(50)]
+        public string LatLong { get; set; }
+
+        [StringLength(200)]
+        public string PlaceName { get; set; }
     }
 
     public enum DeviceAction
@@ -45,6 +51,7 @@ namespace Squirrel.Models
         WifiConnected = 0,
         WifiDisconnected = 1,
         ChagerConnected = 2,
-        ChargerDisconnected = 3
+        ChargerDisconnected = 3,
+        Location = 4
     }
 }
