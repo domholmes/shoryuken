@@ -6,10 +6,9 @@ import java.util.List;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.text.TextUtils;
 
-import com.squirrel.action.Action;
 import com.squirrel.action.IntentRemapperReceiver;
+import com.squirrel.action.ReminderIntentMatcher;
 import com.squirrel.notify.Notifier;
 import com.squirrel.sync.ReminderStore;
 
@@ -19,6 +18,7 @@ public class ReminderCheckerTask extends AsyncTask<Intent, Integer, Long>
     private TimeChecker timeChecker;
 	private Notifier notifier;
 	private ReminderStore reminderStore;
+    private ReminderIntentMatcher reminderMatcher;
 	
 	public ReminderCheckerTask(Context context)
     {
@@ -37,7 +37,7 @@ public class ReminderCheckerTask extends AsyncTask<Intent, Integer, Long>
 			
 			for(Reminder reminder : reminders) 
 			{
-				if(reminderIsNow(reminder, intents[0]))
+				if(intentTriggersReminder(reminder, intents[0]))
 				{
                     this.notifier.Notify(context, reminder.notificationText, reminder.id);
 				}
@@ -51,34 +51,18 @@ public class ReminderCheckerTask extends AsyncTask<Intent, Integer, Long>
     	return (long) 0;
     }
 	
-	private Boolean reminderIsNow(Reminder reminder, Intent intent) throws ParseException
+	private Boolean intentTriggersReminder(Reminder reminder, Intent intent) throws ParseException
 	{
-		String intentAction = intent.getAction();
-        String intentActionExtra = intent.getStringExtra(IntentRemapperReceiver.extraName);
+        ReminderIntentMatcher intentMatcher = new ReminderIntentMatcher(intent);
 
-        if(intentAction == Action.SmartReminder_Event_ById.name())
+        if(intentMatcher.isIdMatch(reminder) || intentMatcher.isActionMatch(reminder))
         {
-            int reminderId = Integer.parseInt(intentActionExtra);
-
-            if(reminder.id == reminderId)
+            if(this.timeChecker.timeMatches(reminder))
             {
-                if(this.timeChecker.timeMatches(reminder))
-                {
-                    return true;
-                }
+                return true;
             }
         }
-        else if(reminder.action.name() == intentAction)
-		{		
-			if(TextUtils.isEmpty(reminder.actionExtra) || reminder.actionExtra.equalsIgnoreCase(intentActionExtra))
-            {
-                if(this.timeChecker.timeMatches(reminder))
-                {
-                    return true;
-                }
-            }
-		}
-		
+
 		return false;
 	}
 	
