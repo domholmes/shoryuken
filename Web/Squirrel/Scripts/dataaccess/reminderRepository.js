@@ -6,10 +6,10 @@
 
     var valOpts = episodeManager.validationOptions.using({ validateOnAttach: false });
     episodeManager.setProperties({ validationOptions: valOpts });
-    
+
     function createReminder() {
 
-        var newReminder = episodeManager.createEntity('Reminder', sr.reminderDefaults);
+        var newReminder = episodeManager.createEntity('Reminder', sr.reminderDefaults);        
 
         return newReminder;
     };
@@ -61,7 +61,7 @@
             .saveChanges([reminder])
             .then(successCallback)
             .fail(failCallback);
-    }
+    }    
 
     episodeManager.metadataStore.registerEntityTypeCtor("Reminder", sr.Reminder, function (entity) {
 
@@ -77,7 +77,7 @@
 
             $.each(errors, function () {
 
-                entity.errors.push(this.errorMessage);     
+                entity.errors.push(this.errorMessage);
 
                 if (typeof this.propertyName != 'undefined') {
 

@@ -181,6 +181,14 @@
     <Compile Include="Migrations\201307311745382_AddReminderActionExtra.Designer.cs">
       <DependentUpon>201307311745382_AddReminderActionExtra.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201309031815365_AddLatLong.cs" />
+    <Compile Include="Migrations\201309031815365_AddLatLong.Designer.cs">
+      <DependentUpon>201309031815365_AddLatLong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201309032036490_AddPlaceName.cs" />
+    <Compile Include="Migrations\201309032036490_AddPlaceName.Designer.cs">
+      <DependentUpon>201309032036490_AddPlaceName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Reminder.cs" />
     <Compile Include="Models\ReminderContext.cs" />
@@ -316,6 +324,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201307311745382_AddReminderActionExtra.resx">
       <DependentUpon>201307311745382_AddReminderActionExtra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309031815365_AddLatLong.resx">
+      <DependentUpon>201309031815365_AddLatLong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309032036490_AddPlaceName.resx">
+      <DependentUpon>201309032036490_AddPlaceName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
