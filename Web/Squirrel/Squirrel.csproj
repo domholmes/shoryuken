@@ -189,6 +189,10 @@
     <Compile Include="Migrations\201309032036490_AddPlaceName.Designer.cs">
       <DependentUpon>201309032036490_AddPlaceName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201309082104246_RenameExtraToSsid.cs" />
+    <Compile Include="Migrations\201309082104246_RenameExtraToSsid.Designer.cs">
+      <DependentUpon>201309082104246_RenameExtraToSsid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Reminder.cs" />
     <Compile Include="Models\ReminderContext.cs" />
@@ -330,6 +334,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201309032036490_AddPlaceName.resx">
       <DependentUpon>201309032036490_AddPlaceName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309082104246_RenameExtraToSsid.resx">
+      <DependentUpon>201309082104246_RenameExtraToSsid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -81,10 +81,7 @@ sr.AppViewModel = function () {
 
         reminder.saving(true);
 
-        if (!reminder.actionHasExtra()) {
-
-            reminder.actionExtra(null);
-        }
+        // TODO: Remove ssid/place if a different action is selected
 
         sr.repository.saveReminder(
 

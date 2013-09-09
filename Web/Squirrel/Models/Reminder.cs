@@ -37,7 +37,7 @@ namespace Squirrel.Models
         public int ActionId { get; set; }
 
         [StringLength(20)]
-        public string ActionExtra { get; set; }
+        public string Ssid { get; set; }
 
         [StringLength(50)]
         public string LatLong { get; set; }
