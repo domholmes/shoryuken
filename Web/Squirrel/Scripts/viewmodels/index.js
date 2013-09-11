@@ -1,20 +1,6 @@
 sr.AppViewModel = function () {
 
-    var vm = this,
-
-        geoLocationBinder = function (changeArgs) {
-
-            if (changeArgs.propertyName === "actionId" && changeArgs.newValue === 4) { // location
-
-                if (navigator.geolocation) {
-
-                    navigator.geolocation.getCurrentPosition(function (position) {
-                        $.publish("currentLocation", position);
-                    });
-
-                }
-            }
-        };
+    var vm = this;
 
     vm.reminders = ko.observableArray([]);
 
@@ -39,7 +25,7 @@ sr.AppViewModel = function () {
 
             var newReminder = sr.repository.createReminder();
             newReminder.editing(true);
-            newReminder.entityAspect.propertyChanged.subscribe(geoLocationBinder);
+            newReminder.postCreationSetup();
 
             vm.reminders.unshift(newReminder);
         }
@@ -103,11 +89,11 @@ sr.AppViewModel = function () {
 
         function callback(data) {
 
-            vm.reminders(data);
-
-            ko.utils.arrayForEach(vm.reminders(), function (reminder) {
-                reminder.entityAspect.propertyChanged.subscribe(geoLocationBinder);
+            ko.utils.arrayForEach(data, function (reminder) {
+                reminder.postCreationSetup();
             });
+
+            vm.reminders(data);            
         }
     };
 

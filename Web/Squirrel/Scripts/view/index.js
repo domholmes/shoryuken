@@ -207,8 +207,8 @@ ko.bindingHandlers.addressAutocomplete = {
         var value = valueAccessor(),
 
             defaultBounds = new google.maps.LatLngBounds(
-                new google.maps.LatLng(-33.8902, 151.1759),
-                new google.maps.LatLng(-33.8474, 151.2631)), // central London  
+                new google.maps.LatLng(51.478389,-0.143616),
+                new google.maps.LatLng(51.534804,-0.052979)), // central London  
 
             options = { bounds: defaultBounds },
 
