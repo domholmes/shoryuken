@@ -23,7 +23,7 @@ public class IntentRemapperReceiver extends BroadcastReceiver
 	{
         List<Geofence> geofences = LocationClient.getTriggeringGeofences(intent);
 
-        if(!geofences.isEmpty())
+        if(geofences != null && !geofences.isEmpty())
         {
             Geofence triggeringGeofence = geofences.get(0);
             String reminderId = triggeringGeofence.getRequestId();

@@ -33,11 +33,21 @@ public class ReminderIntentMatcher
 
     public Boolean isActionMatch(Reminder reminder)
     {
-        if(reminder.action.name() == intentAction)
+        String reminderAction = reminder.action.name();
+
+        if(reminderAction == intentAction)
         {
-            if(TextUtils.isEmpty(reminder.actionExtra) || reminder.actionExtra.equalsIgnoreCase(intentActionExtra))
+            if(reminderAction == Action.SmartReminder_Event_PowerConnected.name() || reminderAction == Action.SmartReminder_Event_PowerDisconnected.name())
             {
                 return true;
+            }
+
+            if(reminderAction == Action.SmartReminder_Event_WifiConnected.name() || reminderAction == Action.SmartReminder_Event_WifiDisconnected.name())
+            {
+                if(TextUtils.isEmpty(reminder.ssid) || reminder.ssid.equalsIgnoreCase(intentActionExtra))
+                {
+                    return true;
+                }
             }
         }
 

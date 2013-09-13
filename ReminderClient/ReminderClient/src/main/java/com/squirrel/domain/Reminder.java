@@ -11,10 +11,10 @@ public class Reminder implements Serializable
 
     public Action action;
 
-    public String actionExtra;
-	
-    public String extra;
-    
+    public String ssid;
+
+    public String latLong;
+
 	public String startTime;
 	
 	public String endTime;

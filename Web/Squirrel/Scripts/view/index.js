@@ -222,7 +222,7 @@ ko.bindingHandlers.addressAutocomplete = {
             place = autocomplete.getPlace();
 
             value(place.formatted_address);
-            bindingContext.$data.latLong(place.geometry.location.ob + ',' + place.geometry.location.pb);
+            bindingContext.$data.latLong(place.geometry.location.pb + ',' + place.geometry.location.qb);
         });
 
         $.subscribe('currentLocation', function (_e, position) {
