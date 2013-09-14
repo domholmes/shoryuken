@@ -21,7 +21,7 @@ public class GeofenceCreator
         this.geofenceRegistrar = new GeofenceRegistrar(context);
     }
 
-    private final float GEOFENCE_RADIUS_METRES = 300;
+    private final float GEOFENCE_RADIUS_METRES = 200;
 
     public void CreateFromReminders(ArrayList<Reminder> reminders)
     {

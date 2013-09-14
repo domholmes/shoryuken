@@ -52,6 +52,7 @@ namespace Squirrel.Models
         WifiDisconnected = 1,
         ChagerConnected = 2,
         ChargerDisconnected = 3,
-        Location = 4
+        LocationEnter = 4,
+        LocationLeave = 5
     }
 }

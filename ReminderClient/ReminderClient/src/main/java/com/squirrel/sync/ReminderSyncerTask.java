@@ -30,10 +30,10 @@ class ReminderSyncerTask extends AsyncTask<Void, Void, Void>
     @Override
     protected Void doInBackground(Void... voids)
     {
-        ArrayList<Reminder> reminders = new ArrayList<Reminder>();
-
         try
         {
+            ArrayList<Reminder> reminders = new ArrayList<Reminder>();
+
             JSONArray jArray = this.apiService.getRemindersJson();
 
             for(int i=0; i< jArray.length(); i++)
@@ -44,18 +44,11 @@ class ReminderSyncerTask extends AsyncTask<Void, Void, Void>
 
                 reminders.add(reminder);
             }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
 
-        try
-        {
             this.reminderStore.putReminders(reminders);
             new GeofenceCreator(context).CreateFromReminders(reminders);
         }
-        catch (IOException e)
+        catch (Exception e)
         {
             e.printStackTrace();
         }
