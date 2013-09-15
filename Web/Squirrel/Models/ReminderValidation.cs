@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using NodaTime;
 using NodaTime.Text;
+using System.Text.RegularExpressions;
 
 namespace Squirrel.Models
 {
@@ -21,6 +22,28 @@ namespace Squirrel.Models
             {
                 ErrorMessage = "Start time must be before end time";
                 return false;
+            }
+
+            return true;
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Class)]
+    public class ValidLocation : ValidationAttribute
+    {
+        public override bool IsValid(object value)
+        {
+            var reminder = (Reminder)value;
+
+            if (reminder.Action == DeviceAction.LocationEnter || reminder.Action == DeviceAction.LocationLeave)
+            {
+                var latLongRegex = new Regex(@"^-?\d+\.\d+,-?\d+\.\d+$");
+
+                if (string.IsNullOrEmpty(reminder.LatLong) || !latLongRegex.IsMatch(reminder.LatLong))
+                {
+                    ErrorMessage = "A recognised location must be supplied";
+                    return false;
+                }
             }
 
             return true;
