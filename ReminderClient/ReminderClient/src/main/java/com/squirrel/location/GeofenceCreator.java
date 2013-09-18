@@ -21,7 +21,7 @@ public class GeofenceCreator
         this.geofenceRegistrar = new GeofenceRegistrar(context);
     }
 
-    private final float GEOFENCE_RADIUS_METRES = 300;
+    private final float GEOFENCE_RADIUS_METRES = 200;
 
     public void CreateFromReminders(ArrayList<Reminder> reminders)
     {
@@ -45,9 +45,8 @@ public class GeofenceCreator
 
     private Geofence createGeofence(Reminder reminder)
     {
-        String location = reminder.actionExtra;
-        double latitude = parseLatitude(location);
-        double longitude = parseLongitude(location);
+        double latitude = parseLatitude(reminder.latLong);
+        double longitude = parseLongitude(reminder.latLong);
 
         Geofence.Builder builder = new Geofence.Builder();
 
