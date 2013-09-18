@@ -207,8 +207,8 @@ ko.bindingHandlers.addressAutocomplete = {
         var value = valueAccessor(),
 
             defaultBounds = new google.maps.LatLngBounds(
-                new google.maps.LatLng(51.478389,-0.143616),
-                new google.maps.LatLng(51.534804,-0.052979)), // central London  
+                new google.maps.LatLng(51.478389, -0.143616),
+                new google.maps.LatLng(51.534804, -0.052979)), // central London  
 
             options = { bounds: defaultBounds },
 
@@ -223,7 +223,14 @@ ko.bindingHandlers.addressAutocomplete = {
 
             value(place.formatted_address);
             bindingContext.$data.latLong(place.geometry.location.lat() + ',' + place.geometry.location.lng());
+            console.log(bindingContext.$data.latLong());
         });
+
+        element.addEventListener('input', function (event) {
+            bindingContext.$data.latLong(null);
+            value(event.target.value);
+            console.log(bindingContext.$data.latLong());
+        }, false);
 
         $.subscribe('currentLocation', function (_e, position) {
             autocomplete.setBounds(convertToBounds(new google.maps.LatLng(position.coords.latitude, position.coords.longitude), 10000));
