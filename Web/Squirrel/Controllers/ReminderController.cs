@@ -6,6 +6,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Squirrel.Controllers
 {
+    [Authorize]
     [BreezeController]
     public class ReminderController : ApiController
     {
