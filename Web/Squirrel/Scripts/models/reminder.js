@@ -134,6 +134,15 @@ sr.Reminder = function () {
         rem.endTime("23:59");
     };
 
+    rem.setToWhenever = function () {
+        rem.startTime("00:00");
+        rem.endTime("23:59");
+    };
+
+    rem.wheneverClick = function (reminder, event) {
+        reminder.setToWhenever();
+    };
+
     rem.postCreationSetup = function () {
 
         rem.showSSIDField = ko.computed(function () {

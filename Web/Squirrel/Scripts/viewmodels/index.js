@@ -33,6 +33,7 @@ sr.AppViewModel = function () {
 
     vm.beginReminderEdit = function (reminder, event) {
 
+        event.stopPropagation();
         reminder.editing(true);
     };
 
@@ -83,6 +84,11 @@ sr.AppViewModel = function () {
             });
     };
 
+    cardDisplayClick = function (reminder, event) {
+        reminder.enable();
+        vm.saveReminder(reminder);
+    };
+
     vm.loadReminders = function () {
 
         sr.repository.fetchReminders(callback);
@@ -93,7 +99,7 @@ sr.AppViewModel = function () {
                 reminder.postCreationSetup();
             });
 
-            vm.reminders(data);            
+            vm.reminders(data);
         }
     };
 

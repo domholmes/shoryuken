@@ -45,7 +45,7 @@
                 css: { 
                     disabled: (!enabled() && !editing()) 
                 }" >
-                <div class="display">                                           
+                <div class="display" data-bind="click: cardDisplayClick">                                           
                     <div class="body">
                         <h2 data-bind="visible: name() != '', text: name">
                         </h2>
@@ -70,9 +70,10 @@
                         </div>
                         
                         <div class="control-group">
-                            <div class="meridian pull-right">
+                            <div class="time-shortcuts pull-right">
                                 <button class="link-emulate" data-bind="setMeridian: 'AM'">AM</button> | 
-                                <button class="link-emulate" data-bind="setMeridian: 'PM'">PM</button>
+                                <button class="link-emulate" data-bind="setMeridian: 'PM'">PM</button> | 
+                                <button class="link-emulate" data-bind="click: wheneverClick">Whenever</button>
                             </div>
                             <div class="input-append bootstrap-timepicker">
                                 <input type="text" class="input-small timepicker" placeholder="Start time (required)" data-bind="timePicker: startTime" /><span

@@ -208,18 +208,6 @@ button span.icon {
     visibility: visible;
     opacity: 0;
 }
-button.on-off
-{
-    background-image: url(images/checkbox.png);
-    background-position: -6px -6px;
-    width: 97px;
-    height: 22px;
-    border: none;
-}
-button.on-off.on
-{
-    background-position: -4px 32px;
-}
 button.link-emulate
 {
     padding: 0;
@@ -288,7 +276,7 @@ button.link-emulate
 {    
     padding: 20px 20px 10px;
 }
-.card .meridian button
+.card .time-shortcuts button
 {
     font-weight: bold;
 }
