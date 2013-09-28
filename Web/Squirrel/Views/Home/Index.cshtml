@@ -71,9 +71,9 @@
                         
                         <div class="control-group">
                             <div class="time-shortcuts pull-right">
-                                <button class="link-emulate" data-bind="setMeridian: 'AM'">AM</button> | 
-                                <button class="link-emulate" data-bind="setMeridian: 'PM'">PM</button> | 
-                                <button class="link-emulate" data-bind="click: wheneverClick">Whenever</button>
+                                <button data-bind="setMeridian: 'AM', css: { toggleButton: true, active: isSetToAm }">AM</button> | 
+                                <button data-bind="setMeridian: 'PM', css: { toggleButton: true, active: isSetToPm }">PM</button> | 
+                                <button data-bind="click: wheneverClick, css: { toggleButton: true, active: isSetToWhenever }">Whenever</button>
                             </div>
                             <div class="input-append bootstrap-timepicker">
                                 <input type="text" class="input-small timepicker" placeholder="Start time (required)" data-bind="timePicker: startTime" /><span
@@ -87,8 +87,8 @@
 
                         <div class="control-group">
                             <div class="days" data-bind="foreach: availableDays, css: { 'validation-highlight': propertiesWithErrors.indexOf('days') > -1 }">
-                                <span data-bind="text: name, click: $parent.changeDay, css: { selected: $parent.isDaySelected($data) }">
-                                </span>
+                                <button data-bind="text: name, click: $parent.changeDay, css: { toggleButton: true, active: $parent.isDaySelected($data) }">
+                                </button>
                             </div> 
                         </div>  
                         

@@ -223,6 +223,12 @@ button.link-emulate
     animation-duration: 1s;
     animation-iteration-count: infinite;
 }
+button 
+{
+    border: none;
+    background: none;
+    padding: 0;
+}
 
 /* Misc
 ------------------------------------------------*/
@@ -312,13 +318,12 @@ button.link-emulate
 {
     width: 100%;
 }
-.card .days 
+.toggleButton
 {
-    cursor: pointer;
     font-weight: bold;
     color: #808080;
 }
-.card .days .selected 
+.toggleButton.active 
 {
     color: #33b5e5;
 }
