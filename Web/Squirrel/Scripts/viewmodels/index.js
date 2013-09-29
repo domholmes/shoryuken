@@ -4,6 +4,8 @@ sr.AppViewModel = function () {
 
     vm.reminders = ko.observableArray([]);
 
+    vm.loading = ko.observable(false);
+
     vm.editing = ko.computed(function () {
 
         var reminder = ko.utils.arrayFirst(vm.reminders(), function (reminder) {
@@ -91,9 +93,13 @@ sr.AppViewModel = function () {
 
     vm.loadReminders = function () {
 
+        vm.loading(true);
+
         sr.repository.fetchReminders(callback);
 
         function callback(data) {
+
+            vm.loading(false);
 
             ko.utils.arrayForEach(data, function (reminder) {
                 reminder.postCreationSetup();

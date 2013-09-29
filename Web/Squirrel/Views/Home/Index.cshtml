@@ -43,7 +43,8 @@
                     'class': 'card margin-bottom ' + $parent.spanClass 
                 }, 
                 css: { 
-                    disabled: (!enabled() && !editing()) 
+                    disabled: (!enabled() && !editing()),
+                    editing: editing
                 }" >
                 <div class="display" data-bind="click: cardDisplayClick">                                           
                     <div class="body">
@@ -118,9 +119,19 @@
         </div>
     </section>
 </div>
+<div class="loader" data-bind="css: { active: loading }">
+  <div class="duo duo1">
+    <div class="dot dot-a"></div>
+    <div class="dot dot-b"></div>
+  </div>
+  <div class="duo duo2">
+    <div class="dot dot-a"></div>
+    <div class="dot dot-b"></div>
+  </div>
+</div>
 @section scripts
 {
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=en"></script>
     <script src="@Url.Content("~/Scripts/sr.js")"></script>
     <script src="@Url.Content("~/Scripts/models/reminder.js")"></script>
     <script src="@Url.Content("~/Scripts/dataaccess/reminderRepository.js")"></script>

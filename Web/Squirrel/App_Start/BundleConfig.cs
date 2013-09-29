@@ -14,7 +14,7 @@ namespace Squirrel
                 .Include("~/Scripts/bootstrap-timepicker.js")
                 .Include("~/Scripts/knockout-2.3.0.js")
                 .Include("~/Scripts/knockoutCustomBindings.js")
-                .Include("~/Scripts/custom-form-elements.js")
+                .Include("~/Scripts/prefixfree.js")
                 .Include("~/Scripts/q.js")
                 .Include("~/Scripts/breeze*")
                 .Include("~/Scripts/jquery.ba-tinypubsub.js"));
