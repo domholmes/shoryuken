@@ -39,7 +39,30 @@ sr.AppViewModel = function () {
         reminder.editing(true);
     };
 
-    vm.cancelReminderEdit = function (reminder, event) {
+    vm.reminderDeleteClick = function (reminder) {
+        if (!reminder.deleting()) {
+            reminder.deleting(true);
+        } else {
+            vm.deleteReminder(reminder);
+        }
+    };
+
+    vm.reminderCancelClick = function (reminder) {
+
+        if (reminder.deleting()) {
+            reminder.deleting(false);
+        } else {
+            vm.cancelReminderEdit(reminder);
+        }
+    };
+
+    vm.reminderSaveClick = function (reminder) {
+        if (!reminder.deleting()) {
+            vm.saveReminder(reminder);
+        }
+    };
+
+    vm.cancelReminderEdit = function (reminder) {
 
         if (!reminder.saving()) {
 

@@ -72,9 +72,9 @@
                         
                         <div class="control-group">
                             <div class="time-shortcuts pull-right">
-                                <button data-bind="setMeridian: 'AM', css: { toggleButton: true, active: isSetToAm }">AM</button> | 
-                                <button data-bind="setMeridian: 'PM', css: { toggleButton: true, active: isSetToPm }">PM</button> | 
-                                <button data-bind="click: wheneverClick, css: { toggleButton: true, active: isSetToWhenever }">Whenever</button>
+                                <button data-bind="setTimePeriod: 'AM', css: { toggleButton: true, active: isSetToAM }">AM</button> | 
+                                <button data-bind="setTimePeriod: 'PM', css: { toggleButton: true, active: isSetToPM }">PM</button> | 
+                                <button data-bind="setTimePeriod: 'Whenever', css: { toggleButton: true, active: isSetToWhenever }">Whenever</button>
                             </div>
                             <div class="input-append bootstrap-timepicker">
                                 <input type="text" class="input-small timepicker" placeholder="Start time (required)" data-bind="timePicker: startTime" /><span
@@ -109,10 +109,19 @@
 
                     </div>
                     <footer>
-                        <button class="link-emulate" data-bind="click: $root.saveReminder, css: { busy: saving }">
-                            Save</button><button class="link-emulate" data-bind="click: $root.cancelReminderEdit">
-                            Cancel</button><button class="link-emulate" data-bind="click: $root.deleteReminder">
-                            Delete</button>                        
+                        <button class="link-emulate" data-bind="
+                            text: 'Save',
+                            click: $root.reminderSaveClick, 
+                            css: { 
+                                busy: saving, 
+                                disabled: deleting 
+                            }"></button><button class="link-emulate" data-bind="
+                            text: 'Cancel',
+                            click: $root.reminderCancelClick
+                            "></button><button class="link-emulate" data-bind="
+                                click: $root.reminderDeleteClick, 
+                                text: deleting() ? 'Really?' : 'Delete'
+                            "></button>                        
                     </footer>
                 </div>
             </article>

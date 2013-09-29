@@ -175,6 +175,10 @@ button span.icon {
     cursor: pointer;
     color: #0099cc;
 }
+.link-emulate.disabled 
+{
+    color: #ccc;
+}
 .margin-bottom 
 {
     margin-bottom: 20px;

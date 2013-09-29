@@ -42,6 +42,8 @@ sr.Reminder = function () {
 
     rem.saving = ko.observable(false);
 
+    rem.deleting = ko.observable(false);
+
     // TODO: temporary mocked property
     rem.notifyOnce = ko.observable(false);
 
@@ -127,24 +129,20 @@ sr.Reminder = function () {
         rem.enabled(!rem.enabled());
     };
 
-    rem.setToAm = function () {
+    rem.setToAM = function () {
         rem.startTime(START_DAY);
         rem.endTime(MID_DAY);
-    };    
+    };
 
-    rem.setToPm = function () {
+    rem.setToPM = function () {
         rem.startTime(MID_DAY);
         rem.endTime(END_DAY);
-    };       
+    };
 
     rem.setToWhenever = function () {
         rem.startTime(START_DAY);
         rem.endTime(END_DAY);
-    };
-
-    rem.wheneverClick = function (reminder, event) {
-        reminder.setToWhenever();
-    };
+    };      
 
     rem.postCreationSetup = function () {
 
@@ -156,12 +154,12 @@ sr.Reminder = function () {
             return selectedEventIs(["LOCATION_ENTER", "LOCATION_LEAVE"]);
         });
 
-        rem.isSetToAm = ko.computed(function () {
+        rem.isSetToAM = ko.computed(function () {
             return rem.startTime() === START_DAY &&
                 rem.endTime() === MID_DAY;
         });
 
-        rem.isSetToPm = ko.computed(function () {
+        rem.isSetToPM = ko.computed(function () {
             return rem.startTime() === MID_DAY &&
                 rem.endTime() === END_DAY;
         });
