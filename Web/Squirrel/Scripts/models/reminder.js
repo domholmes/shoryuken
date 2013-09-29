@@ -3,10 +3,10 @@
 sr.reminderDefaults = {
 
     enabled: true,
-    startTime: '08:00',
-    endTime: '20:00',
-    days: '23456',
-    actionId: 3
+    startTime: '00:00',
+    endTime: '23:59',
+    days: '2345671',
+    actionId: 4
 };
 
 sr.Reminder = function () {
