@@ -105,6 +105,7 @@ sr.AppViewModel = function () {
             },
             function () {// fail
 
+                reminder.errors.push("Save failed, please try again later");
                 reminder.saving(false);
             });
     };
