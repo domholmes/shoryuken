@@ -93,8 +93,6 @@ sr.AppViewModel = function () {
 
         reminder.saving(true);
 
-        // TODO: Remove ssid/place if a different action is selected
-
         sr.repository.saveReminder(
 
             reminder,
@@ -103,9 +101,19 @@ sr.AppViewModel = function () {
                 reminder.saving(false);
                 reminder.editing(false);
             },
-            function () {// fail
+            function (response) {// fail
 
-                reminder.errors.push("Save failed, please try again later");
+                switch (response.status) {
+
+                    case 401:
+                        reminder.errors.push("You have been signed out. Please refresh your browser to sign in again.");
+                        break;
+
+                    default:
+                        reminder.errors.push("Save failed, please try again later");
+                        break;
+                }
+
                 reminder.saving(false);
             });
     };
