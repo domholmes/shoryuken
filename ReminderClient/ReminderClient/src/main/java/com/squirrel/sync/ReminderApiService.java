@@ -3,18 +3,22 @@ package com.squirrel.sync;
 import android.content.Context;
 
 import com.squirrel.auth.IdTokenStore;
+import com.squirrel.domain.Reminder;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReminderApiService
 {
@@ -23,58 +27,60 @@ public class ReminderApiService
     private JsonArrayBuilder arrayBuilder;
     private IdTokenStore tokenStore;
     private HttpClient httpClient;
+    private ReminderJsonMapper jsonMapper;
 
     public ReminderApiService(Context context)
     {
         this.arrayBuilder = new JsonArrayBuilder();
         this.tokenStore = new IdTokenStore(context);
         this.httpClient = new DefaultHttpClient();
+        this.jsonMapper = new ReminderJsonMapper();
+
     }
 
-    public JSONArray getRemindersJson() throws IOException, JSONException
+    public ArrayList<Reminder> syncReminders(List<Reminder> localReminders) throws IOException, JSONException
     {
-        JSONArray array = new JSONArray();
+        ArrayList<Reminder> updatedReminders = new ArrayList<Reminder>();
 
         String idToken = this.tokenStore.getToken();
 
         if(idToken != null)
         {
-            HttpGet get = new HttpGet(baseUri);
-            addTokenHeader(get, idToken);
+            HttpPost post = new HttpPost(baseUri);
 
-            HttpResponse response = this.httpClient.execute(get);
+            post.setHeader("idToken", idToken);
 
-            array = this.arrayBuilder.build(response);
+            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+            String disabledReminderIds = this.buildDisabledRemindersJsonString(localReminders);
+
+            post.setEntity(new StringEntity(disabledReminderIds));
+            post.setHeader("Accept", "application/json");
+            post.setHeader("Content-type", "application/json");
+
+            HttpResponse response = this.httpClient.execute(post);
+
+            JSONArray array = this.arrayBuilder.build(response);
+
+            updatedReminders = this.jsonMapper.createRemindersFromJson(array);
         }
 
-        return array;
+        return updatedReminders;
     }
 
-    public Boolean disableReminder(int reminderId) throws IOException
+    private String buildDisabledRemindersJsonString(List<Reminder> reminders)
     {
-        String idToken = this.tokenStore.getToken();
+        List<Integer> disabledReminderIds = new ArrayList<Integer>();
 
-        if(idToken == null)
+        for(Reminder reminder : reminders)
         {
-            return false;
+            if(!reminder.enabled)
+            {
+                disabledReminderIds.add(reminder.id);
+            }
         }
 
-        HttpPost post = new HttpPost(baseUri + "/" + reminderId);
-        addTokenHeader(post, idToken);
+        String json = new JSONArray(disabledReminderIds).toString();
 
-        HttpResponse response = this.httpClient.execute(post);
-
-        if(response.getStatusLine().getStatusCode() != HttpURLConnection.HTTP_OK)
-        {
-            return false;
-        }
-
-        return true;
+        return json;
     }
-
-    private void addTokenHeader(HttpRequestBase request, String idToken)
-    {
-        request.setHeader("idToken", idToken);
-    }
-
 }

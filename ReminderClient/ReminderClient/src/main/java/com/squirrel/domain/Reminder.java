@@ -22,4 +22,8 @@ public class Reminder implements Serializable
 	public List<Integer> days;
     
     public String notificationText;
+
+    public boolean enabled;
+
+    public boolean repeat;
 }

@@ -7,40 +7,49 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 
-import com.squirrel.action.IntentRemapperReceiver;
 import com.squirrel.action.ReminderIntentMatcher;
 import com.squirrel.notify.Notifier;
-import com.squirrel.sync.ReminderStore;
+import com.squirrel.sync.ReminderRepository;
 
 public class ReminderCheckerTask extends AsyncTask<Intent, Integer, Long>
 {
     private Context context;
     private TimeChecker timeChecker;
 	private Notifier notifier;
-	private ReminderStore reminderStore;
-    private ReminderIntentMatcher reminderMatcher;
+	private ReminderRepository reminderRepository;
 	
 	public ReminderCheckerTask(Context context)
     {
     	this.context = context;
     	this.timeChecker = new TimeChecker();
 		this.notifier = new Notifier();
-		this.reminderStore = new ReminderStore(context);
+		this.reminderRepository = new ReminderRepository(context);
     }
 	
 	protected Long doInBackground(Intent... intents) 
     {
         List<Reminder> reminders = null;
-		try
+
+        try
 		{
-			reminders = this.reminderStore.getReminders();
+			reminders = this.reminderRepository.getReminders();
 			
 			for(Reminder reminder : reminders) 
 			{
-				if(intentTriggersReminder(reminder, intents[0]))
-				{
-                    this.notifier.Notify(context, reminder.notificationText, reminder.id);
-				}
+				if(reminder.enabled)
+                {
+                    if(intentTriggersReminder(reminder, intents[0]))
+                    {
+                        this.notifier.Notify(context, reminder.notificationText, reminder.id);
+
+                        if(!reminder.repeat)
+                        {
+                            reminder.enabled = false;
+
+                            this.reminderRepository.putReminders(reminders);
+                        }
+                    }
+                }
 			}
 		} 
 		catch (Exception e)

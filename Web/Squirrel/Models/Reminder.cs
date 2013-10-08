@@ -18,6 +18,9 @@ namespace Squirrel.Models
         [Required]
         public bool Enabled { get; set; }
 
+        [Required]
+        public bool Repeat { get; set; }
+
         [StringLength(50)]
         public string Name { get; set; }
         

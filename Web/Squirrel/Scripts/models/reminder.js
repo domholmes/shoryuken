@@ -39,9 +39,6 @@ sr.Reminder = function () {
 
     rem.saving = ko.observable(false);
 
-    // TODO: temporary mocked property
-    rem.notifyOnce = ko.observable(false);
-
     rem.availableEvents = [
         {
             constant: "WIFI_CONNECT",
@@ -122,6 +119,10 @@ sr.Reminder = function () {
 
     rem.enable = function () {
         rem.enabled(!rem.enabled());
+    };
+
+    rem.toggleRepeat = function () {
+        rem.repeat(!rem.repeat());
     };
 
     rem.setToAm = function () {
