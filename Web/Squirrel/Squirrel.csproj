@@ -194,6 +194,10 @@
     <Compile Include="Migrations\201309082104246_RenameExtraToSsid.Designer.cs">
       <DependentUpon>201309082104246_RenameExtraToSsid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201309282127401_AddReminderRepeat.cs" />
+    <Compile Include="Migrations\201309282127401_AddReminderRepeat.Designer.cs">
+      <DependentUpon>201309282127401_AddReminderRepeat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Reminder.cs" />
     <Compile Include="Models\ReminderContext.cs" />
@@ -248,7 +252,6 @@
     <Content Include="Scripts\knockout-2.3.0.debug.js" />
     <Content Include="Scripts\knockout-2.3.0.js" />
     <Content Include="Scripts\knockoutCustomBindings.js" />
-    <Content Include="Scripts\prefixfree.js" />
     <Content Include="Scripts\q.js" />
     <Content Include="Scripts\q.min.js" />
     <Content Include="Scripts\security\googlePlusSignIn.js" />
@@ -339,6 +342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201309082104246_RenameExtraToSsid.resx">
       <DependentUpon>201309082104246_RenameExtraToSsid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309282127401_AddReminderRepeat.resx">
+      <DependentUpon>201309282127401_AddReminderRepeat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -9,6 +9,7 @@ import com.squirrel.action.Action;
 import com.squirrel.domain.Reminder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GeofenceCreator
 {
@@ -23,9 +24,9 @@ public class GeofenceCreator
 
     private final float GEOFENCE_RADIUS_METRES = 200;
 
-    public void CreateFromReminders(ArrayList<Reminder> reminders)
+    public void CreateFromReminders(List<Reminder> reminders)
     {
-        ArrayList<Geofence> reminderGeofences = new ArrayList<Geofence>();
+        List<Geofence> reminderGeofences = new ArrayList<Geofence>();
 
         for(Reminder reminder : reminders)
         {

@@ -16,6 +16,7 @@ import com.squirrel.domain.ReminderCheckerTask;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class GeofenceRegistrar implements
         GooglePlayServicesClient.ConnectionCallbacks,
@@ -25,7 +26,7 @@ public class GeofenceRegistrar implements
 {
     private Context context;
     private LocationClient locationClient;
-    private ArrayList<Geofence> geofencesToAdd;
+    private List<Geofence> geofencesToAdd;
     private PendingIntent remapperIntent;
 
     public GeofenceRegistrar(Context context)
@@ -40,7 +41,7 @@ public class GeofenceRegistrar implements
                 PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
-    public void registerGeofences(ArrayList<Geofence> geofences)
+    public void registerGeofences(List<Geofence> geofences)
     {
         this.geofencesToAdd = geofences;
         this.locationClient.connect();
