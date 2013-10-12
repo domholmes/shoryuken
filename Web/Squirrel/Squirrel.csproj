@@ -205,7 +205,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Security\CustomAuthorizeAttribute.cs" />
     <Compile Include="Security\FormsAuthenticator.cs" />
     <Compile Include="Security\GoogleApiService.cs" />
     <Compile Include="Security\GoogleClientDetails.cs" />

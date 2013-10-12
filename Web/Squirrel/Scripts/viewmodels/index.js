@@ -81,12 +81,30 @@ sr.AppViewModel = function () {
 
     vm.deleteReminder = function (reminder) {
 
-        vm.reminders.remove(reminder);
         sr.repository.deleteReminder(reminder);
-        sr.repository.saveReminder(reminder, function () {
+        sr.repository.saveReminder(
 
-            reminder.editing(false);
-        });
+            reminder,
+            function () {// success
+
+                reminder.editing(false);
+                vm.reminders.remove(reminder);
+            },
+            function (response) {// fail
+
+                switch (response.status) {
+
+                    case 401:
+                        reminder.errors.push("You have been signed out. Please refresh your browser to sign in again.");
+                        break;
+
+                    default:
+                        reminder.errors.push("Delete failed, please try again later");
+                        break;
+                }
+
+                reminder.deleting(false);
+            });
     };
 
     vm.saveReminder = function (reminder) {
@@ -103,15 +121,18 @@ sr.AppViewModel = function () {
             },
             function (response) {// fail
 
-                switch (response.status) {
+                if (response.status) {
 
-                    case 401:
-                        reminder.errors.push("You have been signed out. Please refresh your browser to sign in again.");
-                        break;
+                    switch (response.status) {
 
-                    default:
-                        reminder.errors.push("Save failed, please try again later");
-                        break;
+                        case 401:
+                            reminder.errors.push("You have been signed out. Please refresh your browser to sign in again.");
+                            break;
+
+                        default:
+                            reminder.errors.push("Save failed, please try again later");
+                            break;
+                    }
                 }
 
                 reminder.saving(false);
