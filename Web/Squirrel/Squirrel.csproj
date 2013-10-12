@@ -209,7 +209,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Security\CustomAuthorizeAttribute.cs" />
     <Compile Include="Security\FormsAuthenticator.cs" />
     <Compile Include="Security\GoogleApiService.cs" />
     <Compile Include="Security\GoogleClientDetails.cs" />
@@ -253,7 +252,6 @@
     <Content Include="Scripts\knockout-2.3.0.debug.js" />
     <Content Include="Scripts\knockout-2.3.0.js" />
     <Content Include="Scripts\knockoutCustomBindings.js" />
-    <Content Include="Scripts\prefixfree.js" />
     <Content Include="Scripts\q.js" />
     <Content Include="Scripts\q.min.js" />
     <Content Include="Scripts\security\googlePlusSignIn.js" />
