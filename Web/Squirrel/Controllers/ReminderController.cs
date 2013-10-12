@@ -3,6 +3,7 @@ using Breeze.WebApi;
 using Squirrel.Models;
 using System.Linq;
 using Newtonsoft.Json.Linq;
+using Squirrel.Security;
 
 namespace Squirrel.Controllers
 {

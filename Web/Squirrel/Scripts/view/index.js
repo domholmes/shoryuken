@@ -20,17 +20,14 @@
     }
 };
 
-ko.bindingHandlers.setMeridian = {
+ko.bindingHandlers.setTimePeriod = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var value = valueAccessor(),
             reminder = bindingContext.$data;
 
         $(element).on('click', function () {
-            if (value === "AM") {
-                reminder.setToAm();
-            } else if (value === "PM") {
-                reminder.setToPm();
-            }
+
+            reminder['setTo' + value]();
         });
     }
 };

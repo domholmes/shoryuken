@@ -8,16 +8,26 @@ namespace Squirrel
         // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725
         public static void RegisterBundles(BundleCollection bundles)
         {
+            // Uncomment to test bundling locally
+            // BundleTable.EnableOptimizations = true;
+
             bundles.Add(new ScriptBundle("~/bundles/libs")
                 .Include("~/Scripts/jquery-{version}.js")
                 .Include("~/Scripts/bootstrap.js")
                 .Include("~/Scripts/bootstrap-timepicker.js")
                 .Include("~/Scripts/knockout-2.3.0.js")
                 .Include("~/Scripts/knockoutCustomBindings.js")
-                .Include("~/Scripts/custom-form-elements.js")
+                .Include("~/Scripts/prefixfree.js")
                 .Include("~/Scripts/q.js")
                 .Include("~/Scripts/breeze*")
                 .Include("~/Scripts/jquery.ba-tinypubsub.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/index")
+                .Include("~/Scripts/sr.js")
+                .Include("~/Scripts/models/reminder.js")
+                .Include("~/Scripts/dataaccess/reminderRepository.js")
+                .Include("~/Scripts/viewmodels/index.js")
+                .Include("~/Scripts/view/index.js"));
 
             bundles.Add(new StyleBundle("~/Content/css")
                 .Include("~/Content/base.css")

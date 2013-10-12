@@ -175,6 +175,10 @@ button span.icon {
     cursor: pointer;
     color: #0099cc;
 }
+.link-emulate.disabled 
+{
+    color: #ccc;
+}
 .margin-bottom 
 {
     margin-bottom: 20px;
@@ -223,6 +227,12 @@ button.link-emulate
     animation-duration: 1s;
     animation-iteration-count: infinite;
 }
+button 
+{
+    border: none;
+    background: none;
+    padding: 0;
+}
 
 /* Misc
 ------------------------------------------------*/
@@ -255,10 +265,7 @@ button.link-emulate
     box-sizing: border-box;
     border-bottom: 1px solid #ccc;
     border-radius: 2px; 
-    -webkit-transition: box-shadow 250ms ease-in-out, opacity 250ms ease-in-out;
-    -moz-transition: box-shadow 250ms ease-in-out, opacity 250ms ease-in-out;
-    -o-transition: box-shadow 250ms ease-in-out, opacity 250ms ease-in-out;
-    transition: box-shadow 250ms ease-in-out, opacity 250ms ease-in-out;
+    transition: box-shadow 0.25s ease-in-out, opacity 0.25s ease-in-out;
 }
 .card.editing
 {
@@ -266,7 +273,7 @@ button.link-emulate
 }
 .card.disabled
 {
-    opacity: 50%;
+    opacity: 0.5;
 }
 .card .display .body 
 {    
@@ -312,13 +319,12 @@ button.link-emulate
 {
     width: 100%;
 }
-.card .days 
+.toggleButton
 {
-    cursor: pointer;
     font-weight: bold;
     color: #808080;
 }
-.card .days .selected 
+.toggleButton.active 
 {
     color: #33b5e5;
 }
@@ -359,6 +365,84 @@ button.link-emulate
     clear: both;
 }
 
+/* Loader
+------------------------------------------------*/
+
+.loader {
+  position: fixed;
+  width: 80px;
+  top: 50%;
+  left: 50%;
+  margin-left: -40px;
+  transition: opacity .25s ease-out;
+  opacity: 0;
+}
+
+.loader.active
+{
+    opacity: 1;
+}
+
+.duo {
+  height: 20px;
+  width: 50px;
+  background: hsla(0, 0%, 0%, 0.0);
+  position: absolute;
+  
+}
+
+.duo, .dot {
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.duo1 {
+  left: 0;
+}
+
+.duo2 {
+  left: 30px
+}
+
+
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: #ccc;
+  position: absolute;
+}
+
+.dot-a {
+  left: 0px;  
+}
+
+.dot-b {
+  right: 0px;
+}
+
+.duo1 {
+  animation-name: spin;
+}
+
+.duo2 {
+  animation-name: spin;
+  animation-direction: reverse;
+}
+
+.duo2 .dot-b {
+  animation-name: onOff;
+}
+
+.duo1 .dot-a {
+  opacity: 0;
+  animation-name: onOff;
+  animation-direction: reverse;
+}
+
+/* Media Queries
+------------------------------------------------*/
 @media (max-width: 480px) 
 {
     .container-fluid 
@@ -395,21 +479,24 @@ button.link-emulate
     }
 }
 
-@-webkit-keyframes bluePulse 
-{
-    from { background-color: #fff; }
-    50% { background-color: #DAEEF5; }
-    to { background-color: #fff; }
-}
-@-moz-keyframes bluePulse 
-{
-    from { background-color: #fff; }
-    50% { background-color: #DAEEF5; }
-    to { background-color: #fff; }
-}
+/* Keyframes
+------------------------------------------------*/
+
 @keyframes bluePulse 
 {
     from { background-color: #fff; }
     50% { background-color: #DAEEF5; }
     to { background-color: #fff; }
+}
+@keyframes spin {
+    0% { transform: rotate(0deg) }
+   50% { transform: rotate(180deg) }
+  100% { transform: rotate(180deg) }
+}
+
+@keyframes onOff {
+    0% { opacity: 0; }
+   49% { opacity: 0; }
+   50% { opacity: 1; }
+  100% { opacity: 1; }
 }

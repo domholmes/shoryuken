@@ -9,7 +9,7 @@
 
     function createReminder() {
 
-        var newReminder = episodeManager.createEntity('Reminder', sr.reminderDefaults);        
+        var newReminder = episodeManager.createEntity('Reminder', sr.reminderDefaults);
 
         return newReminder;
     };
@@ -25,7 +25,7 @@
                 callback(data.results);
             })
             .fail(function (saveResult) {
-                //kept empty to insert debug breakpoint
+                console.dir(saveResult);
             });
     };
 
@@ -61,7 +61,7 @@
             .saveChanges([reminder])
             .then(successCallback)
             .fail(failCallback);
-    }    
+    }
 
     episodeManager.metadataStore.registerEntityTypeCtor("Reminder", sr.Reminder, function (entity) {
 

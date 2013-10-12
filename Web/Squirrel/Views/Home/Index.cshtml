@@ -43,7 +43,8 @@
                     'class': 'card margin-bottom ' + $parent.spanClass 
                 }, 
                 css: { 
-                    disabled: (!enabled() && !editing()) 
+                    disabled: (!enabled() && !editing()),
+                    editing: editing
                 }" >
                 <div class="display" data-bind="click: cardDisplayClick">                                           
                     <div class="body">
@@ -71,9 +72,9 @@
                         
                         <div class="control-group">
                             <div class="time-shortcuts pull-right">
-                                <button class="link-emulate" data-bind="setMeridian: 'AM'">AM</button> | 
-                                <button class="link-emulate" data-bind="setMeridian: 'PM'">PM</button> | 
-                                <button class="link-emulate" data-bind="click: wheneverClick">Whenever</button>
+                                <button data-bind="setTimePeriod: 'AM', css: { toggleButton: true, active: isSetToAM }">AM</button> | 
+                                <button data-bind="setTimePeriod: 'PM', css: { toggleButton: true, active: isSetToPM }">PM</button> | 
+                                <button data-bind="setTimePeriod: 'Whenever', css: { toggleButton: true, active: isSetToWhenever }">Whenever</button>
                             </div>
                             <div class="input-append bootstrap-timepicker">
                                 <input type="text" class="input-small timepicker" placeholder="Start time (required)" data-bind="timePicker: startTime" /><span
@@ -87,8 +88,8 @@
 
                         <div class="control-group">
                             <div class="days" data-bind="foreach: availableDays, css: { 'validation-highlight': propertiesWithErrors.indexOf('days') > -1 }">
-                                <span data-bind="text: name, click: $parent.changeDay, css: { selected: $parent.isDaySelected($data) }">
-                                </span>
+                                <button data-bind="text: name, click: $parent.changeDay, css: { toggleButton: true, active: $parent.isDaySelected($data) }">
+                                </button>
                             </div> 
                         </div>  
                         
@@ -108,22 +109,39 @@
 
                     </div>
                     <footer>
-                        <button class="link-emulate" data-bind="click: $root.saveReminder, css: { busy: saving }">
-                            Save</button><button class="link-emulate" data-bind="click: $root.cancelReminderEdit">
-                            Cancel</button><button class="link-emulate" data-bind="click: $root.deleteReminder">
-                            Delete</button>                        
+                        <button class="link-emulate" data-bind="
+                            text: 'Save',
+                            click: $root.reminderSaveClick, 
+                            css: { 
+                                busy: saving, 
+                                disabled: deleting 
+                            }"></button><button class="link-emulate" data-bind="
+                            text: 'Cancel',
+                            click: $root.reminderCancelClick
+                            "></button><button class="link-emulate" data-bind="
+                                click: $root.reminderDeleteClick, 
+                                text: deleting() ? 'Really?' : 'Delete'
+                            "></button>                        
                     </footer>
                 </div>
             </article>
         </div>
     </section>
 </div>
+<div class="loader" data-bind="css: { active: loading }">
+  <div class="duo duo1">
+    <div class="dot dot-a"></div>
+    <div class="dot dot-b"></div>
+  </div>
+  <div class="duo duo2">
+    <div class="dot dot-a"></div>
+    <div class="dot dot-b"></div>
+  </div>
+</div>
 @section scripts
 {
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
-    <script src="@Url.Content("~/Scripts/sr.js")"></script>
-    <script src="@Url.Content("~/Scripts/models/reminder.js")"></script>
-    <script src="@Url.Content("~/Scripts/dataaccess/reminderRepository.js")"></script>
-    <script src="@Url.Content("~/Scripts/viewmodels/index.js")"></script>
-    <script src="@Url.Content("~/Scripts/view/index.js")"></script>    
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=en"></script>
+
+    @Scripts.Render("~/bundles/index")   
+
 }

@@ -5,6 +5,7 @@ using System.Web;
 using Squirrel.Models;
 using Breeze.WebApi;
 using System.Web.Http;
+using Breeze.WebApi.EF;
 
 namespace Squirrel.Controllers
 {

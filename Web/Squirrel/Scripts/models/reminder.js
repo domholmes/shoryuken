@@ -11,7 +11,10 @@ sr.reminderDefaults = {
 
 sr.Reminder = function () {
 
-    var rem = this, counter = 0;
+    var rem = this,
+        START_DAY = "00:00",
+        MID_DAY = "12:00",
+        END_DAY = "23:59";
 
     function selectedEventIs(events) {
         var eventsToMatch, idsToMatch;
@@ -38,6 +41,8 @@ sr.Reminder = function () {
     rem.editing = ko.observable(false);
 
     rem.saving = ko.observable(false);
+
+    rem.deleting = ko.observable(false);
 
     rem.availableEvents = [
         {
@@ -125,24 +130,20 @@ sr.Reminder = function () {
         rem.repeat(!rem.repeat());
     };
 
-    rem.setToAm = function () {
-        rem.startTime("00:00");
-        rem.endTime("12:00");
+    rem.setToAM = function () {
+        rem.startTime(START_DAY);
+        rem.endTime(MID_DAY);
     };
 
-    rem.setToPm = function () {
-        rem.startTime("12:00");
-        rem.endTime("23:59");
+    rem.setToPM = function () {
+        rem.startTime(MID_DAY);
+        rem.endTime(END_DAY);
     };
 
     rem.setToWhenever = function () {
-        rem.startTime("00:00");
-        rem.endTime("23:59");
-    };
-
-    rem.wheneverClick = function (reminder, event) {
-        reminder.setToWhenever();
-    };
+        rem.startTime(START_DAY);
+        rem.endTime(END_DAY);
+    };      
 
     rem.postCreationSetup = function () {
 
@@ -152,6 +153,21 @@ sr.Reminder = function () {
 
         rem.showAddressField = ko.computed(function () {
             return selectedEventIs(["LOCATION_ENTER", "LOCATION_LEAVE"]);
+        });
+
+        rem.isSetToAM = ko.computed(function () {
+            return rem.startTime() === START_DAY &&
+                rem.endTime() === MID_DAY;
+        });
+
+        rem.isSetToPM = ko.computed(function () {
+            return rem.startTime() === MID_DAY &&
+                rem.endTime() === END_DAY;
+        });
+
+        rem.isSetToWhenever = ko.computed(function () {
+            return rem.startTime() === START_DAY &&
+                rem.endTime() === END_DAY;
         });
 
         rem.showAddressField.subscribe(function (newValue) {

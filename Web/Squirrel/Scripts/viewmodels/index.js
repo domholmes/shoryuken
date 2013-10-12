@@ -4,6 +4,8 @@ sr.AppViewModel = function () {
 
     vm.reminders = ko.observableArray([]);
 
+    vm.loading = ko.observable(false);
+
     vm.editing = ko.computed(function () {
 
         var reminder = ko.utils.arrayFirst(vm.reminders(), function (reminder) {
@@ -37,7 +39,30 @@ sr.AppViewModel = function () {
         reminder.editing(true);
     };
 
-    vm.cancelReminderEdit = function (reminder, event) {
+    vm.reminderDeleteClick = function (reminder) {
+        if (!reminder.deleting()) {
+            reminder.deleting(true);
+        } else {
+            vm.deleteReminder(reminder);
+        }
+    };
+
+    vm.reminderCancelClick = function (reminder) {
+
+        if (reminder.deleting()) {
+            reminder.deleting(false);
+        } else {
+            vm.cancelReminderEdit(reminder);
+        }
+    };
+
+    vm.reminderSaveClick = function (reminder) {
+        if (!reminder.deleting()) {
+            vm.saveReminder(reminder);
+        }
+    };
+
+    vm.cancelReminderEdit = function (reminder) {
 
         if (!reminder.saving()) {
 
@@ -68,8 +93,6 @@ sr.AppViewModel = function () {
 
         reminder.saving(true);
 
-        // TODO: Remove ssid/place if a different action is selected
-
         sr.repository.saveReminder(
 
             reminder,
@@ -78,7 +101,18 @@ sr.AppViewModel = function () {
                 reminder.saving(false);
                 reminder.editing(false);
             },
-            function () {// fail
+            function (response) {// fail
+
+                switch (response.status) {
+
+                    case 401:
+                        reminder.errors.push("You have been signed out. Please refresh your browser to sign in again.");
+                        break;
+
+                    default:
+                        reminder.errors.push("Save failed, please try again later");
+                        break;
+                }
 
                 reminder.saving(false);
             });
@@ -91,9 +125,13 @@ sr.AppViewModel = function () {
 
     vm.loadReminders = function () {
 
+        vm.loading(true);
+
         sr.repository.fetchReminders(callback);
 
         function callback(data) {
+
+            vm.loading(false);
 
             ko.utils.arrayForEach(data, function (reminder) {
                 reminder.postCreationSetup();
