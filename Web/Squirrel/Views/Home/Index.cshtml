@@ -48,7 +48,7 @@
                 }" >
                 <div class="display" data-bind="click: cardDisplayClick">                                           
                     <div class="body">
-                        <h2 data-bind="visible: name() != '', text: name">
+                        <h2 data-bind="visible: name() != null && name() != '', text: name">
                         </h2>
                         <button class="icon-menu-2 link-emulate" data-bind="click: $root.beginReminderEdit, invisible: $root.editing()"></button> 
                         <p data-bind="text: message" class="message">

@@ -29,7 +29,7 @@
             });
     };
 
-    function deleteReminder(reminder) {
+    function deleteReminder(reminder, successCallback, failCallback) {
 
         reminder.entityAspect.setDeleted();
     }
