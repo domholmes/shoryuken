@@ -11,11 +11,10 @@ import com.squirrel.location.GeofenceCreator;
 
 import org.json.JSONArray;
 
-class ReminderSyncerTask extends AsyncTask<Void, Void, Void>
+public class ReminderSyncerTask extends AsyncTask<Void, Void, Void>
 {
     private final Context context;
     private final ReminderApiService apiService;
-    private final ReminderJsonMapper jsonMapper;
     private final ReminderRepository reminderRepository;
     private  final GeofenceCreator geofenceCreator;
 
@@ -23,7 +22,6 @@ class ReminderSyncerTask extends AsyncTask<Void, Void, Void>
     {
         this.context = context;
         this.apiService = new ReminderApiService(context);
-        this.jsonMapper = new ReminderJsonMapper();
         this.reminderRepository = new ReminderRepository(context);
         this.geofenceCreator = new GeofenceCreator(context);
     }

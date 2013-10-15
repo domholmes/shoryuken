@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import com.squirrel.action.ReminderIntentMatcher;
 import com.squirrel.notify.Notifier;
 import com.squirrel.sync.ReminderRepository;
+import com.squirrel.sync.ReminderSyncerTask;
 
 public class ReminderCheckerTask extends AsyncTask<Intent, Integer, Long>
 {
@@ -29,6 +30,7 @@ public class ReminderCheckerTask extends AsyncTask<Intent, Integer, Long>
 	protected Long doInBackground(Intent... intents) 
     {
         List<Reminder> reminders = null;
+        Boolean changesMade = false;
 
         try
 		{
@@ -45,12 +47,18 @@ public class ReminderCheckerTask extends AsyncTask<Intent, Integer, Long>
                         if(!reminder.repeat)
                         {
                             reminder.enabled = false;
-
-                            this.reminderRepository.putReminders(reminders);
+                            changesMade = true;
                         }
                     }
                 }
 			}
+
+            if(changesMade)
+            {
+                this.reminderRepository.putReminders(reminders);
+
+                new ReminderSyncerTask(this.context).execute();
+            }
 		} 
 		catch (Exception e)
 		{

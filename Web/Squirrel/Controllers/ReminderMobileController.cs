@@ -14,11 +14,11 @@ namespace Squirrel.Controllers
     {
         public IEnumerable<Reminder> PostSyncReminders(int[] reminderIdsToDisable)
         {
-            //todo parse json string aaray
             var context = new ReminderContext();
 
             IEnumerable<Reminder> remindersToDisable = context.Reminders.Where(
-                r => 
+                r =>
+                    r.User.Username == User.Identity.Name &&
                     reminderIdsToDisable.Contains(r.Id));
 
             remindersToDisable.ToList().ForEach(
