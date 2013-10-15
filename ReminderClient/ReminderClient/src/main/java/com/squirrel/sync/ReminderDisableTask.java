@@ -36,6 +36,8 @@ public class ReminderDisableTask extends AsyncTask<Intent, Integer, Void>
             this.disableReminderWithId(reminders, reminderIdToDisable);
 
             this.reminderRepository.putReminders(reminders);
+
+            new ReminderSyncerTask(context).execute();
         }
         catch (Exception e)
         {
