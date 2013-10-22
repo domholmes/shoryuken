@@ -1,17 +1,15 @@
-﻿using System.Web.Http;
-using Breeze.WebApi;
+﻿using Breeze.WebApi;
+using System.Web.Http;
 using Squirrel.Models;
 using System.Linq;
 using Newtonsoft.Json.Linq;
-using Squirrel.Security;
 
 namespace Squirrel.Controllers
 {
-    [Authorize]
+    [System.Web.Http.Authorize]
     [BreezeController]
     public class ReminderController : ApiController
     {
-
         readonly ReminderContextProvider context;
 
         public ReminderController()

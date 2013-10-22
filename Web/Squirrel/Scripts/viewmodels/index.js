@@ -118,6 +118,7 @@ sr.AppViewModel = function () {
 
                 reminder.saving(false);
                 reminder.editing(false);
+                $.connection.notificationHub.server.pushUpdate();
             },
             function (response) {// fail
 
@@ -160,6 +161,12 @@ sr.AppViewModel = function () {
 
             vm.reminders(data);
         }
+    };
+
+    $.connection.hub.start();
+    $.connection.notificationHub.client.update = function () {
+
+        vm.loadReminders();
     };
 
     vm.loadReminders();

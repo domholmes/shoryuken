@@ -32,7 +32,7 @@ namespace Squirrel.Controllers
             {
                 loginOk = new GoogleSignInCallbackHandler().LoginUser(code);
             }
-            catch(Exception e) { }
+            catch { }
 
             if (!loginOk)
             {
