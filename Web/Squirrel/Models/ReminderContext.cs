@@ -7,5 +7,7 @@ namespace Squirrel.Models
         public DbSet<Reminder> Reminders { get; set; }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<LogEntry> LogEntries{ get; set;}
     }
 }

@@ -17,12 +17,6 @@ namespace Squirrel.Security
             this.context = new ReminderContext();
         }
 
-        public UserCreator(GoogleApiService apiService, ReminderContext context)
-        {
-            this.apiService = apiService;
-            this.context = context;
-        }
-        
         public virtual void CreateUserIfDoesntExist(GoogleUser userDetails)
         {
             if (!context.Users.Where(u => u.Username == userDetails.Id).Any())

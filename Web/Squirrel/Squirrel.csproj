@@ -90,6 +90,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.Helpers.dll</HintPath>
@@ -166,6 +167,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Migrations\201310282148572_AddUserNotificationKey.cs" />
+    <Compile Include="Migrations\201310282148572_AddUserNotificationKey.Designer.cs">
+      <DependentUpon>201310282148572_AddUserNotificationKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LogEntry.cs" />
+    <Compile Include="Security\GoogleCloudMessagingAppServer.cs" />
     <Compile Include="Controllers\NotificationHub.cs" />
     <Compile Include="Controllers\ReminderContextProvider.cs" />
     <Compile Include="Controllers\ReminderController.cs" />
@@ -234,6 +241,7 @@
     <Compile Include="Security\GoogleAuthService.cs" />
     <Compile Include="Security\GoogleUser.cs" />
     <Compile Include="Security\GoogleTokenAuthorizeAttribute.cs" />
+    <Compile Include="Security\Logger.cs" />
     <Compile Include="Security\UserCreator.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -364,6 +372,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201309282127401_AddReminderRepeat.resx">
       <DependentUpon>201309282127401_AddReminderRepeat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310282148572_AddUserNotificationKey.resx">
+      <DependentUpon>201310282148572_AddUserNotificationKey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

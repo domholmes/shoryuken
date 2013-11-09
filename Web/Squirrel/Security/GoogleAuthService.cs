@@ -54,7 +54,7 @@ namespace Squirrel.Security
             {
                 response = request.GetResponse();
             }
-            catch (WebException)
+            catch (WebException e)
             {
                 return new OAuthResponse() { IsInvalid = true };
             }
@@ -75,9 +75,9 @@ namespace Squirrel.Security
             builder.Append("code=");
             builder.Append(code);
             builder.Append("&client_id=");
-            builder.Append(GoogleClientDetails.clientId);
+            builder.Append(GoogleClientDetails.CLIENT_ID);
             builder.Append("&client_secret=");
-            builder.Append(GoogleClientDetails.secret);
+            builder.Append(GoogleClientDetails.SECRET);
             builder.Append("&redirect_uri=");
             builder.Append("postmessage");
             builder.Append("&grant_type=authorization_code");
