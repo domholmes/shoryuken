@@ -7,54 +7,56 @@ import android.content.IntentSender;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.plus.PlusClient;
 import com.squirrel.R;
-import com.squirrel.sync.ReminderSyncingScheduler;
 import com.squirrel.action.WifiStateHistory;
+import com.squirrel.sync.ReminderRepository;
+import com.squirrel.sync.ReminderSyncingScheduler;
+import com.squirrel.util.AsyncResponse;
 
-public class CredentialsActivity extends Activity implements View.OnClickListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener
+import java.io.IOException;
+
+public class CredentialsActivity extends Activity implements View.OnClickListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener, AsyncResponse
 {
-    private static final String TAG = "ExampleActivity";
     private static final int REQUEST_CODE_RESOLVE_ERR = 9000;
-
     private ProgressDialog progressDialog;
     private PlusClient plusClient;
-    private ConnectionResult connectionResult;
     private IdTokenStore tokenStore;
+    private ReminderRepository reminderStore;
+    private SignInButton signInButton;
+    private Boolean isSignedIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        findViewById(R.id.sign_in_button).setOnClickListener(this);
 
         this.tokenStore = new IdTokenStore(getApplicationContext());
+        this.reminderStore = new ReminderRepository(getApplicationContext());
 
+        this.signInButton = (SignInButton)findViewById(R.id.sign_in_button);
+        this.signInButton.setOnClickListener(this);
+        this.signInButton.setSize(SignInButton.SIZE_WIDE);
         plusClient = new PlusClient.Builder(this, this, this)
                 .setVisibleActivities("http://schemas.google.com/AddActivity", "http://schemas.google.com/BuyActivity")
                 .build();
 
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Signing in...");
+
+        updateSignedInState();
     }
 
     @Override
-    protected void onStart()
+    public void onConnected(Bundle bundle)
     {
-        super.onStart();
-        plusClient.connect();
-    }
-
-    @Override
-    protected void onStop()
-    {
-        super.onStop();
-        plusClient.disconnect();
+        new IdTokenRetrieverTask(this, this.plusClient.getAccountName(), this.tokenStore, this).execute();
     }
 
     @Override
@@ -65,13 +67,12 @@ public class CredentialsActivity extends Activity implements View.OnClickListene
             try
             {
                 result.startResolutionForResult(this, REQUEST_CODE_RESOLVE_ERR);
-            } catch (IntentSender.SendIntentException e)
+            }
+            catch (IntentSender.SendIntentException e)
             {
                 plusClient.connect();
             }
         }
-
-        connectionResult = result;
     }
 
     @Override
@@ -79,61 +80,98 @@ public class CredentialsActivity extends Activity implements View.OnClickListene
     {
         if (requestCode == REQUEST_CODE_RESOLVE_ERR && responseCode == RESULT_OK)
         {
-            connectionResult = null;
             plusClient.connect();
         }
-    }
-
-    @Override
-    public void onConnected(Bundle bundle)
-    {
-        String accountName = plusClient.getAccountName();
-
-        new IdTokenRetrieverTask(this, accountName, this.tokenStore).execute(null);
-
-        Toast.makeText(this, accountName + " is connected", Toast.LENGTH_LONG).show();
-
-        WifiStateHistory.updateState(this);
-        ReminderSyncingScheduler.scheduleReminderSyncing(this);
     }
 
     @Override
     public void onDisconnected()
     {
-        Log.d(TAG, "disconnected");
+    }
+
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+        this.plusClient.disconnect();
     }
 
     @Override
     public void onClick(View view)
     {
-
-        if (!plusClient.isConnected())
+        if (!this.isSignedIn)
         {
-            if (connectionResult == null)
-            {
-                progressDialog.show();
-            } else
-            {
-                try
-                {
-                    connectionResult.startResolutionForResult(this, REQUEST_CODE_RESOLVE_ERR);
-                } catch (IntentSender.SendIntentException e)
-                {
-                    // Try connecting again.
-                    connectionResult = null;
-                    plusClient.connect();
-                }
-            }
+            progressDialog.setMessage("Signing in...");
+            progressDialog.show();
+            plusClient.connect();
         }
         else
         {
-            findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
-            plusClient.clearDefaultAccount();
-            plusClient.disconnect();
+            if(plusClient.isConnected())
+            {
+                plusClient.clearDefaultAccount();
+                plusClient.disconnect();
+            }
 
             this.tokenStore.removeToken();
+            Toast.makeText(this, "Signed out, your device will no long receive reminders", Toast.LENGTH_LONG).show();
 
-            plusClient.connect();
+            updateSignedInState();
+
+            try
+            {
+                this.reminderStore.clearReminders();
+            }
+            catch (IOException e)
+            {
+                Log.e("", "Unable to clear reminders", e);
+            }
+        }
+    }
+
+    @Override
+    public void onTaskCompleted(Boolean result)
+    {
+        if(result)
+        {
+            updateSignedInState();
+
+            Toast.makeText(this, "Signed in, your device will now receive reminders", Toast.LENGTH_LONG).show();
+
+            WifiStateHistory.updateState(this);
+            ReminderSyncingScheduler.scheduleReminderSyncing(this);
+        }
+        else
+        {
+            Toast.makeText(this, "There was a problem signing in", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void updateSignedInState()
+    {
+        this.progressDialog.dismiss();
+        this.isSignedIn = this.tokenStore.hasToken();
+
+        if(this.isSignedIn)
+        {
+            setGooglePlusButtonText("Sign out");
+        }
+        else
+        {
+            setGooglePlusButtonText("Sign in");
+        }
+    }
+
+    protected void setGooglePlusButtonText(String buttonText)
+    {
+        for (int i = 0; i < this.signInButton.getChildCount(); i++) {
+            View v = this.signInButton.getChildAt(i);
+
+            if (v instanceof TextView) {
+                TextView tv = (TextView) v;
+                tv.setText(buttonText);
+                return;
+            }
         }
     }
 }

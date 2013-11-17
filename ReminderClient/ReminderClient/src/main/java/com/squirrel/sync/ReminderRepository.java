@@ -56,4 +56,9 @@ public class ReminderRepository
             return reminders;
         }
     }
+
+    public void clearReminders() throws IOException
+    {
+        putReminders(new ArrayList<Reminder>());
+    }
 }

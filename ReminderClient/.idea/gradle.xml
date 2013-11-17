@@ -3,8 +3,8 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="useAutoImport" value="true" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="C:\Documents and Settings\Dom\My Documents\Git\shoryuken\ReminderClient" />
       </GradleProjectSettings>
     </option>
   </component>

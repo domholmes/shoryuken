@@ -1,49 +1,49 @@
 package com.squirrel.auth;
 
-import java.io.IOException;
-
-import com.google.android.gms.auth.GoogleAuthException;
 import com.google.android.gms.auth.GoogleAuthUtil;
+import com.squirrel.util.AsyncResponse;
 
 import android.content.Context;
 import android.os.AsyncTask;
 
-class IdTokenRetrieverTask extends AsyncTask<Void, Void, Void>
+class IdTokenRetrieverTask extends AsyncTask<Void, Void, Boolean>
 {
     private Context context;
     private String accountName;
     private IdTokenStore tokenStore;
+    public AsyncResponse completionDelegate;
 
-    public IdTokenRetrieverTask(Context context, String accountName, IdTokenStore tokenStore)
+    public IdTokenRetrieverTask(Context context, String accountName, IdTokenStore tokenStore, AsyncResponse completionDelegate)
     {
         this.context = context;;
         this.accountName = accountName;
         this.tokenStore = tokenStore;
+        this.completionDelegate = completionDelegate;
     }
 
     @Override
-    protected Void doInBackground(Void... voids)
+    protected Boolean doInBackground(Void... voids)
     {
-        String idToken;
-
-        try {
-            idToken = GoogleAuthUtil.getToken(this.context, this.accountName, "audience:server:client_id:714250926431.apps.googleusercontent.com");
+        try
+        {
+            String idToken = GoogleAuthUtil.getToken(this.context, this.accountName, "audience:server:client_id:714250926431.apps.googleusercontent.com");
 
             this.tokenStore.putToken(idToken);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (GoogleAuthException e) {
+            return true;
+
+        } catch (Exception e)
+        {
             e.printStackTrace();
         }
 
-        return null;
+        return false;
     }
 
-    protected void onProgressUpdate() {
-    }
-
-    protected void onPostExecute() {
+    @Override
+    protected void onPostExecute (Boolean result)
+    {
+        this.completionDelegate.onTaskCompleted(result);
     }
 }
 
