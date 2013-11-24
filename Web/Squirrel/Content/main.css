@@ -378,6 +378,10 @@ button
   opacity: 0;
 }
 
+.nocssanimations .loader{
+  display:none;
+}
+
 .loader.active
 {
     opacity: 1;
