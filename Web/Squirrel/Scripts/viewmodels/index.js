@@ -95,7 +95,8 @@ sr.AppViewModel = function () {
                 switch (response.status) {
 
                     case 401:
-                        reminder.errors.push("You have been signed out. Please refresh your browser to sign in again.");
+                        reminder.errors.push("You have been signed out. Attempting to sign you back in...");
+                        window.location.reload();
                         break;
 
                     default:
@@ -127,7 +128,8 @@ sr.AppViewModel = function () {
                     switch (response.status) {
 
                         case 401:
-                            reminder.errors.push("You have been signed out. Please refresh your browser to sign in again.");
+                            reminder.errors.push("You have been signed out. Attempting to sign you back in...");
+                            window.location.reload();
                             break;
 
                         default:
