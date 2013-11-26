@@ -89,6 +89,7 @@ sr.AppViewModel = function () {
 
                 reminder.editing(false);
                 vm.reminders.remove(reminder);
+                $.connection.notificationHub.server.pushUpdate();
             },
             function (response) {// fail
 

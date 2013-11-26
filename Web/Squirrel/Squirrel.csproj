@@ -171,6 +171,10 @@
     <Compile Include="Migrations\201310282148572_AddUserNotificationKey.Designer.cs">
       <DependentUpon>201310282148572_AddUserNotificationKey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201311262242309_AddLogEntry.cs" />
+    <Compile Include="Migrations\201311262242309_AddLogEntry.Designer.cs">
+      <DependentUpon>201311262242309_AddLogEntry.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\LogEntry.cs" />
     <Compile Include="Security\GoogleCloudMessagingAppServer.cs" />
     <Compile Include="Controllers\NotificationHub.cs" />
@@ -375,6 +379,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201310282148572_AddUserNotificationKey.resx">
       <DependentUpon>201310282148572_AddUserNotificationKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311262242309_AddLogEntry.resx">
+      <DependentUpon>201311262242309_AddLogEntry.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
