@@ -10,8 +10,9 @@ namespace Squirrel
         {
             // Uncomment to test bundling locally
             // BundleTable.EnableOptimizations = true;
-
+            
             bundles.Add(new ScriptBundle("~/bundles/libs")
+                .Include("~/Scripts/modernizr*")
                 .Include("~/Scripts/jquery-{version}.js")
                 .Include("~/Scripts/bootstrap.js")
                 .Include("~/Scripts/bootstrap-timepicker.js")
