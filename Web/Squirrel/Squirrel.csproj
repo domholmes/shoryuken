@@ -344,9 +344,6 @@
     <None Include="Content\fonts\Sansation_Light-webfont.eot" />
     <None Include="Content\fonts\Sansation_Light-webfont.ttf" />
     <None Include="Content\fonts\Sansation_Light-webfont.woff" />
-    <None Include="Properties\PublishProfiles\jlbceramicart.com - Web Deploy.pubxml">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Properties\PublishProfiles\squirrel-beta.com - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
