@@ -16,7 +16,7 @@ namespace Squirrel
                 .Include("~/Scripts/jquery-{version}.js")
                 .Include("~/Scripts/bootstrap.js")
                 .Include("~/Scripts/bootstrap-timepicker.js")
-                .Include("~/Scripts/knockout-2.3.0.js")
+                .Include("~/Scripts/knockout-{version}.js")
                 .Include("~/Scripts/knockoutCustomBindings.js")
                 .Include("~/Scripts/prefixfree.js")
                 .Include("~/Scripts/q.js")
@@ -32,9 +32,7 @@ namespace Squirrel
                 .Include("~/Scripts/view/index.js"));
 
             bundles.Add(new StyleBundle("~/Content/css")
-                .Include("~/Content/base.css")
                 .Include("~/Content/bootstrap.css")
-                .Include("~/Content/bootstrap-responsive.css")
                 .Include("~/Content/bootstrap-timepicker.css")
                 .Include("~/Content/icons.css")
                 .Include("~/Content/main.css"));

@@ -33,16 +33,6 @@ body
     padding: 0;
     background-color: #E5E5E5;
 }
-#body 
-{
-    padding: 60px 20px 20px;
-    clear: both;
-}
-.navbar-fixed-top  .navbar-inner 
-{
-    padding-left: 0;
-    padding-right: 0;
-}
 
 /* Forms
 ------------------------------------------------*/
@@ -72,20 +62,35 @@ textarea
     outline: none;
     width: 100%;
 }
-.input-append .add-on ,
-.input-append .add-on:last-child
-{
-    border: 0px solid #808080;
-    border-bottom-width: 1px;
-    border-radius: 0px;
+.input-group-addon {
+    padding: 6px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+    color: #555555;
+    text-align: center;
+    border: 0px;
+    border-bottom: 1px solid #808080;
     background: none;
+    border-radius: 0px;
     position: relative;
     margin-left: -26px;
+}
+.glyphicon {
+    top: 0px;
 }
 select 
 {
     width: 100%;
     border-radius: 0px;
+}
+input[type="text"],
+textarea,
+select 
+{
+    display: block;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 ::-webkit-input-placeholder {
    font-style: italic;
@@ -149,10 +154,12 @@ select
 .btn-large [class^="icon-"], .btn-large [class*=" icon-"] {
     margin-top: 2px;
 }
-button span.icon {
+button span.icon, button > i {
     margin-right: 5px;
 }
-
+:focus {
+outline: none;
+}
 .checkbox, .radio {
 	width: 100px;
 	height: 29px;
@@ -178,6 +185,9 @@ button span.icon {
 .link-emulate.disabled 
 {
     color: #ccc;
+}
+.margin-top-sm {
+    margin-top: 10px;
 }
 .margin-bottom 
 {
@@ -237,6 +247,10 @@ button
 /* Misc
 ------------------------------------------------*/
 
+.navbar 
+{
+    border-radius: 0px;
+}
 .btn.add-reminder 
 {
     background: #CC3B29;
@@ -255,6 +269,9 @@ button
 {
     color: #fff;
     text-decoration: underline;
+}
+.bootstrap-timepicker-widget table td input {
+    margin: 0 auto;
 }
 
 /* card */
@@ -306,7 +323,6 @@ button
 }
 .card textarea
 {
-    height: 1.4em;
     overflow: hidden;
 }
 .card textarea.name
@@ -343,6 +359,19 @@ button
     right: 5px;
     font-size: 16px;
 }
+.card .display .footer button {
+    width: 100%;
+}
+.glyphicon-caret-down {
+    overflow: hidden;
+    top:5px;
+}
+.glyphicon-caret-down:before {
+    content: "\e114";
+    top: -7px;
+    display: block;
+    position: relative;
+}
 .card .edit
 {
     /*opacity: 0;*/
@@ -359,10 +388,6 @@ button
 .card .edit footer button:first-child
 {
     border-left: 0px;
-}
-.card-wrap
-{
-    clear: both;
 }
 
 /* Loader

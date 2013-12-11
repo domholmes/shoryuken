@@ -140,7 +140,7 @@ ko.bindingHandlers.foreachGroups = {
         var groupedItems,
              data = valueAccessor(),
              getGroupCount = function () {
-                 if ($(window).width() < 979) {
+                 if ($(window).width() < 992) {
                      return 2;
                  } else {
                      return 4;
@@ -165,7 +165,7 @@ ko.bindingHandlers.foreachGroups = {
                 for (index = 0, length = items.length; index < length; index++) {
                     if (index % itemsPerRow === 0) {
                         group = [];
-                        group.spanClass = count() === 2 ? "span6" : "span3";
+                        group.colClass = count() === 2 ? "col-sm-6" : "col-sm-3";
                         result.push(group);
                     }
 
