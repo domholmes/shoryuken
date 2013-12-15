@@ -34,19 +34,11 @@ namespace Squirrel.Models
         [Time]
         public string EndTime { get; set; }
 
-        [DaysOfTheWeek]
+        [ValidDaysOfTheWeek]
         public string Days { get; set; }
 
-        [DeviceActionId]
-        public int ActionId { get; set; }
-
-        public DeviceAction Action
-        {
-            get
-            {
-                return (DeviceAction)this.ActionId;
-            }
-        }   
+        [ValidDeviceActionId]
+        public DeviceAction ActionId { get; set; }
 
         [StringLength(20)]
         public string Ssid { get; set; }
@@ -62,7 +54,7 @@ namespace Squirrel.Models
     {
         WifiConnected = 0,
         WifiDisconnected = 1,
-        ChagerConnected = 2,
+        ChargerConnected = 2,
         ChargerDisconnected = 3,
         LocationEnter = 4,
         LocationLeave = 5

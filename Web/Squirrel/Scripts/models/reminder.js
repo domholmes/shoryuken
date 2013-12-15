@@ -3,10 +3,10 @@
 sr.reminderDefaults = {
 
     enabled: true,
-    startTime: '00:00',
-    endTime: '23:59',
-    days: '2345671',
-    actionId: 4
+    startTime: "00:00",
+    endTime: "23:59",
+    days: "2345671",
+    actionId: "LocationEnter"
 };
 
 sr.Reminder = function () {
@@ -20,7 +20,7 @@ sr.Reminder = function () {
         var eventsToMatch, idsToMatch;
 
         eventsToMatch = ko.utils.arrayFilter(rem.availableEvents(), function (event) {
-            return $.inArray(event.constant, events) > -1;
+            return $.inArray(event.value, events) > -1;
         });
 
         idsToMatch = ko.utils.arrayMap(eventsToMatch, function (event) {
@@ -46,33 +46,27 @@ sr.Reminder = function () {
 
     rem.availableEvents = [
         {
-            constant: "WIFI_CONNECT",
-            value: 0,
+            value: "WifiConnected",
             text: "Wifi Connected"
         },
         {
-            constant: "WIFI_DISCONNECT",
-            value: 1,
+            value: "WifiDisconnected",
             text: "Wifi Disconnected"
         },
         {
-            constant: "CHARGER_CONNECT",
-            value: 2,
+            value: "ChargerConnected",
             text: "Charger Connected"
         },
         {
-            constant: "CHARGER_DISCONNECT",
-            value: 3,
+            value: "ChargerDisconnected",
             text: "Charger Disconnected"
         },
         {
-            constant: "LOCATION_ENTER",
-            value: 4,
+            value: "LocationEnter",
             text: "Location Enter"
         },
         {
-            constant: "LOCATION_LEAVE",
-            value: 5,
+            value: "LocationLeave",
             text: "Location Leave"
         }
     ];
@@ -148,11 +142,11 @@ sr.Reminder = function () {
     rem.postCreationSetup = function () {
 
         rem.showSSIDField = ko.computed(function () {
-            return selectedEventIs(["WIFI_CONNECT", "WIFI_DISCONNECT"]);
+            return selectedEventIs(["WifiConnected", "WifiDisconnected"]);
         });
 
         rem.showAddressField = ko.computed(function () {
-            return selectedEventIs(["LOCATION_ENTER", "LOCATION_LEAVE"]);
+            return selectedEventIs(["LocationEnter", "LocationLeave"]);
         });
 
         rem.isSetToAM = ko.computed(function () {

@@ -1,8 +1,9 @@
-﻿using Breeze.WebApi;
+﻿using Breeze.WebApi2;
 using System.Web.Http;
 using Squirrel.Models;
 using System.Linq;
 using Newtonsoft.Json.Linq;
+using Breeze.ContextProvider;
 
 namespace Squirrel.Controllers
 {
