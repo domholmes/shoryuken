@@ -39,13 +39,11 @@
                         }">
                         <div class="display" data-bind="click: cardDisplayClick">
                             <div class="body">
-                                <h2 data-bind="visible: name() != null && name() != '', text: name">
-                                </h2>
+                                <textarea data-bind="expandingTextbox: true, visible: name() != null && name() != '', value: name" class="name" rows="1" cols="1" spellcheck="false"></textarea>                              
                                 @*
     <button class="icon-menu-2 link-emulate" data-bind="click: $root.beginReminderEdit, invisible: $root.editing()">
     </button>*@
-                                <p data-bind="text: message" class="message">
-                                </p>
+                                <textarea data-bind="expandingTextbox: true, value: message" class="message" rows="1" cols="1" spellcheck="false"></textarea>
                             </div>
                             <div class="footer">
                                 <button class="link-emulate" data-bind="click: $root.beginReminderEdit"><span class="glyphicon glyphicon-caret-down"></span></button>

@@ -28,8 +28,8 @@ namespace Squirrel
                 .Include("~/Scripts/sr.js")
                 .Include("~/Scripts/models/reminder.js")
                 .Include("~/Scripts/dataaccess/reminderRepository.js")
-                .Include("~/Scripts/viewmodels/index.js")
-                .Include("~/Scripts/view/index.js"));
+                .Include("~/Scripts/viewmodels/AppViewModel.js")
+                .Include("~/Scripts/view/indexBindings.js"));
 
             bundles.Add(new StyleBundle("~/Content/css")
                 .Include("~/Content/bootstrap.css")

@@ -294,9 +294,9 @@
     <Content Include="Scripts\q.min.js" />
     <Content Include="Scripts\security\googlePlusSignIn.js" />
     <Content Include="Scripts\sr.js" />
-    <Content Include="Scripts\view\index.js" />
+    <Content Include="Scripts\view\indexBindings.js" />
     <Content Include="Scripts\models\reminder.js" />
-    <Content Include="Scripts\viewmodels\index.js" />
+    <Content Include="Scripts\viewmodels\AppViewModel.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

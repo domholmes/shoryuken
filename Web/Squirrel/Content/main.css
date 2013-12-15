@@ -32,6 +32,7 @@ body
 {
     padding: 0;
     background-color: #E5E5E5;
+    font-family: 'Roboto Normal','Segoe UI','wf_SegoeUI',Tahoma,Verdana,Arial,Helvetica,sans-serif;
 }
 
 /* Forms
@@ -50,7 +51,8 @@ body
 }
 
 input[type="text"],
-textarea 
+textarea,
+.ghostDiv
 {
     border: 0px solid #808080;
     border-bottom-width: 1px;
@@ -86,7 +88,8 @@ select
 }
 input[type="text"],
 textarea,
-select 
+select,
+.ghostDiv
 {
     display: block;
     padding-top: 3px;
@@ -294,7 +297,7 @@ button
 }
 .card .display .body 
 {    
-    padding: 20px;
+    padding: 10px 20px 5px;
 }
 .card .edit .body 
 {    
@@ -308,15 +311,13 @@ button
 {
     margin-top: 10px;
 }
-.card h2
-{
-    font-family: 'Segoe UI Light','wf_SegoeUILight','Segoe UI','wf_SegoeUI',Tahoma,Verdana,Arial,Helvetica,sans-serif;
-    font-weight: normal;
-    font-size: 1.4em;
-    line-height: 1.4em;
-    margin-top: 0;
+.card .display textarea,
+.ghostDiv {
+    border: 0;
+    resize: none;
 }
-.card .message
+.card .message,
+.ghostDiv
 {
     font-style: italic;
     margin: 0;
@@ -327,7 +328,7 @@ button
 }
 .card textarea.name
 {
-    font-family: 'Segoe UI Light','wf_SegoeUILight','Segoe UI','wf_SegoeUI',Tahoma,Verdana,Arial,Helvetica,sans-serif;
+    font-family: 'Roboto Light','Segoe UI Light','wf_SegoeUILight','Segoe UI','wf_SegoeUI',Tahoma,Verdana,Arial,Helvetica,sans-serif;
     font-size: 1.4em;
     line-height: 1.4em;
 }
