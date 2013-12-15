@@ -9,7 +9,6 @@ taskArtifacts/
 *.suo
 *.user
 TestResults/
-GoogleClientDetails.cs
 workspace.xml
 local.properties
 Thumbs.db
