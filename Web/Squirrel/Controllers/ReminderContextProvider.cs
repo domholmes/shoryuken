@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Squirrel.Models;
-using Breeze.WebApi;
+using Breeze.WebApi2;
 using System.Web.Http;
-using Breeze.WebApi.EF;
+using Breeze.ContextProvider.EF6;
+using Breeze.ContextProvider;
 
 namespace Squirrel.Controllers
 {

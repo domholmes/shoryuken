@@ -54,7 +54,7 @@ namespace Squirrel.Security
             {
                 response = request.GetResponse();
             }
-            catch (WebException e)
+            catch
             {
                 return new OAuthResponse() { IsInvalid = true };
             }

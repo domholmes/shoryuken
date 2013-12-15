@@ -20,7 +20,7 @@ namespace Squirrel
                 .Include("~/Scripts/knockoutCustomBindings.js")
                 .Include("~/Scripts/prefixfree.js")
                 .Include("~/Scripts/q.js")
-                .Include("~/Scripts/breeze*")
+                .Include("~/Scripts/breeze.min.js")
                 .Include("~/Scripts/jquery.signalR-{version}.js")
                 .Include("~/Scripts/jquery.ba-tinypubsub.js"));
 

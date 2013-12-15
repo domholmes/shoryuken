@@ -34,13 +34,13 @@ namespace Squirrel.Controllers
             // Update SignalR web clients
             Clients.OthersInGroup(userName).update();
 
-            string notificationKey = GetGoogleCloudMessagingNotificationKey(userName);
+            //string notificationKey = GetGoogleCloudMessagingNotificationKey(userName);
 
-            if (!string.IsNullOrEmpty(notificationKey))
-            {
-                // Update Google Cloud Messaging mobile clients
-                new GoogleCloudMessagingAppServer(notificationKey).Update();
-            }
+            //if (!string.IsNullOrEmpty(notificationKey))
+            //{
+            //    // Update Google Cloud Messaging mobile clients
+            //    new GoogleCloudMessagingAppServer(notificationKey).Update();
+            //}
         }
 
         private string GetGoogleCloudMessagingNotificationKey(string userName)

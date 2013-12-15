@@ -35,7 +35,7 @@ namespace Squirrel.Models
         {
             var reminder = (Reminder)value;
 
-            if (reminder.Action == DeviceAction.LocationEnter || reminder.Action == DeviceAction.LocationLeave)
+            if (reminder.ActionId == DeviceAction.LocationEnter || reminder.ActionId == DeviceAction.LocationLeave)
             {
                 var latLongRegex = new Regex(@"^-?\d+\.\d+,-?\d+\.\d+$");
 
@@ -51,13 +51,13 @@ namespace Squirrel.Models
     }
 
     [AttributeUsage(AttributeTargets.Property)]
-    public class DeviceActionId : ValidationAttribute
+    public class ValidDeviceActionId : ValidationAttribute
     {
         public override Boolean IsValid(Object value)
         {
-            var actionId = (int)value;
+            var actionId = (DeviceAction)value;
             
-            if (!System.Enum.GetValues(typeof(DeviceAction)).Cast<int>().Contains(actionId))
+            if (!System.Enum.GetValues(typeof(DeviceAction)).Cast<DeviceAction>().Contains(actionId))
             {
                 ErrorMessage = "{0} is not a valid ActionId";
                 return false;
@@ -100,7 +100,7 @@ namespace Squirrel.Models
     }
 
     [AttributeUsage(AttributeTargets.Property)]
-    public class DaysOfTheWeek : ValidationAttribute 
+    public class ValidDaysOfTheWeek : ValidationAttribute 
     {
         public override Boolean IsValid(Object value) 
         {
