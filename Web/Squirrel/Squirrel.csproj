@@ -186,6 +186,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\OwinStartup.cs" />
     <Compile Include="Migrations\201310282148572_AddUserNotificationKey.cs" />
     <Compile Include="Migrations\201310282148572_AddUserNotificationKey.Designer.cs">
       <DependentUpon>201310282148572_AddUserNotificationKey.cs</DependentUpon>
@@ -266,7 +267,6 @@
     <Compile Include="Security\GoogleTokenAuthorizeAttribute.cs" />
     <Compile Include="Security\Logger.cs" />
     <Compile Include="Security\UserCreator.cs" />
-    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
