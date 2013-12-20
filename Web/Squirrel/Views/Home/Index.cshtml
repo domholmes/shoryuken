@@ -20,7 +20,8 @@
     <div class="row">
         <div class="col-sm-12 margin-bottom">
             <button type="button" class="btn btn-large add-reminder" data-bind="click: createReminder, css: { disabled: !canAddNew() }">
-                <span class="icon icon-pencil"></span>Add Reminder</button>
+                <span class="icon icon-pencil"></span>Add Reminder
+            </button>
         </div>
     </div>
     <div data-bind="foreachGroups: reminders">
@@ -28,22 +29,21 @@
             <div class="card-wrap" data-bind="foreach: $data">
                 <div data-bind="attr: { 'class': $parent.colClass }">
                     <article data-bind="
-                        animateToState: editing() ? 'edit' : 'display', 
-                        initialState: 'display', 
-                        attr: { 
-                            'class': 'card margin-bottom' 
-                        }, 
-                        css: { 
+                        animateToState: editing() ? 'edit' : 'display',
+                        initialState: 'display',
+                        attr: {
+                            'class': 'card margin-bottom'
+                        },
+                        css: {
                             disabled: (!enabled() && !editing()),
                             editing: editing
                         }">
                         <div class="display" data-bind="click: cardDisplayClick">
                             <div class="body">
-                                <textarea data-bind="expandingTextbox: true, visible: name() != null && name() != '', value: name" class="name" rows="1" cols="1" spellcheck="false"></textarea>                              
-                                @*
-    <button class="icon-menu-2 link-emulate" data-bind="click: $root.beginReminderEdit, invisible: $root.editing()">
-    </button>*@
-                                <textarea data-bind="expandingTextbox: true, value: message" class="message" rows="1" cols="1" spellcheck="false"></textarea>
+                                <div data-bind="visible: name() !== ''">
+                                    <textarea class="name" data-bind="value: name, expandingTextarea: true, finishedTyping: { property: name, action: $root.autoSaveReminder }"></textarea>
+                                </div>
+                                <textarea class="message" data-bind="value: message, expandingTextarea: true, finishedTyping: { property: message, action: $root.autoSaveReminder }"></textarea>
                             </div>
                             <div class="footer">
                                 <button class="link-emulate" data-bind="click: $root.beginReminderEdit"><span class="glyphicon glyphicon-caret-down"></span></button>
@@ -52,57 +52,58 @@
                         <div class="edit">
                             <div class="body">
                                 <div class="form-group">
-                                    <textarea placeholder="Name" data-bind="value: name, expandingTextbox: true" class="name"
-                                        rows="1" cols="1"></textarea>
+                                    <textarea rows="1" class="name" placeholder="Name" data-bind="value: name, expandingTextarea: true"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <textarea placeholder="Message (required)" data-bind="value: message, expandingTextbox: true, css: { 'margin-top-sm': true, 'validation-highlight': propertiesWithErrors.indexOf('message') > -1 }"
-                                        rows="1" cols="1"></textarea>
+                                    <textarea rows="1" class="message" placeholder="Message (required)" data-bind="value: message, expandingTextarea: true"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <select data-bind="options: availableEvents, optionsText: 'text', optionsValue: 'value', value: actionId, optionsCaption: 'Select an action'">
-                                    </select>
-                                    <textarea placeholder="Wifi SSID" data-bind="value: ssid, visible: showSSIDField"
-                                        class="ssid margin-top-sm" rows="1" cols="1"></textarea>
-                                    <textarea placeholder="Place name or address" data-bind="addressAutocomplete: placeName, visible: showAddressField"
-                                        class="margin-top-sm" rows="1" cols="1"></textarea>
+                                    <select data-bind="options: availableEvents, optionsText: 'text', optionsValue: 'value', value: actionId, optionsCaption: 'Select an action'"></select>
+                                    <input type="text" placeholder="Wifi SSID" data-bind="value: ssid, visible: showSSIDField"
+                                              class="ssid margin-top-sm" />
+                                    <input type="text" placeholder="Place name or address" data-bind="addressAutocomplete: placeName, visible: showAddressField"
+                                              class="margin-top-sm" />
                                 </div>
                                 <div class="form-group">
-                                    <div class="time-shortcuts pull-right">
+                                    <div class="time-shortcuts quiet">
                                         <button data-bind="setTimePeriod: 'AM', css: { toggleButton: true, active: isSetToAM }">
-                                            AM</button>
+                                            AM
+                                        </button>
                                         |
                                         <button data-bind="setTimePeriod: 'PM', css: { toggleButton: true, active: isSetToPM }">
-                                            PM</button>
+                                            PM
+                                        </button>
                                         |
                                         <button data-bind="setTimePeriod: 'Whenever', css: { toggleButton: true, active: isSetToWhenever }">
-                                            Whenever</button>
+                                            Whenever
+                                        </button>
                                     </div>
                                     <div class="input-group bootstrap-timepicker">
                                         <input type="text" class="input-small timepicker" placeholder="Start time (required)"
-                                            data-bind="timePicker: startTime" /><span class="input-group-addon glyphicon glyphicon-time"></span>
+                                               data-bind="timePicker: startTime" /><span class="glyphicon glyphicon-time glyphicon-timepicker"></span>
                                     </div>
                                     <div class="input-group bootstrap-timepicker">
                                         <input type="text" class="input-small timepicker" placeholder="End time (required)"
-                                            data-bind="timePicker: endTime" /><span class="input-group-addon glyphicon glyphicon-time"></span>
+                                               data-bind="timePicker: endTime" /><span class="glyphicon glyphicon-time glyphicon-timepicker"></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="days" data-bind="foreach: availableDays, css: { 'validation-highlight': propertiesWithErrors.indexOf('days') > -1 }">
-                                        <button data-bind="text: name, click: $parent.changeDay, css: { toggleButton: true, active: $parent.isDaySelected($data) }">
-                                        </button>
+                                        <button data-bind="text: name, click: $parent.changeDay, css: { toggleButton: true, active: $parent.isDaySelected($data) }"></button>
                                     </div>
                                 </div>
                                 <div class="padding-top-sm">
                                     <button class="link-emulate" data-bind="click: toggleRepeat">
                                         <i class="icon-checkbox-checked" data-bind="visible: repeat"></i><i data-bind="visible: !repeat()"
-                                            class="icon-checkbox-unchecked"></i>Repeat</button>
+                                                                                                            class="icon-checkbox-unchecked"></i>Repeat
+                                    </button>
                                 </div>
                                 <div class="padding-top-sm">
                                     <div class="enable-actions">
                                         <button class="link-emulate" data-bind="click: enable">
                                             <i class="icon-checkbox-checked" data-bind="visible: enabled"></i><i data-bind="visible: !enabled()"
-                                                class="icon-checkbox-unchecked"></i>Enabled</button>
+                                                                                                                 class="icon-checkbox-unchecked"></i>Enabled
+                                        </button>
                                     </div>
                                 </div>
                                 <div data-bind="foreach: errors">
@@ -113,20 +114,17 @@
                             <footer>
                                 <button class="link-emulate" data-bind="
                             text: 'Save',
-                            click: $root.reminderSaveClick, 
-                            css: { 
-                                busy: saving, 
-                                disabled: deleting 
-                            }">
-                                </button><button class="link-emulate" data-bind="
+                            click: $root.reminderSaveClick,
+                            css: {
+                                busy: saving,
+                                disabled: deleting
+                            }"></button><button class="link-emulate" data-bind="
                             text: 'Cancel',
                             click: $root.reminderCancelClick
-                            ">
-                                </button><button class="link-emulate" data-bind="
-                                click: $root.reminderDeleteClick, 
+                            "></button><button class="link-emulate" data-bind="
+                                click: $root.reminderDeleteClick,
                                 text: deleting() ? 'Really?' : 'Delete'
-                            ">
-                                </button>
+                            "></button>
                             </footer>
                         </div>
                     </article>
@@ -153,5 +151,6 @@
 {
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=en"></script>
     <script type="text/javascript" src="~/signalr/hubs"></script>
+    <script type="text/javascript" src="~/Scripts/expandingTextarea.js"></script>
     @Scripts.Render("~/bundles/index")
 }
