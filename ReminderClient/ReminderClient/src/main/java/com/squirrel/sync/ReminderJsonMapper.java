@@ -39,6 +39,7 @@ public class ReminderJsonMapper
         String days = reminderJson.getString("days");
         boolean enabled = reminderJson.getBoolean("enabled");
         boolean repeat = reminderJson.getBoolean("repeat");
+        boolean postActivity = reminderJson.getBoolean("postActivity");
 
 		Reminder reminder = new Reminder();
 		
@@ -52,6 +53,7 @@ public class ReminderJsonMapper
         reminder.days = new ArrayList<Integer>();
         reminder.enabled = enabled;
         reminder.repeat = repeat;
+        reminder.postActivity = postActivity;
 
 		for(char day: days.toCharArray())
 		{

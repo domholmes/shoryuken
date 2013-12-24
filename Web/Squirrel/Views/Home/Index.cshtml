@@ -102,10 +102,16 @@
                                 </div>
                                 <div class="padding-top-sm">
                                     <div class="enable-actions">
-                                        <button class="link-emulate" data-bind="click: enable">
+                                        <button class="link-emulate" data-bind="click: toggleEnabled">
                                             <i class="icon-checkbox-checked" data-bind="visible: enabled"></i><i data-bind="visible: !enabled()"
                                                 class="icon-checkbox-unchecked"></i>Enabled</button>
                                     </div>
+                                </div>
+                                <div class="padding-top-sm">
+                                    <button class="link-emulate" data-bind="click: togglePostActivity">
+                                        <i class="icon-checkbox-checked" data-bind="visible: postActivity"></i><i data-bind="visible: !postActivity()"
+                                            class="icon-checkbox-unchecked"></i>Post Google+ Activity
+                                    </button>
                                 </div>
                                 <div data-bind="foreach: errors">
                                     <div class="validation-error" data-bind="text: $data">

@@ -7,16 +7,15 @@ import com.squirrel.domain.Reminder;
 
 public class ReminderIntentMatcher
 {
-    private final String intentAction;
-    private final String intentActionExtra;
-
-    public ReminderIntentMatcher(Intent intent)
+    public static Boolean isMatch(Reminder reminder, Intent intent)
     {
-        this.intentAction = intent.getAction();
-        this.intentActionExtra = intent.getStringExtra(IntentRemapperReceiver.extraName);
+        String intentAction = intent.getAction();
+        String intentActionExtra = intent.getStringExtra(IntentRemapperReceiver.extraName);
+
+        return isIdMatch(reminder, intentAction, intentActionExtra) || isActionMatch(reminder, intentAction, intentActionExtra);
     }
 
-    public Boolean isIdMatch(Reminder reminder)
+    private static Boolean isIdMatch(Reminder reminder, String intentAction, String intentActionExtra)
     {
         if(intentAction == Action.SmartReminder_Event_ById.name())
         {
@@ -31,7 +30,7 @@ public class ReminderIntentMatcher
         return false;
     }
 
-    public Boolean isActionMatch(Reminder reminder)
+    private static Boolean isActionMatch(Reminder reminder, String intentAction, String intentActionExtra)
     {
         String reminderAction = reminder.action.name();
 

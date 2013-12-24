@@ -116,12 +116,16 @@ sr.Reminder = function () {
         }
     };
 
-    rem.enable = function () {
+    rem.toggleEnabled = function () {
         rem.enabled(!rem.enabled());
     };
 
     rem.toggleRepeat = function () {
         rem.repeat(!rem.repeat());
+    };
+
+    rem.togglePostActivity = function () {
+        rem.postActivity(!rem.postActivity());
     };
 
     rem.setToAM = function () {

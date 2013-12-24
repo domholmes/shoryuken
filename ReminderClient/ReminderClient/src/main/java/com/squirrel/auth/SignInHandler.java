@@ -25,7 +25,7 @@ public class SignInHandler implements GooglePlayServicesClient.ConnectionCallbac
         this.callingActivity = callingActivity;
         this.tokenStore = new IdTokenStore(context);
 
-        plusClient = new PlusClient.Builder(context, this, this)
+        this.plusClient = new PlusClient.Builder(context, this, this)
                 .setVisibleActivities("http://schemas.google.com/AddActivity", "http://schemas.google.com/BuyActivity")
                 .build();
 

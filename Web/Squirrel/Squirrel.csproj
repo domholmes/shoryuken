@@ -195,6 +195,10 @@
     <Compile Include="Migrations\201311262242309_AddLogEntry.Designer.cs">
       <DependentUpon>201311262242309_AddLogEntry.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201312231620510_AddReminderPostActivity.cs" />
+    <Compile Include="Migrations\201312231620510_AddReminderPostActivity.Designer.cs">
+      <DependentUpon>201312231620510_AddReminderPostActivity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\LogEntry.cs" />
     <Compile Include="Security\GoogleCloudMessagingAppServer.cs" />
     <Compile Include="Controllers\NotificationHub.cs" />
@@ -294,6 +298,7 @@
     <Content Include="Scripts\breeze.min.js" />
     <Content Include="Scripts\custom-form-elements.js" />
     <Content Include="Scripts\dataaccess\reminderRepository.js" />
+    <None Include="Properties\PublishProfiles\staging.squirrel-beta.com - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
@@ -310,9 +315,9 @@
     <Content Include="Scripts\q.min.js" />
     <Content Include="Scripts\security\googlePlusSignIn.js" />
     <Content Include="Scripts\sr.js" />
-    <Content Include="Scripts\view\index.js" />
+    <Content Include="Scripts\view\indexView.js" />
     <Content Include="Scripts\models\reminder.js" />
-    <Content Include="Scripts\viewmodels\index.js" />
+    <Content Include="Scripts\viewmodels\indexViewModel.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -408,6 +413,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201311262242309_AddLogEntry.resx">
       <DependentUpon>201311262242309_AddLogEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312231620510_AddReminderPostActivity.resx">
+      <DependentUpon>201312231620510_AddReminderPostActivity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

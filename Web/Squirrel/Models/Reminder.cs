@@ -48,6 +48,8 @@ namespace Squirrel.Models
 
         [StringLength(200)]
         public string PlaceName { get; set; }
+
+        public bool PostActivity { get; set; }
     }
 
     public enum DeviceAction
