@@ -32,6 +32,7 @@ body
 {
     padding: 0;
     background-color: #E5E5E5;
+    font-family: 'Roboto Normal','Segoe UI','wf_SegoeUI',Tahoma,Verdana,Arial,Helvetica,sans-serif;
 }
 
 /* Forms
@@ -50,9 +51,10 @@ body
 }
 
 input[type="text"],
-textarea 
+textarea,
+.editable-text-control
 {
-    border: 0px solid #808080;
+    border: 0px solid #ccc;
     border-bottom-width: 1px;
     border-radius: 0px;
     box-shadow: none;
@@ -61,20 +63,6 @@ textarea
     font-weight: normal;
     outline: none;
     width: 100%;
-}
-.input-group-addon {
-    padding: 6px;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 1;
-    color: #555555;
-    text-align: center;
-    border: 0px;
-    border-bottom: 1px solid #808080;
-    background: none;
-    border-radius: 0px;
-    position: relative;
-    margin-left: -26px;
 }
 .glyphicon {
     top: 0px;
@@ -86,7 +74,8 @@ select
 }
 input[type="text"],
 textarea,
-select 
+select,
+.expanding-textarea-helper
 {
     display: block;
     padding-top: 3px;
@@ -94,19 +83,22 @@ select
 }
 ::-webkit-input-placeholder {
    font-style: italic;
-   line-height: 1.4em;
+   color: #ccc;
 }
 :-moz-placeholder { /* Firefox 18- */
    font-style: italic;
+   color: #ccc;
 }
 ::-moz-placeholder {  /* Firefox 19+ */
    font-style: italic;
+   color: #ccc;
 }
 :-ms-input-placeholder {  
    font-style: italic;
+   color: #ccc;
 }
 textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {
-    border-color: #808080;
+    border-color: #ccc;
     outline: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
@@ -118,7 +110,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 select 
 {
     border: 1px solid #fff;
-    border-bottom-color: #808080;
+    border-bottom-color: #ccc;
     padding-left: 0px;
 }
 .btn 
@@ -243,6 +235,10 @@ button
     background: none;
     padding: 0;
 }
+.quiet
+{
+    color: #ccc;
+}
 
 /* Misc
 ------------------------------------------------*/
@@ -294,42 +290,58 @@ button
 }
 .card .display .body 
 {    
-    padding: 20px;
+    padding: 10px 20px 5px;
 }
 .card .edit .body 
 {    
     padding: 20px 20px 10px;
 }
+.card .time-shortcuts
+{
+    text-align: right;
+}
 .card .time-shortcuts button
 {
     font-weight: bold;
 }
+input[type="text"].timepicker
+{
+    display: inline;
+    padding-right: 24px;
+    background: transparent;
+    position: relative;
+    z-index: 1;
+}
+.glyphicon-timepicker {
+    position: relative;
+    margin-left: -20px;
+    display: inline;
+}
 .enable-actions
 {
     margin-top: 10px;
-}
-.card h2
-{
-    font-family: 'Segoe UI Light','wf_SegoeUILight','Segoe UI','wf_SegoeUI',Tahoma,Verdana,Arial,Helvetica,sans-serif;
-    font-weight: normal;
-    font-size: 1.4em;
-    line-height: 1.4em;
-    margin-top: 0;
 }
 .card .message
 {
     font-style: italic;
     margin: 0;
 }
-.card textarea
+.card .name
 {
-    overflow: hidden;
-}
-.card textarea.name
-{
-    font-family: 'Segoe UI Light','wf_SegoeUILight','Segoe UI','wf_SegoeUI',Tahoma,Verdana,Arial,Helvetica,sans-serif;
+    font-family: 'Roboto Light','Segoe UI Light','wf_SegoeUILight','Segoe UI','wf_SegoeUI',Tahoma,Verdana,Arial,Helvetica,sans-serif;
     font-size: 1.4em;
     line-height: 1.4em;
+    margin-bottom: 0px;
+}
+
+.display textarea
+{
+    border: 0;
+}
+
+.expanding-textarea
+{
+    overflow: hidden;
 }
 .card .bootstrap-timepicker 
 {

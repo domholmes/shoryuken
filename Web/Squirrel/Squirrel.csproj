@@ -300,6 +300,7 @@
     <Content Include="Scripts\dataaccess\reminderRepository.js" />
     <None Include="Properties\PublishProfiles\staging.squirrel-beta.com - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\expandingtextarea.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery.ba-tinypubsub.js" />
@@ -318,6 +319,7 @@
     <Content Include="Scripts\view\indexView.js" />
     <Content Include="Scripts\models\reminder.js" />
     <Content Include="Scripts\viewmodels\indexViewModel.js" />
+    <Content Include="Web.config" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
