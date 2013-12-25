@@ -1,6 +1,9 @@
 package com.squirrel.sync;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 
 import com.squirrel.auth.IdTokenStore;
 import com.squirrel.domain.Reminder;
@@ -22,8 +25,7 @@ import java.util.List;
 
 public class ReminderApiService
 {
-    //private static final String baseUri = "http://192.168.1.64:4567/api/remindermobile/";
-    private static final String baseUri = "http://squirrel-beta.com/api/remindermobile/";
+    private static String baseUri = "http://%ssquirrel-beta.com/api/remindermobile/";
     private JsonArrayBuilder arrayBuilder;
     private IdTokenStore tokenStore;
     private HttpClient httpClient;
@@ -35,6 +37,8 @@ public class ReminderApiService
         this.tokenStore = new IdTokenStore(context);
         this.httpClient = new DefaultHttpClient();
         this.jsonMapper = new ReminderJsonMapper();
+
+        setUri(context);
 
     }
 
@@ -82,5 +86,26 @@ public class ReminderApiService
         String json = new JSONArray(disabledReminderIds).toString();
 
         return json;
+    }
+
+    private void setUri(Context context)
+    {
+        PackageInfo packageInfo = null;
+        try
+        {
+            packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+
+        if ((packageInfo != null && (packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0))
+        {
+            this.baseUri = String.format(this.baseUri, "staging.");
+        }
+        else
+        {
+            this.baseUri = String.format(this.baseUri, "");
+        }
     }
 }

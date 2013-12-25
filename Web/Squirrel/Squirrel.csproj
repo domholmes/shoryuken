@@ -319,7 +319,6 @@
     <Content Include="Scripts\view\indexView.js" />
     <Content Include="Scripts\models\reminder.js" />
     <Content Include="Scripts\viewmodels\indexViewModel.js" />
-    <Content Include="Web.config" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
