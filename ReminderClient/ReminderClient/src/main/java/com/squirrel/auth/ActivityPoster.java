@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.common.Scopes;
 import com.google.android.gms.plus.PlusClient;
 import com.google.android.gms.plus.model.moments.ItemScope;
 import com.google.android.gms.plus.model.moments.Moment;
@@ -22,6 +23,7 @@ public class ActivityPoster implements GooglePlayServicesClient.ConnectionCallba
     {
         this.plusClient = new PlusClient.Builder(context, this, this)
                 .setVisibleActivities("http://schemas.google.com/CheckInActivity")
+                .setScopes("https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/userinfo.email")
                 .build();
 
         this.activities = new ArrayList<Moment>();
@@ -43,9 +45,20 @@ public class ActivityPoster implements GooglePlayServicesClient.ConnectionCallba
 
     private void addNewCheckInToActivityList(Reminder reminder)
     {
+        ItemScope address = new ItemScope.Builder()
+                .setType("http://schema.org/PostalAddress")
+                .setStreetAddress("Test St.")
+                .setAddressCountry("England")
+                .setAddressRegion("UK")
+                .setAddressLocality("Europe")
+                .setPostalCode("TA8 2DE")
+                .build();
+
         ItemScope target = new ItemScope.Builder()
-                .setId(String.valueOf(reminder.id))
-                .setName(reminder.notificationText)
+                .setType("http://schema.org/Place")
+                .setName("Test")
+                .setDescription("A test check in")
+                .setAddress(address)
                 .build();
 
         Moment moment = new Moment.Builder()

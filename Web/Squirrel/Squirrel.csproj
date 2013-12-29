@@ -199,6 +199,10 @@
     <Compile Include="Migrations\201312231620510_AddReminderPostActivity.Designer.cs">
       <DependentUpon>201312231620510_AddReminderPostActivity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201312281646593_ReminderNameRequired.cs" />
+    <Compile Include="Migrations\201312281646593_ReminderNameRequired.Designer.cs">
+      <DependentUpon>201312281646593_ReminderNameRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\LogEntry.cs" />
     <Compile Include="Security\GoogleCloudMessagingAppServer.cs" />
     <Compile Include="Controllers\NotificationHub.cs" />
@@ -417,6 +421,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201312231620510_AddReminderPostActivity.resx">
       <DependentUpon>201312231620510_AddReminderPostActivity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312281646593_ReminderNameRequired.resx">
+      <DependentUpon>201312281646593_ReminderNameRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

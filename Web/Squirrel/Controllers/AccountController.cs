@@ -17,8 +17,8 @@ namespace Squirrel.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            ViewBag.ClientId = GoogleSignInCallbackHandler.ClientId;
-            ViewBag.RequiredScopes = GoogleSignInCallbackHandler.RequiredScopes;
+            ViewBag.ClientId = GoogleSignInCallbackHandler.CLIENT_ID;
+            ViewBag.RequiredScopes = GoogleSignInCallbackHandler.REQUIRED_SCOPES;
             
             return View();
         }

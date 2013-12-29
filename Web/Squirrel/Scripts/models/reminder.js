@@ -106,6 +106,10 @@ sr.Reminder = function () {
         return rem.days().indexOf(day.id) > -1;
     };
 
+    rem.canPostCheckIn = function () {
+        return rem.actionId == "LocationEnter";
+    };
+
     rem.changeDay = function (day) {
         var days = rem.days();
 

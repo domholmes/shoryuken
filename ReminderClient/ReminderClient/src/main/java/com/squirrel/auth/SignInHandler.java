@@ -7,7 +7,10 @@ import android.os.Bundle;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.common.Scopes;
 import com.google.android.gms.plus.PlusClient;
+import com.google.android.gms.plus.model.moments.ItemScope;
+import com.google.android.gms.plus.model.moments.Moment;
 import com.squirrel.util.AsyncResponse;
 
 public class SignInHandler implements GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener, AsyncResponse
@@ -26,9 +29,15 @@ public class SignInHandler implements GooglePlayServicesClient.ConnectionCallbac
         this.tokenStore = new IdTokenStore(context);
 
         this.plusClient = new PlusClient.Builder(context, this, this)
-                .setVisibleActivities("http://schemas.google.com/AddActivity", "http://schemas.google.com/BuyActivity")
+                .setVisibleActivities("http://schemas.google.com/CheckInActivity")
+                .setScopes("https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/userinfo.email")
                 .build();
+    }
 
+    @Override
+    public void onConnected(Bundle bundle)
+    {
+        performSignIn();
     }
 
     @Override
@@ -51,12 +60,6 @@ public class SignInHandler implements GooglePlayServicesClient.ConnectionCallbac
                 plusClient.connect();
             }
         }
-    }
-
-    @Override
-    public void onConnected(Bundle bundle)
-    {
-        new IdTokenRetrieverTask(this.context, this.plusClient.getAccountName(), this.tokenStore, this).execute();
     }
 
     @Override
@@ -88,12 +91,24 @@ public class SignInHandler implements GooglePlayServicesClient.ConnectionCallbac
         }
         else
         {
-            this.plusClient.connect();
+            if(!this.plusClient.isConnected())
+            {
+                this.plusClient.connect();
+            }
+            else
+            {
+                performSignIn();
+            }
         }
     }
 
     public Boolean isSignedIn()
     {
         return this.tokenStore.hasToken();
+    }
+
+    private void performSignIn()
+    {
+        new IdTokenRetrieverTask(this.context, this.plusClient.getAccountName(), this.tokenStore, this).execute();
     }
 }
