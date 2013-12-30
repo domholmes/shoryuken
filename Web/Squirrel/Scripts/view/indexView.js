@@ -32,31 +32,80 @@ ko.bindingHandlers.setTimePeriod = {
     }
 };
 
-ko.bindingHandlers.expandingTextbox = {
+ko.bindingHandlers.editableText = {
+    init: function (element, valueAccessor) {
+        $(element)
+            .attr('contenteditable', 'true')
 
-    setTextareaSize: function (elements) {
-        elements.each(function (index, el) {
-            var element = $(el);
-            while (element.outerHeight() < element[0].scrollHeight + parseFloat(element.css("borderTopWidth")) + parseFloat(element.css("borderBottomWidth"))) {
-                element.height(element.height() + 1);
-            };
-        });
+            .on('keyup paste blur', function () {
+                var observable = valueAccessor(),
+                    propertyValue = observable.property,
+                    placeholder = observable.placeholder || '';
+
+                propertyValue($(this).text());
+
+                if (propertyValue() === '') {
+                    $(this).html("<span class='quiet'>" + placeholder + "</span>");
+                }
+            })
+
+            .on('focus', function () {
+                var observable = valueAccessor(),
+                    propertyValue = observable.property,
+                    placeholder = observable.placeholder || '';
+
+                if (propertyValue() === '' || propertyValue() === placeholder) {
+                    $(this).text("");
+                }
+            });
     },
+    update: function (element, valueAccessor) {
+        var observable = valueAccessor(),
+            propertyValue = observable.property,
+            placeholder = observable.placeholder || '';
 
+        if (propertyValue() === "") {
+
+            $(this).html("<span class='quiet'>" + placeholder + "</span>");
+
+        } else if ($(element).html() !== propertyValue()) {
+
+            $(element).text(propertyValue());
+
+        }
+    }
+};
+
+ko.bindingHandlers.finishedTyping = {
+    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        var typingTimer;                //timer identifier
+            doneTypingInterval = 2000,  
+            propertyAccessor = valueAccessor().property,
+            action = valueAccessor().action;
+
+        (function (property) {
+
+            $(element).on('input propertychange change', function () {
+
+                clearTimeout(typingTimer);
+
+                typingTimer = setTimeout(function () {
+                    action(viewModel, property, $(element).val());
+                }, doneTypingInterval);
+            });
+
+        })(propertyAccessor);
+    }
+};
+
+ko.bindingHandlers.expandingTextarea = {
     init: function (element) {
-        var element = $(element),
-            self = ko.bindingHandlers.expandingTextbox;
+        $(element)
+            .addClass('expanding-textarea')
+            .expandingTextarea();
 
-        self.setTextareaSize(element);
-
-        element.keyup(function (e) {
-            self.setTextareaSize(element);
-        });
-
-        $(document).on('newState', function (event, state) {
-            if (state === 'edit') {
-                self.setTextareaSize(element);
-            }
+        $(document).on('newState', function () {
+            $(element).expandingTextarea('resize');
         });
     }
 };

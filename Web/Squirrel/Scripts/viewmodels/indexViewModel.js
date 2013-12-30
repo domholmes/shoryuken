@@ -59,7 +59,13 @@ sr.AppViewModel = function () {
     vm.reminderSaveClick = function (reminder) {
         if (!reminder.deleting()) {
             vm.saveReminder(reminder);
+            reminder.editing(false);
         }
+    };
+
+    vm.autoSaveReminder = function (reminder, property, value) {
+        property(value);
+        vm.saveReminder(reminder);
     };
 
     vm.cancelReminderEdit = function (reminder) {
@@ -119,7 +125,6 @@ sr.AppViewModel = function () {
             function () {// success
 
                 reminder.saving(false);
-                reminder.editing(false);
                 $.connection.notificationHub.server.pushUpdate();
             },
             function (response) {// fail
@@ -144,8 +149,8 @@ sr.AppViewModel = function () {
     };
 
     cardDisplayClick = function (reminder, event) {
-        reminder.enable();
-        vm.saveReminder(reminder);
+        //reminder.enable();
+        //vm.saveReminder(reminder);
     };
 
     vm.loadReminders = function () {
