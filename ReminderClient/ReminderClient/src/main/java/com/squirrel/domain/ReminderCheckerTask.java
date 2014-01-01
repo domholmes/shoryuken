@@ -47,7 +47,7 @@ public class ReminderCheckerTask extends AsyncTask<Intent, Integer, Long>
                         changesMade = true;
                     }
 
-                    if(reminder.postActivity)
+                    if(reminder.shouldPostActivity())
                     {
                         this.activityPoster.addNewCheckIn(reminder);
                     }

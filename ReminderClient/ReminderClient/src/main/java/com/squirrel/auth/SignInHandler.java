@@ -29,7 +29,7 @@ public class SignInHandler implements GooglePlayServicesClient.ConnectionCallbac
         this.tokenStore = new IdTokenStore(context);
 
         this.plusClient = new PlusClient.Builder(context, this, this)
-                .setVisibleActivities("http://schemas.google.com/CheckInActivity")
+                .setVisibleActivities("http://schemas.google.com/CheckInActivity", "http://schemas.google.com/ListenActivity")
                 .setScopes("https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/userinfo.email")
                 .build();
     }

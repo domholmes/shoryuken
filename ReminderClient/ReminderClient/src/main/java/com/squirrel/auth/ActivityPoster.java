@@ -22,8 +22,8 @@ public class ActivityPoster implements GooglePlayServicesClient.ConnectionCallba
     public ActivityPoster(Context context)
     {
         this.plusClient = new PlusClient.Builder(context, this, this)
-                .setVisibleActivities("http://schemas.google.com/CheckInActivity")
-                .setScopes("https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/userinfo.email")
+                //.setVisibleActivities("http://schemas.google.com/CheckInActivity", "http://schemas.google.com/ListenActivity")
+                //.setScopes("https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/userinfo.email")
                 .build();
 
         this.activities = new ArrayList<Moment>();
@@ -46,18 +46,16 @@ public class ActivityPoster implements GooglePlayServicesClient.ConnectionCallba
     private void addNewCheckInToActivityList(Reminder reminder)
     {
         ItemScope address = new ItemScope.Builder()
-                .setType("http://schema.org/PostalAddress")
-                .setStreetAddress("Test St.")
-                .setAddressCountry("England")
+                .setName("Centre")
+                .setType("http://schema.org/Address")
+                .setStreetAddress("Road")
                 .setAddressRegion("UK")
-                .setAddressLocality("Europe")
-                .setPostalCode("TA8 2DE")
+                .setAddressRegion("GB")
                 .build();
 
         ItemScope target = new ItemScope.Builder()
+                .setName("Coffeeshop")
                 .setType("http://schema.org/Place")
-                .setName("Test")
-                .setDescription("A test check in")
                 .setAddress(address)
                 .build();
 

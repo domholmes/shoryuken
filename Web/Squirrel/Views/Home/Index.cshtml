@@ -106,12 +106,6 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="padding-top-sm" data-bind="visible: canPostCheckIn">
-                                    <button class="link-emulate" data-bind="click: togglePostActivity">
-                                        <i class="icon-checkbox-checked" data-bind="visible: postActivity"></i><i data-bind="visible: !postActivity()"
-                                            class="icon-checkbox-unchecked"></i>Check In
-                                    </button>
-                                </div>
                                 <div data-bind="foreach: errors">
                                     <div class="validation-error" data-bind="text: $data">
                                     </div>
@@ -120,7 +114,7 @@
                             <footer>
                                 <button class="link-emulate" data-bind="
                             text: 'Save',
-                            click: $root.reminderSaveClick,
+                            click: $root.saveReminder,
                             css: {
                                 busy: saving,
                                 disabled: deleting

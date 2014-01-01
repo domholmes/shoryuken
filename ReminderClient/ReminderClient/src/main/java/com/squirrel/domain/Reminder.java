@@ -45,4 +45,11 @@ public class Reminder implements Serializable
 
         return false;
     }
+
+    public boolean shouldPostActivity()
+    {
+        return false;
+
+        //return this.postActivity && this.action == Action.SmartReminder_Event_LocationEnter;
+    }
 }
