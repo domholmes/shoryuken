@@ -38,11 +38,11 @@ sr.Reminder = function () {
         }
     }
 
-    rem.editing = ko.observable(false);
+    rem.isEditing = ko.observable(false);
 
-    rem.saving = ko.observable(false);
+    rem.isSaving = ko.observable(false);
 
-    rem.deleting = ko.observable(false);
+    rem.isDeleting = ko.observable(false);
 
     rem.availableEvents = [
         {
@@ -110,7 +110,7 @@ sr.Reminder = function () {
         return rem.actionId == "LocationEnter";
     };
 
-    rem.changeDay = function (day) {
+    rem.toggleDay = function (day) {
         var days = rem.days();
 
         if (days.indexOf(day.id) > -1) {
@@ -178,7 +178,7 @@ sr.Reminder = function () {
             }
         });
 
-        rem.editing.subscribe(function (newValue) {
+        rem.isEditing.subscribe(function (newValue) {
             if (newValue && rem.showAddressField()) {
                 publishLocation();
             }

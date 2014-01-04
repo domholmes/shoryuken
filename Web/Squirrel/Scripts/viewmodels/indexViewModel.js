@@ -4,66 +4,48 @@ sr.AppViewModel = function () {
 
     vm.reminders = ko.observableArray([]);
 
-    vm.loading = ko.observable(false);
+    vm.isLoadingReminders = ko.observable(false);
 
-    vm.editing = ko.computed(function () {
+    vm.isEditingReminder = ko.computed(function () {
 
         var reminder = ko.utils.arrayFirst(vm.reminders(), function (reminder) {
 
-            return reminder.editing() === true;
+            return reminder.isEditing() === true;
         });
 
         return reminder !== null;
     });
 
-    vm.canAddNew = ko.computed(function () {
+    vm.canAddNewReminder = ko.computed(function () {
 
-        return !vm.editing();
+        return !vm.isEditingReminder();
     });
 
     vm.createReminder = function () {
 
-        if (vm.canAddNew()) {
+        if (vm.canAddNewReminder()) {
 
             var newReminder = sr.repository.createReminder();
-            newReminder.editing(true);
+            newReminder.isEditing(true);
             newReminder.postCreationSetup();
 
             vm.reminders.unshift(newReminder);
         }
     };
 
-    vm.beginReminderEdit = function (reminder, event) {
+    vm.beginEditReminder = function (reminder, event) {
 
         event.stopPropagation();
-        reminder.editing(true);
+        reminder.isEditing(true);
     };
 
-    vm.reminderDeleteClick = function (reminder) {
-        if (!reminder.deleting()) {
-            reminder.deleting(true);
-        } else {
-            vm.deleteReminder(reminder);
+    vm.cancelCurrentAction = function (reminder) {
+
+        if (reminder.isDeleting()) {
+
+            reminder.isDeleting(false);
         }
-    };
-
-    vm.reminderCancelClick = function (reminder) {
-
-        if (reminder.deleting()) {
-            reminder.deleting(false);
-        } else {
-            vm.cancelReminderEdit(reminder);
-        }
-    };
-
-    vm.autoSaveReminder = function (reminder, property, value) {
-        property(value);
-        vm.saveReminder(reminder);
-    };
-
-    vm.cancelReminderEdit = function (reminder) {
-
-        if (!reminder.saving()) {
+        else if (!reminder.isSaving()) {
 
             var isNew = sr.repository.isNew(reminder);
 
@@ -72,9 +54,17 @@ sr.AppViewModel = function () {
             }
             else {
                 sr.repository.revertReminder(reminder);
-                reminder.saving(false);
-                reminder.editing(false);
+                reminder.isSaving(false);
+                reminder.isEditing(false);
             }
+        }
+    };
+
+    vm.attemptDeleteReminder = function (reminder) {
+        if (!reminder.isDeleting()) {
+            reminder.isDeleting(true);
+        } else {
+            vm.deleteReminder(reminder);
         }
     };
 
@@ -86,7 +76,7 @@ sr.AppViewModel = function () {
             reminder,
             function () {// success
 
-                reminder.editing(false);
+                reminder.isEditing(false);
                 vm.reminders.remove(reminder);
                 $.connection.notificationHub.server.pushUpdate();
             },
@@ -104,21 +94,21 @@ sr.AppViewModel = function () {
                         break;
                 }
 
-                reminder.deleting(false);
+                reminder.isDeleting(false);
             });
     };
 
     vm.saveReminder = function (reminder) {
 
-        reminder.saving(true);
+        reminder.isSaving(true);
 
         sr.repository.saveReminder(
 
             reminder,
             function () {// success
 
-                reminder.saving(false);
-                reminder.editing(false);
+                reminder.isSaving(false);
+                reminder.isEditing(false);
                 $.connection.notificationHub.server.pushUpdate();
             },
             function (response) {// fail
@@ -138,24 +128,24 @@ sr.AppViewModel = function () {
                     }
                 }
 
-                reminder.saving(false);
+                reminder.isSaving(false);
             });
     };
 
-    cardDisplayClick = function (reminder, event) {
-        //reminder.enable();
-        //vm.saveReminder(reminder);
+    vm.autoSaveReminder = function (reminder, property, value) {
+        property(value);
+        vm.saveReminder(reminder);
     };
 
     vm.loadReminders = function () {
 
-        vm.loading(true);
+        vm.isLoadingReminders(true);
 
         sr.repository.fetchReminders(callback);
 
         function callback(data) {
 
-            vm.loading(false);
+            vm.isLoadingReminders(false);
 
             ko.utils.arrayForEach(data, function (reminder) {
                 reminder.postCreationSetup();

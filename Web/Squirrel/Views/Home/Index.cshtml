@@ -19,7 +19,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12 margin-bottom">
-            <button type="button" class="btn btn-large add-reminder" data-bind="click: createReminder, css: { disabled: !canAddNew() }">
+            <button type="button" class="btn btn-large add-reminder" data-bind="click: createReminder, css: { disabled: !canAddNewReminder() }">
                 <span class="icon icon-pencil"></span>Add Reminder
             </button>
         </div>
@@ -29,16 +29,16 @@
             <div class="card-wrap" data-bind="foreach: $data">
                 <div data-bind="attr: { 'class': $parent.colClass }">
                     <article data-bind="
-                        animateToState: editing() ? 'edit' : 'display',
+                        animateToState: isEditing() ? 'edit' : 'display',
                         initialState: 'display',
                         attr: {
                             'class': 'card margin-bottom'
                         },
                         css: {
-                            disabled: (!enabled() && !editing()),
-                            editing: editing
+                            disabled: (!enabled() && !isEditing()),
+                            editing: isEditing
                         }">
-                        <div class="display" data-bind="click: cardDisplayClick">
+                        <div class="display">
                             <div class="body">
                                 <div data-bind="visible: name() !== ''">
                                     <textarea class="name" data-bind="value: name, expandingTextarea: true, finishedTyping: { property: name, action: $root.autoSaveReminder }"></textarea>
@@ -46,7 +46,7 @@
                                 <textarea class="message" data-bind="value: message, expandingTextarea: true, finishedTyping: { property: message, action: $root.autoSaveReminder }"></textarea>
                             </div>
                             <div class="footer">
-                                <button class="link-emulate" data-bind="click: $root.beginReminderEdit"><span class="glyphicon glyphicon-caret-down"></span></button>
+                                <button class="link-emulate" data-bind="click: $root.beginEditReminder"><span class="glyphicon glyphicon-caret-down"></span></button>
                             </div>
                         </div>
                         <div class="edit">
@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="days" data-bind="foreach: availableDays, css: { 'validation-highlight': propertiesWithErrors.indexOf('days') > -1 }">
-                                        <button data-bind="text: name, click: $parent.changeDay, css: { toggleButton: true, active: $parent.isDaySelected($data) }"></button>
+                                        <button data-bind="text: name, click: $parent.toggleDay, css: { toggleButton: true, active: $parent.isDaySelected($data) }"></button>
                                     </div>
                                 </div>
                                 <div class="padding-top-sm">
@@ -116,14 +116,14 @@
                             text: 'Save',
                             click: $root.saveReminder,
                             css: {
-                                busy: saving,
-                                disabled: deleting
+                                busy: isSaving,
+                                disabled: isDeleting
                             }"></button><button class="link-emulate" data-bind="
                             text: 'Cancel',
-                            click: $root.reminderCancelClick
+                            click: $root.cancelCurrentAction
                             "></button><button class="link-emulate" data-bind="
-                                click: $root.reminderDeleteClick,
-                                text: deleting() ? 'Really?' : 'Delete'
+                                click: $root.attemptDeleteReminder,
+                                text: isDeleting() ? 'Really?' : 'Delete'
                             "></button>
                             </footer>
                         </div>
@@ -133,7 +133,7 @@
         </div>
     </div>
 </div>
-<div class="loader" data-bind="css: { active: loading }">
+<div class="loader" data-bind="css: { active: isLoadingReminders }">
     <div class="duo duo1">
         <div class="dot dot-a">
         </div>
