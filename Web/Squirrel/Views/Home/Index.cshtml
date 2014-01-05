@@ -40,8 +40,7 @@
                         }">
                         <div class="display">
                             <div class="body">
-                                <div data-bind="visible: name() !== ''">
-                                    <textarea class="name" data-bind="value: name, expandingTextarea: true, finishedTyping: { property: name, action: $root.autoSaveReminder }"></textarea>
+                                <div data-bind="visible: name() !== '', text: name" class="name">
                                 </div>
                                 <textarea class="message" data-bind="value: message, expandingTextarea: true, finishedTyping: { property: message, action: $root.autoSaveReminder }"></textarea>
                             </div>
