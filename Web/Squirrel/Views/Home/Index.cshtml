@@ -42,7 +42,7 @@
                             <div class="body">
                                 <div data-bind="visible: name() !== '', text: name" class="name">
                                 </div>
-                                <textarea class="message" data-bind="value: message, expandingTextarea: true, finishedTyping: { property: message, action: $root.autoSaveReminder }"></textarea>
+                                <textarea class="message" data-bind="value: message, expandingTextarea: true, finishedTyping: { property: message, action: $root.autoSaveReminder }, event: { focus: $root.messageOnFocus }"></textarea>
                             </div>
                             <div class="footer">
                                 <button class="link-emulate" data-bind="click: $root.beginEditReminder"><span class="glyphicon glyphicon-caret-down"></span></button>
