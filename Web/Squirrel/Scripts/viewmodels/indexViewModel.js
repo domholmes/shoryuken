@@ -132,6 +132,13 @@ sr.AppViewModel = function () {
             });
     };
 
+    vm.messageOnFocus = function (reminder) {
+        if (!reminder.enabled()) {
+            reminder.toggleEnabled();
+            vm.saveReminder(reminder);
+        }
+    };
+
     vm.autoSaveReminder = function (reminder, property, value) {
         property(value);
         vm.saveReminder(reminder);
