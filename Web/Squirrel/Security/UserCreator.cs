@@ -21,10 +21,23 @@ namespace Squirrel.Security
         {
             if (!context.Users.Where(u => u.Username == userDetails.Id).Any())
             {
-                string email = apiService.RetrieveUsersEmail(userDetails.AccessCode);
+                string email = apiService.RetrieveUsersEmail(userDetails.AccessToken);
 
-                context.Users.Add(new User { Username = userDetails.Id, Email = email });
+                context.Users.Add(new User { Username = userDetails.Id, Email = email, AccessToken = userDetails.AccessToken });
                 context.SaveChanges();
+            }
+        }
+
+        internal void DeleteUserIfExists(string username)
+        {
+            User user = this.context.Users
+                .Where(u => u.Username == username)
+                .SingleOrDefault();
+
+            if (user != null)
+            {
+                this.context.Users.Remove(user);
+                this.context.SaveChanges();
             }
         }
     }

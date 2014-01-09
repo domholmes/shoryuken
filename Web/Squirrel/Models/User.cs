@@ -14,5 +14,7 @@ namespace Squirrel.Models
         public string Email { get; set; }
 
         public string NotificationKey { get; set; }
+
+        public string AccessToken { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace Squirrel.Security
     {
         public string Id { get; set; }
 
-        public string AccessCode { get; set; }
+        public string AccessToken { get; set; }
 
         public bool IsValid
         {
@@ -23,5 +23,7 @@ namespace Squirrel.Security
         {
             get { return new GoogleUser(); }
         }
+
+        public string AuthToken { get; set; }
     }
 }

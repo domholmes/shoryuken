@@ -10,15 +10,11 @@ namespace Squirrel.Security
 {
     public class GoogleApiService
     {
-        private const string userInfoEndPoint = "https://www.googleapis.com/oauth2/v1/userinfo";
-        
-        public string RetrieveUsersEmail(string accessCode)
+        public string RetrieveUsersEmail(string accessToken)
         {
-            string url = string.Format("{0}?access_token={1}", userInfoEndPoint, accessCode);
+            string url = string.Format("https://www.googleapis.com/oauth2/v1/userinfo?access_token={0}", accessToken);
 
-            WebRequest request = WebRequest.Create(url);
-
-            string responseFromServer = GetResponseString(request);
+            string responseFromServer = Post(url);
 
             if (responseFromServer != null)
             {
@@ -28,6 +24,31 @@ namespace Squirrel.Security
             { 
                 return null; 
             }
+        }
+
+        public string DisconnectUser(string accessToken)
+        {
+            string url = string.Format("https://accounts.google.com/o/oauth2/revoke?token={0}", accessToken);
+
+            string responseFromServer = Post(url);
+
+            if (responseFromServer != null)
+            {
+                return null;
+            }
+            else
+            {
+                return "error";
+            }
+        }
+
+        public string Post(string url)
+        {
+            WebRequest request = WebRequest.Create(url);
+            request.ContentType = "application/json";
+            request.Method = "GET";
+            
+            return GetResponseString(request);
         }
 
         private string GetResponseString(WebRequest request)

@@ -32,16 +32,16 @@ namespace Squirrel.Security
         
         public bool LoginUser(string authCode)
         {
-            GoogleUser userDetails = authService.GetAuthenticatedUser(authCode);
+            GoogleUser user = authService.GetAuthenticatedUser(authCode);
 
-            if (!userDetails.IsValid)
+            if (!user.IsValid)
             {
                 return false;
             }
 
-            userCreator.CreateUserIfDoesntExist(userDetails);
+            userCreator.CreateUserIfDoesntExist(user);
 
-            formsAuth.SetAuthCookie(userDetails.Id);
+            formsAuth.SetAuthCookie(user.Id);
 
             return true;
         }

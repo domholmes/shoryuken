@@ -203,7 +203,12 @@
     <Compile Include="Migrations\201312281646593_ReminderNameRequired.Designer.cs">
       <DependentUpon>201312281646593_ReminderNameRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201401082202225_AddUserAccessToken.cs" />
+    <Compile Include="Migrations\201401082202225_AddUserAccessToken.Designer.cs">
+      <DependentUpon>201401082202225_AddUserAccessToken.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\LogEntry.cs" />
+    <Compile Include="Security\GoogleAppDisconnector.cs" />
     <Compile Include="Security\GoogleCloudMessagingAppServer.cs" />
     <Compile Include="Controllers\NotificationHub.cs" />
     <Compile Include="Controllers\ReminderContextProvider.cs" />
@@ -424,6 +429,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201312281646593_ReminderNameRequired.resx">
       <DependentUpon>201312281646593_ReminderNameRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401082202225_AddUserAccessToken.resx">
+      <DependentUpon>201401082202225_AddUserAccessToken.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

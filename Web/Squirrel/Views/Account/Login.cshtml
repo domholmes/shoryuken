@@ -1,4 +1,9 @@
-﻿<div id="signinButton" style="text-align:center;margin-top:50px;">
+﻿@section scripts
+{
+    <script src="@Url.Content("~/Scripts/security/googlePlusSignIn.js")">gapi.auth.signOut();</script>
+}
+
+<div id="signinButton" style="text-align:center;margin-top:50px;">
     <span class="g-signin"
           data-scope="@ViewBag.RequiredScopes"
           data-clientid="@ViewBag.ClientId"
@@ -8,9 +13,4 @@
           data-callback="signInCallback">
     </span>
 </div>
-<div id="result"></div>
-
-@section scripts
-{
-<script src="@Url.Content("~/Scripts/security/googlePlusSignIn.js")"></script>
-}
+<div id="result">@ViewBag.Message</div>

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AndroidClient.iml" filepath="$PROJECT_DIR$/AndroidClient.iml" />
       <module fileurl="file://$PROJECT_DIR$/ReminderClient.iml" filepath="$PROJECT_DIR$/ReminderClient.iml" />
       <module fileurl="file://$PROJECT_DIR$/ReminderClient/ReminderClient-ReminderClient.iml" filepath="$PROJECT_DIR$/ReminderClient/ReminderClient-ReminderClient.iml" />
     </modules>

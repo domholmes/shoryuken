@@ -14,9 +14,9 @@ namespace Squirrel.Security
     {
         private const string tokenEndPoint = "https://accounts.google.com/o/oauth2/token";
 
-        public virtual GoogleUser GetAuthenticatedUser(string authCode)
+        public virtual GoogleUser GetAuthenticatedUser(string authToken)
         {
-            OAuthResponse response = ExchangeAuthCodeForAccessCode(authCode);
+            OAuthResponse response = ExchangeAuthTokenForAccessToken(authToken);
 
             if (response.IsInvalid) return GoogleUser.InvalidUser;
 
@@ -27,13 +27,14 @@ namespace Squirrel.Security
             var user = new GoogleUser
             {
                 Id = userId,
-                AccessCode = response.access_token
+                AuthToken = authToken,
+                AccessToken = response.access_token
             };
 
             return user;
         }
 
-        private OAuthResponse ExchangeAuthCodeForAccessCode(string code)
+        private OAuthResponse ExchangeAuthTokenForAccessToken(string code)
         {
             WebRequest request = WebRequest.Create(tokenEndPoint);
 
