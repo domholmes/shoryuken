@@ -14,9 +14,8 @@ namespace Squirrel.Controllers
     public class AccountController : Controller
     {      
         [AllowAnonymous]
-        public ActionResult Login(string message)
+        public ActionResult Login()
         {
-            ViewBag.Message = message;
             ViewBag.ClientId = GoogleSignInCallbackHandler.CLIENT_ID;
             ViewBag.RequiredScopes = GoogleSignInCallbackHandler.REQUIRED_SCOPES;
             
@@ -62,11 +61,9 @@ namespace Squirrel.Controllers
                 new UserCreator().DeleteUserIfExists(currentUser);
             }
 
-            FormsAuthentication.SignOut();            
+            FormsAuthentication.SignOut();
 
-            return disconnectWasSuccessful ? 
-                RedirectToAction("Login") :
-                RedirectToAction("Login", new { message = "For some crazy reason we were unable to disconnect Squirrel from your Google account. Don't fret, you can disconnect the app here https://plus.google.com/apps" }); 
+            return RedirectToAction("Login");
         }
     }
 }
