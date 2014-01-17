@@ -102,6 +102,10 @@ sr.AppViewModel = function () {
 
         reminder.isSaving(true);
 
+        reminder.name($.trim(reminder.name()))
+        reminder.message($.trim(reminder.message()))
+        reminder.ssid($.trim(reminder.ssid()))
+
         sr.repository.saveReminder(
 
             reminder,
