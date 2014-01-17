@@ -117,6 +117,8 @@ sr.AppViewModel = function () {
             },
             function (response) {// fail
 
+                reminder.isEditing(true);
+
                 if (response.status) {
 
                     switch (response.status) {
