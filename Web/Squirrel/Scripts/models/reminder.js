@@ -38,7 +38,7 @@ sr.Reminder = function () {
         }
     }
 
-    rem.isEditing = ko.observable(false);
+    rem.inEditMode = ko.observable(false);
 
     rem.isSaving = ko.observable(false);
 
@@ -178,11 +178,16 @@ sr.Reminder = function () {
             }
         });
 
-        rem.isEditing.subscribe(function (newValue) {
+        rem.inEditMode.subscribe(function (newValue) {
             if (newValue && rem.showAddressField()) {
                 publishLocation();
             }
         });
 
+        rem.errors.subscribe(function (newValue) {
+            if (newValue.length > 0) {
+                rem.inEditMode(true);
+            }
+        });
     };
 };

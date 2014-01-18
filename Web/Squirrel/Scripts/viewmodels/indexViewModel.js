@@ -10,7 +10,7 @@ sr.AppViewModel = function () {
 
         var reminder = ko.utils.arrayFirst(vm.reminders(), function (reminder) {
 
-            return reminder.isEditing() === true;
+            return reminder.inEditMode() === true;
         });
 
         return reminder !== null;
@@ -26,7 +26,7 @@ sr.AppViewModel = function () {
         if (vm.canAddNewReminder()) {
 
             var newReminder = sr.repository.createReminder();
-            newReminder.isEditing(true);
+            newReminder.inEditMode(true);
             newReminder.postCreationSetup();
 
             vm.reminders.unshift(newReminder);
@@ -36,7 +36,7 @@ sr.AppViewModel = function () {
     vm.beginEditReminder = function (reminder, event) {
 
         event.stopPropagation();
-        reminder.isEditing(true);
+        reminder.inEditMode(true);
     };
 
     vm.cancelCurrentAction = function (reminder) {
@@ -55,7 +55,7 @@ sr.AppViewModel = function () {
             else {
                 sr.repository.revertReminder(reminder);
                 reminder.isSaving(false);
-                reminder.isEditing(false);
+                reminder.inEditMode(false);
             }
         }
     };
@@ -76,7 +76,7 @@ sr.AppViewModel = function () {
             reminder,
             function () {// success
 
-                reminder.isEditing(false);
+                reminder.inEditMode(false);
                 vm.reminders.remove(reminder);
                 $.connection.notificationHub.server.pushUpdate();
             },
@@ -97,8 +97,17 @@ sr.AppViewModel = function () {
                 reminder.isDeleting(false);
             });
     };
+    
+    vm.autoSaveReminder = function (reminder, property, value) {
+        property(value);
+        vm.saveReminder(reminder, false);
+    };
 
-    vm.saveReminder = function (reminder) {
+    vm.manualSaveReminder = function (reminder) {
+        vm.saveReminder(reminder, true);
+    };
+
+    vm.saveReminder = function (reminder, leaveEditMode) {
 
         reminder.isSaving(true);
 
@@ -112,12 +121,14 @@ sr.AppViewModel = function () {
             function () {// success
 
                 reminder.isSaving(false);
-                reminder.isEditing(false);
+
+                if (leaveEditMode) {
+                    reminder.inEditMode(false);
+                }
+
                 $.connection.notificationHub.server.pushUpdate();
             },
             function (response) {// fail
-
-                reminder.isEditing(true);
 
                 if (response.status) {
 
@@ -143,11 +154,6 @@ sr.AppViewModel = function () {
             reminder.toggleEnabled();
             vm.saveReminder(reminder);
         }
-    };
-
-    vm.autoSaveReminder = function (reminder, property, value) {
-        property(value);
-        vm.saveReminder(reminder);
     };
 
     vm.loadReminders = function () {

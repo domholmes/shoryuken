@@ -29,14 +29,14 @@
             <div class="card-wrap" data-bind="foreach: $data">
                 <div data-bind="attr: { 'class': $parent.colClass }">
                     <article data-bind="
-                        animateToState: isEditing() ? 'edit' : 'display',
+                        animateToState: inEditMode() ? 'edit' : 'display',
                         initialState: 'display',
                         attr: {
                             'class': 'card margin-bottom'
                         },
                         css: {
-                            disabled: (!enabled() && !isEditing()),
-                            editing: isEditing
+                            disabled: (!enabled() && !inEditMode()),
+                            editing: inEditMode
                         }">
                         <div class="display">
                             <div class="body">
@@ -113,7 +113,7 @@
                             <footer>
                                 <button class="link-emulate" data-bind="
                             text: 'Save',
-                            click: $root.saveReminder,
+                            click: $root.manualSaveReminder,
                             css: {
                                 busy: isSaving,
                                 disabled: isDeleting
