@@ -174,7 +174,15 @@ sr.AppViewModel = function () {
         }
     };
 
+    // SignalR initialisation
     $.connection.hub.start();
+
+    $.connection.hub.disconnected(function () {
+        setTimeout(function () {
+            $.connection.hub.start();
+        }, 20000);
+    });
+
     $.connection.notificationHub.client.update = function () {
 
         vm.loadReminders();
