@@ -269,13 +269,11 @@ ko.bindingHandlers.addressAutocomplete = {
 
             value(place.formatted_address);
             bindingContext.$data.latLong(place.geometry.location.lat() + ',' + place.geometry.location.lng());
-            console.log(bindingContext.$data.latLong());
         });
 
         element.addEventListener('input', function (event) {
             bindingContext.$data.latLong(null);
             value(event.target.value);
-            console.log(bindingContext.$data.latLong());
         }, false);
 
         $.subscribe('currentLocation', function (_e, position) {
