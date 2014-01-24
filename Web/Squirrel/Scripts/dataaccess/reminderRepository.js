@@ -47,11 +47,6 @@
         return reminder.entityAspect.entityState.isAdded();
     }
 
-    function hasErrors(reminder) {
-
-        return reminder.entityAspect.getValidationErrors().length > 0;
-    }
-
     function saveReminder(reminder, successCallback, failCallback) {
 
         reminder.propertiesWithErrors.removeAll();
@@ -93,8 +88,7 @@
         deleteReminder: deleteReminder,
         revertReminder: revertReminder,
         saveReminder: saveReminder,
-        isNew: isNew,
-        hasErrors: hasErrors
+        isNew: isNew
     }
 
 } (window.sr))
