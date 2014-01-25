@@ -23,7 +23,8 @@ namespace Squirrel
                 .Include("~/Scripts/breeze.min.js")
                 .Include("~/Scripts/jquery.signalR-{version}.js")
                 .Include("~/Scripts/jquery.confirm.js")
-                .Include("~/Scripts/jquery.ba-tinypubsub.js"));
+                .Include("~/Scripts/jquery.ba-tinypubsub.js")
+                .Include("~/Scripts/expandingTextarea.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/index")
                 .Include("~/Scripts/sr.js")

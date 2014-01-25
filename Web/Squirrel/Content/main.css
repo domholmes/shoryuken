@@ -3,6 +3,13 @@
 /* Utilities
 ------------------------------------------------*/
 
+.info {
+    font-size: 1.2em;
+    color: #888;
+}
+.transparent {
+    opacity: 0;
+}
 .link-emulate 
 {
     color: #33b5e5;
@@ -85,13 +92,13 @@ button
 {
     border-radius: 0px;
 }
-.btn.add-reminder 
+.btn.btn-red 
 {
     background: #CC3B29;
     text-shadow: none;
     color: #fff;
 }
-.btn.add-reminder:hover 
+.btn.btn-red:hover 
 {
     background: #D52E18;
 }
