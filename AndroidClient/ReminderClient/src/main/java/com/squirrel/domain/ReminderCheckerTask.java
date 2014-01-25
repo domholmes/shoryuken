@@ -23,7 +23,7 @@ public class ReminderCheckerTask extends AsyncTask<Intent, Integer, Long>
     {
     	this.context = context;
     	this.timeChecker = new ReminderTimeMatcher();
-		this.notifier = new Notifier();
+		this.notifier = new Notifier(context);
 		this.reminderRepository = new ReminderRepository(context);
         this.activityPoster = new ActivityPoster(context);
     }
@@ -39,7 +39,7 @@ public class ReminderCheckerTask extends AsyncTask<Intent, Integer, Long>
 			{
                 if(reminder.shouldNotify(intents[0]))
                 {
-                    this.notifier.Notify(context, reminder.notificationText, reminder.id);
+                    this.notifier.Notify(reminder.notificationText, reminder.id, reminder.repeat);
 
                     if(!reminder.repeat)
                     {

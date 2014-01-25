@@ -14,40 +14,54 @@ import com.squirrel.sync.ReminderDisableService;
 
 public class Notifier
 {
-	public void Notify(Context context, String message, int reminderId)
+	private Context context;
+
+    public Notifier(Context context)
+    {
+        this.context = context;
+    }
+
+    public void Notify(String message, int reminderId, Boolean addDisableAction)
 	{
-		Notification notification = createNotification(context, message, reminderId);
+		Notification notification = createNotification(message, reminderId, addDisableAction);
 
 		NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 		
 		notificationManager.notify(reminderId, notification);
 	}
 	
-	private Notification createNotification(Context context, String message, int reminderId)
+	private Notification createNotification(String message, int reminderId, Boolean addDisableAction)
 	{
-		Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-
-        Intent disableIntent = new Intent(context, ReminderDisableService.class)
-                .setAction("DISABLE")
-                .setData(Uri.parse("id://" + reminderId));
-
-        PendingIntent disablePendingIntent = PendingIntent.getService(context, 0, disableIntent, 0);
-
         NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(context)
+                new NotificationCompat.Builder(this.context)
                         .setAutoCancel(true)
                         .setOnlyAlertOnce(true)
                         .setSmallIcon(R.drawable.ic_launcher)
                         .setContentTitle("Squirrel")
                         .setContentText(message)
                         .setDefaults(Notification.DEFAULT_ALL)// requires VIBRATE permission
-                         //.setSound(sound)
                         .setStyle(
                                 new NotificationCompat
                                         .BigTextStyle()
-                                        .bigText(message))
-                        .addAction(R.drawable.ic_launcher, "Disable", disablePendingIntent);
+                                        .bigText(message));
+
+        if(addDisableAction)
+        {
+            addDisableAction(builder, reminderId);
+        }
 
 		return builder.build();
 	}
+
+    private void addDisableAction(NotificationCompat.Builder builder, int reminderId)
+    {
+        Intent disableIntent = new Intent(this.context, ReminderDisableService.class)
+                .setAction("DISABLE")
+                .setData(Uri.parse("id://" + reminderId));
+
+        PendingIntent disablePendingIntent = PendingIntent.getService(this.context, 0, disableIntent, 0);
+
+
+        builder.addAction(R.drawable.ic_launcher, "Disable", disablePendingIntent);
+    }
 }
