@@ -198,7 +198,14 @@ sr.AppViewModel = function (options) {
             cookiepolicy: "single_host_origin"
         }, options.gpSignInParams);
 
+        // SignalR initialisation
         $.connection.hub.start();
+
+        $.connection.hub.disconnected(function () {
+            setTimeout(function () {
+                $.connection.hub.start();
+            }, 20000);
+        });
 
         $.connection.notificationHub.client.update = function () {
             loadReminders();
