@@ -238,6 +238,7 @@
       <DependentUpon>201401082202225_AddUserAccessToken.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\LogEntry.cs" />
+    <Compile Include="Security\SilentAuthorizeAttribute.cs" />
     <Compile Include="Security\GoogleAppDisconnector.cs" />
     <Compile Include="Security\GoogleCloudMessagingAppServer.cs" />
     <Compile Include="Controllers\NotificationHub.cs" />
@@ -480,13 +481,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>50625</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:4567/</IISUrl>
-          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:4567/</IISAppRootUrl>
+          <IISUrl>http://dev.squirrel-beta.com</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -4,10 +4,11 @@ using Squirrel.Models;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using Breeze.ContextProvider;
+using Squirrel.Security;
 
 namespace Squirrel.Controllers
 {
-    [System.Web.Http.Authorize]
+    [SilentAuthorizeAttribute]
     [BreezeController]
     public class ReminderController : ApiController
     {
