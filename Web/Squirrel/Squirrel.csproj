@@ -294,6 +294,7 @@
     <Content Include="Content\icons.css" />
     <Content Include="Content\images\checkbox.png" />
     <Content Include="Content\images\ic_launcher.png" />
+    <Content Include="Content\images\signinbutton.png" />
     <Content Include="Content\main.css" />
     <Content Include="Content\site.css" />
     <Content Include="favicon.ico" />

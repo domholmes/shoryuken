@@ -19,9 +19,9 @@
 </header>
 <!-- ko ifnot: user.isAuthenticated -->
 <div class="container" data-bind="visible: !user.isAuthenticated()">
-    <span class="signin-button">
-        <button id="signinButton" class="btn btn-red" data-bind="click: gpSignIn"><span class="icon icon-user"></span>Sign in with Google</button>
-    </span>
+    <div data-bind="click: gpSignIn" class="gplus-button" title="Sign in with Google" role="button">
+        <div class="gplus-button-logo"></div><div class="gplus-button-text">Sign in</div>
+    </div>
     <span class="info authenticating transparent">
         Signing in...
     </span>

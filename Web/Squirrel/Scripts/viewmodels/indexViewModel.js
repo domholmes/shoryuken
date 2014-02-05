@@ -24,6 +24,22 @@ sr.AppViewModel = function (options) {
         }
     }
 
+    function startConnection() {
+
+        // SignalR initialisation
+        $.connection.hub.start();
+
+        $.connection.hub.disconnected(function () {
+            setTimeout(function () {
+                $.connection.hub.start();
+            }, 20000);
+        });
+
+        $.connection.notificationHub.client.update = function () {
+            loadReminders();
+        };
+    }
+
     function saveReminder(reminder, leaveEditMode) {
 
         reminder.isSaving(true);
@@ -101,12 +117,12 @@ sr.AppViewModel = function (options) {
         if (authResult.status.signed_in === false) {
 
             // make sure button is not display:none and fade in if opacity 0
-            $('.signin-button').show().animate({ opacity: 1 }, 200);
+            $('.gplus-button').show().animate({ opacity: 1 }, 200);
 
             return;
         }
 
-        $('.signin-button').animate({ opacity: 0 }, 200, function () {
+        $('.gplus-button').animate({ opacity: 0 }, 200, function () {
             var code = authResult['code'];
 
             // give .signin-button display:none, in effect removing it
@@ -161,7 +177,7 @@ sr.AppViewModel = function (options) {
                                         $('.signin-failed').animate({ opacity: 0 }, 200, function () {
 
                                             // fade the sign in button back in
-                                            $('.signin-button').show().animate({ opacity: 1 }, 200, function () {
+                                            $('.gplus-button').show().animate({ opacity: 1 }, 200, function () {
 
                                             });
                                         });
@@ -197,19 +213,6 @@ sr.AppViewModel = function (options) {
             requestvisibleactions: "http://schemas.google.com/AddActivity",
             cookiepolicy: "single_host_origin"
         }, options.gpSignInParams);
-
-        // SignalR initialisation
-        $.connection.hub.start();
-
-        $.connection.hub.disconnected(function () {
-            setTimeout(function () {
-                $.connection.hub.start();
-            }, 20000);
-        });
-
-        $.connection.notificationHub.client.update = function () {
-            loadReminders();
-        };
 
         vm.user.isAuthenticated(options.user.isAuthenticated);
     };
@@ -308,7 +311,9 @@ sr.AppViewModel = function (options) {
 
     vm.user.isAuthenticated.subscribe(function (value) {
         if (value === true) {
+
             loadReminders();
+            startConnection();            
         }
     });        
 }
