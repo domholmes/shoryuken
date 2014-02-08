@@ -14,15 +14,6 @@ namespace Squirrel.Controllers
     public class AccountController : Controller
     {      
         [AllowAnonymous]
-        public ActionResult Login()
-        {
-            ViewBag.ClientId = GoogleSignInCallbackHandler.CLIENT_ID;
-            ViewBag.RequiredScopes = GoogleSignInCallbackHandler.REQUIRED_SCOPES;
-            
-            return View();
-        }
-
-        [AllowAnonymous]
         public HttpStatusCodeResult Callback(string code)
         {
             bool loginOk = false;
@@ -63,7 +54,7 @@ namespace Squirrel.Controllers
 
             FormsAuthentication.SignOut();
 
-            return RedirectToAction("Login");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

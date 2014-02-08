@@ -1,11 +1,12 @@
-﻿<header class="navbar navbar-inverse">
+﻿@model string
+<header class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar">
                 </span>
             </button>
-            <a class="navbar-brand" href="#"><span>Smart</span>Reminder</a>
+            <span class="navbar-brand"><span>Smart</span>Reminder</span>
         </div>
         <nav class="collapse navbar-collapse bs-navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -16,10 +17,23 @@
         </nav>
     </div>
 </header>
-<div class="container">
+<!-- ko ifnot: user.isAuthenticated -->
+<div class="container" data-bind="visible: !user.isAuthenticated()">
+    <div data-bind="click: gpSignIn" class="gplus-button" title="Sign in with Google" role="button">
+        <div class="gplus-button-logo"></div><div class="gplus-button-text">Sign in</div>
+    </div>
+    <span class="info authenticating transparent">
+        Signing in...
+    </span>
+    <span class="info signin-failed transparent">
+        Sign in failed
+    </span>
+</div>
+<!-- /ko -->
+<div class="container" data-bind="visible: user.isAuthenticated">
     <div class="row">
         <div class="col-sm-12 margin-bottom">
-            <button type="button" class="btn btn-large add-reminder" data-bind="click: createReminder, css: { disabled: !canAddNewReminder() }">
+            <button type="button" class="btn btn-red" data-bind="click: createReminder, css: { disabled: !canAddNewReminder() }">
                 <span class="icon icon-pencil"></span>Add Reminder
             </button>
         </div>
@@ -148,8 +162,14 @@
 </div>
 @section scripts
 {
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=en"></script>
-    <script type="text/javascript" src="~/signalr/hubs"></script>
-    <script type="text/javascript" src="~/Scripts/expandingTextarea.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=en"></script>
+    <script src="~/signalr/hubs"></script>
+    
     @Scripts.Render("~/bundles/index")
+
+    <script>
+        $(function () {
+            sr.init(@Html.Raw(Model));
+        });        
+    </script>
 }

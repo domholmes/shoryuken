@@ -23,7 +23,8 @@ namespace Squirrel
                 .Include("~/Scripts/breeze.min.js")
                 .Include("~/Scripts/jquery.signalR-{version}.js")
                 .Include("~/Scripts/jquery.confirm.js")
-                .Include("~/Scripts/jquery.ba-tinypubsub.js"));
+                .Include("~/Scripts/jquery.ba-tinypubsub.js")
+                .Include("~/Scripts/expandingTextarea.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/index")
                 .Include("~/Scripts/sr.js")
@@ -36,7 +37,9 @@ namespace Squirrel
                 .Include("~/Content/bootstrap.css")
                 .Include("~/Content/bootstrap-timepicker.css")
                 .Include("~/Content/icons.css")
-                .Include("~/Content/main.css"));
+                .Include("~/Content/main.css")
+                .Include("~/Content/site.css")
+                );
         }
     }
 }
