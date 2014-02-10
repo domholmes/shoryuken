@@ -1,4 +1,12 @@
-﻿ko.bindingHandlers.timePicker = {
+﻿ko.bindingHandlers.confirm = {
+    init: function (element, valueAccessor) {
+        var value = valueAccessor();
+
+        $(element).confirm(value);
+    }
+}
+
+ko.bindingHandlers.timePicker = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var value = valueAccessor(),
             reminder = bindingContext.$data;

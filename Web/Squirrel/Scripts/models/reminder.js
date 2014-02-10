@@ -10,6 +10,7 @@ sr.reminderDefaults = {
 };
 
 sr.Reminder = function () {
+    "use strict";
 
     var rem = this,
         START_DAY = "00:00",

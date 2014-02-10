@@ -12,6 +12,8 @@ namespace Squirrel.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.GoogleSigninClientId = GoogleSignInCallbackHandler.CLIENT_ID;
+
             var model = new 
             {
                 gpSignInParams = new 
