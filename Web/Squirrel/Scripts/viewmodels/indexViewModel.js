@@ -40,6 +40,29 @@ sr.AppViewModel = function (options) {
         };
     }
 
+    function handleSaveFailed(response) {
+
+        if (response.status) {
+
+            switch (response.status) {
+
+                case 403:
+                    vm.reminders.removeAll();
+                    vm.user.isAuthenticated(false);
+                    // show signed out dialog
+                    break;
+
+                default:
+                    // **cannot access reminder**
+                    //reminder.errors.push("Save failed, please try again later");
+                    break;
+            }
+        }
+
+        reminder.isSaving(false);
+        reminder.isDeleting(false);
+    }
+
     function saveReminder(reminder, leaveEditMode) {
 
         reminder.isSaving(true);
@@ -61,25 +84,7 @@ sr.AppViewModel = function (options) {
 
                 $.connection.notificationHub.server.pushUpdate();
             },
-            function (response) {// fail
-
-                if (response.status) {
-
-                    switch (response.status) {
-
-                        case 401:
-                            reminder.errors.push("You have been signed out. Attempting to sign you back in...");
-                            window.location.reload();
-                            break;
-
-                        default:
-                            reminder.errors.push("Save failed, please try again later");
-                            break;
-                    }
-                }
-
-                reminder.isSaving(false);
-            });
+            handleSaveFailed);
     }
 
     function deleteReminder(reminder) {
@@ -94,22 +99,7 @@ sr.AppViewModel = function (options) {
                 vm.reminders.remove(reminder);
                 $.connection.notificationHub.server.pushUpdate();
             },
-            function (response) {// fail
-
-                switch (response.status) {
-
-                    case 401:
-                        reminder.errors.push("You have been signed out. Attempting to sign you back in...");
-                        window.location.reload();
-                        break;
-
-                    default:
-                        reminder.errors.push("Delete failed, please try again later");
-                        break;
-                }
-
-                reminder.isDeleting(false);
-            });
+            handleSaveFailed);
     }
 
     function signInCallback(authResult) {

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
+using System.Net.Http;
 using System.Web.Http;
 
 namespace Squirrel.Security
@@ -10,9 +12,7 @@ namespace Squirrel.Security
     {
         protected override void HandleUnauthorizedRequest(System.Web.Http.Controllers.HttpActionContext actionContext)
         {
-            base.HandleUnauthorizedRequest(actionContext);
-
-            actionContext.Response.Headers.Remove("WWW-Authenticate");
+             actionContext.Response = actionContext.ControllerContext.Request.CreateErrorResponse(HttpStatusCode.Forbidden, "Forbidden");
         }
     }
 }
