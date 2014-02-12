@@ -29,6 +29,8 @@ namespace Squirrel
             bundles.Add(new ScriptBundle("~/bundles/index")
                 .Include("~/Scripts/sr.js")
                 .Include("~/Scripts/models/reminder.js")
+                .Include("~/Scripts/models/user.js")
+                .Include("~/Scripts/models/authenticator.js")
                 .Include("~/Scripts/dataaccess/reminderRepository.js")
                 .Include("~/Scripts/viewmodels/indexViewModel.js")
                 .Include("~/Scripts/view/indexView.js"));

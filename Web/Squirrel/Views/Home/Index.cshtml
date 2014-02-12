@@ -8,13 +8,18 @@
             </button>
             <span class="navbar-brand"><span>Smart</span>Reminder</span>
         </div>
+        <!-- ko if: user.isAuthenticated -->
         <nav class="collapse navbar-collapse bs-navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    @Html.ActionLink("Disconnect", "Disconnect", "Account", null, new { @class = "confirm" })
+                    <a href="@Url.Action("Disconnect", "Account")" data-bind="confirm: {
+                        title: 'Disconnect from Squirrel',
+                        text: 'Disconnecting will remove the association with your google account and clear all data, are you sure?'
+                    }">Disconnect</a>
                 </li>
             </ul>
         </nav>
+        <!-- /ko -->
     </div>
 </header>
 <!-- ko ifnot: user.isAuthenticated -->

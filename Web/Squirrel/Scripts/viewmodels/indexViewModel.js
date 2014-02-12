@@ -3,24 +3,112 @@ sr.AppViewModel = function (options) {
     /* Private
     -----------------------------------------*/
 
-    var vm = this,
-        gpSignInParams;   
+    var user = new sr.User(),
+
+        auth = new sr.Authenticator(),
+
+        reminders = ko.observableArray([]),
+
+        isLoadingReminders = ko.observable(false),
+
+        isEditingReminder = ko.computed(function () {
+
+            var reminder = ko.utils.arrayFirst(reminders(), function (reminder) {
+
+                return reminder.inEditMode() === true;
+            });
+
+            return reminder !== null;
+        }),
+
+        canAddNewReminder = ko.computed(function () {
+
+            return !isEditingReminder();
+        });
+
+    function autoSaveReminder (reminder, property, value) {
+        property(value);
+        saveReminder(reminder, false);
+    };
+
+    function manualSaveReminder (reminder) {
+        saveReminder(reminder, true);
+    };
+
+    function messageOnFocus (reminder) {
+        if (!reminder.enabled()) {
+            reminder.toggleEnabled();
+            saveReminder(reminder);
+        }
+    };
+
+    function gpSignIn() {
+        auth.gpSignIn();
+    };
+
+    function attemptDeleteReminder (reminder) {
+        if (!reminder.isDeleting()) {
+            reminder.isDeleting(true);
+        } else {
+            deleteReminder(reminder);
+        }
+    }
+
+    function cancelCurrentAction (reminder) {
+
+        if (reminder.isDeleting()) {
+
+            reminder.isDeleting(false);
+        }
+        else if (!reminder.isSaving()) {
+
+            var isNew = sr.repository.isNew(reminder);
+
+            if (isNew) {
+                reminders.remove(reminder);
+            }
+            else {
+                sr.repository.revertReminder(reminder);
+                reminder.isSaving(false);
+                reminder.inEditMode(false);
+            }
+        }
+    }
+
+    function beginEditReminder (reminder, event) {
+
+        event.stopPropagation();
+        reminder.inEditMode(true);
+    }
+    
+
+    function createReminder () {
+
+        if (canAddNewReminder()) {
+
+            var newReminder = sr.repository.createReminder();
+            newReminder.inEditMode(true);
+            newReminder.postCreationSetup();
+
+            reminders.unshift(newReminder);
+        }
+    }
 
     function loadReminders() {
 
-        vm.isLoadingReminders(true);
+        isLoadingReminders(true);
 
         sr.repository.fetchReminders(callback);
 
         function callback(data) {
 
-            vm.isLoadingReminders(false);
+            isLoadingReminders(false);
 
             ko.utils.arrayForEach(data, function (reminder) {
                 reminder.postCreationSetup();
             });
 
-            vm.reminders(data);
+            reminders(data);
         }
     }
 
@@ -47,8 +135,8 @@ sr.AppViewModel = function (options) {
             switch (response.status) {
 
                 case 403:
-                    vm.reminders.removeAll();
-                    vm.user.isAuthenticated(false);
+                    reminders.removeAll();
+                    user.isAuthenticated(false);
                     // show signed out dialog
                     break;
 
@@ -58,9 +146,9 @@ sr.AppViewModel = function (options) {
                     break;
             }
         }
-
-        reminder.isSaving(false);
-        reminder.isDeleting(false);
+        // **cannot access reminder**
+        //reminder.isSaving(false);
+        //reminder.isDeleting(false);
     }
 
     function saveReminder(reminder, leaveEditMode) {
@@ -96,214 +184,49 @@ sr.AppViewModel = function (options) {
             function () {// success
 
                 reminder.inEditMode(false);
-                vm.reminders.remove(reminder);
+                reminders.remove(reminder);
                 $.connection.notificationHub.server.pushUpdate();
             },
             handleSaveFailed);
     }
+    
+    function handleAuthResult(_e, value) {
+        user.isAuthenticated(value);
 
-    function signInCallback(authResult) {
-
-        if (authResult.status.signed_in === false) {
-
-            // make sure button is not display:none and fade in if opacity 0
-            $('.gplus-button').show().animate({ opacity: 1 }, 200);
-
-            return;
+        if (value === true) {
+            loadReminders();
+            startConnection();
         }
+    }
 
-        $('.gplus-button').animate({ opacity: 0 }, 200, function () {
-            var code = authResult['code'];
 
-            // give .signin-button display:none, in effect removing it
-            $(this).hide();
+    function init(options) {
 
-            if (code) {
+        $.subscribe('authentication', handleAuthResult);        
 
-                // make sure signing in message is not display:none and fade in if opacity 0
-                $('.authenticating').show().animate({ opacity: 1 }, 200, function () {
+        auth.init(options.gpSignIn);
 
-                    // make the call to the server to validate the google token and sign user in
-                    $.ajax({
-                        type: 'POST',
-                        url: '/Account/Callback',
-                        data: { code: code }
-                    })
-
-                    .then(
-                        function (result) {
-
-                            // success
-
-                            // fade out signing in message
-                            $('.authenticating').animate({ opacity: 0 }, 200, function () {
-
-                                // completely hide invisible signing in message
-                                $(this).hide();
-
-                                // notify our viewmodel that the user is now authenticated
-                                vm.user.isAuthenticated(true);
-
-                            });
-                        },
-
-                        function (result) {
-
-                            // fail
-
-                            // fade out signing in message
-                            $('.authenticating').animate({ opacity: 0 }, 200, function () {
-
-                                // completely hide invisible signing in message
-                                $(this).hide();
-
-                                // fade in failed message if opacity 0
-                                $('.signin-failed').animate({ opacity: 1 }, 200, function () {
-
-                                    // pause on failed message for 3 seconds
-                                    setTimeout(function () {
-
-                                        // fade out failed message
-                                        $('.signin-failed').animate({ opacity: 0 }, 200, function () {
-
-                                            // fade the sign in button back in
-                                            $('.gplus-button').show().animate({ opacity: 1 }, 200, function () {
-
-                                            });
-                                        });
-                                    }, 3000);
-                                });
-                            });
-                        }
-                    );
-                });
-
-            } else if (authResult['error']) {
-
-                // There was an error.
-                // Possible error codes:
-                //   "access_denied" - User denied access to your app
-                //   "immediate_failed" - Could not automatially log in the user
-                // console.log('There was an error: ' + authResult['error']);
-            }
-        });
+        $.publish('authentication', options.user.isAuthenticated);
     }
 
     /* public
     -------------------------------*/
 
-    vm.init = function (options) {
-
-        // although this client_id param exists in gpSignInParams Google ignores it
-        // it seems google will only take it from this meta tag
-        $('<meta name="google-signin-clientid" content="' + options.gpSignInParams.client_id + '" />').prependTo(document.head);
-
-        gpSignInParams = $.extend({
-            callback: signInCallback,
-            requestvisibleactions: "http://schemas.google.com/AddActivity",
-            cookiepolicy: "single_host_origin"
-        }, options.gpSignInParams);
-
-        vm.user.isAuthenticated(options.user.isAuthenticated);
-    };
-
-    vm.user = {
-        isAuthenticated: ko.observable(false)
-    };
-
-    vm.isAuthenticating = ko.observable(false);
-
-    vm.reminders = ko.observableArray([]);
-
-    vm.isLoadingReminders = ko.observable(false);
-
-    vm.isEditingReminder = ko.computed(function () {
-
-        var reminder = ko.utils.arrayFirst(vm.reminders(), function (reminder) {
-
-            return reminder.inEditMode() === true;
-        });
-
-        return reminder !== null;
-    });
-
-    vm.canAddNewReminder = ko.computed(function () {
-
-        return !vm.isEditingReminder();
-    });
-
-    vm.createReminder = function () {
-
-        if (vm.canAddNewReminder()) {
-
-            var newReminder = sr.repository.createReminder();
-            newReminder.inEditMode(true);
-            newReminder.postCreationSetup();
-
-            vm.reminders.unshift(newReminder);
-        }
-    };
-
-    vm.beginEditReminder = function (reminder, event) {
-
-        event.stopPropagation();
-        reminder.inEditMode(true);
-    };
-
-    vm.cancelCurrentAction = function (reminder) {
-
-        if (reminder.isDeleting()) {
-
-            reminder.isDeleting(false);
-        }
-        else if (!reminder.isSaving()) {
-
-            var isNew = sr.repository.isNew(reminder);
-
-            if (isNew) {
-                vm.reminders.remove(reminder);
-            }
-            else {
-                sr.repository.revertReminder(reminder);
-                reminder.isSaving(false);
-                reminder.inEditMode(false);
-            }
-        }
-    };
-
-    vm.attemptDeleteReminder = function (reminder) {
-        if (!reminder.isDeleting()) {
-            reminder.isDeleting(true);
-        } else {
-            deleteReminder(reminder);
-        }
-    };    
+    return {
+        init: init,
+        user: user,
+        reminders: reminders,
+        isLoadingReminders: isLoadingReminders,
+        isEditingReminder: isEditingReminder,
+        canAddNewReminder: canAddNewReminder,
+        createReminder: createReminder,
+        beginEditReminder: beginEditReminder,
+        cancelCurrentAction: cancelCurrentAction,
+        attemptDeleteReminder: attemptDeleteReminder,
+        autoSaveReminder: autoSaveReminder,
+        manualSaveReminder: manualSaveReminder,
+        messageOnFocus: messageOnFocus,
+        gpSignIn: gpSignIn
+    };       
     
-    vm.autoSaveReminder = function (reminder, property, value) {
-        property(value);
-        saveReminder(reminder, false);
-    };
-
-    vm.manualSaveReminder = function (reminder) {
-        saveReminder(reminder, true);
-    };
-
-    vm.messageOnFocus = function (reminder) {
-        if (!reminder.enabled()) {
-            reminder.toggleEnabled();
-            saveReminder(reminder);
-        }
-    };
-
-    vm.gpSignIn = function () {
-        gapi.auth.signIn(gpSignInParams);
-    };
-
-    vm.user.isAuthenticated.subscribe(function (value) {
-        if (value === true) {
-
-            loadReminders();
-            startConnection();            
-        }
-    });        
 }

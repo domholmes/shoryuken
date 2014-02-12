@@ -183,3 +183,357 @@ button span.icon, button > i {
 	border-radius: 0 3px 3px 0;
 	display: inline-block;
 }
+
+
+
+/* Utilities
+------------------------------------------------*/
+
+.info {
+    font-size: 1.2em;
+    color: #888;
+}
+.transparent {
+    opacity: 0;
+}
+.link-emulate 
+{
+    color: #33b5e5;
+}
+.link-emulate:hover 
+{
+    cursor: pointer;
+    color: #0099cc;
+}
+.link-emulate.disabled 
+{
+    color: #ccc;
+}
+.margin-top-sm {
+    margin-top: 10px;
+}
+.margin-bottom 
+{
+    margin-bottom: 20px;
+}
+.float-left
+{
+    float: left;
+}
+.float-right
+{
+    float:right;
+}
+.icon-large
+{
+    font-size: 32px;    
+}
+.image-replace
+{
+    text-indent: -9999px;
+}
+.invisible-transition
+{
+    opacity: 1;
+    -webkit-transition: opacity 200ms ease-in-out;
+    -moz-transition: opacity 200ms ease-in-out;
+    -o-transition: opacity 200ms ease-in-out;
+    transition: opacity 200ms ease-in-out;
+}
+.invisible
+{
+    visibility: visible;
+    opacity: 0;
+}
+button.link-emulate
+{
+    padding: 0;
+    background: none;
+    border: none;
+}
+.busy
+{
+    -webkit-animation-name: bluePulse;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    animation-name: bluePulse;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+button 
+{
+    border: none;
+    background: none;
+    padding: 0;
+}
+.quiet
+{
+    color: #ccc;
+}
+
+/* Misc
+------------------------------------------------*/
+
+.navbar 
+{
+    border-radius: 0px;
+}
+.btn.btn-red 
+{
+    background: #CC3B29;
+    text-shadow: none;
+    color: #fff;
+}
+.btn.btn-red:hover 
+{
+    background: #D52E18;
+}
+.navbar-text a
+{
+    color: #fff;
+}
+.navbar-text a:hover
+{
+    color: #fff;
+    text-decoration: underline;
+}
+.bootstrap-timepicker-widget table td input {
+    margin: 0 auto;
+}
+
+/* card */
+.card 
+{
+    position: relative;
+    background: #fff;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ccc;
+    border-radius: 2px; 
+    transition: box-shadow 0.25s ease-in-out, opacity 0.25s ease-in-out;
+}
+.card.editing
+{
+    box-shadow: 0px 4px 8px rgba(100,100,100,0.2);
+}
+.card.disabled
+{
+    opacity: 0.5;
+}
+.card .display .body 
+{    
+    padding: 10px 20px 5px;
+}
+.card .edit .body 
+{    
+    padding: 20px 20px 10px;
+}
+.card .time-shortcuts
+{
+    text-align: right;
+}
+.card .time-shortcuts button
+{
+    font-weight: bold;
+}
+input[type="text"].timepicker
+{
+    display: inline;
+    padding-right: 24px;
+    background: transparent;
+    position: relative;
+    z-index: 1;
+}
+.glyphicon-timepicker {
+    position: relative;
+    margin-left: -20px;
+    display: inline;
+}
+.enable-actions
+{
+    margin-top: 10px;
+}
+.card .message
+{
+    font-style: italic;
+    margin: 0;
+}
+.card .name
+{
+    font-family: 'Roboto Light','Segoe UI Light','wf_SegoeUILight','Segoe UI','wf_SegoeUI',Tahoma,Verdana,Arial,Helvetica,sans-serif;
+    font-size: 1.4em;
+    line-height: 1.4em;
+    margin-bottom: 0px;
+}
+
+.display textarea
+{
+    border: 0;
+}
+
+.expanding-textarea
+{
+    overflow: hidden;
+}
+.card .bootstrap-timepicker 
+{
+    width: 100%;
+}
+.toggleButton
+{
+    font-weight: bold;
+    color: #808080;
+}
+.toggleButton.active 
+{
+    color: #33b5e5;
+}
+.card footer 
+{
+    border-top: 1px solid #d1eaf1;
+    padding: 0px;
+}
+.card .display .body button
+{
+    width: 24px;
+    border: none;
+    height: 24px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 16px;
+}
+.card .display .footer button {
+    width: 100%;
+}
+.glyphicon-caret-down {
+    overflow: hidden;
+    top:5px;
+}
+.glyphicon-caret-down:before {
+    content: "\e114";
+    top: -7px;
+    display: block;
+    position: relative;
+}
+.card .edit
+{
+    /*opacity: 0;*/
+}
+.card .edit footer button
+{    
+    width: 33.3%;
+    border-left: 1px solid #d1eaf1;
+    font-weight: bold;
+    height: 40px;
+    line-height: 40px;
+    box-sizing: border-box;
+}
+.card .edit footer button:first-child
+{
+    border-left: 0px;
+}
+
+/* Loader
+------------------------------------------------*/
+
+.loader {
+  position: fixed;
+  width: 80px;
+  top: 50%;
+  left: 50%;
+  margin-left: -40px;
+  transition: opacity .25s ease-out;
+  opacity: 0;
+}
+
+.nocssanimations .loader{
+  display:none;
+}
+
+.loader.active
+{
+    opacity: 1;
+}
+
+.duo {
+  height: 20px;
+  width: 50px;
+  background: hsla(0, 0%, 0%, 0.0);
+  position: absolute;
+  
+}
+
+.duo, .dot {
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.duo1 {
+  left: 0;
+}
+
+.duo2 {
+  left: 30px
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: #ccc;
+  position: absolute;
+}
+
+.dot-a {
+  left: 0px;  
+}
+
+.dot-b {
+  right: 0px;
+}
+
+.duo1 {
+  animation-name: spin;
+}
+
+.duo2 {
+  animation-name: spin;
+  animation-direction: reverse;
+}
+
+.duo2 .dot-b {
+  animation-name: onOff;
+}
+
+.duo1 .dot-a {
+  opacity: 0;
+  animation-name: onOff;
+  animation-direction: reverse;
+}
+
+/* Media Queries
+------------------------------------------------*/
+
+
+/* Keyframes
+------------------------------------------------*/
+
+@keyframes bluePulse 
+{
+    from { background-color: #fff; }
+    50% { background-color: #DAEEF5; }
+    to { background-color: #fff; }
+}
+@keyframes spin {
+    0% { transform: rotate(0deg) }
+   50% { transform: rotate(180deg) }
+  100% { transform: rotate(180deg) }
+}
+
+@keyframes onOff {
+    0% { opacity: 0; }
+   49% { opacity: 0; }
+   50% { opacity: 1; }
+  100% { opacity: 1; }
+}
