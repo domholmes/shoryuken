@@ -9,7 +9,11 @@ sr.AppViewModel = function (options) {
 
         reminders = ko.observableArray([]),
 
+        authMessage = ko.observable(),
+
         isLoadingReminders = ko.observable(false),
+
+        showSignInButton = ko.observable(false),
 
         isEditingReminder = ko.computed(function () {
 
@@ -128,27 +132,25 @@ sr.AppViewModel = function (options) {
         };
     }
 
-    function handleSaveFailed(response) {
+    function handleSaveFailed(response, reminder) {
 
         if (response.status) {
 
             switch (response.status) {
 
                 case 403:
-                    reminders.removeAll();
-                    user.isAuthenticated(false);
-                    // show signed out dialog
+
+                    reminder.isSaving(false);
+                    reminder.inEditMode(false);
+                    $.publish('authentication', { status: 'unauthenticated', message: 'You have been signed out' });
                     break;
 
                 default:
-                    // **cannot access reminder**
-                    //reminder.errors.push("Save failed, please try again later");
+
+                    reminder.errors.push("Save failed, please try again later");
                     break;
             }
-        }
-        // **cannot access reminder**
-        //reminder.isSaving(false);
-        //reminder.isDeleting(false);
+        }        
     }
 
     function saveReminder(reminder, leaveEditMode) {
@@ -172,7 +174,9 @@ sr.AppViewModel = function (options) {
 
                 $.connection.notificationHub.server.pushUpdate();
             },
-            handleSaveFailed);
+            function (response) {
+                handleSaveFailed(response, reminder);
+            });
     }
 
     function deleteReminder(reminder) {
@@ -187,26 +191,38 @@ sr.AppViewModel = function (options) {
                 reminders.remove(reminder);
                 $.connection.notificationHub.server.pushUpdate();
             },
-            handleSaveFailed);
+            function (response) {
+                handleSaveFailed(response, reminder);
+            });
     }
     
-    function handleAuthResult(_e, value) {
-        user.isAuthenticated(value);
+    function handleAuthEvent(_e, authResult) {       
 
-        if (value === true) {
+        if (authResult.status === "authenticated") {
+
             loadReminders();
             startConnection();
+
+        } else {
+
+            reminders.removeAll();
+            authMessage(authResult.message);
+
+            showSignInButton(authResult.status !== "authenticating");
         }
+
+        user.isAuthenticated(authResult.status === "authenticated");
     }
 
 
     function init(options) {
+        var authStatus = options.user.isAuthenticated ? 'authenticated' : 'unauthenticated';
 
-        $.subscribe('authentication', handleAuthResult);        
+        $.subscribe('authentication', handleAuthEvent);        
 
         auth.init(options.gpSignIn);
 
-        $.publish('authentication', options.user.isAuthenticated);
+        $.publish('authentication', { status: authStatus, message: '' });
     }
 
     /* public
@@ -226,7 +242,9 @@ sr.AppViewModel = function (options) {
         autoSaveReminder: autoSaveReminder,
         manualSaveReminder: manualSaveReminder,
         messageOnFocus: messageOnFocus,
-        gpSignIn: gpSignIn
+        gpSignIn: gpSignIn,
+        authMessage: authMessage,
+        showSignInButton: showSignInButton
     };       
     
 }

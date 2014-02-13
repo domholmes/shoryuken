@@ -24,15 +24,11 @@
 </header>
 <!-- ko ifnot: user.isAuthenticated -->
 <div class="container" data-bind="visible: !user.isAuthenticated()">
-    <div data-bind="click: gpSignIn" class="gplus-button" title="Sign in with Google" role="button">
+    <div class="gplus-button" title="Sign in with Google" role="button" data-bind="click: gpSignIn, visible: showSignInButton">
         <div class="gplus-button-logo"></div><div class="gplus-button-text">Sign in</div>
     </div>
-    <span class="info authenticating transparent">
-        Signing in...
-    </span>
-    <span class="info signin-failed transparent">
-        Sign in failed
-    </span>
+    <div class="info" data-bind="text: authMessage">        
+    </div>
 </div>
 <!-- /ko -->
 <div class="container" data-bind="visible: user.isAuthenticated">

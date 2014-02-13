@@ -457,7 +457,9 @@
           <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>50625</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://dev.squirrel-beta.com</IISUrl>
+          <IISUrl>http://localhost:4567</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:4567</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

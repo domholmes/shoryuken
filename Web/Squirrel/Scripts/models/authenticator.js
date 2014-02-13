@@ -19,87 +19,48 @@
 
         if (authResult.status.signed_in === false) {
 
-            // make sure button is not display:none and fade in if opacity 0
-            $('.gplus-button').show().animate({ opacity: 1 }, 200);
+            $.publish('authentication', { status: 'unauthenticated', message: 'Sign in failed' });
 
             return;
         }
 
-        $('.gplus-button').animate({ opacity: 0 }, 200, function () {
-            var code = authResult['code'];
+        var code = authResult['code'];
 
-            // give .signin-button display:none, in effect removing it
-            $(this).hide();
+        if (code) {
 
-            if (code) {
+            $.publish('authentication', { status: 'authenticating', message: 'Signing in...' });
 
-                // make sure signing in message is not display:none and fade in if opacity 0
-                $('.authenticating').show().animate({ opacity: 1 }, 200, function () {
+            // make the call to the server to validate the google token and sign user in
+            $.ajax({
+                type: 'POST',
+                url: '/Account/Callback',
+                data: { code: code }
+            })
 
-                    // make the call to the server to validate the google token and sign user in
-                    $.ajax({
-                        type: 'POST',
-                        url: '/Account/Callback',
-                        data: { code: code }
-                    })
+            .then(
+                function (result) {
 
-                    .then(
-                        function (result) {
+                    // success
 
-                            // success
+                    $.publish('authentication', { status: 'authenticated' });
+                },
 
-                            // fade out signing in message
-                            $('.authenticating').animate({ opacity: 0 }, 200, function () {
+                function (result) {
 
-                                // completely hide invisible signing in message
-                                $(this).hide();
+                    // fail
 
-                                // publish authentication event as the user is now authenticated
-                                $.publish('authentication', true);
+                    $.publish('authentication', { status: 'unauthenticated', message: 'Sign in failed' });
+                }
+            );
 
-                            });
-                        },
+        } else if (authResult['error']) {
 
-                        function (result) {
-
-                            // fail
-
-                            // fade out signing in message
-                            $('.authenticating').animate({ opacity: 0 }, 200, function () {
-
-                                // completely hide invisible signing in message
-                                $(this).hide();
-
-                                // fade in failed message if opacity 0
-                                $('.signin-failed').animate({ opacity: 1 }, 200, function () {
-
-                                    // pause on failed message for 3 seconds
-                                    setTimeout(function () {
-
-                                        // fade out failed message
-                                        $('.signin-failed').animate({ opacity: 0 }, 200, function () {
-
-                                            // fade the sign in button back in
-                                            $('.gplus-button').show().animate({ opacity: 1 }, 200, function () {
-
-                                            });
-                                        });
-                                    }, 3000);
-                                });
-                            });
-                        }
-                    );
-                });
-
-            } else if (authResult['error']) {
-
-                // There was an error.
-                // Possible error codes:
-                //   "access_denied" - User denied access to your app
-                //   "immediate_failed" - Could not automatially log in the user
-                // console.log('There was an error: ' + authResult['error']);
-            }
-        });
+            // There was an error.
+            // Possible error codes:
+            //   "access_denied" - User denied access to your app
+            //   "immediate_failed" - Could not automatially log in the user
+            // console.log('There was an error: ' + authResult['error']);
+        }
     }
 
     function gpSignIn() {
