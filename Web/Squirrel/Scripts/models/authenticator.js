@@ -71,6 +71,7 @@
 
         gpSignInParams = $.extend({
             callback: signInCallback,
+            scope: "https://www.googleapis.com/auth/plus.login email",
             requestvisibleactions: "http://schemas.google.com/AddActivity",
             cookiepolicy: "single_host_origin"
         }, options);

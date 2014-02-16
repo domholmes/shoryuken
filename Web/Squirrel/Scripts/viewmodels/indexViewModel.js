@@ -30,16 +30,8 @@ sr.AppViewModel = function (options) {
             return !isEditingReminder();
         });
 
-    function autoSaveReminder (reminder, property, value) {
-        property(value);
-        saveReminder(reminder, false);
-    };
-
-    function manualSaveReminder (reminder) {
-        saveReminder(reminder, true);
-    };
-
     function messageOnFocus (reminder) {
+
         if (!reminder.enabled()) {
             reminder.toggleEnabled();
             saveReminder(reminder);
@@ -47,16 +39,9 @@ sr.AppViewModel = function (options) {
     };
 
     function gpSignIn() {
+
         auth.gpSignIn();
     };
-
-    function attemptDeleteReminder (reminder) {
-        if (!reminder.isDeleting()) {
-            reminder.isDeleting(true);
-        } else {
-            deleteReminder(reminder);
-        }
-    }
 
     function cancelCurrentAction (reminder) {
 
@@ -116,42 +101,16 @@ sr.AppViewModel = function (options) {
         }
     }
 
-    function startConnection() {
+    function autoSaveReminder(reminder, property, value) {
 
-        // SignalR initialisation
-        $.connection.hub.start();
+        property(value);
+        saveReminder(reminder, false);
+    };
 
-        $.connection.hub.disconnected(function () {
-            setTimeout(function () {
-                $.connection.hub.start();
-            }, 20000);
-        });
+    function manualSaveReminder(reminder) {
 
-        $.connection.notificationHub.client.update = function () {
-            loadReminders();
-        };
-    }
-
-    function handleSaveFailed(response, reminder) {
-
-        if (response.status) {
-
-            switch (response.status) {
-
-                case 403:
-
-                    reminder.isSaving(false);
-                    reminder.inEditMode(false);
-                    $.publish('authentication', { status: 'unauthenticated', message: 'You have been signed out' });
-                    break;
-
-                default:
-
-                    reminder.errors.push("Save failed, please try again later");
-                    break;
-            }
-        }        
-    }
+        saveReminder(reminder, true);
+    };
 
     function saveReminder(reminder, leaveEditMode) {
 
@@ -179,6 +138,17 @@ sr.AppViewModel = function (options) {
             });
     }
 
+    function attemptDeleteReminder(reminder) {
+
+        if (!reminder.isDeleting()) {
+
+            reminder.isDeleting(true);
+        } else {
+
+            deleteReminder(reminder);
+        }
+    }
+
     function deleteReminder(reminder) {
 
         sr.repository.deleteReminder(reminder);
@@ -196,12 +166,44 @@ sr.AppViewModel = function (options) {
             });
     }
     
+    function handleSaveFailed(response, reminder) {
+
+        if (response.status) {
+
+            switch (response.status) {
+
+                case 403:
+
+                    reminder.isSaving(false);
+                    reminder.inEditMode(false);
+                    $.publish('authentication', { status: 'unauthenticated', message: 'Your login has expired, please login again to continue' });
+                    break;
+
+                default:
+
+                    reminder.errors.push("Save failed, please try again later");
+                    break;
+            }
+        }
+    }
+
+    function initialiseViewModel(options) {
+
+        var authStatus = options.user.isAuthenticated ? 'authenticated' : 'unauthenticated';
+
+        $.subscribe('authentication', handleAuthEvent);
+
+        auth.init(options.gpSignIn);
+
+        $.publish('authentication', { status: authStatus, message: '' });
+    }
+
     function handleAuthEvent(_e, authResult) {       
 
         if (authResult.status === "authenticated") {
 
             loadReminders();
-            startConnection();
+            startServerPushConnection();
 
         } else {
 
@@ -214,22 +216,26 @@ sr.AppViewModel = function (options) {
         user.isAuthenticated(authResult.status === "authenticated");
     }
 
+    function startServerPushConnection() {
 
-    function init(options) {
-        var authStatus = options.user.isAuthenticated ? 'authenticated' : 'unauthenticated';
+        $.connection.hub.start();
 
-        $.subscribe('authentication', handleAuthEvent);        
+        $.connection.hub.disconnected(function () {
+            setTimeout(function () {
+                $.connection.hub.start();
+            }, 20000);
+        });
 
-        auth.init(options.gpSignIn);
-
-        $.publish('authentication', { status: authStatus, message: '' });
+        $.connection.notificationHub.client.update = function () {
+            loadReminders();
+        };
     }
 
     /* public
     -------------------------------*/
 
     return {
-        init: init,
+        initialiseViewModel: initialiseViewModel,
         user: user,
         reminders: reminders,
         isLoadingReminders: isLoadingReminders,

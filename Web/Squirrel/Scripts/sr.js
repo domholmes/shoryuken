@@ -5,7 +5,7 @@
         init: function (options) {
             var app = new sr.AppViewModel();                
 
-            app.init(options);          
+            app.initialiseViewModel(options);          
 
             ko.applyBindings(app);            
         }
