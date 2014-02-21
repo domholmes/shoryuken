@@ -1,7 +1,16 @@
-﻿sr.Authenticator = function () {
+﻿sr.AuthViewModel = function () {
     "use strict";
 
+    var isSignedIn = ko.observable();
+
+    var authMessage = ko.observable();
+
     var gpSignInParams;
+
+    var showSignInButton = ko.computed(function () {
+
+        return !isSignedIn();
+    });
 
     function appendGpSignInScript() {
 
@@ -19,8 +28,7 @@
 
         if (authResult.status.signed_in === false) {
 
-            $.publish('authentication', { status: 'unauthenticated', message: 'Sign in failed' });
-
+            // need to connect
             return;
         }
 
@@ -28,9 +36,6 @@
 
         if (code) {
 
-            $.publish('authentication', { status: 'authenticating', message: 'Signing in...' });
-
-            // make the call to the server to validate the google token and sign user in
             $.ajax({
                 type: 'POST',
                 url: '/Account/Callback',
@@ -40,47 +45,57 @@
             .then(
                 function (result) {
 
-                    // success
-
-                    $.publish('authentication', { status: 'authenticated' });
+                    isSignedIn(true);
                 },
 
                 function (result) {
 
-                    // fail
-
-                    $.publish('authentication', { status: 'unauthenticated', message: 'Sign in failed' });
+                    authMessage("Unable to sign you in, please try again later");
                 }
             );
 
         } else if (authResult['error']) {
 
-            // There was an error.
-            // Possible error codes:
-            //   "access_denied" - User denied access to your app
-            //   "immediate_failed" - Could not automatially log in the user
-            // console.log('There was an error: ' + authResult['error']);
         }
-    }
-
-    function gpSignIn() {
-        gapi.auth.signIn(gpSignInParams);
     }
 
     function init(options) {
 
+        isSignedIn(options.user.isAuthenticated);
+
         gpSignInParams = $.extend({
             callback: signInCallback,
-            scope: "https://www.googleapis.com/auth/plus.login email",
-            requestvisibleactions: "http://schemas.google.com/AddActivity",
+            scope: options.scope,
+            requestvisibleactions: options.activity,
             cookiepolicy: "single_host_origin"
         }, options);
 
         appendGpSignInScript();
+
+        isSignedIn.subscribe(isSignedInChange);
+    }
+
+    function signIn() {
+
+        gapi.auth.signIn(gpSignInParams);
+    }
+
+    function isSignedInChange(signedIn) {
+
+        if (!signedIn) {
+            authMessage("You have been signed out. Please sign in again to continue");
+        }
+        else {
+            authMessage("");
+        }
     }
 
     return {
+
+        isSignedIn: isSignedIn,
+        authMessage: authMessage,
+        showSignInButton: showSignInButton,
         init: init,
-        gpSignIn: gpSignIn
+        signIn: signIn
     };
 };

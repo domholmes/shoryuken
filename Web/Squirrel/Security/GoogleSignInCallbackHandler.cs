@@ -13,7 +13,7 @@ namespace Squirrel.Security
         private UserCreator userCreator;
         private FormsAuthenticator formsAuth;
         public const string CLIENT_ID = GoogleClientDetails.CLIENT_ID;
-        public const string REQUIRED_SCOPES = "https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email";
+        public const string REQUIRED_SCOPES = "https://www.googleapis.com/auth/plus.login email";
         public const string ACTIVITY = "http://schemas.google.com/CheckInActivity";
 
         public GoogleSignInCallbackHandler()

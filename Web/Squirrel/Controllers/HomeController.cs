@@ -19,7 +19,8 @@ namespace Squirrel.Controllers
                 gpSignInParams = new 
                 {
                     client_id = GoogleSignInCallbackHandler.CLIENT_ID,
-                    scope = GoogleSignInCallbackHandler.REQUIRED_SCOPES
+                    scope = GoogleSignInCallbackHandler.REQUIRED_SCOPES,
+                    activity = GoogleSignInCallbackHandler.ACTIVITY
                 },
                 user = new  
                 {

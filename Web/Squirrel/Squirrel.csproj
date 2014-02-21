@@ -324,16 +324,15 @@
     <Content Include="Scripts\knockout-3.0.0.debug.js" />
     <Content Include="Scripts\knockout-3.0.0.js" />
     <Content Include="Scripts\knockoutCustomBindings.js" />
-    <Content Include="Scripts\models\user.js" />
     <Content Include="Scripts\modernizr.custom.37263.js" />
     <Content Include="Scripts\prefixfree.js" />
     <Content Include="Scripts\q.js" />
     <Content Include="Scripts\q.min.js" />
-    <Content Include="Scripts\models\authenticator.js" />
+    <Content Include="Scripts\viewmodels\authViewModel.js" />
     <Content Include="Scripts\sr.js" />
     <Content Include="Scripts\view\indexView.js" />
     <Content Include="Scripts\models\reminder.js" />
-    <Content Include="Scripts\viewmodels\indexViewModel.js" />
+    <Content Include="Scripts\viewmodels\remindersViewModel.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

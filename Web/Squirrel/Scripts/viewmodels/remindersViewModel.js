@@ -1,47 +1,60 @@
-sr.AppViewModel = function (options) {
+sr.RemindersViewModel = function (isSignedInObservable) {
 
-    /* Private
-    -----------------------------------------*/
+    var isSignedIn = isSignedInObservable;
 
-    var user = new sr.User(),
+    var reminders = ko.observableArray([]);
 
-        auth = new sr.Authenticator(),
+    var isLoadingReminders = ko.observable(false);
 
-        reminders = ko.observableArray([]),
+    var isEditingReminder = ko.computed(function () {
 
-        authMessage = ko.observable(),
+        var reminder = ko.utils.arrayFirst(reminders(), function (reminder) {
 
-        isLoadingReminders = ko.observable(false),
-
-        showSignInButton = ko.observable(false),
-
-        isEditingReminder = ko.computed(function () {
-
-            var reminder = ko.utils.arrayFirst(reminders(), function (reminder) {
-
-                return reminder.inEditMode() === true;
-            });
-
-            return reminder !== null;
-        }),
-
-        canAddNewReminder = ko.computed(function () {
-
-            return !isEditingReminder();
+            return reminder.inEditMode() === true;
         });
 
-    function messageOnFocus (reminder) {
+        return reminder !== null;
+    });
 
-        if (!reminder.enabled()) {
-            reminder.toggleEnabled();
-            saveReminder(reminder);
+    var showAddNewReminder = ko.computed(function () {
+
+        return isSignedIn();
+    });
+
+    var canAddNewReminder = ko.computed(function () {
+
+        return !isEditingReminder();
+    });
+    
+    function loadReminders() {
+
+        isLoadingReminders(true);
+
+        sr.repository.fetchReminders(callback);
+
+        function callback(data) {
+
+            isLoadingReminders(false);
+
+            ko.utils.arrayForEach(data, function (reminder) {
+                reminder.postCreationSetup();
+            });
+
+            reminders(data);
         }
-    };
+    }
 
-    function gpSignIn() {
+    function createReminder() {
 
-        auth.gpSignIn();
-    };
+        if (canAddNewReminder()) {
+
+            var newReminder = sr.repository.createReminder();
+            newReminder.inEditMode(true);
+            newReminder.postCreationSetup();
+
+            reminders.unshift(newReminder);
+        }
+    }
 
     function cancelCurrentAction (reminder) {
 
@@ -69,37 +82,14 @@ sr.AppViewModel = function (options) {
         event.stopPropagation();
         reminder.inEditMode(true);
     }
-    
 
-    function createReminder () {
+    function messageOnFocus(reminder) {
 
-        if (canAddNewReminder()) {
-
-            var newReminder = sr.repository.createReminder();
-            newReminder.inEditMode(true);
-            newReminder.postCreationSetup();
-
-            reminders.unshift(newReminder);
+        if (!reminder.enabled()) {
+            reminder.toggleEnabled();
+            saveReminder(reminder);
         }
-    }
-
-    function loadReminders() {
-
-        isLoadingReminders(true);
-
-        sr.repository.fetchReminders(callback);
-
-        function callback(data) {
-
-            isLoadingReminders(false);
-
-            ko.utils.arrayForEach(data, function (reminder) {
-                reminder.postCreationSetup();
-            });
-
-            reminders(data);
-        }
-    }
+    };
 
     function autoSaveReminder(reminder, property, value) {
 
@@ -176,7 +166,7 @@ sr.AppViewModel = function (options) {
 
                     reminder.isSaving(false);
                     reminder.inEditMode(false);
-                    $.publish('authentication', { status: 'unauthenticated', message: 'Your login has expired, please login again to continue' });
+                    isSignedIn(false);
                     break;
 
                 default:
@@ -187,38 +177,18 @@ sr.AppViewModel = function (options) {
         }
     }
 
-    function initialiseViewModel(options) {
+    function isSignedInChange(signedIn) {
 
-        var authStatus = options.user.isAuthenticated ? 'authenticated' : 'unauthenticated';
-
-        $.subscribe('authentication', handleAuthEvent);
-
-        auth.init(options.gpSignIn);
-
-        $.publish('authentication', { status: authStatus, message: '' });
-    }
-
-    function handleAuthEvent(_e, authResult) {       
-
-        if (authResult.status === "authenticated") {
-
+        if (signedIn) {
             loadReminders();
-            startServerPushConnection();
-
-        } else {
-
-            reminders.removeAll();
-            authMessage(authResult.message);
-
-            showSignInButton(authResult.status !== "authenticating");
         }
-
-        user.isAuthenticated(authResult.status === "authenticated");
+        else {
+            reminders.removeAll();
+            $.connection.hub.stop();
+        }
     }
 
-    function startServerPushConnection() {
-
-        $.connection.hub.start();
+    function initialiseViewModel() {
 
         $.connection.hub.disconnected(function () {
             setTimeout(function () {
@@ -229,17 +199,26 @@ sr.AppViewModel = function (options) {
         $.connection.notificationHub.client.update = function () {
             loadReminders();
         };
+
+        isSignedIn.subscribe(isSignedInChange);
     }
 
-    /* public
-    -------------------------------*/
+    function begin() {
+
+        if (isSignedIn()) {
+            loadReminders();
+        }
+
+        $.connection.hub.start();
+    }
 
     return {
         initialiseViewModel: initialiseViewModel,
-        user: user,
+        begin: begin,
         reminders: reminders,
         isLoadingReminders: isLoadingReminders,
         isEditingReminder: isEditingReminder,
+        showAddNewReminder: showAddNewReminder,
         canAddNewReminder: canAddNewReminder,
         createReminder: createReminder,
         beginEditReminder: beginEditReminder,
@@ -247,10 +226,7 @@ sr.AppViewModel = function (options) {
         attemptDeleteReminder: attemptDeleteReminder,
         autoSaveReminder: autoSaveReminder,
         manualSaveReminder: manualSaveReminder,
-        messageOnFocus: messageOnFocus,
-        gpSignIn: gpSignIn,
-        authMessage: authMessage,
-        showSignInButton: showSignInButton
+        messageOnFocus: messageOnFocus
     };       
     
 }

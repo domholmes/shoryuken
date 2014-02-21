@@ -30,9 +30,9 @@ namespace Squirrel
                 .Include("~/Scripts/sr.js")
                 .Include("~/Scripts/models/reminder.js")
                 .Include("~/Scripts/models/user.js")
-                .Include("~/Scripts/models/authenticator.js")
                 .Include("~/Scripts/dataaccess/reminderRepository.js")
-                .Include("~/Scripts/viewmodels/indexViewModel.js")
+                .Include("~/Scripts/viewmodels/remindersViewModel.js")
+                .Include("~/Scripts/viewmodels/authViewModel.js")
                 .Include("~/Scripts/view/indexView.js"));
 
             bundles.Add(new StyleBundle("~/Content/css")
