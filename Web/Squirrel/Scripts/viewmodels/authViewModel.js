@@ -36,6 +36,8 @@
 
         if (code) {
 
+            console.log('/Account/Callback called');
+
             $.ajax({
                 type: 'POST',
                 url: '/Account/Callback',
@@ -67,7 +69,8 @@
             callback: signInCallback,
             scope: options.scope,
             requestvisibleactions: options.activity,
-            cookiepolicy: "single_host_origin"
+            cookiepolicy: "single_host_origin",
+            approvalprompt: "force"
         }, options);
 
         appendGpSignInScript();
@@ -76,7 +79,7 @@
     }
 
     function signIn() {
-
+        console.log('signIn called');
         gapi.auth.signIn(gpSignInParams);
     }
 

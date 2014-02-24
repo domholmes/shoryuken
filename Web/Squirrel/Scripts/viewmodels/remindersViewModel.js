@@ -190,15 +190,15 @@ sr.RemindersViewModel = function (isSignedInObservable) {
 
     function initialiseViewModel() {
 
-        $.connection.hub.disconnected(function () {
-            setTimeout(function () {
-                $.connection.hub.start();
-            }, 20000);
-        });
+        //$.connection.hub.disconnected(function () {
+        //    setTimeout(function () {
+        //        $.connection.hub.start();
+        //    }, 20000);
+        //});
 
-        $.connection.notificationHub.client.update = function () {
-            loadReminders();
-        };
+        //$.connection.notificationHub.client.update = function () {
+        //    loadReminders();
+        //};
 
         isSignedIn.subscribe(isSignedInChange);
     }
