@@ -177,17 +177,18 @@ sr.RemindersViewModel = function (isSignedInObservable) {
         }
     }
 
-    function isSignedInChange(signedIn) {
+    function isSignedInChange() {
 
-        if (signedIn) {
+        if (isSignedIn()) {
             loadReminders();
+            $.connection.hub.start();
         }
         else {
             reminders.removeAll();
             $.connection.hub.stop();
         }
     }
-
+    
     function initialiseViewModel() {
 
         $.connection.hub.disconnected(function () {
@@ -203,18 +204,8 @@ sr.RemindersViewModel = function (isSignedInObservable) {
         isSignedIn.subscribe(isSignedInChange);
     }
 
-    function begin() {
-
-        if (isSignedIn()) {
-            loadReminders();
-        }
-
-        $.connection.hub.start();
-    }
-
     return {
         initialiseViewModel: initialiseViewModel,
-        begin: begin,
         reminders: reminders,
         isLoadingReminders: isLoadingReminders,
         isEditingReminder: isEditingReminder,

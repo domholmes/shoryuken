@@ -10,10 +10,8 @@
             ko.applyBindings(auth, $("#authViewModel")[0]);
             ko.applyBindings(reminders, $("#remindersViewModel")[0]);
 
-            auth.init(options);
             reminders.initialiseViewModel();
-            
-            reminders.begin();
+            auth.init(options);
         }
     }
 })();
