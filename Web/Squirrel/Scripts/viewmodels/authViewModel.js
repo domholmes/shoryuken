@@ -4,12 +4,8 @@
     var isSignedIn = ko.observable();
 
     var authMessage = ko.observable();
-
-    var gpSignInParams;
-
-    var showSignInButton = ko.observable();
-
-    var showAuthMessage = ko.computed(function () {
+    
+    var showAuthControls = ko.computed(function () {
 
         return !isSignedIn();
     });
@@ -18,6 +14,8 @@
 
         return isSignedIn();
     });
+
+    var gpSignInParams;
 
     function appendGpSignInScript() {
 
@@ -39,11 +37,10 @@
             return;
         }
 
-        var code = authResult['code']
+        var code = authResult.code;
+        var method = authResult.status.method;
 
-        if (code) {
-
-            showSignInButton(false);
+        if (code && method === "PROMPT") {
 
             $.ajax({
                 type: 'POST',
@@ -55,18 +52,17 @@
                 function (result) {
 
                     isSignedIn(true);
-                    showSignInButton(false);
                     authMessage("");
                 },
 
                 function (result) {
 
-                    showSignInButton(true);
                     authMessage("Unable to sign you in, please try again later");
                 }
             );
 
-        } else {
+        } else if (authResult.error) {
+
             authMessage("Unable to sign you in, please try again later");
         }
     }
@@ -74,7 +70,6 @@
     function init(options) {
 
         isSignedIn(options.user.isAuthenticated);
-        showSignInButton(!options.user.isAuthenticated)
 
         gpSignInParams = $.extend({
             callback: signInCallback,
@@ -97,7 +92,6 @@
     function isSignedInChange() {
 
         if (!isSignedIn()) {
-            showSignInButton(true);
             authMessage("You have been signed out. Please sign in again to continue");
         }
         else {
@@ -109,8 +103,7 @@
 
         isSignedIn: isSignedIn,
         authMessage: authMessage,
-        showSignInButton: showSignInButton,
-        showAuthMessage: showAuthMessage,
+        showAuthControls: showAuthControls,
         showDisconnect: showDisconnect,
         init: init,
         signIn: signIn

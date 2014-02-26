@@ -7,7 +7,7 @@
                     <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar">
                     </span>
                 </button>
-                <span class="navbar-brand"><span>Smart</span>Reminder</span>
+                <span class="navbar-brand"><span>Squirrel</span>
             </div>
             <nav class="collapse navbar-collapse bs-navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -21,11 +21,11 @@
             </nav>
         </div>
     </header>
-    <div class="container">
-        <div class="gplus-button" title="Sign in with Google" role="button" data-bind="click: signIn, visible: showSignInButton">
+    <div class="container" data-bind="visible: showAuthControls">
+        <div class="gplus-button" title="Sign in with Google" role="button" data-bind="click: signIn">
             <div class="gplus-button-logo"></div><div class="gplus-button-text">Sign in</div>
         </div>
-        <div class="info" data-bind="text: authMessage, visible: showAuthMessage">
+        <div class="info" data-bind="text: authMessage">
         </div>
     </div>
 </section>

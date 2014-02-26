@@ -193,7 +193,9 @@ sr.RemindersViewModel = function (isSignedInObservable) {
 
         $.connection.hub.disconnected(function () {
             setTimeout(function () {
-                $.connection.hub.start();
+                if (isSignedIn()) {
+                    $.connection.hub.start();
+                }
             }, 20000);
         });
 
