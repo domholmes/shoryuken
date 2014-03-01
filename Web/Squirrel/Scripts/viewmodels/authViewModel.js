@@ -34,6 +34,7 @@
         if (authResult.status.signed_in === false) {
 
             // need to connect account
+            authMessage("");
             return;
         }
 
