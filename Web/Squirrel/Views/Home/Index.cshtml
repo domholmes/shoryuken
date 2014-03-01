@@ -17,6 +17,9 @@
                         text: 'Disconnecting will remove the association with your google account and clear all data, are you sure?'
                     }">Disconnect</a>
                     </li>
+                    <li data-bind="visible: showDisconnect">
+                        <a href="@Url.Action("SignOut", "Account")">SignOut</a>
+                    </li>
                 </ul>
             </nav>
         </div>

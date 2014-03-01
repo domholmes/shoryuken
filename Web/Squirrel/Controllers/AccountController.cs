@@ -52,6 +52,11 @@ namespace Squirrel.Controllers
                 new UserCreator().DeleteUserIfExists(currentUser);
             }
 
+            return SignOut();
+        }
+
+        public virtual ActionResult SignOut()
+        {
             FormsAuthentication.SignOut();
 
             return RedirectToAction("Index", "Home");
