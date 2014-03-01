@@ -207,6 +207,10 @@
     <Compile Include="Migrations\201401082202225_AddUserAccessToken.Designer.cs">
       <DependentUpon>201401082202225_AddUserAccessToken.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201403011118344_AddUsernameUniqueConstraint.cs" />
+    <Compile Include="Migrations\201403011118344_AddUsernameUniqueConstraint.Designer.cs">
+      <DependentUpon>201403011118344_AddUsernameUniqueConstraint.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\LogEntry.cs" />
     <Compile Include="Security\SilentAuthorizeAttribute.cs" />
     <Compile Include="Security\GoogleAppDisconnector.cs" />
@@ -436,6 +440,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201401082202225_AddUserAccessToken.resx">
       <DependentUpon>201401082202225_AddUserAccessToken.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403011118344_AddUsernameUniqueConstraint.resx">
+      <DependentUpon>201403011118344_AddUsernameUniqueConstraint.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
