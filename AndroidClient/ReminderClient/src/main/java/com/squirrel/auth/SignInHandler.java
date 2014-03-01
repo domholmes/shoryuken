@@ -1,16 +1,12 @@
 package com.squirrel.auth;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Bundle;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
-import com.google.android.gms.common.Scopes;
 import com.google.android.gms.plus.PlusClient;
-import com.google.android.gms.plus.model.moments.ItemScope;
-import com.google.android.gms.plus.model.moments.Moment;
 import com.squirrel.util.AsyncResponse;
 
 public class SignInHandler implements GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener, AsyncResponse
@@ -20,9 +16,9 @@ public class SignInHandler implements GooglePlayServicesClient.ConnectionCallbac
     private PlusClient plusClient;
     private IdTokenStore tokenStore;
     private Context context;
-    SignInActivity callingActivity;
+    SignInHandlerSubscriber callingActivity;
 
-    public SignInHandler(Context context, SignInActivity callingActivity)
+    public SignInHandler(Context context, SignInHandlerSubscriber callingActivity)
     {
         this.context = context;
         this.callingActivity = callingActivity;
@@ -79,6 +75,8 @@ public class SignInHandler implements GooglePlayServicesClient.ConnectionCallbac
     {
         if(isSignedIn())
         {
+            this.callingActivity.onSignedInStateChanged(SignInState.SigningOut);
+
             if(this.plusClient.isConnected())
             {
                 this.plusClient.clearDefaultAccount();
@@ -91,6 +89,8 @@ public class SignInHandler implements GooglePlayServicesClient.ConnectionCallbac
         }
         else
         {
+            this.callingActivity.onSignedInStateChanged(SignInState.SigningIn);
+
             if(!this.plusClient.isConnected())
             {
                 this.plusClient.connect();

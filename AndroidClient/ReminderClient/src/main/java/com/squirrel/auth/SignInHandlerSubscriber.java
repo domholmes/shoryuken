@@ -2,9 +2,7 @@ package com.squirrel.auth;
 
 import android.app.Activity;
 
-public abstract class SignInActivity extends Activity
+public abstract class SignInHandlerSubscriber extends Activity
 {
     abstract void onSignedInStateChanged(SignInState state);
-
-    abstract void onSignedInStateChanging(SignInState state);
 }

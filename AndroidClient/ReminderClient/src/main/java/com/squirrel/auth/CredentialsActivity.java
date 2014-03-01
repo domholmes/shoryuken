@@ -13,7 +13,7 @@ import com.squirrel.action.WifiStateHistory;
 import com.squirrel.sync.ReminderRepository;
 import com.squirrel.sync.ReminderSyncingScheduler;
 
-public class CredentialsActivity extends SignInActivity implements View.OnClickListener
+public class CredentialsActivity extends SignInHandlerSubscriber implements View.OnClickListener
 {
     private ProgressDialog progressDialog;
     private ReminderRepository reminderStore;
@@ -51,11 +51,21 @@ public class CredentialsActivity extends SignInActivity implements View.OnClickL
 
         switch (state)
         {
+            case SigningIn:
+                this.progressDialog.setMessage("Signing you in..");
+                this.progressDialog.show();
+                break;
+
             case SignedIn:
 
                 Toast.makeText(this, "Signed in, your device will now receive reminders", Toast.LENGTH_LONG).show();
                 WifiStateHistory.updateState(this);
                 ReminderSyncingScheduler.scheduleReminderSyncing(this);
+                break;
+
+            case SigningOut:
+                this.progressDialog.setMessage("Signing you out..");
+                this.progressDialog.show();
                 break;
 
             case SignedOut:
@@ -68,15 +78,6 @@ public class CredentialsActivity extends SignInActivity implements View.OnClickL
                 Toast.makeText(this, "There was a problem signing in, please ensure you have a connection to the Internet and try again", Toast.LENGTH_LONG).show();
                 break;
         }
-    }
-
-    @Override
-    public void onSignedInStateChanging(SignInState state)
-    {
-        String message = state == SignInState.SignedIn ? "Signing in" : "Signing out";
-
-        this.progressDialog.setMessage(message);
-        this.progressDialog.show();
     }
 
     protected void setGooglePlusButtonText()
