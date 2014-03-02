@@ -49,8 +49,10 @@ sr.RemindersViewModel = function (isSignedInObservable) {
         if (canAddNewReminder()) {
 
             var newReminder = sr.repository.createReminder();
-            newReminder.inEditMode(true);
+            
             newReminder.postCreationSetup();
+
+            newReminder.inEditMode(true);
 
             reminders.unshift(newReminder);
         }
