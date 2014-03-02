@@ -93,8 +93,10 @@ sr.RemindersViewModel = function (isSignedInObservable) {
 
     function autoSaveReminder(reminder, property, value) {
 
-        property(value);
-        saveReminder(reminder, false);
+        if (value !== '') {
+            property(value);
+            saveReminder(reminder, false);
+        }
     };
 
     function manualSaveReminder(reminder) {
