@@ -1,6 +1,5 @@
 ﻿@model string
-<input id="antiForgeryToken" type="hidden" value="@ViewBag.AntiForgeryTokenPair" />
-<section class="tab" id="authViewModel">
+<section class="tab" id="authViewModel" data-bind="visible:true" style="display:none">
     <header class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
@@ -38,7 +37,7 @@
         </div>
     </div>
 </section>
-<section class="tab" id="remindersViewModel">
+<section class="tab" id="remindersViewModel" data-bind="visible:true" style="display:none">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 margin-bottom">

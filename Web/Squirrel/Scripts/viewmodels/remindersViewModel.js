@@ -49,8 +49,10 @@ sr.RemindersViewModel = function (isSignedInObservable) {
         if (canAddNewReminder()) {
 
             var newReminder = sr.repository.createReminder();
-            newReminder.inEditMode(true);
+            
             newReminder.postCreationSetup();
+
+            newReminder.inEditMode(true);
 
             reminders.unshift(newReminder);
         }
@@ -93,8 +95,10 @@ sr.RemindersViewModel = function (isSignedInObservable) {
 
     function autoSaveReminder(reminder, property, value) {
 
-        property(value);
-        saveReminder(reminder, false);
+        if (value !== '') {
+            property(value);
+            saveReminder(reminder, false);
+        }
     };
 
     function manualSaveReminder(reminder) {
