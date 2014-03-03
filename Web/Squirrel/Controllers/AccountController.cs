@@ -35,7 +35,7 @@ namespace Squirrel.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
-        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public virtual ActionResult Disconnect()
         {
             bool disconnectWasSuccessful = false;
@@ -55,6 +55,7 @@ namespace Squirrel.Controllers
             return SignOut();
         }
 
+        [ValidateAntiForgeryToken]
         public virtual ActionResult SignOut()
         {
             FormsAuthentication.SignOut();

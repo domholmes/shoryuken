@@ -285,6 +285,7 @@
     <Compile Include="Security\GoogleTokenAuthorizeAttribute.cs" />
     <Compile Include="Security\Logger.cs" />
     <Compile Include="Security\UserCreator.cs" />
+    <Compile Include="Security\ValidateAntiForgeryTokenAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -393,7 +394,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201306242050500_InitialCreate.resx">

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Squirrel.Security;
+using System.Web.Helpers;
 
 namespace Squirrel.Controllers
 {
@@ -13,7 +14,8 @@ namespace Squirrel.Controllers
         public ActionResult Index()
         {
             ViewBag.GoogleSigninClientId = GoogleSignInCallbackHandler.CLIENT_ID;
-
+            ViewBag.AntiForgeryTokenPair = GenerateAntiForgeryToken();
+            
             var model = new 
             {
                 gpSignInParams = new 
@@ -31,6 +33,14 @@ namespace Squirrel.Controllers
             var modelJSON = new JavaScriptSerializer().Serialize(model);
 
             return View(model: modelJSON);
+        }
+
+        private String GenerateAntiForgeryToken()
+        {
+            String cookieToken, formToken;
+            AntiForgery.GetTokens(null, out cookieToken, out formToken);
+            
+            return cookieToken + ":" + formToken;  
         }
     }
 }

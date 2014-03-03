@@ -5,6 +5,7 @@ using System.Linq;
 using Newtonsoft.Json.Linq;
 using Breeze.ContextProvider;
 using Squirrel.Security;
+using Squiirel.Security;
 
 namespace Squirrel.Controllers
 {
@@ -32,6 +33,7 @@ namespace Squirrel.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public SaveResult SaveChanges(JObject saveBundle)
         {
             return context.SaveChanges(saveBundle);

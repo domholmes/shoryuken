@@ -1,4 +1,5 @@
 ﻿@model string
+<input id="antiForgeryToken" type="hidden" value="@ViewBag.AntiForgeryTokenPair" />
 <section class="tab" id="authViewModel">
     <header class="navbar navbar-inverse">
         <div class="container">
@@ -12,13 +13,18 @@
             <nav class="collapse navbar-collapse bs-navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li data-bind="visible: showDisconnect">
-                        <a href="@Url.Action("Disconnect", "Account")" data-bind="confirm: {
-                        title: 'Disconnect from Squirrel',
-                        text: 'Disconnecting will remove the association with your google account and clear all data, are you sure?'
-                    }">Disconnect</a>
+                        @using (Html.BeginForm("Disconnect", "Account", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken();
+                            <input type="submit" value="Disconnect" />
+                        }
                     </li>
                     <li data-bind="visible: showDisconnect">
-                        <a href="@Url.Action("SignOut", "Account")">SignOut</a>
+                        @using (Html.BeginForm("SignOut", "Account", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken();
+                            <input type="submit" value="SignOut" />
+                        }
                     </li>
                 </ul>
             </nav>

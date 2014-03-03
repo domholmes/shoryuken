@@ -7,6 +7,17 @@
     var valOpts = episodeManager.validationOptions.using({ validateOnAttach: false });
     episodeManager.setProperties({ validationOptions: valOpts });
 
+    // CSRF prevention
+    var antiForgeryToken = $("#antiForgeryToken").val();
+    if (antiForgeryToken) {
+        var ajaxAdapter = breeze.config.getAdapterInstance("ajax");
+        ajaxAdapter.defaultSettings = {
+            headers: {
+                'RequestVerificationToken': antiForgeryToken
+            },
+        };
+    }
+
     function createReminder() {
 
         var newReminder = episodeManager.createEntity('Reminder', sr.reminderDefaults);
