@@ -211,6 +211,10 @@
     <Compile Include="Migrations\201403011118344_AddUsernameUniqueConstraint.Designer.cs">
       <DependentUpon>201403011118344_AddUsernameUniqueConstraint.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201403102046283_ReminderIncreaseMessageLength.cs" />
+    <Compile Include="Migrations\201403102046283_ReminderIncreaseMessageLength.Designer.cs">
+      <DependentUpon>201403102046283_ReminderIncreaseMessageLength.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\LogEntry.cs" />
     <Compile Include="Security\SilentAuthorizeAttribute.cs" />
     <Compile Include="Security\GoogleAppDisconnector.cs" />
@@ -443,6 +447,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201403011118344_AddUsernameUniqueConstraint.resx">
       <DependentUpon>201403011118344_AddUsernameUniqueConstraint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403102046283_ReminderIncreaseMessageLength.resx">
+      <DependentUpon>201403102046283_ReminderIncreaseMessageLength.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
