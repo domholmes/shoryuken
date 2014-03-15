@@ -26,7 +26,7 @@ namespace Squirrel.Models
         public string Name { get; set; }
         
         [Required]
-        [StringLength(50)]
+        [StringLength(250)]
         public string Message { get; set; }
 
         [Time]
