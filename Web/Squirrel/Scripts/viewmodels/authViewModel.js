@@ -92,6 +92,26 @@
         gapi.auth.signIn(gpSignInParams);
     }
 
+    function signOut() {
+
+        authMessage("Signing you out..");
+        $.ajax({
+            type: 'POST',
+            url: '/Account/SignOut'
+        }).then(function () {
+                    isSignedIn(false);});
+    }
+
+    function disconnect() {
+
+        authMessage("Disconnecting..");
+        $.ajax({
+            type: 'POST',
+            url: '/Account/Disconnect'
+        }).then(function () {
+                    isSignedIn(false);});
+    }
+
     function isSignedInChange() {
 
         if (!isSignedIn()) {
@@ -123,6 +143,8 @@
         showAuthControls: showAuthControls,
         showDisconnect: showDisconnect,
         initialise: initialise,
-        signIn: signIn
+        signIn: signIn,
+        signOut: signOut,
+        disconnect: disconnect
     };
 };
