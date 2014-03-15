@@ -212,6 +212,7 @@
       <DependentUpon>201403011118344_AddUsernameUniqueConstraint.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\LogEntry.cs" />
+    <Compile Include="Security\AntiForgeryTokenGenerator.cs" />
     <Compile Include="Security\SilentAuthorizeAttribute.cs" />
     <Compile Include="Security\GoogleAppDisconnector.cs" />
     <Compile Include="Security\GoogleCloudMessagingAppServer.cs" />
@@ -285,7 +286,7 @@
     <Compile Include="Security\GoogleTokenAuthorizeAttribute.cs" />
     <Compile Include="Security\Logger.cs" />
     <Compile Include="Security\UserCreator.cs" />
-    <Compile Include="Security\ValidateAntiForgeryTokenAttribute.cs" />
+    <Compile Include="Security\ValidateAjaxAntiForgeryTokenOnPostAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

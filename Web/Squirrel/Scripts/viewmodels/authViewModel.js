@@ -1,6 +1,8 @@
 ﻿sr.AuthViewModel = function () {
     "use strict";
 
+    var antiForgeryToken = ko.observable();
+
     var isSignedIn = ko.observable();
 
     var authMessage = ko.observable();
@@ -17,7 +19,14 @@
 
     var gpSignInParams;
 
-    function appendGpSignInScript() {
+    function appendGpSignInScript(options) {
+
+        gpSignInParams = $.extend({
+            callback: signInCallback,
+            scope: options.scope,
+            requestvisibleactions: options.activity,
+            cookiepolicy: "single_host_origin"
+        }, options);
 
         var po = document.createElement('script'), script;
 
@@ -50,8 +59,9 @@
             })
 
             .then(
-                function (result) {
+                function (token) {
 
+                    antiForgeryToken(token);
                     isSignedIn(true);
                     authMessage("");
                 },
@@ -68,20 +78,12 @@
         }
     }
 
-    function init(options) {
+    function initialise(options) {
 
+        appendGpSignInScript(options);
+
+        antiForgeryToken(options.antiForgeryToken)
         isSignedIn(options.user.isAuthenticated);
-
-        gpSignInParams = $.extend({
-            callback: signInCallback,
-            scope: options.scope,
-            requestvisibleactions: options.activity,
-            cookiepolicy: "single_host_origin"
-        }, options);
-
-        appendGpSignInScript();
-
-        isSignedIn.subscribe(isSignedInChange);
     }
 
     function signIn() {
@@ -100,13 +102,27 @@
         }
     }
 
+    function antiForgeryTokenChange(token) {
+
+        $.ajaxPrefilter(function (options) { 
+            if (options.type.toUpperCase() === "POST" && !options.crossDomain) {
+                options.beforeSend = function (xhr) {
+                    xhr.setRequestHeader('RequestVerificationToken', token);
+                }
+            }
+        });
+    }
+
+    isSignedIn.subscribe(isSignedInChange);
+    antiForgeryToken.subscribe(antiForgeryTokenChange);
+
     return {
 
         isSignedIn: isSignedIn,
         authMessage: authMessage,
         showAuthControls: showAuthControls,
         showDisconnect: showDisconnect,
-        init: init,
+        initialise: initialise,
         signIn: signIn
     };
 };

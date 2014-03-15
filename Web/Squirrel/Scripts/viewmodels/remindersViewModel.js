@@ -1,4 +1,6 @@
-sr.RemindersViewModel = function (isSignedInObservable) {
+sr.RemindersViewModel = function (reminderRepository, isSignedInObservable) {
+
+    var repository = reminderRepository;
 
     var isSignedIn = isSignedInObservable;
 
@@ -30,7 +32,7 @@ sr.RemindersViewModel = function (isSignedInObservable) {
 
         isLoadingReminders(true);
 
-        sr.repository.fetchReminders(callback);
+        repository.fetchReminders(callback);
 
         function callback(data) {
 
@@ -48,7 +50,7 @@ sr.RemindersViewModel = function (isSignedInObservable) {
 
         if (canAddNewReminder()) {
 
-            var newReminder = sr.repository.createReminder();
+            var newReminder = repository.createReminder();
             
             newReminder.postCreationSetup();
 
@@ -66,13 +68,13 @@ sr.RemindersViewModel = function (isSignedInObservable) {
         }
         else if (!reminder.isSaving()) {
 
-            var isNew = sr.repository.isNew(reminder);
+            var isNew = repository.isNew(reminder);
 
             if (isNew) {
                 reminders.remove(reminder);
             }
             else {
-                sr.repository.revertReminder(reminder);
+                repository.revertReminder(reminder);
                 reminder.isSaving(false);
                 reminder.inEditMode(false);
             }
@@ -114,7 +116,7 @@ sr.RemindersViewModel = function (isSignedInObservable) {
         reminder.message($.trim(reminder.message()))
         reminder.ssid($.trim(reminder.ssid()))
 
-        sr.repository.saveReminder(
+        repository.saveReminder(
 
             reminder,
             function () {// success
@@ -145,8 +147,8 @@ sr.RemindersViewModel = function (isSignedInObservable) {
 
     function deleteReminder(reminder) {
 
-        sr.repository.deleteReminder(reminder);
-        sr.repository.saveReminder(
+        repository.deleteReminder(reminder);
+        repository.saveReminder(
 
             reminder,
             function () {// success
@@ -193,7 +195,7 @@ sr.RemindersViewModel = function (isSignedInObservable) {
         }
     }
     
-    function initialiseViewModel() {
+    function initialise() {
 
         $.connection.hub.disconnected(function () {
             setTimeout(function () {
@@ -211,7 +213,7 @@ sr.RemindersViewModel = function (isSignedInObservable) {
     }
 
     return {
-        initialiseViewModel: initialiseViewModel,
+        initialise: initialise,
         reminders: reminders,
         isLoadingReminders: isLoadingReminders,
         isEditingReminder: isEditingReminder,
@@ -224,6 +226,5 @@ sr.RemindersViewModel = function (isSignedInObservable) {
         autoSaveReminder: autoSaveReminder,
         manualSaveReminder: manualSaveReminder,
         messageOnFocus: messageOnFocus
-    };       
-    
+    };        
 }

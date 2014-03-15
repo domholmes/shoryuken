@@ -33,7 +33,7 @@ namespace Squirrel.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryTokenOnPost]
         public SaveResult SaveChanges(JObject saveBundle)
         {
             return context.SaveChanges(saveBundle);

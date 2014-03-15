@@ -1,22 +1,7 @@
-(function (sr) {
+sr.ReminderRepository = function () {
 
-    // EntityManager configuration
     breeze.NamingConvention.camelCase.setAsDefault();
-    var episodeManager = new breeze.EntityManager('breeze/reminder');
-
-    var valOpts = episodeManager.validationOptions.using({ validateOnAttach: false });
-    episodeManager.setProperties({ validationOptions: valOpts });
-
-    // CSRF prevention
-    var antiForgeryToken = $("#antiForgeryToken").val();
-    if (antiForgeryToken) {
-        var ajaxAdapter = breeze.config.getAdapterInstance("ajax");
-        ajaxAdapter.defaultSettings = {
-            headers: {
-                'RequestVerificationToken': antiForgeryToken
-            },
-        };
-    }
+    var episodeManager = new breeze.EntityManager('breeze/reminder');   
 
     function createReminder() {
 
@@ -69,6 +54,9 @@
             .fail(failCallback);
     }
 
+    var valOpts = episodeManager.validationOptions.using({ validateOnAttach: false });
+    episodeManager.setProperties({ validationOptions: valOpts });
+
     episodeManager.metadataStore.registerEntityTypeCtor("Reminder", sr.Reminder, function (entity) {
 
         entity.propertiesWithErrors = ko.observableArray([]);
@@ -93,7 +81,7 @@
         });
     });
 
-    sr.repository = {
+    return {
         createReminder: createReminder,
         fetchReminders: fetchReminders,
         deleteReminder: deleteReminder,
@@ -102,4 +90,4 @@
         isNew: isNew
     }
 
-} (window.sr))
+}

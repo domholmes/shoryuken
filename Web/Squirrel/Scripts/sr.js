@@ -4,14 +4,15 @@
 
         init: function (options) {
 
-            var auth = new sr.AuthViewModel();
-            var reminders = new sr.RemindersViewModel(auth.isSignedIn);
+            var repository = new sr.ReminderRepository();
+            var authViewModel = new sr.AuthViewModel();
+            var remindersViewModel = new sr.RemindersViewModel(repository, authViewModel.isSignedIn);
             
-            ko.applyBindings(auth, $("#authViewModel")[0]);
-            ko.applyBindings(reminders, $("#remindersViewModel")[0]);
+            ko.applyBindings(authViewModel, $("#authViewModel")[0]);
+            ko.applyBindings(remindersViewModel, $("#remindersViewModel")[0]);
 
-            reminders.initialiseViewModel();
-            auth.init(options);
+            remindersViewModel.initialise();
+            authViewModel.initialise(options);
         }
     }
 })();

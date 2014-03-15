@@ -10,26 +10,29 @@ using System.Web.Mvc;
 
 namespace Squiirel.Security
 {
-    public class ValidateAntiForgeryTokenAttribute : AuthorizationFilterAttribute
+    public class ValidateAntiForgeryTokenOnPostAttribute : AuthorizationFilterAttribute
     {
         public override void OnAuthorization(HttpActionContext actionContext)
         {
             HttpRequestMessage request = actionContext.ControllerContext.Request;
 
-            try
+            if (request.Method == HttpMethod.Post)
             {
-                if (IsAjaxRequest(request))
+                try
                 {
-                    ValidateRequestHeader(request);
+                    if (IsAjaxRequest(request))
+                    {
+                        ValidateRequestHeader(request);
+                    }
+                    else
+                    {
+                        throw new HttpAntiForgeryException("Un-supported request type.");
+                    }
                 }
-                else
+                catch (HttpAntiForgeryException e)
                 {
-                    AntiForgery.Validate();
+                    actionContext.Response = request.CreateErrorResponse(HttpStatusCode.Forbidden, e);
                 }
-            }
-            catch (HttpAntiForgeryException e)
-            {
-                actionContext.Response = request.CreateErrorResponse(HttpStatusCode.Forbidden, e);
             }
         }
 

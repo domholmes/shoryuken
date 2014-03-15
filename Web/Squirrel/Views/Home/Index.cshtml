@@ -1,5 +1,5 @@
 ﻿@model string
-<section class="tab" id="authViewModel" data-bind="visible:true" style="display:none">
+<section class="tab" id="authViewModel">
     <header class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
@@ -12,18 +12,13 @@
             <nav class="collapse navbar-collapse bs-navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li data-bind="visible: showDisconnect">
-                        @using (Html.BeginForm("Disconnect", "Account", FormMethod.Post))
-                        {
-                            @Html.AntiForgeryToken();
-                            <input type="submit" value="Disconnect" />
-                        }
+                        <a href="@Url.Action("Disconnect", "Account")" data-bind="confirm: {
+                        title: 'Disconnect from Squirrel',
+                        text: 'Disconnecting will remove the association with your google account and clear all data, are you sure?'
+                    }">Disconnect</a>
                     </li>
                     <li data-bind="visible: showDisconnect">
-                        @using (Html.BeginForm("SignOut", "Account", FormMethod.Post))
-                        {
-                            @Html.AntiForgeryToken();
-                            <input type="submit" value="SignOut" />
-                        }
+                        <a href="@Url.Action("SignOut", "Account")">SignOut</a>
                     </li>
                 </ul>
             </nav>
@@ -37,7 +32,7 @@
         </div>
     </div>
 </section>
-<section class="tab" id="remindersViewModel" data-bind="visible:true" style="display:none">
+<section class="tab" id="remindersViewModel">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 margin-bottom">

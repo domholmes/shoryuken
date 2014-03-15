@@ -14,7 +14,6 @@ namespace Squirrel.Controllers
         public ActionResult Index()
         {
             ViewBag.GoogleSigninClientId = GoogleSignInCallbackHandler.CLIENT_ID;
-            ViewBag.AntiForgeryTokenPair = GenerateAntiForgeryToken();
             
             var model = new 
             {
@@ -27,20 +26,13 @@ namespace Squirrel.Controllers
                 user = new  
                 {
                     isAuthenticated = User.Identity.IsAuthenticated
-                }
+                },
+                antiForgeryToken = User.Identity.IsAuthenticated ? AntiForgeryTokenGenerator.Generate() : ""
             };
 
             var modelJSON = new JavaScriptSerializer().Serialize(model);
 
             return View(model: modelJSON);
-        }
-
-        private String GenerateAntiForgeryToken()
-        {
-            String cookieToken, formToken;
-            AntiForgery.GetTokens(null, out cookieToken, out formToken);
-            
-            return cookieToken + ":" + formToken;  
         }
     }
 }
