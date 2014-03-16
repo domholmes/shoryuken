@@ -164,13 +164,14 @@ sr.RemindersViewModel = function (reminderRepository, isSignedInObservable) {
     
     function handleSaveFailed(response, reminder) {
 
+        reminder.isSaving(false);
+
         if (response.status) {
 
             switch (response.status) {
 
                 case 403:
 
-                    reminder.isSaving(false);
                     reminder.inEditMode(false);
                     isSignedIn(false);
                     break;
