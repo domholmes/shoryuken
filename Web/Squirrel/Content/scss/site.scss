@@ -51,6 +51,13 @@ body {
 	color: $primary-color;
 	background: $grey-light;
 }
+.reminders {
+  opacity: 0;
+  transition: opacity .3s ease-in;
+}
+.reminders.active {
+  opacity: 1;
+}
 
 /* Forms
 ------------------------------------------------*/
@@ -270,6 +277,30 @@ button
 .quiet
 {
     color: #ccc;
+}
+.navbar-inverse .navbar-nav > li > button {
+color: #999999;
+}
+.navbar-nav > li > button {
+padding-top: 10px;
+padding-bottom: 10px;
+line-height: 20px;
+}
+.nav > li > button {
+position: relative;
+display: block;
+padding: 10px 15px;
+}
+.navbar-inverse .navbar-nav > li > button:hover, 
+.navbar-inverse .navbar-nav > li > button:focus {
+color: #ffffff;
+background-color: transparent;
+}
+@media (min-width: 768px) {
+.navbar-nav > li > button {
+padding-top: 15px;
+padding-bottom: 15px;
+}
 }
 
 /* Misc

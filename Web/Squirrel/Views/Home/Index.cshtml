@@ -34,7 +34,7 @@
     </div>
 </section>
 <section class="tab" id="remindersViewModel">
-    <div class="container">
+    <div class="container reminders" data-bind="css: { active: reminders().length > 0 }">
         <div class="row">
             <div class="col-sm-12 margin-bottom">
                 <button type="button" class="btn btn-red" data-bind="visible: showAddNewReminder, click: createReminder, css: { disabled: !canAddNewReminder() }">
