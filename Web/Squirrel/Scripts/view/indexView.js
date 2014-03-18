@@ -6,6 +6,29 @@
     }
 }
 
+ko.bindingHandlers.dialog = {
+    init: function (element, valueAccessor) {
+        var dialogOptions = valueAccessor();
+
+        dialogOptions.active = ko.observable(false);
+
+        dialogOptions.close = function(){
+            $('.modal').modal('hide');
+        };
+
+        $(element).click(function(){
+
+            var div = document.createElement("div");
+
+            document.body.appendChild(div);
+
+            ko.renderTemplate("dialog", dialogOptions, {}, div, "replaceNode");
+
+            $('.modal').modal('show');
+        });
+    }
+}
+
 ko.bindingHandlers.timePicker = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var value = valueAccessor(),

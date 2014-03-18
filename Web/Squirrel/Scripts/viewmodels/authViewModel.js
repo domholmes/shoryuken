@@ -19,6 +19,25 @@
 
     var gpSignInParams;
 
+    var disconnectDialog = {
+        title: 'Disconnect from Squirrel',
+        message: 'Disconnecting will remove the association with your google account and clear all data, are you sure?',
+        buttons: [
+            {
+                onClick: disconnect,
+                cssClasses: "confirm btn btn-primary",
+                text: "Yes"
+            },
+            {
+                onClick: function(){
+                    debugger;
+                },
+                cssClasses: "cancel btn btn-default",
+                text: "Cancel"
+            }
+        ]
+    };
+
     function appendGpSignInScript(options) {
 
         gpSignInParams = $.extend({
@@ -108,8 +127,10 @@
         $.ajax({
             type: 'POST',
             url: '/Account/Disconnect'
-        }).then(function () {
-                    isSignedIn(false);});
+        })
+        .then(function () {
+            isSignedIn(false);
+        });
     }
 
     function isSignedInChange() {
@@ -145,6 +166,6 @@
         initialise: initialise,
         signIn: signIn,
         signOut: signOut,
-        disconnect: disconnect
+        disconnectDialog: disconnectDialog
     };
 };
