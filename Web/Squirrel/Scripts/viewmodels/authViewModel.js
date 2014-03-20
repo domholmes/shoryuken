@@ -1,6 +1,8 @@
 ﻿sr.AuthViewModel = function () {
     "use strict";
 
+    var self, gpSignInParams;
+
     var antiForgeryToken = ko.observable();
 
     var isSignedIn = ko.observable();
@@ -17,37 +19,35 @@
         return isSignedIn();
     });
 
-    var gpSignInParams;
-
     var disconnectDialog = {
         title: 'Disconnect from Squirrel',
         message: 'Disconnecting will remove the association with your google account and clear all data, are you sure?',
         buttons: [
-            {
-                onClick: disconnect,
+            {                
                 cssClasses: "confirm btn btn-primary",
-                text: "Yes"
+                text: "Yes",
+                onClick: disconnect
             },
-            {
-                onClick: function(){
-                    debugger;
-                },
+            {                
                 cssClasses: "cancel btn btn-default",
-                text: "Cancel"
+                text: "Cancel",
+                onClick: function(){
+                    self.disconnectDialog.close();
+                }
             }
         ]
     };
 
     function appendGpSignInScript(options) {
 
+        var po = document.createElement('script'), script;
+
         gpSignInParams = $.extend({
             callback: signInCallback,
             scope: options.scope,
             requestvisibleactions: options.activity,
             cookiepolicy: "single_host_origin"
-        }, options);
-
-        var po = document.createElement('script'), script;
+        }, options);        
 
         po.type = 'text/javascript';
         po.async = true;
@@ -59,6 +59,8 @@
 
     function signInCallback(authResult) {
 
+        var code, method;
+
         if (authResult.status.signed_in === false) {
 
             // need to connect account
@@ -66,8 +68,8 @@
             return;
         }
 
-        var code = authResult.code;
-        var method = authResult.status.method;
+        code = authResult.code;
+        method = authResult.status.method;
 
         if (code && method === "PROMPT") {
 
@@ -157,7 +159,7 @@
     isSignedIn.subscribe(isSignedInChange);
     antiForgeryToken.subscribe(antiForgeryTokenChange);
 
-    return {
+    self = {
 
         isSignedIn: isSignedIn,
         authMessage: authMessage,
@@ -168,4 +170,6 @@
         signOut: signOut,
         disconnectDialog: disconnectDialog
     };
+
+    return self;
 };

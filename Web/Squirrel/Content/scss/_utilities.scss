@@ -1,0 +1,81 @@
+.info {
+    font-size: 1em;
+    color: #888;
+}
+.transparent {
+    opacity: 0;
+}
+.link-emulate 
+{
+    color: #33b5e5;
+}
+.link-emulate:hover 
+{
+    cursor: pointer;
+    color: #0099cc;
+}
+.link-emulate.disabled 
+{
+    color: #ccc;
+}
+.margin-top-sm {
+    margin-top: 10px;
+}
+.margin-bottom 
+{
+    margin-bottom: 20px;
+}
+.float-left
+{
+    float: left;
+}
+.float-right
+{
+    float:right;
+}
+.icon-large
+{
+    font-size: 32px;    
+}
+.image-replace
+{
+    text-indent: -9999px;
+}
+.invisible-transition
+{
+    opacity: 1;
+    -webkit-transition: opacity 200ms ease-in-out;
+    -moz-transition: opacity 200ms ease-in-out;
+    -o-transition: opacity 200ms ease-in-out;
+    transition: opacity 200ms ease-in-out;
+}
+.invisible
+{
+    visibility: visible;
+    opacity: 0;
+}
+button.link-emulate
+{
+    padding: 0;
+    background: none;
+    border: none;
+}
+.busy
+{
+    -webkit-animation-name: bluePulse;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    animation-name: bluePulse;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+button 
+{
+    border: none;
+    background: none;
+    padding: 0;
+}
+.quiet
+{
+    color: #ccc;
+}

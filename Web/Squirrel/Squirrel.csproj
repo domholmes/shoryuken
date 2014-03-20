@@ -320,6 +320,8 @@
     <Content Include="Scripts\custom-form-elements.js" />
     <Content Include="Scripts\dataaccess\reminderRepository.js" />
     <Content Include="Content\scss\site.scss" />
+    <Content Include="Content\scss\_fonts.scss" />
+    <Content Include="Content\scss\_utilities.scss" />
     <None Include="Properties\PublishProfiles\staging.squirrel-beta.com - Web Deploy.pubxml" />
     <Content Include="Scripts\expandingtextarea.js" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
@@ -372,6 +374,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-2.1.0.min.map" />
+    <Content Include="Views\Shared\Dialog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,6 +1,4 @@
-﻿var sr = window.sr || {};
-
-sr.reminderDefaults = {
+﻿sr.reminderDefaults = {
 
     enabled: true,
     startTime: "00:00",

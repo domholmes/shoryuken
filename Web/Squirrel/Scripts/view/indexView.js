@@ -8,23 +8,29 @@
 
 ko.bindingHandlers.dialog = {
     init: function (element, valueAccessor) {
-        var dialogOptions = valueAccessor();
+        var dialogModel = valueAccessor(),
+            dialogWrapper;
 
-        dialogOptions.active = ko.observable(false);
+        dialogModel.active = ko.observable(false);
 
-        dialogOptions.close = function(){
-            $('.modal').modal('hide');
+        dialogModel.close = function(){
+            $(dialogWrapper).find('.modal').modal('hide');
         };
 
         $(element).click(function(){
 
-            var div = document.createElement("div");
+            dialogWrapper = document.createElement("div");
 
-            document.body.appendChild(div);
+            document.body.appendChild(dialogWrapper);
 
-            ko.renderTemplate("dialog", dialogOptions, {}, div, "replaceNode");
+            ko.renderTemplate("dialog", dialogModel, {}, dialogWrapper, "replaceChildren");
 
-            $('.modal').modal('show');
+            $(dialogWrapper).find('.modal')
+            .modal('show')
+            .on('hidden.bs.modal', function () {
+                ko.cleanNode(dialogWrapper);
+                dialogWrapper.parentNode.removeChild(dialogWrapper);
+            });
         });
     }
 }
