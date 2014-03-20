@@ -27,6 +27,11 @@ sr.RemindersViewModel = function (reminderRepository, isSignedInObservable) {
 
         return !isEditingReminder();
     });
+
+    var showReminders = ko.computed(function () {
+
+        return isSignedIn();
+    });
     
     function loadReminders() {
 
@@ -226,6 +231,7 @@ sr.RemindersViewModel = function (reminderRepository, isSignedInObservable) {
         attemptDeleteReminder: attemptDeleteReminder,
         autoSaveReminder: autoSaveReminder,
         manualSaveReminder: manualSaveReminder,
-        messageOnFocus: messageOnFocus
+        messageOnFocus: messageOnFocus,
+        showReminders: showReminders
     };        
 }

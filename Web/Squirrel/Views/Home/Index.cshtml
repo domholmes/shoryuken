@@ -10,14 +10,16 @@
                 <span class="navbar-brand"><span>Squirrel</span>
             </div>
             <nav class="collapse navbar-collapse bs-navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li data-bind="visible: showDisconnect">
+                <ul class="nav navbar-nav navbar-right" data-bind="css: { active: showDisconnect }">
+                    <li>
                         <button data-bind="dialog: disconnectDialog">
                             Disconnect
                         </button>
                     </li>
-                    <li data-bind="visible: showDisconnect">
-                        <button data-bind="click: signOut">Sign Out</button>
+                    <li>
+                        <button data-bind="click: signOut">
+                            Sign Out
+                        </button>
                     </li>
                 </ul>
             </nav>
@@ -32,7 +34,7 @@
     </div>
 </section>
 <section class="tab" id="remindersViewModel">
-    <div class="container reminders" data-bind="css: { active: reminders().length > 0 }">
+    <div class="container reminders" data-bind="css: { active: showReminders }">
         <div class="row">
             <div class="col-sm-12 margin-bottom">
                 <button type="button" class="btn btn-red" data-bind="visible: showAddNewReminder, click: createReminder, css: { disabled: !canAddNewReminder() }">

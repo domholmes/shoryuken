@@ -12,7 +12,7 @@ ko.bindingHandlers.dialog = {
             dialogWrapper;
 
         dialogModel.active = ko.observable(false);
-
+        
         dialogModel.close = function(){
             $(dialogWrapper).find('.modal').modal('hide');
         };

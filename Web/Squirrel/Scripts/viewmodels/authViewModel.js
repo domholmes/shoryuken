@@ -26,7 +26,10 @@
             {                
                 cssClasses: "confirm btn btn-primary",
                 text: "Yes",
-                onClick: disconnect
+                onClick: function(){
+                    disconnect();
+                    self.disconnectDialog.close();
+                }
             },
             {                
                 cssClasses: "cancel btn btn-default",

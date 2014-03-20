@@ -169,11 +169,15 @@ button span.icon, button > i {
 	border-radius: 0 3px 3px 0;
 	display: inline-block;
 }
-
-
-
-
-
+.navbar-right {
+  display: none;
+  opacity: 0;
+  transition: opacity .3s ease-in;
+}
+.navbar-right.active {
+  display: block;
+  opacity: 1;
+}
 .navbar-inverse .navbar-nav > li > button {
 color: #999999;
 }
