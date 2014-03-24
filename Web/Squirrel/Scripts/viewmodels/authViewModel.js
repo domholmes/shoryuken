@@ -108,6 +108,9 @@
 
         antiForgeryToken(options.antiForgeryToken)
         isSignedIn(options.user.isAuthenticated);
+
+        isSignedIn.subscribe(isSignedInChange);
+        antiForgeryToken.subscribe(antiForgeryTokenChange);
     }
 
     function signIn() {
@@ -158,9 +161,6 @@
             }
         });
     }
-
-    isSignedIn.subscribe(isSignedInChange);
-    antiForgeryToken.subscribe(antiForgeryTokenChange);
 
     self = {
 
