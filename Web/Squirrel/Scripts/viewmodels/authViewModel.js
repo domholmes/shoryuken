@@ -106,11 +106,11 @@
 
         appendGpSignInScript(options);
 
-        antiForgeryToken(options.antiForgeryToken)
-        isSignedIn(options.user.isAuthenticated);
-
-        isSignedIn.subscribe(isSignedInChange);
         antiForgeryToken.subscribe(antiForgeryTokenChange);
+        antiForgeryToken(options.antiForgeryToken)
+
+        isSignedIn(options.user.isAuthenticated);
+        isSignedIn.subscribe(isSignedInChange);
     }
 
     function signIn() {
