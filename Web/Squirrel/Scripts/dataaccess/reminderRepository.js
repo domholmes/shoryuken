@@ -54,6 +54,8 @@ sr.ReminderRepository = function () {
             .fail(failCallback);
     }
 
+    breeze.config.getAdapterInstance("ajax").defaultSettings = { cache: false };
+
     var valOpts = episodeManager.validationOptions.using({ validateOnAttach: false });
     episodeManager.setProperties({ validationOptions: valOpts });
 
