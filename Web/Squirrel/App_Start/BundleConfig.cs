@@ -31,6 +31,7 @@ namespace Squirrel
                 .Include("~/Scripts/models/reminder.js")
                 .Include("~/Scripts/models/user.js")
                 .Include("~/Scripts/dataaccess/reminderRepository.js")
+                .Include("~/Scripts/dataaccess/syncNotifier.js")
                 .Include("~/Scripts/viewmodels/remindersViewModel.js")
                 .Include("~/Scripts/viewmodels/authViewModel.js")
                 .Include("~/Scripts/view/indexView.js"));

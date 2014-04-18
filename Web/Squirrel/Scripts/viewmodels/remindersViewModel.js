@@ -1,6 +1,8 @@
-sr.RemindersViewModel = function (reminderRepository, isSignedInObservable) {
+sr.RemindersViewModel = function (reminderRepository, syncNotifier, isSignedInObservable) {
 
     var repository = reminderRepository;
+    
+    var syncNotifier = syncNotifier;
 
     var isSignedIn = isSignedInObservable;
 
@@ -132,7 +134,7 @@ sr.RemindersViewModel = function (reminderRepository, isSignedInObservable) {
                     reminder.inEditMode(false);
                 }
 
-                $.connection.notificationHub.server.pushUpdate();
+                syncNotifier.notifyOthers();
             },
             function (response) {
                 handleSaveFailed(response, reminder);
@@ -160,7 +162,7 @@ sr.RemindersViewModel = function (reminderRepository, isSignedInObservable) {
 
                 reminder.inEditMode(false);
                 reminders.remove(reminder);
-                $.connection.notificationHub.server.pushUpdate();
+                syncNotifier.pushUpdate();
             },
             function (response) {
                 handleSaveFailed(response, reminder);
@@ -189,37 +191,9 @@ sr.RemindersViewModel = function (reminderRepository, isSignedInObservable) {
         }
     }
 
-    function isSignedInChange() {
-
-        if (isSignedIn()) {
-            loadReminders();
-            $.connection.hub.start();
-        }
-        else {
-            reminders.removeAll();
-            $.connection.hub.stop();
-        }
-    }
-    
-    function initialise() {
-
-        $.connection.hub.disconnected(function () {
-            setTimeout(function () {
-                if (isSignedIn()) {
-                    $.connection.hub.start();
-                }
-            }, 20000);
-        });
-
-        $.connection.notificationHub.client.update = function () {
-            loadReminders();
-        };
-
-        isSignedIn.subscribe(isSignedInChange);
-    }
+    syncNotifier.callback = loadReminders;
 
     return {
-        initialise: initialise,
         reminders: reminders,
         isLoadingReminders: isLoadingReminders,
         isEditingReminder: isEditingReminder,
@@ -232,6 +206,7 @@ sr.RemindersViewModel = function (reminderRepository, isSignedInObservable) {
         autoSaveReminder: autoSaveReminder,
         manualSaveReminder: manualSaveReminder,
         messageOnFocus: messageOnFocus,
-        showReminders: showReminders
+        showReminders: showReminders,
+        loadReminders: loadReminders
     };        
 }

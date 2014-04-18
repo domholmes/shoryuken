@@ -6,13 +6,14 @@
 
             var repository = new sr.ReminderRepository();
             var authViewModel = new sr.AuthViewModel();
-            var remindersViewModel = new sr.RemindersViewModel(repository, authViewModel.isSignedIn);
+            var syncNotifier = new sr.SyncNotifier(authViewModel.isSignedIn);
+            var remindersViewModel = new sr.RemindersViewModel(repository, syncNotifier, authViewModel.isSignedIn);
             
             ko.applyBindings(authViewModel, $("#authViewModel")[0]);
             ko.applyBindings(remindersViewModel, $("#remindersViewModel")[0]);
 
-            remindersViewModel.initialise();
             authViewModel.initialise(options);
+            syncNotifier.initialise();
         }
     }
 })();
