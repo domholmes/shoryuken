@@ -1,212 +1,216 @@
-sr.RemindersViewModel = function (reminderRepository, syncNotifier, isSignedInObservable) {
+define(["jquery", "ko"], function ($, ko) {
 
-    var repository = reminderRepository;
+    return function (reminderRepository, syncNotifier, isSignedInObservable) {
+
+        var repository = reminderRepository;
     
-    var syncNotifier = syncNotifier;
+        var syncNotifier = syncNotifier;
 
-    var isSignedIn = isSignedInObservable;
+        var isSignedIn = isSignedInObservable;
 
-    var reminders = ko.observableArray([]);
+        var reminders = ko.observableArray([]);
 
-    var isLoadingReminders = ko.observable(false);
+        var isLoadingReminders = ko.observable(false);
 
-    var isEditingReminder = ko.computed(function () {
+        var isEditingReminder = ko.computed(function () {
 
-        var reminder = ko.utils.arrayFirst(reminders(), function (reminder) {
+            var reminder = ko.utils.arrayFirst(reminders(), function (reminder) {
 
-            return reminder.inEditMode() === true;
+                return reminder.inEditMode() === true;
+            });
+
+            return reminder !== null;
         });
 
-        return reminder !== null;
-    });
+        var showAddNewReminder = ko.computed(function () {
 
-    var showAddNewReminder = ko.computed(function () {
+            return isSignedIn();
+        });
 
-        return isSignedIn();
-    });
+        var canAddNewReminder = ko.computed(function () {
 
-    var canAddNewReminder = ko.computed(function () {
+            return !isEditingReminder();
+        });
 
-        return !isEditingReminder();
-    });
+        var showReminders = ko.computed(function () {
 
-    var showReminders = ko.computed(function () {
-
-        return isSignedIn();
-    });
+            return isSignedIn();
+        });
     
-    function loadReminders() {
+        function loadReminders() {
 
-        isLoadingReminders(true);
+            isLoadingReminders(true);
 
-        repository.fetchReminders(callback);
+            repository.fetchReminders(callback);
 
-        function callback(data) {
+            function callback(data) {
 
-            isLoadingReminders(false);
+                isLoadingReminders(false);
 
-            ko.utils.arrayForEach(data, function (reminder) {
-                reminder.postCreationSetup();
-            });
+                ko.utils.arrayForEach(data, function (reminder) {
+                    reminder.postCreationSetup();
+                });
 
-            reminders(data);
+                reminders(data);
+            }
         }
-    }
 
-    function createReminder() {
+        function createReminder() {
 
-        if (canAddNewReminder()) {
+            if (canAddNewReminder()) {
 
-            var newReminder = repository.createReminder();
+                var newReminder = repository.createReminder();
             
-            newReminder.postCreationSetup();
+                newReminder.postCreationSetup();
+                newReminder.setDefaults();
 
-            newReminder.inEditMode(true);
+                newReminder.inEditMode(true);
 
-            reminders.unshift(newReminder);
-        }
-    }
-
-    function cancelCurrentAction (reminder) {
-
-        if (reminder.isDeleting()) {
-
-            reminder.isDeleting(false);
-        }
-        else if (!reminder.isSaving()) {
-
-            var isNew = repository.isNew(reminder);
-
-            if (isNew) {
-                reminders.remove(reminder);
-            }
-            else {
-                repository.revertReminder(reminder);
-                reminder.isSaving(false);
-                reminder.inEditMode(false);
+                reminders.unshift(newReminder);
             }
         }
-    }
 
-    function beginEditReminder (reminder, event) {
+        function cancelCurrentAction (reminder) {
 
-        event.stopPropagation();
-        reminder.inEditMode(true);
-    }
+            if (reminder.isDeleting()) {
 
-    function messageOnFocus(reminder) {
+                reminder.isDeleting(false);
+            }
+            else if (!reminder.isSaving()) {
 
-        if (!reminder.enabled()) {
-            reminder.toggleEnabled();
-            saveReminder(reminder);
-        }
-    };
+                var isNew = repository.isNew(reminder);
 
-    function autoSaveReminder(reminder, property, value) {
-
-        if (value !== '') {
-            property(value);
-            saveReminder(reminder, false);
-        }
-    };
-
-    function manualSaveReminder(reminder) {
-
-        saveReminder(reminder, true);
-    };
-
-    function saveReminder(reminder, leaveEditMode) {
-
-        reminder.isSaving(true);
-
-        reminder.name($.trim(reminder.name()))
-        reminder.message($.trim(reminder.message()))
-        reminder.ssid($.trim(reminder.ssid()))
-
-        repository.saveReminder(
-
-            reminder,
-            function () {// success
-
-                reminder.isSaving(false);
-
-                if (leaveEditMode) {
+                if (isNew) {
+                    reminders.remove(reminder);
+                }
+                else {
+                    repository.revertReminder(reminder);
+                    reminder.isSaving(false);
                     reminder.inEditMode(false);
                 }
-
-                syncNotifier.notifyOthers();
-            },
-            function (response) {
-                handleSaveFailed(response, reminder);
-            });
-    }
-
-    function attemptDeleteReminder(reminder) {
-
-        if (!reminder.isDeleting()) {
-
-            reminder.isDeleting(true);
-        } else {
-
-            deleteReminder(reminder);
-        }
-    }
-
-    function deleteReminder(reminder) {
-
-        repository.deleteReminder(reminder);
-        repository.saveReminder(
-
-            reminder,
-            function () {// success
-
-                reminder.inEditMode(false);
-                reminders.remove(reminder);
-                syncNotifier.pushUpdate();
-            },
-            function (response) {
-                handleSaveFailed(response, reminder);
-            });
-    }
-    
-    function handleSaveFailed(response, reminder) {
-
-        reminder.isSaving(false);
-
-        if (response.status) {
-
-            switch (response.status) {
-
-                case 403:
-
-                    reminder.inEditMode(false);
-                    isSignedIn(false);
-                    break;
-
-                default:
-
-                    reminder.errors.push("Save failed, please try again later");
-                    break;
             }
         }
+
+        function beginEditReminder (reminder, event) {
+
+            event.stopPropagation();
+            reminder.inEditMode(true);
+        }
+
+        function messageOnFocus(reminder) {
+
+            if (!reminder.enabled()) {
+                reminder.toggleEnabled();
+                saveReminder(reminder);
+            }
+        };
+
+        function autoSaveReminder(reminder, property, value) {
+
+            if (value !== '') {
+                property(value);
+                saveReminder(reminder, false);
+            }
+        };
+
+        function manualSaveReminder(reminder) {
+
+            saveReminder(reminder, true);
+        };
+
+        function saveReminder(reminder, leaveEditMode) {
+
+            reminder.isSaving(true);
+
+            reminder.name($.trim(reminder.name()))
+            reminder.message($.trim(reminder.message()))
+            reminder.ssid($.trim(reminder.ssid()))
+
+            repository.saveReminder(
+
+                reminder,
+                function () {// success
+
+                    reminder.isSaving(false);
+
+                    if (leaveEditMode) {
+                        reminder.inEditMode(false);
+                    }
+
+                    syncNotifier.notifyOthers();
+                },
+                function (response) {
+                    handleSaveFailed(response, reminder);
+                });
+        }
+
+        function attemptDeleteReminder(reminder) {
+
+            if (!reminder.isDeleting()) {
+
+                reminder.isDeleting(true);
+            } else {
+
+                deleteReminder(reminder);
+            }
+        }
+
+        function deleteReminder(reminder) {
+
+            repository.deleteReminder(reminder);
+            repository.saveReminder(
+
+                reminder,
+                function () {// success
+
+                    reminder.inEditMode(false);
+                    reminders.remove(reminder);
+                    syncNotifier.pushUpdate();
+                },
+                function (response) {
+                    handleSaveFailed(response, reminder);
+                });
+        }
+    
+        function handleSaveFailed(response, reminder) {
+
+            reminder.isSaving(false);
+
+            if (response.status) {
+
+                switch (response.status) {
+
+                    case 403:
+
+                        reminder.inEditMode(false);
+                        isSignedIn(false);
+                        break;
+
+                    default:
+
+                        reminder.errors.push("Save failed, please try again later");
+                        break;
+                }
+            }
+        }
+
+        syncNotifier.callback = loadReminders;
+
+        return {
+            reminders: reminders,
+            isLoadingReminders: isLoadingReminders,
+            isEditingReminder: isEditingReminder,
+            showAddNewReminder: showAddNewReminder,
+            canAddNewReminder: canAddNewReminder,
+            createReminder: createReminder,
+            beginEditReminder: beginEditReminder,
+            cancelCurrentAction: cancelCurrentAction,
+            attemptDeleteReminder: attemptDeleteReminder,
+            autoSaveReminder: autoSaveReminder,
+            manualSaveReminder: manualSaveReminder,
+            messageOnFocus: messageOnFocus,
+            showReminders: showReminders,
+            loadReminders: loadReminders
+        };        
     }
-
-    syncNotifier.callback = loadReminders;
-
-    return {
-        reminders: reminders,
-        isLoadingReminders: isLoadingReminders,
-        isEditingReminder: isEditingReminder,
-        showAddNewReminder: showAddNewReminder,
-        canAddNewReminder: canAddNewReminder,
-        createReminder: createReminder,
-        beginEditReminder: beginEditReminder,
-        cancelCurrentAction: cancelCurrentAction,
-        attemptDeleteReminder: attemptDeleteReminder,
-        autoSaveReminder: autoSaveReminder,
-        manualSaveReminder: manualSaveReminder,
-        messageOnFocus: messageOnFocus,
-        showReminders: showReminders,
-        loadReminders: loadReminders
-    };        
-}
+});

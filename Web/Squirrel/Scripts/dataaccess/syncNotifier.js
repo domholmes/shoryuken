@@ -1,51 +1,54 @@
-﻿sr.SyncNotifier = function (isSignedInObservable) {
+﻿define(["jquery", "ko", "signalr.hubs"], function ($, ko) {
 
-    var self;
+    return function (isSignedInObservable) {
 
-    var requiresSync = ko.observable();  
+        var self;
 
-    var callback = function () { };
+        var requiresSync = ko.observable();  
 
-    var isSignedIn = isSignedInObservable;
+        var callback = function () { };
 
-    function initialise() {
+        var isSignedIn = isSignedInObservable;
 
-        $.connection.hub.disconnected(function () {
-            setTimeout(function () {
-                $.connection.hub.start().done(function () {
-                    self.callback();
-                })
-            }, 20000);
-        });
+        function initialise() {
 
-        $.connection.notificationHub.client.update = function () {
-            self.callback();
-        };
-    }
+            $.connection.hub.disconnected(function () {
+                setTimeout(function () {
+                    $.connection.hub.start().done(function () {
+                        self.callback();
+                    })
+                }, 20000);
+            });
 
-    function onIsSignedInChange(){
-        if (isSignedIn()) {
-            $.connection.hub.start();
-            self.callback();
+            $.connection.notificationHub.client.update = function () {
+                self.callback();
+            };
         }
-        else {
-            //$.connection.stop();
-        }
+
+        function onIsSignedInChange(){
+            if (isSignedIn()) {
+                $.connection.hub.start();
+                self.callback();
+            }
+            else {
+                //$.connection.stop();
+            }
         
-    }
+        }
 
-    function notifyOthers() {
-        $.connection.notificationHub.server.pushUpdate();
-    }
+        function notifyOthers() {
+            $.connection.notificationHub.server.pushUpdate();
+        }
 
-    isSignedIn.subscribe(onIsSignedInChange)
+        isSignedIn.subscribe(onIsSignedInChange)
 
-    self = {
+        self = {
 
-        initialise: initialise,
-        callback: callback,
-        notifyOthers: notifyOthers
+            initialise: initialise,
+            callback: callback,
+            notifyOthers: notifyOthers
+        };
+
+        return self;
     };
-
-    return self;
-};
+});

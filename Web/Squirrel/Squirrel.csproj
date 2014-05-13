@@ -307,9 +307,13 @@
     <Content Include="Content\images\ic_launcher.png" />
     <Content Include="Content\images\signinbutton.png" />
     <Content Include="Content\site.css" />
+    <Content Include="css\jasmine.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\async.js" />
     <Content Include="Scripts\bootstrap-timepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -326,6 +330,8 @@
     <Content Include="Scripts\dataaccess\syncNotifier.js" />
     <Content Include="Scripts\expandingtextarea.js" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
+    <Content Include="Scripts\jasmine-html.js" />
+    <Content Include="Scripts\jasmine.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
     <Content Include="Scripts\jquery.ba-tinypubsub.js" />
@@ -341,11 +347,13 @@
     <Content Include="Scripts\prefixfree.js" />
     <Content Include="Scripts\q.js" />
     <Content Include="Scripts\q.min.js" />
+    <Content Include="Scripts\r.js" />
+    <Content Include="Scripts\require.js" />
     <Content Include="Scripts\viewmodels\authViewModel.js" />
-    <Content Include="Scripts\sr.js" />
     <Content Include="Scripts\view\indexView.js" />
     <Content Include="Scripts\models\reminder.js" />
     <Content Include="Scripts\viewmodels\remindersViewModel.js" />
+    <Content Include="Scripts\_tests\viewModelTests.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

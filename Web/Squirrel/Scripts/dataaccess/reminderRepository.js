@@ -1,95 +1,99 @@
-sr.ReminderRepository = function () {
+define(["Q", "breeze", "ko", "models/reminder"], function (Q, breeze, ko, Reminder) {
 
-    breeze.NamingConvention.camelCase.setAsDefault();
-    var episodeManager = new breeze.EntityManager('breeze/reminder');   
+    return function () {
 
-    function createReminder() {
+        breeze.NamingConvention.camelCase.setAsDefault();
+        var episodeManager = new breeze.EntityManager('breeze/reminder');
 
-        var newReminder = episodeManager.createEntity('Reminder', sr.reminderDefaults);
+        function createReminder() {
 
-        return newReminder;
-    };
+            var newReminder = episodeManager.createEntity('Reminder');
 
-    function fetchReminders(callback) {
+            return newReminder;
+        };
 
-        var query = breeze.EntityQuery.from("reminders");
+        function fetchReminders(callback) {
 
-        episodeManager
-            .executeQuery(query)
-            .then(function (data) {
+            var query = breeze.EntityQuery.from("reminders");
 
-                callback(data.results);
-            })
-            .fail(function (saveResult) {
-                console.dir(saveResult);
-            });
-    };
+            episodeManager
+                .executeQuery(query)
+                .then(function (data) {
 
-    function deleteReminder(reminder, successCallback, failCallback) {
+                    callback(data.results);
+                })
+                .fail(function (saveResult) {
+                    console.dir(saveResult); // TODO: do something meaningful here instead
+                });
+        };
 
-        reminder.entityAspect.setDeleted();
-    }
+        function deleteReminder(reminder, successCallback, failCallback) {
 
-    function revertReminder(reminder) {
+            reminder.entityAspect.setDeleted();
+        }
 
-        reminder.propertiesWithErrors.removeAll();
-        reminder.errors.removeAll();
+        function revertReminder(reminder) {
 
-        reminder.entityAspect.rejectChanges();
-    }
+            reminder.propertiesWithErrors.removeAll();
+            reminder.errors.removeAll();
 
-    function isNew(reminder) {
+            reminder.entityAspect.rejectChanges();
+        }
 
-        return reminder.entityAspect.entityState.isAdded();
-    }
+        function isNew(reminder) {
 
-    function saveReminder(reminder, successCallback, failCallback) {
+            return reminder.entityAspect.entityState.isAdded();
+        }
 
-        reminder.propertiesWithErrors.removeAll();
-        reminder.errors.removeAll();
+        function saveReminder(reminder, successCallback, failCallback) {
 
-        episodeManager
-            .saveChanges([reminder])
-            .then(successCallback)
-            .fail(failCallback);
-    }
+            reminder.propertiesWithErrors.removeAll();
+            reminder.errors.removeAll();
 
-    breeze.config.getAdapterInstance("ajax").defaultSettings = { cache: false };
+            episodeManager
+                .saveChanges([reminder])
+                .then(successCallback)
+                .fail(failCallback);
+        }
 
-    var valOpts = episodeManager.validationOptions.using({ validateOnAttach: false });
-    episodeManager.setProperties({ validationOptions: valOpts });
+        breeze.config.getAdapterInstance("ajax").defaultSettings = { cache: false };
 
-    episodeManager.metadataStore.registerEntityTypeCtor("Reminder", sr.Reminder, function (entity) {
+        var valOpts = episodeManager.validationOptions.using({ validateOnAttach: false });
+        episodeManager.setProperties({ validationOptions: valOpts });
 
-        entity.propertiesWithErrors = ko.observableArray([]);
-        entity.errors = ko.observableArray([]);
+        episodeManager.metadataStore.registerEntityTypeCtor("Reminder", Reminder, function (entity) {
 
-        entity.entityAspect.validationErrorsChanged.subscribe(function () {
+            entity.propertiesWithErrors = ko.observableArray([]);
+            entity.errors = ko.observableArray([]);
 
-            entity.propertiesWithErrors.removeAll();
-            entity.errors.removeAll();
+            entity.entityAspect.validationErrorsChanged.subscribe(function () {
 
-            var errors = entity.entityAspect.getValidationErrors();
+                entity.propertiesWithErrors.removeAll();
+                entity.errors.removeAll();
 
-            $.each(errors, function () {
+                var errors = entity.entityAspect.getValidationErrors();
 
-                entity.errors.push(this.errorMessage);
+                $.each(errors, function () {
 
-                if (typeof this.propertyName != 'undefined') {
+                    entity.errors.push(this.errorMessage);
 
-                    entity.propertiesWithErrors.push(this.propertyName);
-                }
+                    if (typeof this.propertyName != 'undefined') {
+
+                        entity.propertiesWithErrors.push(this.propertyName);
+                    }
+                });
             });
         });
-    });
 
-    return {
-        createReminder: createReminder,
-        fetchReminders: fetchReminders,
-        deleteReminder: deleteReminder,
-        revertReminder: revertReminder,
-        saveReminder: saveReminder,
-        isNew: isNew
+        return {
+            createReminder: createReminder,
+            fetchReminders: fetchReminders,
+            deleteReminder: deleteReminder,
+            revertReminder: revertReminder,
+            saveReminder: saveReminder,
+            isNew: isNew
+        }
+
     }
-
 }
+);

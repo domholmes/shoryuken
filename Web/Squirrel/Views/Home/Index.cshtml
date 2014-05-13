@@ -166,15 +166,7 @@
     </div>
 </section>
 @section scripts
-{
-        <script src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=en"></script>
-        <script src="~/signalr/hubs"></script>
-
-        @Scripts.Render("~/bundles/index")
-
-        <script>
-            $(function () {
-                sr.init(@Html.Raw(Model));
-            });
-        </script>
+{  
+    <script>var options = @Html.Raw(Model)</script>
+    <script data-main="Scripts/main" src="Scripts/require.js"></script>
 }
